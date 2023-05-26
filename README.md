@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# About Our E-Commerce App
+The following project will be made with the MERN stack and features are subject to change depending on time constraints.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Group Information
 
-## Available Scripts
+- **Team** Team_undefined
 
-In the project directory, you can run:
+- **Group Members:**
+  
+    - Arshdeep Jassi
+  
+    - Danielle Chen
+  
+    - Elsie Lee
 
-### `npm start`
+    - Eshita Sharma
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    - Florence Situ
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Project Name**: E-Commerce-App
+- **GitHub
+Link:** [https://github.com/0804EshitaSharma/e-commerce-app](https://github.com/0804EshitaSharma/e-commerce-app)
 
-### `npm test`
+## **Project Description:**
+Our project is an online store called E-Commerce-App, which is designed for customers to make online purchases, especially for those who are looking for convenience and favor 
+online shops over traditional brick-and-mortar stores because of their comfort. It will store data such as product details and user information, so that the consumers can log in to their own accounts and have access to a variety of online purchasing features and services. It also supports the users to read descriptions, view photographs of the products, and check user reviews as they explore through comprehensive product lists. It includes products from a variety of categories, including electronics, apparel, household items, and more, which can be searched for by users. We are also considering functionalities such as creating the seller side of accounts and pages depending on the time constraints.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Project Task Requirements**:
 
-### `npm run build`
+1.  **Minimal Requirements**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    a.  A dashboard with a search bar with product filters
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    b.  View selected product details.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    c.  Add product to shopping cart.
 
-### `npm run eject`
+    d.  Products checkout page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    e.  User Authentication with password assistance.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2.  **Standard Requirements**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    a.  User Account page.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    b.  View past orders
 
-## Learn More
+    c.  Add products to wish Lists.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    d.  An option to share products with friends.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    e.  Add product ratings
 
-### Code Splitting
+    f.  Email or text notifications on product purchase
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3.  **Stretch Requirements**
 
-### Analyzing the Bundle Size
+    a.  Show user's recently viewed products.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    b.  Add reviews to a product/see past reviews
 
-### Making a Progressive Web App
+    c.  An option to return an order.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    d.  Functionality to create seller accounts and post products
 
-### Advanced Configuration
+## Task Breakdown
+The following are the two minimal requirements we have chosen to do task breakdowns for and their associated smaller tasks:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- A dashboard with a search bar with product filters
 
-### Deployment
+  - Create a search engine that has a side filter that lists categories like Electronics, Groceries, Shoes & Handbags, Luxury Beauty, etc. depending on the mock data.
+  
+  - Create a top area with a personalized horizontal scroll, and it should automatically show the best offers or show a few products to catch the user's eye.
+  
+- View selected product details
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  - Decide how we want to store picture of product (as base64 string or blob storage or something else)
+  
+  - Display picture of product, description of product, price of product, quantity left
+  
+  - Create ‘Add to Cart’ button 
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Prototypes
+
+These are our prototypes for the two requirements with task breakdowns mentioned above:
+
+- the dashboard with search bar with product filters
+![image](prototypes/dashboard-prototype.jpeg)
+
+- the view of the selected product details
+![image](prototypes/productDetails-prototype.jpeg)
