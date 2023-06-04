@@ -16,7 +16,7 @@ function Form() {
             label="Enter mobile phone number or email"
           />
           <CustomButton type="submit" label="Continue" />
-          <p>By continuing, you agree to our terms ans conditions</p>
+          <p>By continuing, you agree to our terms and conditions</p>
         </div>
       </form>
     </div>
