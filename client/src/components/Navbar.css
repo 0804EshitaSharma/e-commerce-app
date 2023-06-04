@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     height: 60px;
-    background-color: rgba(25, 130, 180);
+    background-color: rgba(25, 130, 180,0.8);
     top: 0;
     z-index: 100;
     position: sticky;
@@ -20,9 +20,15 @@
     background-color: rgb(210, 212, 212);
     padding: 5px;
     height: 22px;
+
 }
 
 .navbar_wishlist_icon {
+    color: white;
+    padding: 5px;
+    height: 22px;
+}
+.navbar_account_icon{
     color: white;
     padding: 5px;
     height: 22px;
@@ -34,6 +40,7 @@
     border: none;
     width: 100%;
     outline: none;
+    border-radius: 4px;
 }
 
 .navbar_link_1 {
@@ -89,7 +96,7 @@
 .navbar_title {
     color: white;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 600;
     margin-left: 10px;
     margin-right: 10px;
 }
