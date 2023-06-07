@@ -1,0 +1,9 @@
+.content-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-container {
+    padding-left: 5%;
+    width: 30%;
+}
