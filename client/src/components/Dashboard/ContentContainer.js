@@ -1,14 +1,14 @@
-import react from "react";
 import './Dashboard.css'
 import Filters from "./Filters";
+import ProductContainer from './Products/ProductContainer';
 
 export default function ContentContainer() {
     return (
-        <div className="content-container">
+        <div className="horizontal-container">
             <div className="filter-container">
-                <div><Filters /></div>
+                <Filters />
             </div>
-            <div>Item Images</div>
+            <ProductContainer />
         </div>   
     )
 }

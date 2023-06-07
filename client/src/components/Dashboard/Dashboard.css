@@ -1,9 +1,9 @@
-.content-container {
+.horizontal-container {
     display: flex;
     flex-direction: row;
 }
 
 .filter-container {
-    padding-left: 5%;
-    width: 30%;
+    padding-left: 2%;
+    width: 15%;
 }
