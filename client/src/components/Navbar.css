@@ -100,3 +100,8 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+.user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
