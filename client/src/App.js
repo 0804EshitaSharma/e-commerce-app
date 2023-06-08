@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product/Product";
+import Checkout from "./components/Checkout/Checkout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
 import Signup from "./components/User/Signup";
@@ -13,6 +14,7 @@ function App() {
           <Route path="/:name" element={<Navbar />}></Route>
           <Route path="/login/" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="*" element={<Navbar />}></Route>
         </Routes>
       </Router>

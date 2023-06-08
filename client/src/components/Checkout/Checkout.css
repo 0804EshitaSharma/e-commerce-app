@@ -1,0 +1,17 @@
+.container {
+    max-width: 90%;
+}
+
+.col-md-4, .col-md-6, .col-md-12 {
+    padding-top: 10px;
+}
+
+.btn {
+    background-color: lightgreen;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* @media only screen and (min-width : 1200px) {
+    .container { max-width: 1500px; }
+} */
