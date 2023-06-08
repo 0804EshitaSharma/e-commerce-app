@@ -30,6 +30,13 @@ const filters = {
                 "1 ~ 2",
                 "Below 1"
             ]
+        },
+        {
+            name: "Deals & Discounts",
+            category: [
+                "All Discounts",
+                "Today's Deal"
+            ]
         }
     ]
 }
@@ -37,7 +44,6 @@ const filters = {
 export default function Filters() {
     return (
         <div className="flexbox-container">
-            <h2>Filters</h2>
             <div>
                 {filters.list.map((filter) => <FilterCard filter={filter}/>)
                 }
