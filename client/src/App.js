@@ -1,6 +1,11 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Product from "./components/Product/Product";
+import Checkout from "./components/Checkout/Checkout";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/User/Login";
+import Signup from "./components/User/Signup";
+import Cart from "./components/Cart/Cart";
 import Dashboard from './pages/dashboard';
 import Home from './pages/HomeProducts';
 import Electronics from './pages/Electronics';
@@ -9,17 +14,21 @@ import Fashion from './pages/Fashion';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
+    <div className="App">
       <Routes>
-        {/* <Route path='/' exact component={Home} /> */}
+        <Route path="/:name" element={<Navbar />}></Route>
+        <Route path="/login/" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/shoppingCart" element={<Cart />}></Route>
+        <Route path="*" element={<Navbar />}></Route>
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/Home' element={<Home />} />
         <Route path='/Electronics' element={<Electronics />} />
         <Route path='/Books' element={<Books />} />
         <Route path='/Fashion' element={<Fashion />} />
       </Routes>
-    </Router>
+    </div>
   );
 }
 

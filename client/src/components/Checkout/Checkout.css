@@ -1,0 +1,48 @@
+.container-lg {
+    max-width: 90%;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto auto;
+    background-color: white;
+    padding: 4rem;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.col-md-4, .col-md-6, .col-md-12 {
+    padding-top: 10px;
+}
+
+.btn {
+    background-color: lightgreen;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.row {
+    padding-bottom: 15px;
+}
+
+.dropdown-header {
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-text {
+    color: white;
+    
+}
+
+.dropdown-selection {
+    color: white;
+}
+
+/* @media only screen and (min-width : 1200px) {
+    .container { max-width: 1500px; }
+} */
