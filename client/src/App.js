@@ -5,6 +5,7 @@ import Checkout from "./components/Checkout/Checkout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
 import Signup from "./components/User/Signup";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login/" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/shoppingCart" element={<Cart />}></Route>
           <Route path="*" element={<Navbar />}></Route>
         </Routes>
       </Router>
