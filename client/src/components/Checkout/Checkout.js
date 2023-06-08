@@ -67,6 +67,9 @@ function Checkout() { // pass in props from the shopping cart page, such as item
                 
 
 
+                    <h4>Testing git</h4>
+
+
                     {/* right */}
                     <div className="col-md-4">
                         <div className="card">
