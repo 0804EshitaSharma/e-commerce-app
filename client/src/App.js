@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
 import Signup from "./components/User/Signup";
 import Cart from "./components/Cart/Cart";
+import ProductPage from "./components/ProductPage/ProductPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/shoppingCart" element={<Cart />}></Route>
+          <Route path="/product" element={<ProductPage />}></Route>  {/* TODO: Add :productId param for dynamic routing to different products */}
           <Route path="*" element={<Navbar />}></Route>
         </Routes>
       </Router>

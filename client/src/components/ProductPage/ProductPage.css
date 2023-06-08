@@ -1,0 +1,41 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.product-images-wrapper {
+    width: 45%;
+}
+
+.product-page-content {
+    margin: 0 5%;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between
+}
+
+.product-name-seller {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.product-name-seller > h2 {
+    margin-bottom: 5px;
+}
+
+.product-name-seller > h5 {
+    margin-top: 0px;
+}
+
+.rating-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.image-gallery-thumbnail-image {
+    height: 75px;
+}
+
+.thumbnails {
+    height: 90%;
+}
