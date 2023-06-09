@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../Customcomponents/CustomButton.js";
+import CustomButton from "./CustomButton.js";
 import "./Modal.css";
 
 function Modal({ heading, content, closeModal }) {

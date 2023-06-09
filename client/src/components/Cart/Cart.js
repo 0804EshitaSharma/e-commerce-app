@@ -1,4 +1,4 @@
-import Navbar from "../Navbar";
+import Navbar from "../Navbar/Navbar";
 import Item from "./Item";
 import "../Cart/Cart.css";
 import { Link } from "react-router-dom";
