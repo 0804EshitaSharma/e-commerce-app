@@ -1,10 +1,14 @@
 import React from "react";
 import "./CustomButton.css";
 
-function CustomButton({ label, type, event }) {
+function CustomButton({ label, type, event}) {
   return (
     <div>
-      <button className="custom_button" type={type} onClick={event}>
+      <button
+        className="custom_button"
+        type={type}
+        onClick={event}
+      >
         {label}
       </button>
     </div>

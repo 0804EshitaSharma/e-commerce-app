@@ -11,7 +11,7 @@ function Navbar() {
         <span className="navbar_title">E-Commerce</span>
       </Link>
       <div className="navbar_search">
-        <input className="navbar_search_input" type="text"></input>
+        <input className="navbar_search_input" type="text" placeholder="Search here...."></input>
         <svg
           className="navbar_search_icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -28,40 +28,41 @@ function Navbar() {
         </svg>
       </div>
       <div className="navbar_links">
-        <div className="user_info">
-          <Link to="/login">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.9"
-              stroke="currentColor"
-              className="navbar_account_icon"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-          </Link>
-          {/* <span>{!name?'Guest':name}</span> */}
+        <div>
+            <Link to="/login">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.9"
+                stroke="currentColor"
+                className="navbar_account_icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </Link>
+          <div className="user">{!name ? "Guest" : name}</div>
         </div>
-
-        <svg
-          className="navbar_wishlist_icon"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.9"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-          />
-        </svg>
+        <div>
+          <svg
+            className="navbar_wishlist_icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.9"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+            />
+          </svg>
+        </div>
 
         <div className="navbar_link_3">
           <Link to="/shoppingCart">

@@ -3,10 +3,11 @@ import CustomButton from "../Custom/CustomButton.js";
 import CustomFormInput from "../Custom/CustomFormInput.js";
 import "./Form.css";
 import { useForm } from "react-hook-form";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
+import { auth } from "../../firebase/firebaseConfig";
 
 function Form() {
   const [showModal, setShowModal] = useState(false);
@@ -18,14 +19,12 @@ function Form() {
   } = useForm({});
 
   const verifyUser = (event) => {
-    const auth = getAuth();
     signInWithEmailAndPassword(auth, event.username, event.userpassword)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         if (user) {
-          const name = event.username;
-         navigate(`/${name}`);
+         navigate(`/${user.displayName}`);
         } else {
         }
         // ...

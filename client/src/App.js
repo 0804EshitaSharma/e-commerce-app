@@ -5,8 +5,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
 import Signup from "./components/User/Signup";
 import Cart from "./components/Cart/Cart";
+import { useEffect, useState } from "react";
+import { auth } from "./firebase/firebaseConfig";
 
 function App() {
+  const [userName, setUsername] = useState("");
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUsername(user.displayName);
+      } else {
+        setUsername("Guest");
+      }
+    });
+  }, []);
   return (
     <div className="App">
       <Router>
