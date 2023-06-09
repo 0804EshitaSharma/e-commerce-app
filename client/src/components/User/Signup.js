@@ -3,7 +3,8 @@ import Navbar from "../Navbar/Navbar";
 import CustomButton from "../Custom/CustomButton.js";
 import CustomFormInput from "../Custom/CustomFormInput.js";
 import { useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase/firebaseConfig";
 import { useForm } from "react-hook-form";
 import Modal from "../Custom/Modal.js";
 import "./Signup.css";
@@ -20,14 +21,13 @@ function Signup() {
   const navigate = useNavigate();
 
   const createUser = (event) => {
-    console.error(event.username);
-    const auth = getAuth();
     createUserWithEmailAndPassword(auth, event.useremail, event.userpassword)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        user.displayName = event.username;
-        console.log(user);
+        updateProfile(user, {
+          displayName: event.firstname,
+        });
         navigate("/login");
         // ...
       })
@@ -38,7 +38,6 @@ function Signup() {
         console.log(error);
         setShowModal(true);
       });
-
   };
   return (
     <div>
