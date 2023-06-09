@@ -34,7 +34,6 @@ function Cart() {
   let totalPrice = calcTotalPrice();
   return (
     <>
-      <Navbar />
       <div className="container-shoppingCart">
         <div className="card-shoppingCart">
           <h1 className="cart-header">

@@ -6,7 +6,6 @@ import "./Login.css";
 function Login() {
   return (
     <div>
-      <Navbar />
       <Form />
     </div>
   );

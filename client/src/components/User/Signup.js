@@ -42,7 +42,6 @@ function Signup() {
   };
   return (
     <div>
-      <Navbar />
       <div>
         <form className="container">
           <h1>Sign Up</h1>

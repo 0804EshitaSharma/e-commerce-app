@@ -44,7 +44,6 @@ function ProductPage() {
 
     return (
         <div className="full-page-wrapper">
-            <Navbar />
             <div className="product-page-content">
                 <div className="product-header">
                     <div className="product-name-seller">
