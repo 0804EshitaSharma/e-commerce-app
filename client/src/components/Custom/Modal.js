@@ -10,7 +10,7 @@ function Modal({ heading, content, closeModal }) {
         <h3 className="modal_heading">{heading}</h3>
         <hr />
 
-        <p>{content}</p>
+        <p className="modal_paragraph">{content}</p>
         <div className="button_container">
           <button className="close_button" onClick={closeModal}>
             Close

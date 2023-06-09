@@ -41,9 +41,8 @@
     align-items: center;
 }
 
-p {
+.modal_paragraph {
     margin-top: 2rem;
-
     font-size: 20px;
     font-size: 14px;
     padding: 0.4rem;
