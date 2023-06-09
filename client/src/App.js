@@ -1,6 +1,5 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import Product from "./components/Product/Product";
+import "./App.css";
+import Navbar from "./components/Navbar/Navbar.js";
 import Checkout from "./components/Checkout/Checkout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
@@ -30,7 +29,6 @@ function App() {
           <Route path='/Fashion' element={<Fashion />} ></Route>
         </Routes>
       </Router>
-      
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import CustomButton from "../Customcomponents/CustomButton.js";
-import CustomFormInput from "../Customcomponents/CustomFormInput.js";
+import CustomButton from "../Custom/CustomButton.js";
+import CustomFormInput from "../Custom/CustomFormInput.js";
 import "./Form.css";
 import { useForm } from "react-hook-form";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Modal from "../Customcomponents/Modal.js";
-import app from "../../firebaseConfig";
+import Modal from "../Custom/Modal.js";
 
 function Form() {
   const [showModal, setShowModal] = useState(false);
@@ -15,9 +14,7 @@ function Form() {
   const navigate = useNavigate();
   const {
     handleSubmit,
-    reset,
     register,
-    formState: { errors },
   } = useForm({});
 
   const verifyUser = (event) => {
