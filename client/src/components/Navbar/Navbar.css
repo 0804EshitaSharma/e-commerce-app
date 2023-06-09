@@ -6,6 +6,7 @@
   z-index: 100;
   position: sticky;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .navbar_search {
@@ -24,21 +25,21 @@
 .navbar_wishlist_icon {
   color: white;
   padding: 5px;
-  height: 22px;
+  height: 35px;
 }
 .navbar_account_icon {
   color: white;
   padding: 5px;
-  height: 22px;
+  height: 35px;
 }
 
 .navbar_search_input {
-  height: 12px;
+  height: 1px;
   padding: 10px;
-  border: none;
+  /* border: none; */
   width: 100%;
-  outline: none;
-  border-radius: 4px;
+  /* outline: none; */
+  /* border-radius: 4px; */
 }
 
 .navbar_link_1 {
@@ -75,7 +76,7 @@
 .navbar_shopping-icon {
   color: white;
   padding: 5px;
-  height: 22px;
+  height: 35px;  
 }
 
 .navbar_link_3 {
@@ -86,7 +87,7 @@
 
 .navbar_shopping-icon_count {
   color: white;
-  margin-left: 5px;
+  margin-left: 0.1rem;
   margin-right: 10px;
   font-size: 17px;
   font-weight: 800;
