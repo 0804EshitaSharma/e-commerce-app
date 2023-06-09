@@ -3,10 +3,10 @@
 import { useState } from "react"
 
 const slides = [
-    { url: "https://images-na.ssl-images-amazon.com/images/G/15/img16/home/content-grid/1001488_ca_home_cg_homepage_750x375_kitchen.jpg"},
+    { url: "https://cdn.roveconcepts.com/sites/default/files/styles/picture_768_2x/public/menu_assets/YVR-Showroom-Photoshoot_0021_0.jpg"},
     { url: "https://images-na.ssl-images-amazon.com/images/G/15/CA-hq/2018/img/Office_Products/XCM_1096432_Manual_750x375_1096432_ca_office_products_homeoffice_main_en_18_750x375_jpg_Homeoffice_Main_en.jpg"},
-    { url: "https://images-na.ssl-images-amazon.com/images/G/15/img16/home/content-grid/1001488_ca_home_cg_homepage_750x375_art.jpg"},
-    { url: "https://images-na.ssl-images-amazon.com/images/G/15/img16/home/content-grid/1001488_ca_home_cg_homepage_750x375_storage.jpg"}
+    { url: "https://media.istockphoto.com/id/501630964/photo/art-process.jpg?s=612x612&w=0&k=20&c=y2_i3_dB9ElUlLsM0vp9MDWX_f8a7VEX8OB_OX7ChFU="},
+    { url: "https://www.abtasty.com/wp-content/uploads/Product-roadmap.jpg"}
 ]
 
 export default function ProductSlideShow() {
