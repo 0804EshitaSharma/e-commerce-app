@@ -8,7 +8,7 @@ function CustomFormInput({ id, name, type, label, register, placeholder }) {
         {label}
       </label>
       <input
-        className="input_field"
+        className="form_input"
         name={name}
         id={id}
         type={type}
