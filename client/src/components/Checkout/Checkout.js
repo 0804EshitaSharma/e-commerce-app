@@ -19,7 +19,6 @@ function Checkout() { // pass in props from the shopping cart page, such as item
 
     return (
         <div>
-          <Navbar />
             <h2> Checkout </h2>
             <div className="container-lg">
                 <div className="row">
