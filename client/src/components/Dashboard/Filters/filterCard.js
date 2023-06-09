@@ -5,7 +5,7 @@ export default function FilterCard(props) {
     return (
         <FilterCardContainer key={props.filter.name}>
             <h3>{props.filter.name}</h3>
-            {props.filter.category.map((cat) => (<Filter name={cat} />))}
+            {props.filter.category.map((cat) => (<Filter key={cat} name={cat} />))}
         </FilterCardContainer>
     )
 }

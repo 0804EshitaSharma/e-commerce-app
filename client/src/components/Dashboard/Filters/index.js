@@ -45,7 +45,7 @@ export default function Filters() {
     return (
         <div className="flexbox-container">
             <div>
-                {filters.list.map((filter) => <FilterCard filter={filter}/>)
+                {filters.list.map((filter) => <FilterCard key={filter.name} filter={filter}/>)
                 }
             </div>
 

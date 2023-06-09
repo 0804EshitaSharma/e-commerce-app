@@ -8,7 +8,7 @@ export default function ProductCard(props) {
             <div style={{ margin: '20px' }}>
                 <ProdTextContainer>
                     <div>
-                        <span style={{ fontWeight: 'bold' }}>Description</span>: {props.item.description} 
+                        <span style={{ fontWeight: 'bold' }}> {props.item.description} </span>
                     </div>
                     <div>
                         <span style={{ fontWeight: 'bold' }}>Price</span>: ${props.item.price} 

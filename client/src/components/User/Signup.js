@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar";
-import CustomButton from "../Customcomponents/CustomButton.js";
-import CustomFormInput from "../Customcomponents/CustomFormInput.js";
+import Navbar from "../Navbar/Navbar";
+import CustomButton from "../Custom/CustomButton.js";
+import CustomFormInput from "../Custom/CustomFormInput.js";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
-import Modal from "../Customcomponents/Modal.js";
+import Modal from "../Custom/Modal.js";
 import "./Signup.css";
 
 function Signup() {
