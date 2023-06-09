@@ -3,22 +3,16 @@ import "../Cart/Item.css";
 function Item({ item }) {
   return (
     <div id="item-container">
-      <span className="image-container">
+      <div className="image-container">
         <img src={item.image} alt="Broken link" />
-      </span>
-      <div>
+      </div>
+      <div className="name-container">
         <h1>{item.name}</h1>
       </div>
-      <span className="price-container">
+      <div className="price-container">
         <h1 className="price-value">${item.price}</h1>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <button className="remove-button">Remove</button>
-      </span>
+      </div>
     </div>
   );
 }

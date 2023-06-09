@@ -1,23 +1,25 @@
 .container-shoppingCart {
-  display: inline-block;
-  justify-content: center;
-  width: 50%;
-  margin: 3rem;
+  margin: auto;
+  max-width: 90%;
 }
-
+hr {
+  width: 99% !important;
+  border-top-width: 0.35rem;
+}
 .card-shoppingCart {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   max-height: fit-content;
-  border-style: solid;
-  border-color: rgba(25, 130, 180, 0.8);
-  border-radius: 8px;
+  background-color: snow;
+  border-radius: 0.5rem;
 }
 .cart-header {
   display: inline;
   text-align: left;
-  margin: 3rem;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
   font-weight: bold;
   font-size: xx-large;
 }
@@ -29,6 +31,7 @@
   margin-bottom: 3rem;
   font-weight: bold;
   font-size: x-large;
+  color: rgba(25, 130, 180, 0.8);
 }
 /* .total-price-header {
   display: inline;
