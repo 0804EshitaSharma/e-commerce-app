@@ -24,7 +24,7 @@ function Form() {
         // Signed in
         const user = userCredential.user;
         if (user) {
-         navigate(`/${user.displayName}`);
+         navigate("/");
         } else {
         }
         // ...

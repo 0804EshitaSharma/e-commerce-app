@@ -1,10 +1,8 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
-function Navbar() {
-  const { name } = useParams();
+function Navbar({name}) {
   return (
     <div className="navbar">
       <Link to="/">
