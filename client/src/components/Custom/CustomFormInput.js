@@ -10,6 +10,7 @@ function CustomFormInput({ id, name, type, label, register, placeholder }) {
       <input
         className="form_input"
         name={name}
+        autoComplete="off"
         id={id}
         type={type}
         placeholder={placeholder}
