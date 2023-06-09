@@ -1,6 +1,7 @@
 import React from "react";
 import "./CustomFormInput.css";
 
+/* Reference from Assignment 2 */
 function CustomFormInput({ id, name, type, label, register, placeholder }) {
   return (
     <div className="form_container">

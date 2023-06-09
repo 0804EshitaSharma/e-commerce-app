@@ -22,6 +22,7 @@ function Signup() {
   const closeModal = () => {
     setShowModal(false);
   };
+  /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
   const createUser = (event) => {
     createUserWithEmailAndPassword(auth, event.useremail, event.userpassword)
       .then((userCredential) => {
@@ -42,12 +43,16 @@ function Signup() {
             setErrorMessage("Your account is disabled.");
             break;
           case "auth/user-not-found":
-            setErrorMessage("User Not found,Please Sign up to create a new account.");
+            setErrorMessage(
+              "User Not found,Please Sign up to create a new account."
+            );
             break;
           case "auth/wrong-password":
             setErrorMessage("Invalid User Password found.");
 
             break;
+          default:
+            setErrorMessage(error.errorMessage);
         }
 
         setShowModal(true);

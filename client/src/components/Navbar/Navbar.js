@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
 import { signOut} from "firebase/auth";
 
+/* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
 const navigate = useNavigate();
   const logOut = () => {

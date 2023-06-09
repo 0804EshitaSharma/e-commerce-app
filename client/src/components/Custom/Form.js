@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
 
+/* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form() {
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const { handleSubmit, register ,reset} = useForm({});
+  const { handleSubmit, register, reset } = useForm({});
 
   const closeModal = () => {
     setShowModal(false);
@@ -24,29 +25,33 @@ function Form() {
         // Signed in
         const user = userCredential.user;
         if (user) {
-           reset();
+          reset();
           navigate("/");
-        } 
+          //Todo will replace this piece of code.
+          window.location.reload();
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
-         switch (errorCode) {
-           case "auth/invalid-email":
-             setErrorMessage("Invalid Email Address found.");
-             break;
-           case "auth/user-disabled":
-             setErrorMessage("Your account is disabled.");
-             break;
-           case "auth/user-not-found":
-             setErrorMessage(
-               "User Not found,Please Sign up to create a new account."
-             );
-             break;
-           case "auth/wrong-password":
-             setErrorMessage("Invalid User Password found.");
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setErrorMessage("Invalid Email Address found.");
+            break;
+          case "auth/user-disabled":
+            setErrorMessage("Your account is disabled.");
+            break;
+          case "auth/user-not-found":
+            setErrorMessage(
+              "User Not found,Please Sign up to create a new account."
+            );
+            break;
+          case "auth/wrong-password":
+            setErrorMessage("Invalid User Password found.");
 
-             break;
-         }
+            break;
+          default:
+          setErrorMessage(error.errorMessage);
+        }
 
         setShowModal(true);
       });
