@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductPage.css";
-import Navbar from "../Navbar";
+import Navbar from "../Navbar/Navbar.js";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
 import { useState } from "react";
