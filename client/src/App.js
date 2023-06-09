@@ -41,6 +41,7 @@ function App() {
           <Route path="/electronics" element={<Electronics />}></Route>
           <Route path="/books" element={<Books />}></Route>
           <Route path="/fashion" element={<Fashion />}></Route>
+          <Route path="/" element={<Dashboard />}></Route>
         </Routes>
       </Router>
     </div>
