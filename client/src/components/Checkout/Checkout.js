@@ -1,6 +1,6 @@
 import React from "react";
 import "./Checkout.css";
-import Navbar from "../Navbar.js";
+import Navbar from "../Navbar/Navbar.js";
 import { useState } from "react";
 
 function Checkout() { // pass in props from the shopping cart page, such as item, price, etc.
