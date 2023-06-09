@@ -1,9 +1,9 @@
-import Navbar from "../Navbar/Navbar";
-import Item from "./Item";
-import "../Cart/Cart.css";
+import Item from "../components/Cart/Item.js";
+import "../components/Cart/Cart.css";
 import { Link } from "react-router-dom";
 
 function Cart() {
+  // TODO: add props so can add item into cart
   const itemList = [
     {
       name: "product 1",

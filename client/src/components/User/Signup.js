@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import CustomButton from "../Custom/CustomButton.js";
 import CustomFormInput from "../Custom/CustomFormInput.js";
 import { useNavigate } from "react-router-dom";
