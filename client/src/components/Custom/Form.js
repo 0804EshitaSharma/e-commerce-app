@@ -50,7 +50,7 @@ function Form() {
 
             break;
           default:
-          setErrorMessage(error.errorMessage);
+            setErrorMessage(error.message);
         }
 
         setShowModal(true);
