@@ -1,6 +1,6 @@
 .container-shoppingCart {
   margin: auto;
-  max-width: 90%;
+  max-width: 75%;
 }
 hr {
   width: 99% !important;
@@ -22,6 +22,7 @@ hr {
   margin-right: 3rem;
   font-weight: bold;
   font-size: xx-large;
+  color: black;
 }
 
 .price-header {
@@ -31,7 +32,6 @@ hr {
   margin-bottom: 3rem;
   font-weight: bold;
   font-size: x-large;
-  color: rgba(25, 130, 180, 0.8);
 }
 /* .total-price-header {
   display: inline;
