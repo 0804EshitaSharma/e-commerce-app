@@ -52,7 +52,7 @@ function Signup() {
 
             break;
           default:
-            setErrorMessage(error.errorMessage);
+            setErrorMessage(error.message);
         }
 
         setShowModal(true);
