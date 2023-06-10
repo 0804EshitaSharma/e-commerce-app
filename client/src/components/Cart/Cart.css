@@ -2,7 +2,7 @@
   margin: auto;
   max-width: 75%;
 }
-hr {
+.cart-hr {
   width: 99% !important;
   border-top-width: 0.35rem;
 }

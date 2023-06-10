@@ -4,7 +4,7 @@ function Item({ item }) {
   return (
     <div id="item-container">
       <div className="image-container">
-        <img src={item.image} alt="Broken link" />
+        <img className="item-image" src={item.image} alt="Broken link" />
       </div>
       <div className="name-container">
         <h1>{item.name}</h1>

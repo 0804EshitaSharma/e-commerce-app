@@ -38,7 +38,7 @@
   text-align: left;
   color: black;
 }
-img {
+.item-image {
   float: left;
   width: 200px;
   height: 200px;

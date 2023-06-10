@@ -40,12 +40,12 @@ function Cart() {
             Shopping Cart
             <button className="removeAll-button">Remove All</button>
           </h1>
-          <hr />
+          <hr className="cart-hr" />
           <h4 className="price-header">Price</h4>
           <Item item={itemList[0]} />
           <Item item={itemList[1]} />
           <Item item={itemList[2]} />
-          <hr />
+          <hr className="cart-hr" />
           <h4 className="price-header">
             Total Price
             <br />
