@@ -27,11 +27,12 @@
 }
 
 .dropdown-header {
-    background-color: gray;
+    background-color: #469bc3;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .dropdown-text {
@@ -43,6 +44,10 @@
     color: white;
 }
 
-/* @media only screen and (min-width : 1200px) {
-    .container { max-width: 1500px; }
-} */
+.radio-selection {
+    text-align: left;
+}
+
+input[type="radio"] {
+    
+}
