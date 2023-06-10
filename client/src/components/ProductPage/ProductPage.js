@@ -3,6 +3,7 @@ import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
 import { useState } from "react";
+import ProductList from "../Dashboard/Products/ProdList";
 
 const EXAMPLE_IMAGES = [
   {
@@ -123,7 +124,9 @@ function ProductPage() {
 
         <div className="related-items">
           <h3>Related Items</h3>
-          <div className="related-products"></div>
+          <div className="related-products">
+            <ProductList />
+          </div>
         </div>
       </div>
     </div>
