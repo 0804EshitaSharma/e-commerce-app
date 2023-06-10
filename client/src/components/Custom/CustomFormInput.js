@@ -1,6 +1,7 @@
 import React from "react";
 import "./CustomFormInput.css";
 
+/* Reference from Assignment 2 */
 function CustomFormInput({ id, name, type, label, register, placeholder }) {
   return (
     <div className="form_container">
@@ -10,6 +11,7 @@ function CustomFormInput({ id, name, type, label, register, placeholder }) {
       <input
         className="form_input"
         name={name}
+        autoComplete="off"
         id={id}
         type={type}
         placeholder={placeholder}

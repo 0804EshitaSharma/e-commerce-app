@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+/* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 const firebaseConfig = {
   apiKey: "AIzaSyBp30JUbr9eWALQVM5WdWScUb3WR8P_dnk",
   authDomain: "e-commerce-29d39.firebaseapp.com",

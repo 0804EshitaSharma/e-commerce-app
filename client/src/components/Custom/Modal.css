@@ -13,15 +13,22 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 10rem;
+    min-width: 40rem;
     background-color: white;
     padding: 10px;
+    border: 1px solid red;
 
+}
+
+.modal_header {
+    background-color: red;
 }
 
 .modal_heading {
     text-align: center;
     font-style: inherit;
+    font-weight: 800;
+    color: red;
 }
 
 
@@ -34,7 +41,20 @@
     align-items: center;
 }
 
-p {
+.modal_paragraph {
     margin-top: 2rem;
-    text-align: justify;
+    font-size: 20px;
+    font-size: 14px;
+    padding: 0.4rem;
+    text-align: center;
+    font-weight: 800;
+}
+
+.error_description {
+    display: inline
+}
+
+.close_button {
+    color: #fff;
+    background-color: rgba(25, 130, 180, 0.8);
 }

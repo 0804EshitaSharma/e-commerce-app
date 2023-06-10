@@ -19,22 +19,42 @@ function Signup() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+  /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
   const createUser = (event) => {
     createUserWithEmailAndPassword(auth, event.useremail, event.userpassword)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         updateProfile(user, {
           displayName: event.firstname,
         });
+        reset();
         navigate("/login");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        setErrorMessage(errorMessage);
-        console.log(error);
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setErrorMessage("Invalid Email Address found.");
+            break;
+          case "auth/user-disabled":
+            setErrorMessage("Your account is disabled.");
+            break;
+          case "auth/user-not-found":
+            setErrorMessage(
+              "User Not found,Please Sign up to create a new account."
+            );
+            break;
+          case "auth/wrong-password":
+            setErrorMessage("Invalid User Password found.");
+
+            break;
+          default:
+            setErrorMessage(error.errorMessage);
+        }
+
         setShowModal(true);
       });
   };
@@ -81,7 +101,13 @@ function Signup() {
             event={handleSubmit(createUser)}
           />
         </form>
-        {showModal && <Modal heading="Notification" content={errorMessage} />}
+        {showModal && (
+          <Modal
+            heading="Notification"
+            content={errorMessage}
+            closeModal={closeModal}
+          />
+        )}
       </div>
     </div>
   );
