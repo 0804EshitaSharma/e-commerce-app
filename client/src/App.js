@@ -13,6 +13,7 @@ import Home from "./pages/HomeProducts";
 import Electronics from "./pages/Electronics";
 import Books from "./pages/Books";
 import Fashion from "./pages/Fashion";
+import UserProfile from "./components/User/UserProfile";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -42,6 +43,7 @@ function App() {
           <Route path="/books" element={<Books />}></Route>
           <Route path="/fashion" element={<Fashion />}></Route>
           <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/user" element={<UserProfile />}></Route>
         </Routes>
       </Router>
     </div>
