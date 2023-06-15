@@ -13,18 +13,10 @@ import Home from "./pages/HomeProducts";
 import Electronics from "./pages/Electronics";
 import Books from "./pages/Books";
 import Fashion from "./pages/Fashion";
-import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "../src/redux/cart/reducers";
-import { Provider } from "react-redux";
+import UserProfile from "./components/User/UserProfile";
 
 function App() {
   const [userName, setUsername] = useState("");
-  const store = configureStore({
-    reducer: {
-      cartReducer,
-    },
-    devTools: true,
-  });
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -38,23 +30,22 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Provider store={store}>
-          <Navbar name={userName} />
-          <Routes>
-            <Route path="/login/" element={<Login />}></Route>
-            <Route path="/signup" element={<Signup />}></Route>
-            <Route path="/checkout" element={<Checkout />}></Route>
-            <Route path="/shoppingCart" element={<Cart />}></Route>
-            <Route path="/product" element={<ProductPage />}></Route>{" "}
-            {/* TODO: Add :productId param for dynamic routing to different products */}
-            <Route path="/dashboard" element={<Dashboard />}></Route>
-            <Route path="/home" element={<Home />} />
-            <Route path="/electronics" element={<Electronics />}></Route>
-            <Route path="/books" element={<Books />}></Route>
-            <Route path="/fashion" element={<Fashion />}></Route>
-            <Route path="/" element={<Dashboard />}></Route>
-          </Routes>
-        </Provider>
+        <Navbar name={userName} />
+        <Routes>
+          <Route path="/login/" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/shoppingCart" element={<Cart />}></Route>
+          <Route path="/product" element={<ProductPage />}></Route>{" "}
+          {/* TODO: Add :productId param for dynamic routing to different products */}
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/electronics" element={<Electronics />}></Route>
+          <Route path="/books" element={<Books />}></Route>
+          <Route path="/fashion" element={<Fashion />}></Route>
+          <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/user" element={<UserProfile />}></Route>
+        </Routes>
       </Router>
     </div>
   );
