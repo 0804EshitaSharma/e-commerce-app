@@ -73,7 +73,7 @@ export default function ProductList() {
     return (
         <ProdListContainer>
             {initialState.list.map((item) => (
-                <ProductCard key={item.description} item={item} />
+                <ProductCard key={item.Description} item={item} />
                 ))}
         </ProdListContainer> 
     )
