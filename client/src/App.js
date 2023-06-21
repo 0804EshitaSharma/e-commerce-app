@@ -14,12 +14,13 @@ import Electronics from "./pages/Electronics";
 import Books from "./pages/Books";
 import Fashion from "./pages/Fashion";
 import UserProfile from "./components/User/UserProfile";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   const [userName, setUsername] = useState("");
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (user?.displayName) {
         setUsername(user.displayName);
       } else {
         setUsername("Guest");
@@ -31,12 +32,14 @@ function App() {
       <Router>
         <Navbar name={userName} />
         <Routes>
-          <Route path="/login/" element={<Login />}></Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/shoppingCart" element={<Cart />}></Route>
+            <Route path="/product" element={<ProductPage />}></Route>{" "}
+            {/* TODO: Add :productId param for dynamic routing to different products */}
+          </Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/shoppingCart" element={<Cart />}></Route>
-          <Route path="/product" element={<ProductPage />}></Route>{" "}
-          {/* TODO: Add :productId param for dynamic routing to different products */}
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/home" element={<Home />} />
           <Route path="/electronics" element={<Electronics />}></Route>
