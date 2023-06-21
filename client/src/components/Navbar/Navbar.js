@@ -53,7 +53,7 @@ function Navbar({ name }) {
           </svg>
         </Link>
         <div onClick={showMenu} className="user_menu">
-          <div>
+          <div className="user_name">
             {!name ? "Guest" : name}
             <svg
               xmlns="http://www.w3.org/2000/svg"
