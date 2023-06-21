@@ -40,8 +40,6 @@
   width: 100%;
   outline: none;
   border-radius: 0 !important;
-
-
 }
 
 .navbar_link_1 {
@@ -117,13 +115,13 @@
 }
 
 .icon {
-  margin-bottom: -1.0rem;
+  margin-bottom: -1rem;
 }
 
 .user-menu {
   display: flex;
   align-items: center;
 }
-.user_name{
+.user_name {
   color: white;
 }
