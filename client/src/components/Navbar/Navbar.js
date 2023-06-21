@@ -1,19 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/firebaseConfig";
-import { signOut} from "firebase/auth";
-
+import CustomDropdown from "../Custom/CustomDropdown";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
-const navigate = useNavigate();
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        navigate("/")
-      })
-      .catch((error) => {
-      });
+  const [showDropdown, setshowDropdown] = useState(false);
+  const showMenu = () => {
+    setshowDropdown(!showDropdown);
   };
   return (
     <div className="navbar">
@@ -42,27 +35,44 @@ const navigate = useNavigate();
         </svg>
       </div>
       <div className="navbar_links">
-        <div>
-          <Link to="/login">
+        <div></div>
+        <Link to="/login">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.9"
+            stroke="currentColor"
+            className="navbar_account_icon"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </Link>
+        <div onClick={showMenu} className="user_menu">
+          <div>
+            {!name ? "Guest" : name}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth="1.9"
+              strokeWidth="1.5"
               stroke="currentColor"
-              className="navbar_account_icon"
+              className="icon"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
               />
             </svg>
-          </Link>
-          <div onClick={logOut} className="user">
-            {!name ? "Guest" : name}
           </div>
         </div>
+        <div>{showDropdown && <CustomDropdown />}</div>
+
         <div>
           <svg
             className="navbar_wishlist_icon"

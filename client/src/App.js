@@ -15,6 +15,7 @@ import Books from "./pages/Books";
 import Fashion from "./pages/Fashion";
 import UserProfile from "./components/User/UserProfile";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import PasswordReset from "./components/User/PasswordReset";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -47,6 +48,7 @@ function App() {
           <Route path="/fashion" element={<Fashion />}></Route>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/user" element={<UserProfile />}></Route>
+          <Route path="/reset-password" element={<PasswordReset />}></Route>
         </Routes>
       </Router>
     </div>
