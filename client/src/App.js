@@ -48,7 +48,6 @@ function App() {
           <Route path="/fashion" element={<Fashion />}></Route>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/user" element={<UserProfile />}></Route>
-    
         </Routes>
       </Router>
     </div>
