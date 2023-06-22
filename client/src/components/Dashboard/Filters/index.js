@@ -2,14 +2,14 @@ import FilterCard from "./filterCard"
 import { filters } from "./filterLists";
 
 export default function Filters(props) {
-    const categories= props.categories // [{ id, checked, label }]
-
+    // props.categories: [{ id, checked, label }]
     return (
         <div className="flexbox-container">
             <div>
                 {/* {filters.list.map((filter) => <FilterCard key={filter.name} filter={filter}/>)
                 } */}
-                <FilterCard name='Categories' filter={categories} changeChecked={props.changeChecked}/>
+                <FilterCard key='Categories' name='Categories' filter={props.categories} changeChecked={props.changeCategory}/>
+                <FilterCard key='Prices' name='Prices' filter={props.prices} changeChecked={props.changePrice}/>
             </div>
 
         </div>
