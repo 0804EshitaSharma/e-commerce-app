@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function ProductCard(props) {
     return (
-      <ProdCard key={props.item.description}>
+      <ProdCard key={props.item.Name}>
         <div>
           <Link to="/product">
-            <img style={{ width: "100%" }} src={props.item.image} alt="Product" />
+            <img style={{ width: "100%" }} src={props.item.Images[0]} alt="Product" />
           </Link>
         </div>
         <div style={{ margin: "20px" }}>
@@ -16,15 +16,22 @@ export default function ProductCard(props) {
             <div>
               <span style={{ fontWeight: "bold" }}>
                 {" "}
-                {props.item.description}{" "}
+                {props.item.Name}{" "}
               </span>
             </div>
             <div>
-              <span style={{ fontWeight: "bold" }}>Price</span>: $
-              {props.item.price}
+                {props.item.Description}
             </div>
             <div>
-              <Rating ratings={props.item.rating} />
+              <span style={{ fontWeight: "bold" }}>Category</span>:&nbsp;
+              {props.item.Category}
+            </div>
+            <div>
+              <span style={{ fontWeight: "bold" }}>Price</span>: $
+              {props.item.Price}
+            </div>
+            <div>
+              <Rating ratings={props.item.Rating} />
             </div>
           </ProdTextContainer>
         </div>
