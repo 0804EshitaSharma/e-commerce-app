@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-
+import { loggedInUser } from "../../redux/userSlice.js";
+import { useDispatch } from "react-redux";
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form() {
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { handleSubmit, register, reset } = useForm({});
 
   const closeModal = () => {
@@ -25,10 +27,14 @@ function Form() {
         // Signed in
         const user = userCredential.user;
         if (user) {
+          const userObject = {
+            name: user.displayName,
+            email: user.email,
+            id: user.uid,
+          };
+          dispatch(loggedInUser(userObject));
           reset();
           navigate("/");
-          //Todo will replace this piece of code.
-          window.location.reload();
         }
       })
       .catch((error) => {
