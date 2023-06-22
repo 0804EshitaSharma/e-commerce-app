@@ -1,0 +1,37 @@
+.menu_container {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    padding: 0rem;
+    width: 10rem;
+    margin-top: 110px;
+    margin-left: -40px;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0.5rem;
+}
+
+li {
+    list-style: none;
+    color: black;
+
+    padding: 0.5rem;
+
+}
+
+li:hover {
+    list-style: none;
+    background-color: rgba(108, 129, 139, 0.8);
+
+}
+
+.icon {
+    padding: 5px;
+    height: 3rem;
+    color: #fff;
+}
