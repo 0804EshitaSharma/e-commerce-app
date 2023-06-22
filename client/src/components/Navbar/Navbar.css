@@ -27,6 +27,7 @@
   padding: 5px;
   height: 35px;
 }
+
 .navbar_account_icon {
   color: white;
   height: 30px;
@@ -39,7 +40,7 @@
   width: 100%;
   outline: none;
   border-radius: 0 !important;
-  
+
 
 }
 
@@ -78,7 +79,7 @@
 .navbar_shopping-icon {
   color: white;
   padding: 5px;
-  height: 35px;  
+  height: 35px;
 }
 
 .navbar_link_3 {
@@ -102,9 +103,15 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-.user{
+
+.user {
   font-size: 10px;
   font-weight: 800;
   color: white;
   margin-top: -0.8rem;
+}
+
+.user:hover {
+  color: black;
+  cursor: pointer;
 }

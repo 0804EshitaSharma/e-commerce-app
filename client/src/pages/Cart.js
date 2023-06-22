@@ -1,9 +1,9 @@
-import Navbar from "../Navbar/Navbar";
-import Item from "./Item";
-import "../Cart/Cart.css";
+import Item from "../components/Cart/Item.js";
+import "../components/Cart/Cart.css";
 import { Link } from "react-router-dom";
 
 function Cart() {
+  // TODO: add props so can add item into cart
   const itemList = [
     {
       name: "product 1",
@@ -40,10 +40,12 @@ function Cart() {
             Shopping Cart
             <button className="removeAll-button">Remove All</button>
           </h1>
+          <hr className="cart-hr" />
           <h4 className="price-header">Price</h4>
           <Item item={itemList[0]} />
           <Item item={itemList[1]} />
           <Item item={itemList[2]} />
+          <hr className="cart-hr" />
           <h4 className="price-header">
             Total Price
             <br />

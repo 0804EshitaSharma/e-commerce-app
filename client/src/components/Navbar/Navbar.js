@@ -1,15 +1,31 @@
 import React from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebaseConfig";
+import { signOut} from "firebase/auth";
 
-function Navbar({name}) {
+/* Reference from https://firebase.google.com/docs/auth/web/password-auth */
+function Navbar({ name }) {
+const navigate = useNavigate();
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/")
+      })
+      .catch((error) => {
+      });
+  };
   return (
     <div className="navbar">
       <Link to="/">
         <span className="navbar_title">E-Commerce</span>
       </Link>
       <div className="navbar_search">
-        <input className="navbar_search_input" type="text" placeholder="Search here...."></input>
+        <input
+          className="navbar_search_input"
+          type="text"
+          placeholder="Search here...."
+        ></input>
         <svg
           className="navbar_search_icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -27,23 +43,25 @@ function Navbar({name}) {
       </div>
       <div className="navbar_links">
         <div>
-            <Link to="/login">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.9"
-                stroke="currentColor"
-                className="navbar_account_icon"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-            </Link>
-          <div className="user">{!name ? "Guest" : name}</div>
+          <Link to="/login">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.9"
+              stroke="currentColor"
+              className="navbar_account_icon"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </Link>
+          <div onClick={logOut} className="user">
+            {!name ? "Guest" : name}
+          </div>
         </div>
         <div>
           <svg

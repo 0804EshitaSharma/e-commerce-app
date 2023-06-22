@@ -1,6 +1,7 @@
 import React from "react";
 import "./CustomButton.css";
 
+/* Reference from Assignment 2 */
 function CustomButton({ label, type, event}) {
   return (
     <div>

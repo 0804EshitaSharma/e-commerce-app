@@ -1,7 +1,6 @@
 #item-container {
   display: inline-flex;
   justify-content: space-between;
-  text-align: end;
 }
 
 .image-container {
@@ -10,17 +9,19 @@
 }
 
 .price-container {
+  width: 10rem;
   justify-content: flex-end;
-  text-align: end;
   margin-right: 3rem;
+  position: relative;
 }
 
 .price-value {
+  text-align: right;
   font-weight: bold;
+  color: black;
 }
 
 .remove-button {
-  align-self: flex-end;
   font-size: 1.5rem;
   background-color: rgba(25, 130, 180, 0.8);
   padding: 0.8rem;
@@ -28,9 +29,16 @@
   font-weight: 600;
   border-radius: 0.5rem;
   color: #fff;
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
 }
-
-img {
+.name-container h1 {
+  margin: 20px;
+  text-align: left;
+  color: black;
+}
+.item-image {
   float: left;
   width: 200px;
   height: 200px;
