@@ -1,11 +1,11 @@
 import ProductList from "./ProdList"
 import ProductSlideShow from "./ProdSlideShow"
 
-export default function ProductContainer() {
+export default function ProductContainer(props) {
     return (
         <div style={{width: '85%'}}>
             <ProductSlideShow />
-            <ProductList />
+            <ProductList list={props.list}/>
         </div>   
     )
 }
