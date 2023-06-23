@@ -3,17 +3,31 @@ import CustomButton from "../Custom/CustomButton.js";
 import CustomFormInput from "../Custom/CustomFormInput.js";
 import "./Form.css";
 import { useForm } from "react-hook-form";
-import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  confirmPasswordReset,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-
+import { loggedInUser } from "../../redux/userSlice.js";
+import { useDispatch } from "react-redux";
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
-function Form() {
+function Form({
+  heading,
+  showEmail,
+  showPassword,
+  label,
+  showSignUpLink,
+  query,
+}) {
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { handleSubmit, register, reset } = useForm({});
 
   const closeModal = () => {
@@ -25,10 +39,14 @@ function Form() {
         // Signed in
         const user = userCredential.user;
         if (user) {
+          const userObject = {
+            name: user.displayName,
+            email: user.email,
+            id: user.uid,
+          };
+          dispatch(loggedInUser(userObject));
           reset();
           navigate("/");
-          //Todo will replace this piece of code.
-          window.location.reload();
         }
       })
       .catch((error) => {
@@ -47,7 +65,6 @@ function Form() {
             break;
           case "auth/wrong-password":
             setErrorMessage("Invalid User Password found.");
-
             break;
           default:
             setErrorMessage(error.message);
@@ -56,35 +73,76 @@ function Form() {
         setShowModal(true);
       });
   };
+  const sendResetPasswordEmail = (event) => {
+    sendPasswordResetEmail(auth, event.username, {
+      url: "http://localhost:3000/login",
+    })
+      .then(() => {
+        setErrorMessage("Please Check Your Email and reset your password.");
+        setShowModal(true);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setErrorMessage("Invalid Email Address found.");
+            setShowModal(true);
+            break;
+          default:
+            setErrorMessage(error.message);
+            setShowModal(true);
+        }
+      });
+  };
+  const resetPassword = (event) => {
+    return confirmPasswordReset(
+      auth,
+      query.get("oobCode"),
+      event.userpassword
+    ).then(navigate("/login"));
+  };
+
   return (
     <div>
       <form className="container">
         <div>
-          <h1>Sign in</h1>
-          <CustomFormInput
-            name="username"
-            id="username"
-            type="text"
-            label="Email"
-            placeholder="Enter Email"
-            register={{ ...register("username", { required: true }) }}
-          />
-          <CustomFormInput
-            name="userpassword"
-            id="userpassword"
-            type="password"
-            label="Password"
-            placeholder="Enter Password"
-            register={{ ...register("userpassword", { required: true }) }}
-          />
+          <h1>{heading}</h1>
+          {showEmail && (
+            <CustomFormInput
+              name="username"
+              id="username"
+              type="text"
+              label="Email"
+              placeholder="Enter Email"
+              register={{ ...register("username", { required: true }) }}
+            />
+          )}
+          {showPassword && (
+            <CustomFormInput
+              name="userpassword"
+              id="userpassword"
+              type="password"
+              label="Password"
+              placeholder="Enter Password"
+              register={{ ...register("userpassword", { required: true }) }}
+            />
+          )}
           <CustomButton
             type="submit"
-            label="Continue"
-            event={handleSubmit(verifyUser)}
+            label={label}
+            event={
+              label === "Continue"
+                ? handleSubmit(verifyUser)
+                : label === "Reset"
+                ? handleSubmit(resetPassword)
+                : handleSubmit(sendResetPasswordEmail)
+            }
           />
-          <Link to="/signup">
-            <span>Create your account</span>
-          </Link>
+          {showSignUpLink && (
+            <Link to="/signup">
+              <span>Create your account</span>
+            </Link>
+          )}
         </div>
       </form>
       {showModal && (
