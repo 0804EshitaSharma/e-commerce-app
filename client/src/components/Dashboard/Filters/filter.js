@@ -2,11 +2,18 @@ import { StyledFilter } from "../../Styles/Filter.styled"
  
 
 export default function Filter(props) {
+    /* props.category = { id, checked, label } */
     return (
         <div className="horizontal-container">
-            <input style={{ width: 'unset' }} value={props.name} type="checkbox" />
+            <input 
+            style={{ width: 'unset' }} 
+            value={props.category.label} 
+            type="checkbox" 
+            checked={props.category.checked}
+            onChange={() => props.changeChecked(props.category.id)}
+            />
             <StyledFilter>
-                {props.name}
+                {props.category.label}
             </StyledFilter>
         </div>
         
