@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-import { loggedInUser } from "../../redux/userSlice.js";
+import { loggedInUser } from "../../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form() {

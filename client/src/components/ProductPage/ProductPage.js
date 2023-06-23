@@ -2,8 +2,9 @@ import React from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
-import { useState } from "react";
 import ProductList from "../Dashboard/Products/ProdList";
+import AddToCartButton from "./AddToCartButton";
+import QuantityButton from "./QuantityButton";
 
 const EXAMPLE_IMAGES = [
   {
@@ -28,18 +29,23 @@ const EXAMPLE_IMAGES = [
 
 function ProductPage() {
   // TODO: Add prop for product details
-  const [quantity, setQuantity] = useState(1);
 
-  const updateQuantity = (value) => {
-    const valueAsInt = parseInt(value);
-    if (quantity > 1 || valueAsInt >= 0) {
-      setQuantity(quantity + valueAsInt);
-    }
-  };
-
-  const handleQuantityTypingInput = (e) => {
-    const valueAsInt = parseInt(e.target.value);
-    isNaN(valueAsInt) ? setQuantity(1) : setQuantity(valueAsInt);
+  const productDetails = {
+    name: "Artificial House Plant",
+    description: `FEJKA artificial potted plants that don’t require a green thumb.
+                Perfect when you have better things to do than water plants and
+                tidy up dead leaves. You’ll have everyone fooled because they
+                look so lifelike. FEJKA artificial potted plants that don’t
+                require a green thumb. Perfect when you have better things to do
+                than water plants and tidy up dead leaves. You’ll have everyone
+                fooled because they look so lifelike. FEJKA artificial potted
+                plants that don’t require a green thumb. Perfect when you have
+                better things to do than water plants and tidy up dead leaves.
+                You’ll have everyone fooled because they look so lifelike.`,
+    category: "Home",
+    price: 99.99,
+    rating: 5,
+    imgURLs: EXAMPLE_IMAGES,
   };
 
   return (
@@ -47,11 +53,11 @@ function ProductPage() {
       <div className="product-page-content">
         <div className="product-header">
           <div className="product-name-seller">
-            <h2>Artificial House Plant</h2>
+            <h2>{productDetails.name}</h2>
             <h5>Ikea</h5>
           </div>
           <div className="rating-wrapper">
-            <Rating ratings={5} />
+            <Rating ratings={productDetails.rating} />
           </div>
         </div>
         <div className="product-details">
@@ -68,52 +74,15 @@ function ProductPage() {
           </div>
           <div className="purchase-wrapper">
             <div className="description-wrapper">
-              <p className="desc-text">
-                FEJKA artificial potted plants that don’t require a green thumb.
-                Perfect when you have better things to do than water plants and
-                tidy up dead leaves. You’ll have everyone fooled because they
-                look so lifelike. FEJKA artificial potted plants that don’t
-                require a green thumb. Perfect when you have better things to do
-                than water plants and tidy up dead leaves. You’ll have everyone
-                fooled because they look so lifelike. FEJKA artificial potted
-                plants that don’t require a green thumb. Perfect when you have
-                better things to do than water plants and tidy up dead leaves.
-                You’ll have everyone fooled because they look so lifelike.
-              </p>
+              <p className="desc-text">{productDetails.description}</p>
             </div>
             <div className="buy-options">
               <div className="price-quantity">
-                <h4>$99.99</h4>
-                <div className="quantity-picker-wrapper">
-                  <h4>Quantity:</h4>
-                  <div className="quantity-picker">
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(-1)}
-                    >
-                      -
-                    </button>
-                    <input
-                      type="number"
-                      value={quantity}
-                      min="1"
-                      minLength={1}
-                      className="purchase-button"
-                      onChange={handleQuantityTypingInput}
-                    />
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
+                <h4>${productDetails.price}</h4>
+                <QuantityButton initialQuantity={1} />
               </div>
               <div className="purchase-buttons">
-                <button className="purchase-button" id="add-cart">
-                  Add To Cart
-                </button>
+                <AddToCartButton productDetails={productDetails} />
                 <button className="purchase-button" id="buy-now">
                   Buy Now
                 </button>

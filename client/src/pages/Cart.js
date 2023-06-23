@@ -2,16 +2,18 @@ import Item from "../components/Cart/Item.js";
 import "../components/Cart/Cart.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeAll } from "../redux/cart/actions.js";
+import { removeAllInCart } from "../redux/cart/cartSlice.js";
 
 function Cart() {
-  // TODO: add props so can add item into cart
-  const itemList = useSelector((state) => state.cartReducer);
+  const itemList = useSelector((state) => state.cart.itemsList);
   const dispatch = useDispatch();
   const calcTotalPrice = () => {
     let totalPrice = 0;
     for (const item of itemList) {
-      totalPrice += Number(item.price);
+      let priceForQuantity = parseFloat(
+        (Number(item.productDetails.price) * Number(item.quantity)).toFixed(2)
+      );
+      totalPrice += priceForQuantity;
     }
     return totalPrice;
   };
@@ -25,7 +27,7 @@ function Cart() {
             <button
               className="removeAll-button"
               onClick={() => {
-                dispatch(removeAll());
+                dispatch(removeAllInCart());
               }}
             >
               Remove All

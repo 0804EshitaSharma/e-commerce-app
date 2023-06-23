@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomDropdown from "../Custom/CustomDropdown";
-import { useSelector } from "react-redux";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
   const [showDropdown, setshowDropdown] = useState(false);
@@ -11,7 +10,7 @@ function Navbar({ name }) {
     setshowDropdown(!showDropdown);
   };
 
-  const numItemsInCart = useSelector((state) => state.cartReducer).length;
+  const numItemsInCart = useSelector((state) => state.cart.itemsList).length;
   return (
     <div className="navbar">
       <Link to="/">
