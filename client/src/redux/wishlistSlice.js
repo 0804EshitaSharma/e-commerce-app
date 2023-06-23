@@ -5,7 +5,7 @@ export const wishlistSlice = createSlice({
   initialState: {
     wishlistProducts: [
       {
-        name: "Lego Orchid",
+        name: "Lego Orchid Tree",
         description: "Lego Orchid",
         price: "59.98",
         rating: "5",
