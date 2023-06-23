@@ -40,11 +40,12 @@ function UserProfile() {
       .then(() => {
         dispatch(
           updateUserInfo({
-            displayName: event.accountholder,
+            name: event.accountholder,
             email: event.email,
           })
         );
         setIsLoading(false);
+        // navigate("/")
       })
       .catch((error) => {});
   };
