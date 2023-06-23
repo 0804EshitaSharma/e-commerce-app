@@ -65,7 +65,6 @@ function Form({
             break;
           case "auth/wrong-password":
             setErrorMessage("Invalid User Password found.");
-
             break;
           default:
             setErrorMessage(error.message);
@@ -75,9 +74,25 @@ function Form({
       });
   };
   const sendResetPasswordEmail = (event) => {
-    return sendPasswordResetEmail(auth, event.username, {
+    sendPasswordResetEmail(auth, event.username, {
       url: "http://localhost:3000/login",
-    });
+    })
+      .then(() => {
+        setErrorMessage("Please Check Your Email and reset your password.");
+        setShowModal(true);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setErrorMessage("Invalid Email Address found.");
+            setShowModal(true);
+            break;
+          default:
+            setErrorMessage(error.message);
+            setShowModal(true);
+        }
+      });
   };
   const resetPassword = (event) => {
     return confirmPasswordReset(
