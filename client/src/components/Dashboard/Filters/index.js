@@ -1,5 +1,4 @@
 import FilterCard from "./filterCard"
-import { filters } from "./filterLists";
 
 export default function Filters(props) {
     // props.categories: [{ id, checked, label }]

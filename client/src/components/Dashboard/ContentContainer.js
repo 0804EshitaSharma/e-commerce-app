@@ -8,14 +8,13 @@ import { initialState } from './Products/ProdDataList';
 
 export default function ContentContainer() {
 
-    const [resultsFound, setResultsFound] = useState(true);
     const [list, setList] = useState(initialState.list);
 
     const [categories, setCategories] = useState([
         { id: 1, checked: false, label: 'Home' },
         { id: 2, checked: false, label: 'Electronics' },
         { id: 3, checked: false, label: 'Books' },
-        { id: 4, checked: false, label: 'Outdoor' },
+        { id: 4, checked: false, label: 'Outdoor' }
     ])
 
     const [prices, setPrices] = useState([
@@ -90,6 +89,7 @@ export default function ContentContainer() {
                 } else if (Number(item.Price) > 200) {
                     return prices[4].checked
                 }
+                return false
             })
         }
 
@@ -111,11 +111,11 @@ export default function ContentContainer() {
                 } else if (Number(item.Rating) < 1) {
                     return ratings[4].checked
                 }
+                return false
             })
         }
 
         setList(updatedList);
-        !updatedList.length ? setResultsFound(false) : setResultsFound(true);
     }
 
     useEffect(() => {
