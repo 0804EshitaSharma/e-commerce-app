@@ -9,7 +9,8 @@ function CustomFormInput({
   label,
   register,
   placeholder,
-  value,
+  defaultValue,
+  readOnly
 }) {
   return (
     <div className="form_container">
@@ -22,8 +23,9 @@ function CustomFormInput({
         autoComplete="off"
         id={id}
         type={type}
-        value={value}
+        defaultValue={defaultValue}
         placeholder={placeholder}
+        readOnly={readOnly}
         {...register}
       ></input>
     </div>
