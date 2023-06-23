@@ -14,14 +14,17 @@ function UserProfile() {
   const [isEditable, setIsEditable] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { handleSubmit, reset, register } = useForm({});
+  const { handleSubmit, reset, register } = useForm();
   const changePassword = () => {
     navigate("/forgot-password");
   };
-  const updateUserName = () => {setIsEditable(true)};
-  const updateUserEmail = () => {};
+  const updateUserName = () => {
+    setIsEditable(!isEditable);
+  };
+  const updateUserEmail = () => {
+    setIsEditable(!isEditable);
+  };
   const updateUser = (event) => {
-    console.log(event);
     const currentUser = auth.currentUser;
     updateProfile(currentUser, {
       displayName: event.accountholder,
@@ -34,11 +37,8 @@ function UserProfile() {
             email: event.email,
           })
         );
-        console.log("Profile updated successfully.");
       })
-      .catch((error) => {
-        console.error("Error updating profile:", error);
-      });
+      .catch((error) => {});
   };
   return (
     <div className="profile_container">
