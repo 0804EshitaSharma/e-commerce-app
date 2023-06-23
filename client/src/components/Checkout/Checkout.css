@@ -47,3 +47,7 @@
 .radio-selection {
     text-align: left;
 }
+
+#nextStep {
+    float: right;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function LabeledInput({ className, name, label, type, placeholder }) {
+function LabeledInput({ className, name, label, type, placeholder, value }) {
     return (
         <div className={className}>
             <div className="info-group mb-3">
@@ -10,6 +10,7 @@ function LabeledInput({ className, name, label, type, placeholder }) {
                     type={type}
                     className="info-input"
                     placeholder={placeholder}
+                    value={value}
                 />
             </div>
         </div>
