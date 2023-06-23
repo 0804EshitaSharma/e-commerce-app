@@ -4,6 +4,7 @@ import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
 import { useState } from "react";
 import ProductList from "../Dashboard/Products/ProdList";
+import { initialState } from "../Dashboard/Products/ProdDataList";
 
 const EXAMPLE_IMAGES = [
   {
@@ -125,7 +126,7 @@ function ProductPage() {
         <div className="related-items">
           <h3>Related Items</h3>
           <div className="related-products">
-            <ProductList />
+            <ProductList list={initialState.list}/>
           </div>
         </div>
       </div>
