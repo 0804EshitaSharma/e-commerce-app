@@ -2,18 +2,19 @@ import React from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
-import { signOut} from "firebase/auth";
+import { signOut } from "firebase/auth";
+import { useSelector } from "react-redux";
 
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const numItemsInCart = useSelector((state) => state.cartReducer).length;
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        navigate("/")
+        navigate("/");
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
   return (
     <div className="navbar">
@@ -97,7 +98,7 @@ const navigate = useNavigate();
               />
             </svg>
           </Link>
-          <span className="navbar_shopping-icon_count">0</span>
+          <span className="navbar_shopping-icon_count">{numItemsInCart}</span>
         </div>
       </div>
     </div>
