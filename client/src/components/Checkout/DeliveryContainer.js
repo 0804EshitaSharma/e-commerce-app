@@ -2,7 +2,7 @@ import React from "react";
 import "./Checkout.css";
 import { useState, useEffect } from "react";
 import LabeledInput from "../Custom/LabeledInput";
-import CustomDropdown from "../Custom/CustomDropdown";
+import DropdownSelection from "../Custom/DropdownSelection";
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -96,7 +96,7 @@ function DeliveryContainer() {
     return (
         <div className="col-md-8">
             <div className="card">
-                <CustomDropdown label="Shipping Information" selected={selected} setSelected={setSelected} />
+                <DropdownSelection label="Shipping Information" selected={selected} setSelected={setSelected} />
                 {selected && (
                     <div className="wrapper">
                         <div className="row">
@@ -188,7 +188,7 @@ function DeliveryContainer() {
                         {selected1 ? "-" : "+"}
                     </span>
                 </div> */}
-                <CustomDropdown label="Delivery option" selected={selected1} setSelected={setSelected1} />
+                <DropdownSelection label="Delivery option" selected={selected1} setSelected={setSelected1} />
                 {selected1 && (
                     <div className="wrapper">
                         <div className="row">
