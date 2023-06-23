@@ -15,7 +15,7 @@ export default function ContentContainer() {
         { id: 1, checked: false, label: 'Home' },
         { id: 2, checked: false, label: 'Electronics' },
         { id: 3, checked: false, label: 'Books' },
-        { id: 4, checked: false, label: 'Fashion' },
+        { id: 4, checked: false, label: 'Outdoor' },
     ])
 
     const [prices, setPrices] = useState([
@@ -23,7 +23,15 @@ export default function ContentContainer() {
         { id: 2, checked: false, label: '$25 ~ $50' },
         { id: 3, checked: false, label: '$50 ~ $100' },
         { id: 4, checked: false, label: '$100 ~ $200' },
-        { id: 5, checked: false, label: '$Above $200' }
+        { id: 5, checked: false, label: 'Above $200' }
+    ])
+
+    const [ratings, setRatings] = useState([
+        { id: 1, checked: false, label: 'Above 4' },
+        { id: 2, checked: false, label: '3 ~ 4' },
+        { id: 3, checked: false, label: '2 ~ 3' },
+        { id: 4, checked: false, label: '1 ~ 2' },
+        { id: 5, checked: false, label: 'Below 1' }
     ])
 
     const handleCategoryChecked = (id) => {
@@ -36,10 +44,18 @@ export default function ContentContainer() {
 
     const handlePriceChecked = (id) => {
         const pricesStateList = prices;
-        const changeCheckedprices = pricesStateList.map((item) =>
+        const changeCheckedPrices = pricesStateList.map((item) =>
         item.id === id ? { ...item, checked: !item.checked } : item
         );
-        setPrices(changeCheckedprices);
+        setPrices(changeCheckedPrices);
+    };
+
+    const handleRatingChecked = (id) => {
+        const ratingsStateList = ratings;
+        const changeCheckedRatings = ratingsStateList.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+        );
+        setRatings(changeCheckedRatings);
     };
 
     const applyFilters = () => {
@@ -61,8 +77,6 @@ export default function ContentContainer() {
             .filter((item) => item.checked)
             .map((item) => item.label);
 
-        console.log(pricesChecked)
-
         if (pricesChecked.length) {
             updatedList = updatedList.filter(item => {
                 if (Number(item.Price) < 25) {
@@ -77,7 +91,27 @@ export default function ContentContainer() {
                     return prices[4].checked
                 }
             })
-            console.log(updatedList)
+        }
+
+        // Price Filter
+        const ratingsChecked = ratings
+            .filter((item) => item.checked)
+            .map((item) => item.label);
+
+        if (ratingsChecked.length) {
+            updatedList = updatedList.filter(item => {
+                if (Number(item.Rating) >= 4) {
+                    return ratings[0].checked
+                } else if (Number(item.Rating) >= 3 && Number(item.Rating) < 4) {
+                    return ratings[1].checked
+                } else if (Number(item.Rating) >= 2 && Number(item.Rating) < 3) {
+                    return ratings[2].checked
+                } else if (Number(item.Rating) >= 1 && Number(item.Rating) < 2) {
+                    return ratings[3].checked
+                } else if (Number(item.Rating) < 1) {
+                    return ratings[4].checked
+                }
+            })
         }
 
         setList(updatedList);
@@ -86,7 +120,7 @@ export default function ContentContainer() {
 
     useEffect(() => {
         applyFilters();
-    }, [categories, prices]);
+    }, [categories, prices, ratings]);
 
     return (
         <div className="horizontal-container">
@@ -96,6 +130,8 @@ export default function ContentContainer() {
                     changeCategory={handleCategoryChecked}
                     prices={prices}
                     changePrice={handlePriceChecked}
+                    ratings={ratings}
+                    changeRating={handleRatingChecked}
                 />
             </div>
             <ProductContainer list={list}/>
