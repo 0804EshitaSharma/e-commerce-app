@@ -37,7 +37,6 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
-            <Route path="/product" element={<ProductPage />}></Route>{" "}
             {/* TODO: Add :productId param for dynamic routing to different products */}
           </Route>
           <Route path="/login" element={<Login />}></Route>
@@ -48,6 +47,7 @@ function App() {
           <Route path="/books" element={<Books />}></Route>
           <Route path="/fashion" element={<Fashion />}></Route>
           <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/product" element={<ProductPage />}></Route>{" "}
           <Route path="/user" element={<UserProfile />}></Route>
           <Route path="/reset-password" element={<PasswordReset />}></Route>
         </Routes>
