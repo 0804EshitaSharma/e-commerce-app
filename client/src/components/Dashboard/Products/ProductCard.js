@@ -8,7 +8,7 @@ export default function ProductCard(props) {
     const navigate = useNavigate();
 
     const goToProduct = (item) => {
-      navigate("/product", { state: { item } });
+      navigate(`/product/${item.Name}`, { state: { item } });
     }
 
     return (

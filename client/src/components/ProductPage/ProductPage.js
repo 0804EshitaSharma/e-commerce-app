@@ -17,8 +17,9 @@ function ProductPage() {
   const item = state.item || {};
 
   useEffect(() => {
-    window.scroll(0, 0);
-  }, [])
+    setQuantity(1);
+    setTimeout(() => window.scroll(0, 0), 200);
+  }, [item])
 
   const wishlist = useSelector((state) => state.wishlist.wishlistProducts);
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function ProductPage() {
             </svg>
           </div>
           <div className="rating-wrapper">
-            <Rating ratings={parseInt(item.Rating)} />
+            <Rating ratings={parseFloat(item.Rating)} />
           </div>
         </div>
         <div className="product-details">

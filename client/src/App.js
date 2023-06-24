@@ -45,8 +45,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />}></Route>
           <Route path="/reset-password" element={<PasswordReset />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/product" element={<ProductPage />}></Route>{" "}
-          {/* TODO: Add :productId param for dynamic routing to different products */}
+          <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
         </Routes>
       </Router>
     </div>
