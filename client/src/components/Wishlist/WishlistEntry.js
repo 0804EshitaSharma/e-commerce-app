@@ -7,20 +7,20 @@ export default function WishlistEntry({ item }) {
     const dispatch = useDispatch();
 
     const remove = () => {
-        dispatch(removeItem(item.name));
+        dispatch(removeItem(item.Name));
     }
 
     return (
         <div className="wishlist-entry-wrapper">
             <div className='entry'>
                 <div className='img-wrapper'>
-                    <img src={item.image} alt={item.name} />
-                    <p>{item.name}</p>
+                    <img src={item.Images[0]} alt={item.Name} />
+                    <p>{item.Name}</p>
                 </div>
 
                 <div className='wishlist-button-price-wrapper'>
                     <div className='price'>
-                        <h4>{item.price}</h4>
+                        <h4>{item.Price}</h4>
                     </div>
                     <div className='wishlist-entry-buttons-wrapper'>
                         <button>Add to Cart</button> 

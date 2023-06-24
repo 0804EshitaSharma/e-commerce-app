@@ -40,14 +40,14 @@
 
 .product-name-seller {
     display: flex;
-    flex-direction: column;
-    align-items: baseline;
+    align-items: center;
+    
 }
 
 .product-name-seller > h2 {
     font-size: 45px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin: 0px;
 }
 
 .product-name-seller > h5 {

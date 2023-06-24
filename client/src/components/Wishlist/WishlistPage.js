@@ -30,7 +30,7 @@ export default function WishlistPage() {
         <>
           <div className="wishlist-products">
             {wishlistItems.map((item) => {
-              return <WishlistEntry key={item.name} item={item} />
+              return <WishlistEntry key={item.Name} item={item} />
             })}
           </div>
 
