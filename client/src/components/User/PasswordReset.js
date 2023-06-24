@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Form from "../Custom/Form";
 
+/* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }

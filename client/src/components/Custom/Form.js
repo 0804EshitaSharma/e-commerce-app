@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
@@ -25,18 +26,24 @@ function Form({
   query,
 }) {
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { handleSubmit, register, reset } = useForm({});
-
+  const override = {
+    display: "block",
+    margin: "0 auto",
+  };
   const closeModal = () => {
     setShowModal(false);
   };
   const verifyUser = (event) => {
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, event.username, event.userpassword)
       .then((userCredential) => {
         // Signed in
+
         const user = userCredential.user;
         if (user) {
           const userObject = {
@@ -45,11 +52,13 @@ function Form({
             id: user.uid,
           };
           dispatch(loggedInUser(userObject));
+          setIsLoading(false);
           reset();
           navigate("/");
         }
       })
       .catch((error) => {
+        setIsLoading(false);
         const errorCode = error.code;
         switch (errorCode) {
           case "auth/invalid-email":
@@ -73,15 +82,19 @@ function Form({
         setShowModal(true);
       });
   };
+  /* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
   const sendResetPasswordEmail = (event) => {
+    setIsLoading(true);
     sendPasswordResetEmail(auth, event.username, {
       url: "http://localhost:3000/login",
     })
       .then(() => {
+        setIsLoading(false);
         setErrorMessage("Please Check Your Email and reset your password.");
         setShowModal(true);
       })
       .catch((error) => {
+        setIsLoading(false);
         const errorCode = error.code;
         switch (errorCode) {
           case "auth/invalid-email":
@@ -94,6 +107,7 @@ function Form({
         }
       });
   };
+  /* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
   const resetPassword = (event) => {
     return confirmPasswordReset(
       auth,
@@ -101,58 +115,69 @@ function Form({
       event.userpassword
     ).then(navigate("/login"));
   };
-
+  /* Referred from https://www.npmjs.com/package/react-spinners */
   return (
-    <div>
-      <form className="container">
-        <div>
-          <h1>{heading}</h1>
-          {showEmail && (
-            <CustomFormInput
-              name="username"
-              id="username"
-              type="text"
-              label="Email"
-              placeholder="Enter Email"
-              register={{ ...register("username", { required: true }) }}
-            />
-          )}
-          {showPassword && (
-            <CustomFormInput
-              name="userpassword"
-              id="userpassword"
-              type="password"
-              label="Password"
-              placeholder="Enter Password"
-              register={{ ...register("userpassword", { required: true }) }}
-            />
-          )}
-          <CustomButton
-            type="submit"
-            label={label}
-            event={
-              label === "Continue"
-                ? handleSubmit(verifyUser)
-                : label === "Reset"
-                ? handleSubmit(resetPassword)
-                : handleSubmit(sendResetPasswordEmail)
-            }
-          />
-          {showSignUpLink && (
-            <Link to="/signup">
-              <span>Create your account</span>
-            </Link>
-          )}
-        </div>
-      </form>
-      {showModal && (
-        <Modal
-          heading="Notification"
-          content={errorMessage}
-          closeModal={closeModal}
+    <>
+      {isLoading && (
+        <ClipLoader
+          color="#369cd6"
+          loading={isLoading}
+          speedMultiplier={1}
+          size={40}
+          cssOverride={override}
         />
       )}
-    </div>
+      <div>
+        <form className="container">
+          <div>
+            <h1>{heading}</h1>
+            {showEmail && (
+              <CustomFormInput
+                name="username"
+                id="username"
+                type="text"
+                label="Email"
+                placeholder="Enter Email"
+                register={{ ...register("username", { required: true }) }}
+              />
+            )}
+            {showPassword && (
+              <CustomFormInput
+                name="userpassword"
+                id="userpassword"
+                type="password"
+                label="Password"
+                placeholder="Enter Password"
+                register={{ ...register("userpassword", { required: true }) }}
+              />
+            )}
+            <CustomButton
+              type="submit"
+              label={label}
+              event={
+                label === "Continue"
+                  ? handleSubmit(verifyUser)
+                  : label === "Reset"
+                  ? handleSubmit(resetPassword)
+                  : handleSubmit(sendResetPasswordEmail)
+              }
+            />
+            {showSignUpLink && (
+              <Link to="/signup">
+                <span>Create your account</span>
+              </Link>
+            )}
+          </div>
+        </form>
+        {showModal && (
+          <Modal
+            heading="Notification"
+            content={errorMessage}
+            closeModal={closeModal}
+          />
+        )}
+      </div>
+    </>
   );
 }
 
