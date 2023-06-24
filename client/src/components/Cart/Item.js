@@ -19,7 +19,7 @@ function Item({ item }) {
       >
         <img
           className="item-image"
-          src={item.productDetails.imgURLs[0]}
+          src={item.productDetails.Images[0]}
           alt="Broken link"
         />
       </div>
@@ -29,13 +29,13 @@ function Item({ item }) {
             navigate("/product");
           }}
         >
-          {item.productDetails.name}
+          {item.productDetails.Name}
         </h3>
         <h3>Quantity: {item.quantity}</h3>
       </div>
       <div className="price-container">
         <h1 className="price-value">
-          ${item.productDetails.price * item.quantity}
+          ${item.productDetails.Price * item.quantity}
         </h1>
         <button
           className="remove-button"

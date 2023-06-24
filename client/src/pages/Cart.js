@@ -11,7 +11,7 @@ function Cart() {
     let totalPrice = 0;
     for (const item of itemList) {
       let priceForQuantity = parseFloat(
-        (Number(item.productDetails.price) * Number(item.quantity)).toFixed(2)
+        (Number(item.productDetails.Price) * Number(item.quantity)).toFixed(2)
       );
       totalPrice += priceForQuantity;
     }

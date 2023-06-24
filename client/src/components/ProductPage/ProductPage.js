@@ -12,12 +12,6 @@ import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { initialState } from "../Dashboard/Products/ProdDataList";
 import { useLocation } from "react-router-dom";
 
-
-
-
-
-
-
 function ProductPage() {
   // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
@@ -29,14 +23,14 @@ function ProductPage() {
   useEffect(() => {
     setQuantity(1);
     setTimeout(() => window.scroll(0, 0), 200);
-  }, [item])
+  }, [item]);
 
   const wishlist = useSelector((state) => state.wishlist.wishlistProducts);
   const dispatch = useDispatch();
 
   const translateImages = (imgArray) => {
-    return imgArray.map((imgURL) => ({original: imgURL, thumbnail: imgURL}));
-  }
+    return imgArray.map((imgURL) => ({ original: imgURL, thumbnail: imgURL }));
+  };
 
   const updateQuantity = (value) => {
     const valueAsInt = parseInt(value);
@@ -51,18 +45,20 @@ function ProductPage() {
   };
 
   const toggleWishlist = () => {
-    const isInWishlist = wishlist.some(wishlistItem => item.Name === wishlistItem.Name);
+    const isInWishlist = wishlist.some(
+      (wishlistItem) => item.Name === wishlistItem.Name
+    );
     if (isInWishlist) {
       dispatch(removeItem(item.Name));
     } else {
-      dispatch(addItem(item))
+      dispatch(addItem(item));
     }
-  }
+  };
 
   const isAddedToWishlist = (name) => {
     // https://stackoverflow.com/a/8217584
-    return wishlist.some(item => item.Name === name) ? "red" : "none";
-  }
+    return wishlist.some((item) => item.Name === name) ? "red" : "none";
+  };
 
   return (
     <div className="full-page-wrapper">
@@ -106,9 +102,7 @@ function ProductPage() {
           </div>
           <div className="purchase-wrapper">
             <div className="description-wrapper">
-              <p className="desc-text">
-                {item.Description}
-              </p>
+              <p className="desc-text">{item.Description}</p>
             </div>
             <div className="buy-options">
               <div className="price-quantity">
@@ -140,7 +134,7 @@ function ProductPage() {
                 </div>
               </div>
               <div className="purchase-buttons">
-                <AddToCartButton productDetails={item} />
+                <AddToCartButton productDetails={item} quantity={1} />
                 <button className="purchase-button" id="buy-now">
                   Buy Now
                 </button>
@@ -152,7 +146,7 @@ function ProductPage() {
         <div className="related-items">
           <h3>Related Items</h3>
           <div className="related-products">
-            <ProductList list={initialState.list}/>
+            <ProductList list={initialState.list} />
           </div>
         </div>
       </div>
