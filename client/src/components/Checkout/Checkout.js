@@ -1,7 +1,5 @@
 import React from "react";
 import "./Checkout.css";
-import { useState } from "react";
-import LabeledInput from "../Custom/LabeledInput";
 import DeliveryContainer from "./DeliveryContainer";
 import PaymentContainer from "./PaymentContainer";
 

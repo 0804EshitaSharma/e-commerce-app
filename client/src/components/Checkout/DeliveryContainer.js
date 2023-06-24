@@ -3,12 +3,7 @@ import "./Checkout.css";
 import { useState, useEffect } from "react";
 import LabeledInput from "../Custom/LabeledInput";
 import DropdownSelection from "../Custom/DropdownSelection";
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-    getZipCode,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
+import usePlacesAutocomplete from "use-places-autocomplete";
 import {
     Combobox,
     ComboboxInput,
@@ -20,8 +15,8 @@ import "@reach/combobox/styles.css";
 
 
 function DeliveryContainer() {
-    const [selected, setSelected] = useState(false);
-    const [selected1, setSelected1] = useState(false);
+    const [shippingSelected, setshippingSelected] = useState(true);
+    const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
         city: "",
         zipcode: "",
@@ -37,7 +32,6 @@ function DeliveryContainer() {
     } = usePlacesAutocomplete({ callbackName: "initMap" });
 
     const handleInput = (e) => {
-        // Update the keyword of the input element
         setValue(e.target.value);
     };
 
@@ -70,7 +64,7 @@ function DeliveryContainer() {
                         province = component.long_name;
                     }
                 }
-                setAddressComponents({ city, zipcode, country, province });
+                setAddressComponents({ city, zipcode, province, country });
             }
         });
     };
@@ -83,7 +77,6 @@ function DeliveryContainer() {
 
     const renderSuggestions = () => {
         const suggestions = data.map(({ place_id, description }) => (
-            console.log("description output,", description),
             <ComboboxOption key={place_id} value={description} />
         ));
         return (
@@ -93,11 +86,16 @@ function DeliveryContainer() {
         );
     }
 
+    const handleNextStep = () => {
+        setshippingSelected(false);
+        setdeliverySelected(true);
+    };
+
     return (
         <div className="col-md-8">
             <div className="card">
-                <DropdownSelection label="Shipping Information" selected={selected} setSelected={setSelected} />
-                {selected && (
+                <DropdownSelection label="Shipping Information" selected={shippingSelected} setSelected={setshippingSelected} />
+                {shippingSelected && (
                     <div className="wrapper">
                         <div className="row">
                             <LabeledInput
@@ -170,7 +168,7 @@ function DeliveryContainer() {
                             <p className="col-md-12" />
                             <div className="col-md-3" id="nextStep">
                                 <div className="info-group mb-3">
-                                    <button className="btn">
+                                    <button className="btn" onClick={handleNextStep}>
                                         {" "}
                                         Next step{" "}
                                     </button>
@@ -182,14 +180,8 @@ function DeliveryContainer() {
             </div>
 
             <div className="card">
-                {/* <div className="dropdown-header" onClick={toggle1}>
-                    <h4 className="dropdown-text">Delivery option</h4>
-                    <span className="dropdown-selection">
-                        {selected1 ? "-" : "+"}
-                    </span>
-                </div> */}
-                <DropdownSelection label="Delivery option" selected={selected1} setSelected={setSelected1} />
-                {selected1 && (
+                <DropdownSelection label="Delivery option" selected={deliverySelected} setSelected={setdeliverySelected}/>
+                {deliverySelected && (
                     <div className="wrapper">
                         <div className="row">
                             <LabeledInput
