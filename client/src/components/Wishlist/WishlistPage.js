@@ -23,7 +23,9 @@ export default function WishlistPage() {
         <div className="no-items-wrapper">
           <h3>Add items to your Wishlist to see them here!</h3>
           <Link to="/">
-            <button id="browse">Browse Products</button>
+            <button className="wishlist-button" id="browse">
+              Browse Products
+            </button>
           </Link>
         </div>
       ) : (
