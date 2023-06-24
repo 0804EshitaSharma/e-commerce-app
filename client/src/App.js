@@ -32,7 +32,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
-            <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
+            <Route path="/wishlist" element={<WishlistPage />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
@@ -43,9 +43,9 @@ function App() {
           <Route path="/fashion" element={<Fashion />}></Route>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/user" element={<UserProfile />}></Route>
-          <Route path="/wishlist" element={<WishlistPage />}></Route>
           <Route path="/reset-password" element={<PasswordReset />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
         </Routes>
       </Router>
     </div>
