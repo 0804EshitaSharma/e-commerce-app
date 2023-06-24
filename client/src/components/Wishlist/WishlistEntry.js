@@ -2,9 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeItem } from '../../redux/wishlistSlice';
 import "./Wishlist.css"
+import { useNavigate } from 'react-router-dom';
 
 export default function WishlistEntry({ item }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const remove = () => {
         dispatch(removeItem(item.Name));
@@ -13,7 +15,7 @@ export default function WishlistEntry({ item }) {
     return (
         <div className="wishlist-entry-wrapper">
             <div className='entry'>
-                <div className='img-wrapper'>
+                <div className='img-wrapper' onClick={() => navigate(`/product/${item.Name}`, { state: { item } })}>
                     <img src={item.Images[0]} alt={item.Name} />
                     <p>{item.Name}</p>
                 </div>
@@ -23,13 +25,13 @@ export default function WishlistEntry({ item }) {
                         <h4>{item.Price}</h4>
                     </div>
                     <div className='wishlist-entry-buttons-wrapper'>
-                        <button>Add to Cart</button> 
+                        <button>Add to Cart</button>
                         <button>Buy Now</button>
                         <button onClick={remove}>Remove</button>
                     </div>
                 </div>
             </div>
-            
+
             <hr />
 
         </div>
