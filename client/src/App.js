@@ -15,9 +15,11 @@ import Books from "./pages/Books";
 import Fashion from "./pages/Fashion";
 import UserProfile from "./components/User/UserProfile";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import WishlistPage from "./components/Wishlist/WishlistPage";
 import PasswordReset from "./components/User/PasswordReset";
 import ForgotPassword from "./components/User/ForgotPassword";
 import { useSelector} from "react-redux";
+
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -30,6 +32,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
+            <Route path="/wishlist" element={<WishlistPage />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
@@ -42,8 +45,7 @@ function App() {
           <Route path="/user" element={<UserProfile />}></Route>
           <Route path="/reset-password" element={<PasswordReset />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/product" element={<ProductPage />}></Route>{" "}
-          {/* TODO: Add :productId param for dynamic routing to different products */}
+          <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
         </Routes>
       </Router>
     </div>

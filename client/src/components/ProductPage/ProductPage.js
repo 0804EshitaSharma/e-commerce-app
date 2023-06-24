@@ -1,35 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
 import { useState } from "react";
 import ProductList from "../Dashboard/Products/ProdList";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { initialState } from "../Dashboard/Products/ProdDataList";
-
-const EXAMPLE_IMAGES = [
-  {
-    original:
-      "https://www.ikea.com/ca/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0959226_pe809439_s5.jpg?f=xl",
-    thumbnail:
-      "https://www.ikea.com/ca/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0959226_pe809439_s5.jpg?f=xs",
-  },
-  {
-    original:
-      "https://www.ikea.com/ca/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0959228_pe809441_s5.jpg?f=xl",
-    thumbnail:
-      "https://www.ikea.com/ca/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0959228_pe809441_s5.jpg?f=s",
-  },
-  {
-    original:
-      "https://www.ikea.com/ca/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0959227_pe809440_s5.jpg?f=xl",
-    thumbnail:
-      "https://www.ikea.com/ca/en/images/products/fejka-artificial-potted-plant-indoor-outdoor-monstera__0959227_pe809440_s5.jpg?f=xxs",
-  },
-];
+import { useLocation } from "react-router-dom";
 
 function ProductPage() {
-  // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
+
+  // https://stackoverflow.com/a/71247418
+  const { state } = useLocation();
+  const item = state.item || {};
+
+  useEffect(() => {
+    setQuantity(1);
+    setTimeout(() => window.scroll(0, 0), 200);
+  }, [item])
+
+  const wishlist = useSelector((state) => state.wishlist.wishlistProducts);
+  const dispatch = useDispatch();
+
+  const translateImages = (imgArray) => {
+    return imgArray.map((imgURL) => ({original: imgURL, thumbnail: imgURL}));
+  }
 
   const updateQuantity = (value) => {
     const valueAsInt = parseInt(value);
@@ -43,22 +40,52 @@ function ProductPage() {
     isNaN(valueAsInt) ? setQuantity(1) : setQuantity(valueAsInt);
   };
 
+  const toggleWishlist = () => {
+    const isInWishlist = wishlist.some(wishlistItem => item.Name === wishlistItem.Name);
+    if (isInWishlist) {
+      dispatch(removeItem(item.Name));
+    } else {
+      dispatch(addItem(item))
+    }
+  }
+
+  const isAddedToWishlist = (name) => {
+    // https://stackoverflow.com/a/8217584
+    return wishlist.some(item => item.Name === name) ? "red" : "none";
+  }
+
   return (
     <div className="full-page-wrapper">
       <div className="product-page-content">
         <div className="product-header">
-          <div className="product-name-seller">
-            <h2>Artificial House Plant</h2>
-            <h5>Ikea</h5>
+          <div className="product-header-wrapper">
+            <div className="product-name-seller">
+              <h2>{item.Name}</h2>
+            </div>
+            <svg
+              className="navbar_wishlist_icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill={isAddedToWishlist(item.Name)}
+              viewBox="0 0 24 24"
+              strokeWidth="1.9"
+              stroke="currentColor"
+              onClick={() => toggleWishlist()}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+              />
+            </svg>
           </div>
           <div className="rating-wrapper">
-            <Rating ratings={5} />
+            <Rating ratings={parseFloat(item.Rating)} />
           </div>
         </div>
         <div className="product-details">
           <div className="product-images-wrapper">
             <ImageGallery // https://www.npmjs.com/package/react-image-gallery
-              items={EXAMPLE_IMAGES}
+              items={translateImages(item.Images)}
               showPlayButton={false}
               autoPlay={true}
               thumbnailClass={"thumbnails"}
@@ -70,21 +97,12 @@ function ProductPage() {
           <div className="purchase-wrapper">
             <div className="description-wrapper">
               <p className="desc-text">
-                FEJKA artificial potted plants that don’t require a green thumb.
-                Perfect when you have better things to do than water plants and
-                tidy up dead leaves. You’ll have everyone fooled because they
-                look so lifelike. FEJKA artificial potted plants that don’t
-                require a green thumb. Perfect when you have better things to do
-                than water plants and tidy up dead leaves. You’ll have everyone
-                fooled because they look so lifelike. FEJKA artificial potted
-                plants that don’t require a green thumb. Perfect when you have
-                better things to do than water plants and tidy up dead leaves.
-                You’ll have everyone fooled because they look so lifelike.
+                {item.Description}
               </p>
             </div>
             <div className="buy-options">
               <div className="price-quantity">
-                <h4>$99.99</h4>
+                <h4>{item.Price}</h4>
                 <div className="quantity-picker-wrapper">
                   <h4>Quantity:</h4>
                   <div className="quantity-picker">
