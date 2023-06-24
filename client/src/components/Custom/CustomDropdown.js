@@ -22,6 +22,7 @@ function CustomDropdown({ name }) {
       to: "/user",
     },
   ];
+  /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */
   return (
     <div className="menu_container">
       <ul>
