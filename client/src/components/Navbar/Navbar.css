@@ -115,13 +115,14 @@
 }
 
 .icon {
-  margin-bottom: -1rem;
+  margin-bottom: -1.0rem;
 }
 
 .user-menu {
   display: flex;
   align-items: center;
 }
+
 .user_name {
   color: white;
 }

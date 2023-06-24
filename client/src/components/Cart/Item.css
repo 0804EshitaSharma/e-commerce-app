@@ -33,6 +33,7 @@
   bottom: 3rem;
   right: 0;
 }
+
 .name-quantity-container h1 {
   margin: 20px;
   color: black;
@@ -40,6 +41,7 @@
 .name-quantity-container {
   align-items: center;
 }
+
 .item-image {
   float: left;
   width: 200px;
