@@ -26,10 +26,11 @@ function UserProfile() {
   const updateUserEmail = () => {
     setIsEditable(!isEditable);
   };
-  const override = {
+  const loaderStyle = {
     display: "block",
     margin: "0 auto",
   };
+  /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
     const currentUser = auth.currentUser;
     setIsLoading(true);
@@ -57,7 +58,7 @@ function UserProfile() {
           loading={isLoading}
           speedMultiplier={1}
           size={40}
-          cssOverride={override}
+          cssOverride={loaderStyle}
         />
       )}
       <div className="profile_container">

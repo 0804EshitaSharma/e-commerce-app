@@ -82,6 +82,7 @@ function Form({
         setShowModal(true);
       });
   };
+  /* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
   const sendResetPasswordEmail = (event) => {
     setIsLoading(true);
     sendPasswordResetEmail(auth, event.username, {
@@ -106,6 +107,7 @@ function Form({
         }
       });
   };
+  /* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
   const resetPassword = (event) => {
     return confirmPasswordReset(
       auth,
@@ -113,7 +115,7 @@ function Form({
       event.userpassword
     ).then(navigate("/login"));
   };
-
+  /* Referred from https://www.npmjs.com/package/react-spinners */
   return (
     <>
       {isLoading && (
