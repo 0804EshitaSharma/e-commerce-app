@@ -3,8 +3,14 @@ import { ProdTextContainer } from "../../Styles/ProdTextContainer.styled";
 import Rating from "../../Product/Rating";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../../ProductPage/AddToCartButton";
-
+import {useNavigate } from "react-router-dom";
 export default function ProductCard(props) {
+// https://stackoverflow.com/a/71247418
+    const navigate = useNavigate();
+
+    const goToProduct = (item) => {
+      navigate(`/product/${item.Name}`, { state: { item } });
+    }
   const productDetails = {
     name: props.item.Name,
     description: props.item.Description,
@@ -15,7 +21,7 @@ export default function ProductCard(props) {
   };
   const quantity = 1;
   return (
-    <ProdCard key={props.item.Name}>
+    <ProdCard key={props.item.Name} onClick={() => goToProduct(props.item)}>
       <div style={{ backgroundColor: "white" }}>
         <Link to="/product">
           <img
