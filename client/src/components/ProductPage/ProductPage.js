@@ -5,7 +5,7 @@ import Rating from "../Product/Rating";
 import { useState } from "react";
 import ProductList from "../Dashboard/Products/ProdList";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../redux/wishlistSlice";
+import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { initialState } from "../Dashboard/Products/ProdDataList";
 import { useLocation } from "react-router-dom";
 
@@ -39,8 +39,13 @@ function ProductPage() {
     isNaN(valueAsInt) ? setQuantity(1) : setQuantity(valueAsInt);
   };
 
-  const addToWishList = () => {
-    dispatch(addItem(item));
+  const toggleWishlist = () => {
+    const isInWishlist = wishlist.some(wishlistItem => item.Name === wishlistItem.Name);
+    if (isInWishlist) {
+      dispatch(removeItem(item.Name));
+    } else {
+      dispatch(addItem(item))
+    }
   }
 
   const isAddedToWishlist = (name) => {
@@ -63,7 +68,7 @@ function ProductPage() {
               viewBox="0 0 24 24"
               strokeWidth="1.9"
               stroke="currentColor"
-              onClick={addToWishList}
+              onClick={() => toggleWishlist()}
             >
               <path
                 strokeLinecap="round"
