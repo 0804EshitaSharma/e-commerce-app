@@ -1,17 +1,50 @@
 import "../Cart/Item.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import QuantityButton from "../ProductPage/QuantityButton";
+import { removeProductFromCart } from "../../redux/cart/cartSlice";
+import { useEffect } from "react";
 
 function Item({ item }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <div id="item-container">
-      <div className="image-container">
-        <img className="item-image" src={item.image} alt="Broken link" />
+      <div
+        className="image-container"
+        onClick={() => {
+          navigate("/product");
+        }}
+      >
+        <img
+          className="item-image"
+          src={item.productDetails.Images[0]}
+          alt="Broken link"
+        />
       </div>
-      <div className="name-container">
-        <h1>{item.name}</h1>
+      <div className="name-quantity-container">
+        <h3
+          onClick={() => {
+            navigate("/product");
+          }}
+        >
+          {item.productDetails.Name}
+        </h3>
+        <h3>Quantity: {item.quantity}</h3>
       </div>
       <div className="price-container">
-        <h1 className="price-value">${item.price}</h1>
-        <button className="remove-button">Remove</button>
+        <h1 className="price-value">
+          ${item.productDetails.Price * item.quantity}
+        </h1>
+        <button
+          className="remove-button"
+          onClick={() => {
+            dispatch(removeProductFromCart(item));
+          }}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );

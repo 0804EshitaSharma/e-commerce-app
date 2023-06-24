@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { loggedOut } from "../../redux/userSlice.js";
+import { loggedOut } from "../../redux/user/userSlice.js";
+
 function CustomDropdown({ name }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();

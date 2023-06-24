@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import CustomDropdown from "../Custom/CustomDropdown";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
@@ -8,6 +9,8 @@ function Navbar({ name }) {
   const showMenu = () => {
     setshowDropdown(!showDropdown);
   };
+
+  const numItemsInCart = useSelector((state) => state.cart.itemsList).length;
   return (
     <div className="navbar">
       <Link to="/">
@@ -109,7 +112,7 @@ function Navbar({ name }) {
               />
             </svg>
           </Link>
-          <span className="navbar_shopping-icon_count">0</span>
+          <span className="navbar_shopping-icon_count">{numItemsInCart}</span>
         </div>
       </div>
     </div>

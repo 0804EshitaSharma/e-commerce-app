@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebaseConfig";
 import { updateProfile } from "firebase/auth";
-import { updateUserInfo } from "../../redux/userSlice.js";
+import { updateUserInfo } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function UserProfile() {
