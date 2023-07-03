@@ -59,8 +59,6 @@ function ProductPage() {
     // https://stackoverflow.com/a/8217584
     return wishlist.some((item) => item.Name === name) ? "red" : "none";
   };
-  // const shareUrl =
-  //   "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com&ext=1688347174&hash=AeZ1yHfTShU_z1f1CHg";
   return (
     <div className="full-page-wrapper">
       <div className="product-page-content">
