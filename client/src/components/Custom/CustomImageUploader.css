@@ -1,0 +1,7 @@
+.image_uploader{
+ width: 20px;
+}
+.image_container{
+    display: flex;
+    background-color: black;
+}

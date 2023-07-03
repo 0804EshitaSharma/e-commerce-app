@@ -1,0 +1,23 @@
+.form_container {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.input_field_label {
+    letter-spacing: 1px;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+
+    outline: none;
+
+}
+
+.input_field {
+    color: black;
+}
+
+.error_message {
+    color: red;
+    font-size: 0.9rem;
+}
