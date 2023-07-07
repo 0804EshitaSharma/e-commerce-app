@@ -13,6 +13,7 @@ import "./AddProductForm.css";
 function AddProductForm() {
   const navigate = useNavigate();
   const { handleSubmit, reset, register } = useForm({});
+  const [selectedImages, setSelectedImages] = useState([]);
   const dispatch = useDispatch();
   const formSubmit = (event) => {
     event = {
@@ -23,6 +24,15 @@ function AddProductForm() {
     // dispatch(addItemAsync(event));
     reset();
     navigate("/");
+  };
+
+  const handleImageChange = (event) => {
+    const files = event.target.files;
+    const imagesArray = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    console.error(files);
+    setSelectedImages(imagesArray);
   };
 
   const clearForm = () => {
@@ -63,15 +73,6 @@ function AddProductForm() {
           cols="65"
           register={{ ...register("description", { required: true }) }}
         />
-
-        <CustomFormInput
-          id="manufacturer"
-          name="manufacturer"
-          type="text"
-          placeholder="Item Manufacturer"
-          label="Item Manufacturer:"
-          register={{ ...register("manufacturer", { required: true }) }}
-        />
         <CustomFormInput
           name="quantity"
           id="quantity"
@@ -79,6 +80,14 @@ function AddProductForm() {
           placeholder="Item Quantity"
           label="Item Quantity:"
           register={{ ...register("quantity", { required: true }) }}
+        />
+        <CustomFormInput
+          name="rating"
+          id="rating"
+          type="number"
+          placeholder="Item Rating"
+          label="Item Rating:"
+          register={{ ...register("rating", { required: true }) }}
         />
         <CustomSelect
           id="category"
@@ -89,6 +98,7 @@ function AddProductForm() {
         />
         <CustomImageUploader
           id="images"
+          event={handleImageChange}
           register={{ ...register("images", { required: true }) }}
         />
 
