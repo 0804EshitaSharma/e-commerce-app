@@ -2,7 +2,8 @@ var express = require("express");
 var cors = require("cors");
 var mongoose = require("mongoose");
 
-const CONNECTION_STRING = "";
+const CONNECTION_STRING =
+  "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 
