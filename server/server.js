@@ -36,6 +36,16 @@ app.post("/new", async function (req, res, next) {
   }
 });
 
+app.delete("/item/:itemId", async function (req, res, next) {
+  try {
+    const item = await Items.findOneAndDelete({
+      _id: req.params.itemId,
+    });
+  } catch (e) {
+    res.status(500);
+  }
+});
+
 app.listen(5001, () => {
   console.log("Express Server Successfully Started");
 });
