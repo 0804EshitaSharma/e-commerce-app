@@ -1,7 +1,7 @@
 var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
-
+const Users = require("./models/userSchema");
 const CONNECTION_STRING =
   "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
@@ -27,7 +27,6 @@ app.get("/:userId", async (req, res, next) => {});
 
 app.post("/new", async function (req, res, next) {
   const item = req.body;
-  console.error("item" + item);
   try {
     const newItem = await Items.create(item);
     res.status(201).send(newItem);
@@ -43,6 +42,35 @@ app.delete("/item/:itemId", async function (req, res, next) {
     });
   } catch (e) {
     res.status(500);
+  }
+});
+app.post("/user", async function (req, res, next) {
+  const user = req.body;
+  try {
+    const newUser = await Users.create(user);
+    res.status(201).send(newUser);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.patch("/user/:userId", async function (req, res, next) {
+  try {
+    const updatedUser = await Users.findOneAndUpdate(
+      { _id: req.params.userId },
+      {
+        $set: {
+          useremail: req.body.useremail,
+          mobile: req.body.mobile,
+          address: req.body.address,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 
