@@ -5,16 +5,19 @@ import { useNavigate } from "react-router-dom";
 function Admin() {
   const navigate = useNavigate();
   const addNewProduct = () => {
-    console.log("Add new Product");
     navigate("/addProduct");
   };
-  const viewUsers = () => {
-    console.log("view All Users");
+  const viewAllProducts = () => {
+    navigate("/");
   };
   return (
     <div>
       <CustomButton type="submit" label="Add Product" event={addNewProduct} />
-      <CustomButton type="submit" label="All Products" event={viewUsers} />
+      <CustomButton
+        type="submit"
+        label="All Products"
+        event={viewAllProducts}
+      />
     </div>
   );
 }
