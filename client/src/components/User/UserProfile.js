@@ -10,6 +10,7 @@ import { updateProfile } from "firebase/auth";
 import { updateUserInfo } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomAddress from "../Custom/CustomAddress";
+import { updateUserAsync } from "../../redux/user/userSlice.js";
 
 function UserProfile() {
   const user = useSelector((state) => state.user.user);
@@ -47,11 +48,18 @@ function UserProfile() {
             email: event.email,
           })
         );
+        dispatch(
+          updateUserAsync({
+            id: currentUser.uid,
+            useremail: event.email,
+            mobile: event.mobile,
+            address: event.address,
+          })
+        );
         setIsLoading(false);
         // navigate("/")
       })
       .catch((error) => {});
-      
   };
   return (
     <>
@@ -121,10 +129,10 @@ function UserProfile() {
               <div className="profile_input_field">
                 <CustomFormInput
                   name="Mobile Number"
-                  id="phone"
+                  id="mobilw"
                   type="phone"
                   label="Mobile Number"
-                  register={{ ...register("phone") }}
+                  register={{ ...register("mobile") }}
                 />
               </div>
               <svg
@@ -144,8 +152,7 @@ function UserProfile() {
                   register={{ ...register("address") }}
                 />
               </div>
-              <div>
-              </div>
+              <div></div>
             </div>
           </div>
           <CustomButton
