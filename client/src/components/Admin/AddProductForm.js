@@ -99,6 +99,7 @@ function AddProductForm() {
         />
         <CustomImageUploader
           id="images"
+          name="images"
           event={handleImageChange}
           register={{ ...register("images", { required: true }) }}
         />

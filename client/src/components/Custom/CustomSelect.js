@@ -8,7 +8,7 @@ function CustomSelect({ id, name, label, register, categories, event }) {
   ));
 
   return (
-    <div>
+    <div className="form_container">
       {label ? (
         <label className="input_field_label" htmlFor={id}>
           {label}

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 
-function CustomImageUploader({ register, id ,event}) {
+function CustomImageUploader({ register, id ,event,name}) {
 
 
   return (
-    <div>
+    <div className="form_container">
       <label className="input_field_label" htmlFor="images">
         Item Images:
       </label>
       <input
         id={id}
+        name={name}
         type="file"
         multiple
         onChange={event}
