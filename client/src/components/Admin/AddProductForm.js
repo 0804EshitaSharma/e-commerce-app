@@ -23,8 +23,8 @@ function AddProductForm() {
     };
     console.error(event);
     dispatch(addNewItemAsync(event));
-    // reset();
-    // navigate("/");
+    reset();
+    navigate("/");
   };
 
   const handleImageChange = (event) => {
