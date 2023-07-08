@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import CustomSelect from "../Custom/CustomSelect";
 import CustomImageUploader from "../Custom/CustomImageUploader";
 import "./AddProductForm.css";
+import { addNewItemAsync } from "../../redux/item/itemSlice";
 
 function AddProductForm() {
   const navigate = useNavigate();
@@ -21,9 +22,9 @@ function AddProductForm() {
       id: uuidv4(),
     };
     console.error(event);
-    // dispatch(addItemAsync(event));
-    reset();
-    navigate("/");
+    dispatch(addNewItemAsync(event));
+    // reset();
+    // navigate("/");
   };
 
   const handleImageChange = (event) => {
