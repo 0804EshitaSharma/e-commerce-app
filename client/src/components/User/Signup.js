@@ -7,6 +7,9 @@ import { auth } from "../../firebase/firebaseConfig";
 import { useForm } from "react-hook-form";
 import Modal from "../Custom/Modal.js";
 import "./Signup.css";
+import { useDispatch } from "react-redux";
+import { addUserAsync } from "../../redux/user/userSlice.js";
+import { v4 as uuidv4 } from "uuid";
 
 function Signup() {
   const {
@@ -18,7 +21,7 @@ function Signup() {
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const closeModal = () => {
     setShowModal(false);
   };
@@ -30,6 +33,11 @@ function Signup() {
         updateProfile(user, {
           displayName: event.firstname,
         });
+        event = {
+          ...event,
+          _id: user.uid,
+        };
+        dispatch(addUserAsync(event));
         reset();
         navigate("/login");
       })

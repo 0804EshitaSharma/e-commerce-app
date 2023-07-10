@@ -18,8 +18,10 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import WishlistPage from "./components/Wishlist/WishlistPage";
 import PasswordReset from "./components/User/PasswordReset";
 import ForgotPassword from "./components/User/ForgotPassword";
-import { useSelector} from "react-redux";
-
+import { useSelector } from "react-redux";
+import Admin from "./components/Admin/Admin";
+import AddProduct from "./components/Admin/AddProduct";
+import AdminRoutes from "./utils/AdminRoutes";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -46,6 +48,8 @@ function App() {
           <Route path="/reset-password" element={<PasswordReset />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
+          <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/addProduct" element={<AddProduct />}></Route>
         </Routes>
       </Router>
     </div>
