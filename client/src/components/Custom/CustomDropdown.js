@@ -24,7 +24,7 @@ function CustomDropdown({ name }) {
     },
     {
       name: "Admin",
-      to: "/admin",
+      to: "/login",
     },
   ];
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */

@@ -1,6 +1,8 @@
 import React from "react";
 import CustomButton from "../Custom/CustomButton";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loggedInUser } from "../../redux/user/userSlice.js";
 
 function Admin() {
   const navigate = useNavigate();

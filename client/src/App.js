@@ -49,9 +49,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
           <Route path="/admin" element={<Admin />}></Route>
-          {/* <Route element={<AdminRoutes />}> */}
-            <Route path="/addProduct" element={<AddProduct />}></Route>
-          {/* </Route> */}
+          <Route path="/addProduct" element={<AddProduct />}></Route>
         </Routes>
       </Router>
     </div>

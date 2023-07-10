@@ -12,10 +12,7 @@ export const addUserAsync = createAsyncThunk(
 export const updateUserAsync = createAsyncThunk(
   "items/updateUserAsync",
   async (updatedUser) => {
-    const response = await axios.patch(
-      `/user/${updatedUser.id}`,
-      updatedUser
-    );
+    const response = await axios.patch(`/user/${updatedUser.id}`, updatedUser);
     return response.data;
   }
 );
@@ -40,6 +37,9 @@ export const userSlice = createSlice({
     addUser: (state, action) => {
       state.users.push(action.payload);
     },
+    isAdmin: (state) => {
+      state.isAdmin = true;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addUserAsync.fulfilled, (state, action) => {
@@ -48,6 +48,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loggedInUser, loggedOut, updateUserInfo } = userSlice.actions;
+export const { loggedInUser, loggedOut, updateUserInfo, isAdmin } =
+  userSlice.actions;
 
 export default userSlice.reducer;
