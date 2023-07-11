@@ -11,6 +11,8 @@ import { updateUserInfo } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomAddress from "../Custom/CustomAddress";
 import { updateUserAsync } from "../../redux/user/userSlice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UserProfile() {
   const user = useSelector((state) => state.user.user);
@@ -34,7 +36,6 @@ function UserProfile() {
   };
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
-    console.error(event);
     const currentUser = auth.currentUser;
     setIsLoading(true);
     updateProfile(currentUser, {
@@ -57,7 +58,11 @@ function UserProfile() {
           })
         );
         setIsLoading(false);
-        // navigate("/")
+        toast.success("User Profile updated !", {
+          position: "bottom-right",
+          theme: "colored",
+          autoClose: 2000,
+        });
       })
       .catch((error) => {});
   };
@@ -162,6 +167,7 @@ function UserProfile() {
           <CustomButton label="Change Password" event={changePassword} />
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }
