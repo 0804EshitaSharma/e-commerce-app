@@ -5,6 +5,8 @@ import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { loggedOut } from "../../redux/user/userSlice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CustomDropdown({ name }) {
   const navigate = useNavigate();
@@ -15,7 +17,18 @@ function CustomDropdown({ name }) {
         dispatch(loggedOut());
         navigate("/");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("error", {
+          position: "bottom-right",
+          theme: "colored",
+          autoClose: 2000,
+        });
+      });
+    toast.success("User Logged Out!", {
+      position: "bottom-right",
+      theme: "colored",
+      autoClose: 2000,
+    });
   };
   const menu = [
     {
@@ -29,16 +42,19 @@ function CustomDropdown({ name }) {
   ];
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */
   return (
-    <div className="menu_container">
-      <ul>
-        {menu.map((i, index) => (
-          <li key={index}>
-            <Link to={i.to}>{i.name}</Link>
-          </li>
-        ))}
-        <li onClick={logOut}>Log Out</li>
-      </ul>
-    </div>
+    <>
+      <div className="menu_container">
+        <ul>
+          {menu.map((i, index) => (
+            <li key={index}>
+              <Link to={i.to}>{i.name}</Link>
+            </li>
+          ))}
+          <li onClick={logOut}>Log Out</li>
+        </ul>
+      </div>
+      <ToastContainer />
+    </>
   );
 }
 
