@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -19,7 +19,14 @@ mongoose
   .then(() => console.log("MongoDB Database Successfully connected"))
   .catch((error) => console.log(error));
 
-app.get("/products", async (req, res, next) => {});
+app.get("/products", async (req, res, next) => {
+  try {
+    var itemData = await Items.find({})
+    res.status(200).send(itemData)
+  } catch (err) {
+    console.log(err)
+  } 
+});
 
 app.get("/:productId", async function (req, res, next) {});
 
