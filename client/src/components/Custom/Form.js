@@ -49,7 +49,6 @@ function Form({
 
         const user = userCredential.user;
         if (user) {
-          console.error(user);
           dispatch(getUserInfoAsync(user.uid));
           setIsLoading(false);
           reset();
