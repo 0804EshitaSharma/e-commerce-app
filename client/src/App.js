@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar name={userFromStore?.name} />
+        <Navbar name={userFromStore?.firstname} />
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/checkout" element={<Checkout />}></Route>

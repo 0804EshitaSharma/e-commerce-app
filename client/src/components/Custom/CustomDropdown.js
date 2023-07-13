@@ -38,7 +38,7 @@ function CustomDropdown({ name }) {
     },
     {
       name: "Admin",
-      to: user?.name !== "Admin" ? "/login" : "/admin",
+      to: user?.firstname !== "Admin" ? "/login" : "/admin",
     },
   ];
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */

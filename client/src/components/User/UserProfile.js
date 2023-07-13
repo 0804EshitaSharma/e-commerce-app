@@ -59,11 +59,11 @@ function UserProfile() {
         );
         dispatch(
           updateUserAsync({
-            id: currentUser.uid,
+            _id: currentUser.uid,
             useremail: event.email,
             mobile: event.mobile,
             address: event.address,
-            firstname: event.accountholder
+            firstname: event.accountholder,
           })
         );
         setIsLoading(false);
@@ -72,7 +72,6 @@ function UserProfile() {
           theme: "colored",
           autoClose: 2000,
         });
-        navigate("/");
       })
       .catch((error) => {});
   };
@@ -124,7 +123,7 @@ function UserProfile() {
                   id="email"
                   type="email"
                   label="Email Address"
-                  defaultValue={user?.email}
+                  defaultValue={user?.useremail}
                   readOnly={!isEditable}
                   register={{ ...register("email") }}
                 />
