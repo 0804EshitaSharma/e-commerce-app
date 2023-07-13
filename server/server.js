@@ -21,7 +21,27 @@ mongoose
 
 app.get("/products", async (req, res, next) => {
   try {
+    console.log('req.query ' + req.query)
+
     var itemData = await Items.find({})
+
+    if (req.query.category !== undefined) {
+      console.log('req.query.category ' + req.query.category)
+      var itemData = itemData.filter(item => req.query.category.includes(item.category))
+    }
+    
+
+    // if (req.query === {}) {
+    //   console.log('has query')
+    //   var itemData = await Items.find()
+    //                           .where('category').equals(req.query.category)
+    //                           // .where('price').lte(req.query.pricelt).gte(req.query.pricegt)
+    //                           // .where('rating').lte(req.query.ratinglt).gte(req.query.ratinggt)
+    // } else {
+    //   console.log('no query')
+    //   var itemData = await Items.find({})
+    // }
+    
     res.status(200).send(itemData)
   } catch (err) {
     console.log(err)

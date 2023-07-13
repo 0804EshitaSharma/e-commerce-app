@@ -11,17 +11,6 @@ export default function ContentContainer() {
     const [list, setList] = useState([]);
 
     const baseURL = "http://localhost:5001"
-
-    const getProdList = async () => {
-        try {
-            axios.get(`${baseURL}/products`).then((res) => {
-                console.log('api call')
-                setList(res.data)
-            })
-        } catch (error) {
-          console.log(error)
-        }
-    };
     
     const [categories, setCategories] = useState([
         { id: 1, checked: false, label: 'Home' },
@@ -45,6 +34,31 @@ export default function ContentContainer() {
         { id: 4, checked: false, label: '1 ~ 2' },
         { id: 5, checked: false, label: 'Below 1' }
     ])
+
+    const getProdList = async () => {
+        try {
+            const categoriesStateList = categories
+            console.log(categoriesStateList)
+            const checkedCategories = categoriesStateList.filter(item => item.checked).map(item => {return item.label})
+            console.log(checkedCategories)
+
+            const categoryParams = checkedCategories.map(i => `category=${i}`).join('&')
+            console.log(categoryParams)
+
+            let modifiedURL = `${baseURL}/products`
+            if (checkedCategories.length > 0) {
+                modifiedURL = `${baseURL}/products?${categoryParams}`
+                console.log(modifiedURL)
+            }
+
+            axios.get(modifiedURL).then((res) => {
+                console.log('api call')
+                setList(res.data)
+            })
+        } catch (error) {
+          console.log(error)
+        }
+    };
 
     const handleCategoryChecked = (id) => {
         const categoriesStateList = categories;
@@ -133,8 +147,6 @@ export default function ContentContainer() {
         }
 
         setList(updatedList);
-        console.log(updatedList)
-        console.log(list)
     }
 
     useEffect(() => {
