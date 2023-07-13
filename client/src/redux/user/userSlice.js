@@ -17,6 +17,17 @@ export const updateUserAsync = createAsyncThunk(
   }
 );
 
+export const getUserInfoAsync = createAsyncThunk(
+  "items/getUserInfoAsync",
+  async (id) => {
+    const response = await fetch(`/user/${id}`);
+
+    if (response.ok) {
+      const detail = await response.json();
+      return detail;
+    }
+  }
+);
 export const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -44,6 +55,9 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addUserAsync.fulfilled, (state, action) => {
       state.users.push(action.payload);
+    });
+    builder.addCase(getUserInfoAsync.fulfilled, (state, action) => {
+      state.user = action.payload;
     });
   },
 });

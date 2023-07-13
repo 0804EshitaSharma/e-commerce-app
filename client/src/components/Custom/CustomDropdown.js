@@ -3,12 +3,13 @@ import "./CustomDropdown.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loggedOut } from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function CustomDropdown({ name }) {
+  const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const logOut = () => {
@@ -37,7 +38,7 @@ function CustomDropdown({ name }) {
     },
     {
       name: "Admin",
-      to: "/login",
+      to: user?.name !== "Admin" ? "/login" : "/admin",
     },
   ];
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */

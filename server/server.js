@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://eshitasharma0804:IzUT9IWmZeBNJbem@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -25,6 +25,23 @@ app.get("/:productId", async function (req, res, next) {});
 
 app.get("/:userId", async (req, res, next) => {});
 
+app.get("/user/:userId", async (req, res, next) => {
+  try {
+    const user = await Users.findOne(
+      {
+        _id: req.params.userId,
+      }
+    );
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 app.post("/new", async function (req, res, next) {
   const item = req.body;
   try {

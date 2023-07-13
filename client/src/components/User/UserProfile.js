@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./UserProfile.css";
 import CustomButton from "../Custom/CustomButton";
@@ -10,7 +10,10 @@ import { updateProfile } from "firebase/auth";
 import { updateUserInfo } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomAddress from "../Custom/CustomAddress";
-import { updateUserAsync } from "../../redux/user/userSlice.js";
+import {
+  updateUserAsync,
+  getUserInfoAsync,
+} from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,6 +24,7 @@ function UserProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { handleSubmit, reset, register } = useForm();
+  const currentUser = auth.currentUser;
   const changePassword = () => {
     navigate("/forgot-password");
   };
@@ -34,9 +38,14 @@ function UserProfile() {
     display: "block",
     margin: "0 auto",
   };
+  useEffect(() => {
+    if (currentUser != null) {
+      dispatch(getUserInfoAsync(currentUser.uid));
+    }
+  }, [dispatch]);
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
-    const currentUser = auth.currentUser;
+    console.error(currentUser)
     setIsLoading(true);
     updateProfile(currentUser, {
       displayName: event.accountholder,
@@ -55,6 +64,7 @@ function UserProfile() {
             useremail: event.email,
             mobile: event.mobile,
             address: event.address,
+            firstname: event.accountholder
           })
         );
         setIsLoading(false);
@@ -63,6 +73,7 @@ function UserProfile() {
           theme: "colored",
           autoClose: 2000,
         });
+        navigate("/");
       })
       .catch((error) => {});
   };
@@ -89,7 +100,7 @@ function UserProfile() {
                   name="Account Holder"
                   id="accountholder"
                   type="text"
-                  defaultValue={user?.name}
+                  defaultValue={user?.firstname}
                   label=" Account Holder"
                   readOnly={!isEditable}
                   register={{ ...register("accountholder") }}
@@ -137,6 +148,7 @@ function UserProfile() {
                   id="mobilw"
                   type="phone"
                   label="Mobile Number"
+                  defaultValue={user?.mobile}
                   register={{ ...register("mobile") }}
                 />
               </div>
