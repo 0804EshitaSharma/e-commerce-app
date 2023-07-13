@@ -4,7 +4,7 @@ import ContentContainer from "../components/Dashboard/ContentContainer";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div style={{"background-color": "white"}}>
             {/* <CategoryContainer /> */}
             <ContentContainer />
         </div>
