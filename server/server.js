@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");

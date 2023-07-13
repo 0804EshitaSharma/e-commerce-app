@@ -7,6 +7,6 @@ export const ProdCard = styled.div`
     height: 400px;
     border-style: ridge;
     border-color: rgb(216 213 213 / 38%);
-    display: flex;
-    flex-direction: column
+    display: inline-block;
+    overflow: scroll
 `
