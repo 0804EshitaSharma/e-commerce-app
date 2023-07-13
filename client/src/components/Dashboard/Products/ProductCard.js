@@ -35,7 +35,7 @@ export default function ProductCard(props) {
           onClick={() => goToProduct(props.item)}
         />
       </div>
-      <div style={{ margin: "10px" }}>
+      <div>
         <ProdTextContainer>
           <svg
             className="navbar_shopping-icon"
