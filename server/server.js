@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://eshitasharma0804:IzUT9IWmZeBNJbem@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -21,13 +21,12 @@ mongoose
 
 app.get("/products", async (req, res, next) => {
   try {
-    var itemData = await Items.find({})
-    res.status(200).send(itemData)
+    var itemData = await Items.find({});
+    res.status(200).send(itemData);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 });
-
 
 app.get("/:productId", async function (req, res, next) {});
 
@@ -35,11 +34,9 @@ app.get("/:userId", async (req, res, next) => {});
 
 app.get("/user/:userId", async (req, res, next) => {
   try {
-    const user = await Users.findOne(
-      {
-        _id: req.params.userId,
-      }
-    );
+    const user = await Users.findOne({
+      _id: req.params.userId,
+    });
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -65,8 +62,9 @@ app.delete("/item/:itemId", async function (req, res, next) {
     const item = await Items.findOneAndDelete({
       _id: req.params.itemId,
     });
+    res.status(200).json({ message: "Product deleted Successfully" });
   } catch (e) {
-    res.status(500);
+    res.status(500).json({ error: e.message });
   }
 });
 app.post("/user", async function (req, res, next) {

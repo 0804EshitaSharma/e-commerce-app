@@ -8,7 +8,13 @@ export const addNewItemAsync = createAsyncThunk(
     return response.data;
   }
 );
-
+export const getProdListAsync = createAsyncThunk(
+  "items/getProdListAsync",
+  async () => {
+    const response = await axios.get("/products");
+    return response.data;
+  }
+);
 export const deleteItemAsync = createAsyncThunk(
   "items/deleteItemAsync",
   async (id) => {
@@ -34,6 +40,9 @@ export const itemSlice = createSlice({
     builder.addCase(addNewItemAsync.fulfilled, (state, action) => {
       state.items.push(action.payload);
     });
+    builder.addCase(getProdListAsync.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
     builder.addCase(deleteItemAsync.fulfilled, (state, action) => {
       const id = action.payload;
       const index = state.items.findIndex((item) => item._id == id);
@@ -44,5 +53,5 @@ export const itemSlice = createSlice({
   },
 });
 export const { addNewItem } = itemSlice.actions;
-
+export const products = (state) => state.item.items;
 export default itemSlice.reducer;
