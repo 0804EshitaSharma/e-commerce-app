@@ -45,7 +45,6 @@ function UserProfile() {
   }, [dispatch]);
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
-    console.error(currentUser)
     setIsLoading(true);
     updateProfile(currentUser, {
       displayName: event.accountholder,
