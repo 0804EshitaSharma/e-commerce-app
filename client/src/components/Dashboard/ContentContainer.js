@@ -1,15 +1,28 @@
 // referenced from: https://www.youtube.com/watch?v=VVhnuOKVHRs&t=6210s
 
+import axios from 'axios';
 import './Dashboard.css'
 import Filters from "./Filters";
 import ProductContainer from './Products/ProductContainer';
 import { useState, useEffect } from "react"
-import { initialState } from './Products/ProdDataList';
+// import { initialState } from './Products/ProdDataList';
 
 export default function ContentContainer() {
+    const [list, setList] = useState([]);
 
-    const [list, setList] = useState(initialState.list);
+    const baseURL = "http://localhost:5001"
 
+    const getProdList = async () => {
+        try {
+            axios.get(`${baseURL}/products`).then((res) => {
+                console.log('api call')
+                setList(res.data)
+            })
+        } catch (error) {
+          console.log(error)
+        }
+    };
+    
     const [categories, setCategories] = useState([
         { id: 1, checked: false, label: 'Home' },
         { id: 2, checked: false, label: 'Electronics' },
@@ -58,7 +71,11 @@ export default function ContentContainer() {
     };
 
     const applyFilters = () => {
-        let updatedList = initialState.list;
+        console.log('call get list in filter')
+        getProdList()
+
+        let updatedList = list
+        console.log(updatedList)
 
         // Category Filter
         const categoriesChecked = categories
@@ -67,7 +84,7 @@ export default function ContentContainer() {
 
         if (categoriesChecked.length) {
             updatedList = updatedList.filter((item) =>
-            categoriesChecked.includes(item.Category)
+            categoriesChecked.includes(item.category)
             );
         }
 
@@ -78,15 +95,15 @@ export default function ContentContainer() {
 
         if (pricesChecked.length) {
             updatedList = updatedList.filter(item => {
-                if (Number(item.Price) < 25) {
+                if (Number(item.price) < 25) {
                     return prices[0].checked
-                } else if (Number(item.Price) >= 25 && Number(item.Price) < 50) {
+                } else if (Number(item.price) >= 25 && Number(item.price) < 50) {
                     return prices[1].checked
-                } else if (Number(item.Price) >= 50 && Number(item.Price) < 100) {
+                } else if (Number(item.price) >= 50 && Number(item.price) < 100) {
                     return prices[2].checked
-                } else if (Number(item.Price) >= 100 && Number(item.Price) < 200) {
+                } else if (Number(item.price) >= 100 && Number(item.price) < 200) {
                     return prices[3].checked
-                } else if (Number(item.Price) > 200) {
+                } else if (Number(item.price) > 200) {
                     return prices[4].checked
                 }
                 return false
@@ -100,15 +117,15 @@ export default function ContentContainer() {
 
         if (ratingsChecked.length) {
             updatedList = updatedList.filter(item => {
-                if (Number(item.Rating) >= 4) {
+                if (Number(item.rating) >= 4) {
                     return ratings[0].checked
-                } else if (Number(item.Rating) >= 3 && Number(item.Rating) < 4) {
+                } else if (Number(item.rating) >= 3 && Number(item.rating) < 4) {
                     return ratings[1].checked
-                } else if (Number(item.Rating) >= 2 && Number(item.Rating) < 3) {
+                } else if (Number(item.rating) >= 2 && Number(item.rating) < 3) {
                     return ratings[2].checked
-                } else if (Number(item.Rating) >= 1 && Number(item.Rating) < 2) {
+                } else if (Number(item.rating) >= 1 && Number(item.rating) < 2) {
                     return ratings[3].checked
-                } else if (Number(item.Rating) < 1) {
+                } else if (Number(item.rating) < 1) {
                     return ratings[4].checked
                 }
                 return false
@@ -116,11 +133,18 @@ export default function ContentContainer() {
         }
 
         setList(updatedList);
+        console.log(updatedList)
+        console.log(list)
     }
 
     useEffect(() => {
         applyFilters();
     }, [categories, prices, ratings]);
+
+    useEffect(()=>{
+        console.log('call get list on load')
+        getProdList()
+    }, []) 
 
     return (
         <div className="horizontal-container">

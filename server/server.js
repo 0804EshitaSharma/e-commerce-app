@@ -19,7 +19,15 @@ mongoose
   .then(() => console.log("MongoDB Database Successfully connected"))
   .catch((error) => console.log(error));
 
-app.get("/products", async (req, res, next) => {});
+app.get("/products", async (req, res, next) => {
+  try {
+    var itemData = await Items.find({})
+    res.status(200).send(itemData)
+  } catch (err) {
+    console.log(err)
+  }
+});
+
 
 app.get("/:productId", async function (req, res, next) {});
 

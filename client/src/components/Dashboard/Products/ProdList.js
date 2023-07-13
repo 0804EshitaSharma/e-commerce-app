@@ -5,7 +5,7 @@ export default function ProductList(props) {
     return (
         <ProdListContainer>
             {props.list.map((item) => (
-                <ProductCard key={item.Name} item={item} />
+                <ProductCard key={item._id} item={item} />
                 ))}
         </ProdListContainer> 
     )
