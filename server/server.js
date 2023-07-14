@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://eshitasharma0804:IzUT9IWmZeBNJbem@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -86,7 +86,7 @@ app.patch("/user/:userId", async function (req, res, next) {
           useremail: req.body.useremail,
           mobile: req.body.mobile,
           address: req.body.address,
-          firstname:req.body.firstname
+          firstname: req.body.firstname,
         },
       },
       { new: true }
