@@ -8,7 +8,7 @@ function OrderPlaced() {
 
     return (
         <div>
-            <div className="wrapper">
+            <div className="order-wrapper">
                 <p className="icon">
                     <BsBagCheckFill />
                 </p>
