@@ -22,7 +22,6 @@ import { useSelector } from "react-redux";
 import Admin from "./components/Admin/Admin";
 import AddProduct from "./components/Admin/AddProduct";
 import AdminRoutes from "./utils/AdminRoutes";
-import { useSelector} from "react-redux";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
 
 function App() {
