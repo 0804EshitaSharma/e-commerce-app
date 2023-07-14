@@ -38,17 +38,30 @@ export default function ContentContainer() {
     const getProdList = async () => {
         try {
             const categoriesStateList = categories
-            console.log(categoriesStateList)
             const checkedCategories = categoriesStateList.filter(item => item.checked).map(item => {return item.label})
-            console.log(checkedCategories)
-
             const categoryParams = checkedCategories.map(i => `category=${i}`).join('&')
-            console.log(categoryParams)
+
+            const pricesStateList = prices
+            console.log(pricesStateList)
+            const checkedPrices = pricesStateList.filter(item => item.checked).map(item => {return item.label})
+            console.log(checkedPrices)
+
+            const priceParams = checkedPrices.map(i => `price=${i}`.replace(/\s/g, '')).join('&')
+            console.log(priceParams)
 
             let modifiedURL = `${baseURL}/products`
             if (checkedCategories.length > 0) {
                 modifiedURL = `${baseURL}/products?${categoryParams}`
                 console.log(modifiedURL)
+            }
+            if (checkedPrices.length > 0) {
+                if (modifiedURL.includes('?')) {
+                    modifiedURL = `${modifiedURL}&${priceParams}`
+                    console.log(modifiedURL)
+                } else {
+                    modifiedURL = `${baseURL}/products?${priceParams}`
+                    console.log(modifiedURL)
+                }
             }
 
             axios.get(modifiedURL).then((res) => {

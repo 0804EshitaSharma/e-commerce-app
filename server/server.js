@@ -22,25 +22,35 @@ mongoose
 app.get("/products", async (req, res, next) => {
   try {
     console.log('req.query ' + req.query)
+    const categoryParams = req.query.category
+    const priceParams = req.query.price
+    const ratingParams = req.query.rating
 
     var itemData = await Items.find({})
 
-    if (req.query.category !== undefined) {
-      console.log('req.query.category ' + req.query.category)
-      var itemData = itemData.filter(item => req.query.category.includes(item.category))
+    if (categoryParams !== undefined) {
+      console.log('req.query.category ' + categoryParams)
+      var itemData = itemData.filter(item => categoryParams.includes(item.category))
+    }
+
+    if (priceParams !== undefined) {
+      console.log('req.query.price ' + priceParams)
+      var itemData = itemData.filter(item => {
+          if (item.price < 25) {
+            return priceParams.includes('Under$25')
+        } else if (item.price >= 25 && item.price < 50) {
+            return priceParams.includes('$25~$50')
+        } else if (item.price >= 50 && item.price < 100) {
+            return priceParams.includes('$50~$100')
+        } else if (item.price >= 100 && item.price < 200) {
+            return priceParams.includes('$100~$200')
+        } else if (item.price > 200) {
+            return priceParams.includes('Above$200')
+        }
+        return false
+      })
     }
     
-
-    // if (req.query === {}) {
-    //   console.log('has query')
-    //   var itemData = await Items.find()
-    //                           .where('category').equals(req.query.category)
-    //                           // .where('price').lte(req.query.pricelt).gte(req.query.pricegt)
-    //                           // .where('rating').lte(req.query.ratinglt).gte(req.query.ratinggt)
-    // } else {
-    //   console.log('no query')
-    //   var itemData = await Items.find({})
-    // }
     
     res.status(200).send(itemData)
   } catch (err) {
