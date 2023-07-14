@@ -10,30 +10,26 @@ import CustomSelect from "../Custom/CustomSelect";
 import CustomImageUploader from "../Custom/CustomImageUploader";
 import "./AddProductForm.css";
 import { addNewItemAsync } from "../../redux/item/itemSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddProductForm() {
   const navigate = useNavigate();
   const { handleSubmit, reset, register } = useForm({});
-  const [selectedImages, setSelectedImages] = useState([]);
   const dispatch = useDispatch();
   const formSubmit = (event) => {
     event = {
-      ...event
+      ...event,
     };
-    console.error(event);
     dispatch(addNewItemAsync(event));
     reset();
-    navigate("/");
+     toast.success("Added Product!", {
+       position: "bottom-right",
+       theme: "colored",
+       autoClose: 2000,
+     });
   };
 
-  const handleImageChange = (event) => {
-    const files = event.target.files;
-    const imagesArray = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
-    console.error(files);
-    setSelectedImages(imagesArray);
-  };
 
   const clearForm = () => {
     reset();
@@ -46,70 +42,75 @@ function AddProductForm() {
     { id: 4, text: "Books" },
   ];
   return (
-    <form className="item-form-container">
-      <div>
-        <CustomFormInput
-          name="name"
-          id="name"
-          type="text"
-          placeholder="Item Name"
-          label="Item Name:"
-          register={{ ...register("name", { required: true }) }}
-        />
-        <CustomFormInput
-          name="price"
-          id="price"
-          type="number"
-          placeholder="Item Price"
-          label="Item Price:"
-          register={{ ...register("price", { required: true }) }}
-        />
-        <CustomFormTextArea
-          name="description"
-          id="description"
-          placeholder="Item Description"
-          label="Item Description:"
-          rows="5"
-          cols="65"
-          register={{ ...register("description", { required: true }) }}
-        />
-        <CustomFormInput
-          name="quantity"
-          id="quantity"
-          type="number"
-          placeholder="Item Quantity"
-          label="Item Quantity:"
-          register={{ ...register("quantity", { required: true }) }}
-        />
-        <CustomFormInput
-          name="rating"
-          id="rating"
-          type="number"
-          placeholder="Item Rating"
-          label="Item Rating:"
-          register={{ ...register("rating", { required: true }) }}
-        />
-        <CustomSelect
-          id="category"
-          name="category"
-          label="Item Category:"
-          register={{ ...register("category", { required: true }) }}
-          categories={categories}
-        />
-        <CustomImageUploader
-          id="images"
-          name="images"
-          event={handleImageChange}
-          register={{ ...register("images", { required: true }) }}
-        />
+    <>
+      <form className="item-form-container">
+        <div>
+          <CustomFormInput
+            name="name"
+            id="name"
+            type="text"
+            placeholder="Item Name"
+            label="Item Name:"
+            register={{ ...register("name", { required: true }) }}
+          />
+          <CustomFormInput
+            name="price"
+            id="price"
+            type="number"
+            placeholder="Item Price"
+            label="Item Price:"
+            register={{ ...register("price", { required: true }) }}
+          />
+          <CustomFormTextArea
+            name="description"
+            id="description"
+            placeholder="Item Description"
+            label="Item Description:"
+            rows="5"
+            cols="65"
+            register={{ ...register("description", { required: true }) }}
+          />
+          <CustomFormInput
+            name="quantity"
+            id="quantity"
+            type="number"
+            placeholder="Item Quantity"
+            label="Item Quantity:"
+            register={{ ...register("quantity", { required: true }) }}
+          />
+          <CustomFormInput
+            name="rating"
+            id="rating"
+            type="number"
+            placeholder="Item Rating"
+            label="Item Rating:"
+            register={{ ...register("rating", { required: true }) }}
+          />
+          <CustomSelect
+            id="category"
+            name="category"
+            label="Item Category:"
+            register={{ ...register("category", { required: true }) }}
+            categories={categories}
+          />
+          <CustomFormInput
+            name="images"
+            id="images"
+            type="text"
+            placeholder="Item Image"
+            label="Item Image:"
+            register={{ ...register("images", { required: true }) }}
+          />
 
-        <CustomButton
-          type="submit"
-          label="Create"
-          event={handleSubmit(formSubmit)}
-        />
-      </div>
-    </form>
+          <CustomButton
+            type="submit"
+            label="Create"
+            event={handleSubmit(formSubmit)}
+          />
+        </div>
+      </form>
+      <ToastContainer />
+    </>
   );
 }
 

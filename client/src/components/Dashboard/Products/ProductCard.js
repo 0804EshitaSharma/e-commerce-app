@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../../redux/cart/cartSlice";
 import { deleteItemAsync } from "../../../redux/item/itemSlice";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
@@ -26,6 +28,7 @@ export default function ProductCard(props) {
   };
   const quantity = 1;
   return (
+    <>
     <ProdCard key={props.item.name}>
       <div style={{ backgroundColor: "white" }}>
         <img
@@ -82,6 +85,11 @@ export default function ProductCard(props) {
               stroke="currentColor"
               onClick={() => {
                 dispatch(deleteItemAsync(props.item._id));
+                 toast.success("Deleted Product!", {
+                   position: "bottom-right",
+                   theme: "colored",
+                   autoClose: 2000,
+                 });
               }}
             >
               <path
@@ -94,5 +102,7 @@ export default function ProductCard(props) {
         </ProdTextContainer>
       </div>
     </ProdCard>
+     <ToastContainer />
+     </>
   );
 }
