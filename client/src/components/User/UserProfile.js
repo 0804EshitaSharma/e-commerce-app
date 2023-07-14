@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./UserProfile.css";
 import CustomButton from "../Custom/CustomButton";
@@ -10,7 +10,12 @@ import { updateProfile } from "firebase/auth";
 import { updateUserInfo } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomAddress from "../Custom/CustomAddress";
-import { updateUserAsync } from "../../redux/user/userSlice.js";
+import {
+  updateUserAsync,
+  getUserInfoAsync,
+} from "../../redux/user/userSlice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UserProfile() {
   const user = useSelector((state) => state.user.user);
@@ -19,6 +24,7 @@ function UserProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { handleSubmit, reset, register } = useForm();
+  const currentUser = auth.currentUser;
   const changePassword = () => {
     navigate("/forgot-password");
   };
@@ -32,10 +38,13 @@ function UserProfile() {
     display: "block",
     margin: "0 auto",
   };
+  useEffect(() => {
+    if (currentUser != null) {
+      dispatch(getUserInfoAsync(currentUser.uid));
+    }
+  }, [dispatch]);
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
-    console.error(event);
-    const currentUser = auth.currentUser;
     setIsLoading(true);
     updateProfile(currentUser, {
       displayName: event.accountholder,
@@ -50,14 +59,19 @@ function UserProfile() {
         );
         dispatch(
           updateUserAsync({
-            id: currentUser.uid,
+            _id: currentUser.uid,
             useremail: event.email,
             mobile: event.mobile,
             address: event.address,
+            firstname: event.accountholder,
           })
         );
         setIsLoading(false);
-        // navigate("/")
+        toast.success("User Profile updated !", {
+          position: "bottom-right",
+          theme: "colored",
+          autoClose: 2000,
+        });
       })
       .catch((error) => {});
   };
@@ -84,7 +98,7 @@ function UserProfile() {
                   name="Account Holder"
                   id="accountholder"
                   type="text"
-                  defaultValue={user?.name}
+                  defaultValue={user?.firstname}
                   label=" Account Holder"
                   readOnly={!isEditable}
                   register={{ ...register("accountholder") }}
@@ -109,7 +123,7 @@ function UserProfile() {
                   id="email"
                   type="email"
                   label="Email Address"
-                  defaultValue={user?.email}
+                  defaultValue={user?.useremail}
                   readOnly={!isEditable}
                   register={{ ...register("email") }}
                 />
@@ -132,6 +146,7 @@ function UserProfile() {
                   id="mobilw"
                   type="phone"
                   label="Mobile Number"
+                  defaultValue={user?.mobile}
                   register={{ ...register("mobile") }}
                 />
               </div>
@@ -162,6 +177,7 @@ function UserProfile() {
           <CustomButton label="Change Password" event={changePassword} />
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }

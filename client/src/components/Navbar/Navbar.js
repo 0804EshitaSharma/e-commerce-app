@@ -9,7 +9,6 @@ function Navbar({ name }) {
   const showMenu = () => {
     setshowDropdown(!showDropdown);
   };
-
   const numItemsInCart = useSelector((state) => state.cart.itemsList).length;
   return (
     <div className="navbar">

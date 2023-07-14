@@ -13,24 +13,24 @@ export default function ProductCard(props) {
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.user.isAdmin);
   const goToProduct = (item) => {
-    navigate(`/product/${item.Name}`, { state: { item } });
+    navigate(`/product/${item.name}`, { state: { item } });
   };
   const productDetails = {
-    id: props.item.id,
-    Name: props.item.Name,
-    Description: props.item.Description,
-    Price: props.item.Price,
-    Rating: props.item.Rating,
-    Category: props.item.Category,
-    Images: props.item.Images,
+    id: props.item._id,
+    Name: props.item.name,
+    Description: props.item.description,
+    Price: props.item.price,
+    Rating: props.item.rating,
+    Category: props.item.category,
+    Images: props.item.images,
   };
   const quantity = 1;
   return (
-    <ProdCard key={props.item.Name}>
+    <ProdCard key={props.item.name}>
       <div style={{ backgroundColor: "white" }}>
         <img
           style={{ width: "100%", height: "200px", objectFit: "contain" }}
-          src={props.item.Images[0]}
+          src={props.item.images[0]}
           alt="Product"
           onClick={() => goToProduct(props.item)}
         />
@@ -56,21 +56,21 @@ export default function ProductCard(props) {
             />
           </svg>
           <div>
-            <span style={{ fontWeight: "bold" }}> {props.item.Name} </span>
+            <span style={{ fontWeight: "bold" }}> {props.item.name} </span>
           </div>
           <div style={{ fontSize: "13px", margin: "10px" }}>
-            {props.item.Description}
+            {props.item.description}
           </div>
           <div>
             <span style={{ fontWeight: "bold" }}>Category</span>:&nbsp;
-            {props.item.Category}
+            {props.item.category}
           </div>
           <div>
             <span style={{ fontWeight: "bold" }}>Price</span>: $
-            {props.item.Price}
+            {props.item.price}
           </div>
           <div>
-            <Rating ratings={props.item.Rating} />
+            <Rating ratings={props.item.rating} />
           </div>
           {isAdmin && (
             <svg
@@ -81,7 +81,7 @@ export default function ProductCard(props) {
               strokeWidth="1.5"
               stroke="currentColor"
               onClick={() => {
-                dispatch(deleteItemAsync(props.item.id));
+                dispatch(deleteItemAsync(props.item._id));
               }}
             >
               <path

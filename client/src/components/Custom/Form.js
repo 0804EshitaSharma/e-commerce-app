@@ -14,8 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-import { loggedInUser, isAdmin } from "../../redux/user/userSlice.js";
+import { getUserInfoAsync, isAdmin } from "../../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form({
@@ -47,12 +49,7 @@ function Form({
 
         const user = userCredential.user;
         if (user) {
-          const userObject = {
-            name: user.displayName,
-            email: user.email,
-            id: user.uid,
-          };
-          dispatch(loggedInUser(userObject));
+          dispatch(getUserInfoAsync(user.uid));
           setIsLoading(false);
           reset();
           if (user.displayName === "Admin") {
@@ -60,6 +57,11 @@ function Form({
             navigate("/admin");
           } else {
             navigate("/");
+            toast.success("User Logged In!", {
+              position: "bottom-right",
+              theme: "colored",
+              autoClose: 5000,
+            });
           }
         }
       })
@@ -86,6 +88,11 @@ function Form({
         }
 
         setShowModal(true);
+        toast.error(error.message, {
+          position: "bottom-right",
+          theme: "colored",
+          autoClose: 2000,
+        });
       });
   };
   /* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
@@ -183,6 +190,7 @@ function Form({
           />
         )}
       </div>
+      <ToastContainer />
     </>
   );
 }

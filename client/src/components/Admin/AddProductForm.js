@@ -18,8 +18,7 @@ function AddProductForm() {
   const dispatch = useDispatch();
   const formSubmit = (event) => {
     event = {
-      ...event,
-      id: uuidv4(),
+      ...event
     };
     console.error(event);
     dispatch(addNewItemAsync(event));

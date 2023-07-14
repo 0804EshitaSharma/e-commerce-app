@@ -12,15 +12,34 @@ export const addUserAsync = createAsyncThunk(
 export const updateUserAsync = createAsyncThunk(
   "items/updateUserAsync",
   async (updatedUser) => {
-    const response = await axios.patch(`/user/${updatedUser.id}`, updatedUser);
+    const response = await axios.patch(`/user/${updatedUser._id}`, updatedUser);
     return response.data;
   }
 );
 
+export const getUserInfoAsync = createAsyncThunk(
+  "items/getUserInfoAsync",
+  async (id) => {
+    const response = await fetch(`/user/${id}`);
+
+    if (response.ok) {
+      const detail = await response.json();
+      return detail;
+    }
+  }
+);
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: null,
+    user: {
+      _id: null,
+      firstname: null,
+      lastname: null,
+      useremail: null,
+      userpassword: null,
+      mobile: null,
+      address: null,
+    },
     isAdmin: false,
     users: [],
   },
@@ -44,6 +63,20 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addUserAsync.fulfilled, (state, action) => {
       state.users.push(action.payload);
+    });
+    builder.addCase(getUserInfoAsync.fulfilled, (state, action) => {
+      state.user = {
+        _id: action.payload._id,
+        firstname: action.payload.firstname,
+        lastname: action.payload.lastname,
+        useremail: action.payload.useremail,
+        userpassword: action.payload.userpassword,
+        mobile: action.payload.mobile,
+        address: action.payload.address,
+      };
+    });
+    builder.addCase(updateUserAsync.fulfilled, (state, action) => {
+      state.user = action.payload;
     });
   },
 });

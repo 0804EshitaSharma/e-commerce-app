@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -19,12 +19,34 @@ mongoose
   .then(() => console.log("MongoDB Database Successfully connected"))
   .catch((error) => console.log(error));
 
-app.get("/products", async (req, res, next) => {});
+app.get("/products", async (req, res, next) => {
+  try {
+    var itemData = await Items.find({});
+    res.status(200).send(itemData);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.get("/:productId", async function (req, res, next) {});
 
 app.get("/:userId", async (req, res, next) => {});
 
+app.get("/user/:userId", async (req, res, next) => {
+  try {
+    const user = await Users.findOne({
+      _id: req.params.userId,
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 app.post("/new", async function (req, res, next) {
   const item = req.body;
   try {
@@ -40,8 +62,9 @@ app.delete("/item/:itemId", async function (req, res, next) {
     const item = await Items.findOneAndDelete({
       _id: req.params.itemId,
     });
+    res.status(200).json({ message: "Product deleted Successfully" });
   } catch (e) {
-    res.status(500);
+    res.status(500).json({ error: e.message });
   }
 });
 app.post("/user", async function (req, res, next) {
@@ -63,6 +86,7 @@ app.patch("/user/:userId", async function (req, res, next) {
           useremail: req.body.useremail,
           mobile: req.body.mobile,
           address: req.body.address,
+          firstname:req.body.firstname
         },
       },
       { new: true }
