@@ -98,7 +98,7 @@ app.patch("/user/:userId", async function (req, res, next) {
           useremail: req.body.useremail,
           mobile: req.body.mobile,
           address: req.body.address,
-          firstname:req.body.firstname
+          firstname: req.body.firstname,
         },
       },
       { new: true }
