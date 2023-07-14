@@ -33,10 +33,12 @@ function App() {
         <Navbar name={userFromStore?.firstname} />
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route path="/checkout" element={<Checkout />}></Route>
+            {/* move to public for the ease of testing */}
+            {/* <Route path="/checkout" element={<Checkout />}></Route> */}
             <Route path="/shoppingCart" element={<Cart />}></Route>
             <Route path="/wishlist" element={<WishlistPage />}></Route>
-            <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
+            {/* move to public for the ease of testing */}
+            {/* <Route path="/orderPlaced" element={<OrderPlaced />}></Route> */}
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
@@ -52,6 +54,9 @@ function App() {
           <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/addProduct" element={<AddProduct />}></Route>
+          {/* please move back to private after testing */}
+          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
         </Routes>
       </Router>
     </div>
