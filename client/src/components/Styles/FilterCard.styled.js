@@ -7,5 +7,6 @@ export const FilterCardContainer = styled.div`
     border-style: ridge;
     border-color: rgb(216 213 213 / 38%);
     padding: 10px;
-    background-color: snow
+    background-color: snow;
+    border-radius: 6px;
 `

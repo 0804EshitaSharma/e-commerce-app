@@ -15,8 +15,13 @@ import Books from "./pages/Books";
 import Fashion from "./pages/Fashion";
 import UserProfile from "./components/User/UserProfile";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import WishlistPage from "./components/Wishlist/WishlistPage";
 import PasswordReset from "./components/User/PasswordReset";
 import ForgotPassword from "./components/User/ForgotPassword";
+import { useSelector } from "react-redux";
+import Admin from "./components/Admin/Admin";
+import AddProduct from "./components/Admin/AddProduct";
+import AdminRoutes from "./utils/AdminRoutes";
 import { useSelector} from "react-redux";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
 
@@ -26,11 +31,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar name={userFromStore?.name} />
+        <Navbar name={userFromStore?.firstname} />
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
+            <Route path="/wishlist" element={<WishlistPage />}></Route>
             <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
@@ -44,8 +50,9 @@ function App() {
           <Route path="/user" element={<UserProfile />}></Route>
           <Route path="/reset-password" element={<PasswordReset />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/product" element={<ProductPage />}></Route>{" "}
-          {/* TODO: Add :productId param for dynamic routing to different products */}
+          <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
+          <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/addProduct" element={<AddProduct />}></Route>
         </Routes>
       </Router>
     </div>

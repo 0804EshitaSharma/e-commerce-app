@@ -51,14 +51,15 @@
   color: black;
   height: 2rem;
   position: relative;
-  margin-bottom: -0.9rem;
+  margin-bottom: -1.9rem;
+  margin-left: 1rem;
+  padding-left: 0.4rem;
   cursor: pointer;
-
 }
 .input_row {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 0.4rem;
   width:100%;
 
 }
