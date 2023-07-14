@@ -18,6 +18,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import PasswordReset from "./components/User/PasswordReset";
 import ForgotPassword from "./components/User/ForgotPassword";
 import { useSelector} from "react-redux";
+import OrderPlaced from "./components/Checkout/OrderPlaced";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -30,6 +31,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
+            <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
