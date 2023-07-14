@@ -5,7 +5,6 @@ import './Dashboard.css'
 import Filters from "./Filters";
 import ProductContainer from './Products/ProductContainer';
 import { useState, useEffect } from "react"
-// import { initialState } from './Products/ProdDataList';
 
 export default function ContentContainer() {
     const [list, setList] = useState([]);
@@ -46,39 +45,30 @@ export default function ContentContainer() {
             const priceParams = checkedPrices.map(i => `price=${i}`.replace(/\s/g, '')).join('&')
 
             const ratingsStateList = ratings
-            console.log(ratingsStateList)
             const checkedRatings = ratingsStateList.filter(item => item.checked).map(item => {return item.label})
-            console.log(checkedRatings)
 
             const ratingParams = checkedRatings.map(i => `rating=${i}`.replace(/\s/g, '')).join('&')
-            console.log(ratingParams)
 
             let modifiedURL = `${baseURL}/products`
             if (checkedCategories.length > 0) {
                 modifiedURL = `${baseURL}/products?${categoryParams}`
-                console.log(modifiedURL)
             }
             if (checkedPrices.length > 0) {
                 if (modifiedURL.includes('?')) {
                     modifiedURL = `${modifiedURL}&${priceParams}`
-                    console.log(modifiedURL)
                 } else {
                     modifiedURL = `${baseURL}/products?${priceParams}`
-                    console.log(modifiedURL)
                 }
             }
             if (checkedRatings.length > 0) {
                 if (modifiedURL.includes('?')) {
                     modifiedURL = `${modifiedURL}&${ratingParams}`
-                    console.log(modifiedURL)
                 } else {
                     modifiedURL = `${baseURL}/products?${ratingParams}`
-                    console.log(modifiedURL)
                 }
             }
 
             axios.get(modifiedURL).then((res) => {
-                console.log('api call')
                 setList(res.data)
             })
         } catch (error) {
@@ -110,79 +100,9 @@ export default function ContentContainer() {
         setRatings(changeCheckedRatings);
     };
 
-    const applyFilters = () => {
-        console.log('call get list in filter')
-        getProdList()
-
-        let updatedList = list
-        console.log(updatedList)
-
-        // Category Filter
-        const categoriesChecked = categories
-            .filter((item) => item.checked)
-            .map((item) => item.label);
-
-        if (categoriesChecked.length) {
-            updatedList = updatedList.filter((item) =>
-            categoriesChecked.includes(item.category)
-            );
-        }
-
-        // Price Filter
-        const pricesChecked = prices
-            .filter((item) => item.checked)
-            .map((item) => item.label);
-
-        if (pricesChecked.length) {
-            updatedList = updatedList.filter(item => {
-                if (Number(item.price) < 25) {
-                    return prices[0].checked
-                } else if (Number(item.price) >= 25 && Number(item.price) < 50) {
-                    return prices[1].checked
-                } else if (Number(item.price) >= 50 && Number(item.price) < 100) {
-                    return prices[2].checked
-                } else if (Number(item.price) >= 100 && Number(item.price) < 200) {
-                    return prices[3].checked
-                } else if (Number(item.price) > 200) {
-                    return prices[4].checked
-                }
-                return false
-            })
-        }
-
-        // Price Filter
-        const ratingsChecked = ratings
-            .filter((item) => item.checked)
-            .map((item) => item.label);
-
-        if (ratingsChecked.length) {
-            updatedList = updatedList.filter(item => {
-                if (Number(item.rating) >= 4) {
-                    return ratings[0].checked
-                } else if (Number(item.rating) >= 3 && Number(item.rating) < 4) {
-                    return ratings[1].checked
-                } else if (Number(item.rating) >= 2 && Number(item.rating) < 3) {
-                    return ratings[2].checked
-                } else if (Number(item.rating) >= 1 && Number(item.rating) < 2) {
-                    return ratings[3].checked
-                } else if (Number(item.rating) < 1) {
-                    return ratings[4].checked
-                }
-                return false
-            })
-        }
-
-        setList(updatedList);
-    }
-
     useEffect(() => {
-        applyFilters();
+        getProdList();
     }, [categories, prices, ratings]);
-
-    useEffect(()=>{
-        console.log('call get list on load')
-        getProdList()
-    }, []) 
 
     return (
         <div className="horizontal-container">
