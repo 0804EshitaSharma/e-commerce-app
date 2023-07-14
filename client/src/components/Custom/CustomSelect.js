@@ -1,6 +1,15 @@
 import React from "react";
 import "./CustomSelect.css";
-function CustomSelect({ id, name, label, register, categories, event }) {
+function CustomSelect({
+  id,
+  name,
+  label,
+  defaultValue,
+  register,
+  categories,
+  event,
+}) {
+  console.error(defaultValue)
   const options = categories.map((option) => (
     <option key={option.id} value={option.text}>
       {option.text}
@@ -20,6 +29,7 @@ function CustomSelect({ id, name, label, register, categories, event }) {
         className="select_container"
         id={id}
         name={name}
+        defaultValue={defaultValue}
         {...register}
         onChange={event}
       >

@@ -2,8 +2,9 @@ var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
-const CONNECTION_STRING ="mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
-  
+const CONNECTION_STRING =
+ '';
+
 const app = express();
 var mongoose = require("mongoose");
 app.use(express.json());
@@ -27,7 +28,39 @@ app.get("/products", async (req, res, next) => {
   }
 });
 
-app.get("/:productId", async function (req, res, next) {});
+app.get("/:itemId", async function (req, res, next) {
+  try {
+    const item = await Items.find({
+      _id: req.params.itemId,
+    });
+    res.status(200).json(item[0]);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.patch("/:itemId", async function (req, res, next) {
+  try {
+    const updatedItem = await Items.findOneAndUpdate(
+      { _id: req.params.itemId },
+      {
+        $set: {
+          name: req.body.name,
+          category: req.body.category,
+          quantity: req.body.quantity,
+          rating: req.body.rating,
+          price: req.body.price,
+          description: req.body.description,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedItem);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 app.get("/:userId", async (req, res, next) => {});
 
