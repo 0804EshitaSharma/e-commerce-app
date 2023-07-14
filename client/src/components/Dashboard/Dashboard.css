@@ -6,4 +6,6 @@
 .filter-container {
     padding-left: 2%;
     width: 15%;
+    position: fixed;
+    top: 80px;
 }

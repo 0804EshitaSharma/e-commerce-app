@@ -23,6 +23,8 @@ import Admin from "./components/Admin/Admin";
 import AddProduct from "./components/Admin/AddProduct";
 import AdminRoutes from "./utils/AdminRoutes";
 import EditProduct from "./components/Admin/EditProduct";
+import OrderPlaced from "./components/Checkout/OrderPlaced";
+
 function App() {
   const [userName, setUsername] = useState("");
   const userFromStore = useSelector((state) => state.user.user);
@@ -35,6 +37,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
             <Route path="/wishlist" element={<WishlistPage />}></Route>
+            <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
