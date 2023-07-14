@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://<user>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -21,7 +21,6 @@ mongoose
 
 app.get("/products", async (req, res, next) => {
   try {
-    console.log('req.query ' + req.query)
     const categoryParams = req.query.category
     const priceParams = req.query.price
     const ratingParams = req.query.rating
@@ -29,12 +28,10 @@ app.get("/products", async (req, res, next) => {
     var itemData = await Items.find({});
 
     if (categoryParams !== undefined) {
-      console.log('req.query.category ' + categoryParams)
       var itemData = itemData.filter(item => categoryParams.includes(item.category))
     }
 
     if (priceParams !== undefined) {
-      console.log('req.query.price ' + priceParams)
       var itemData = itemData.filter(item => {
           if (item.price < 25) {
             return priceParams.includes('Under$25')
@@ -52,7 +49,6 @@ app.get("/products", async (req, res, next) => {
     }
 
     if (ratingParams !== undefined) {
-      console.log('req.query.rating ' + ratingParams)
       var itemData = itemData.filter(item => {
           if (item.rating < 1) {
             return ratingParams.includes('Below1')
