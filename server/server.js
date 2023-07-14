@@ -2,8 +2,9 @@ var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
-const CONNECTION_STRING =
-  "mongodb+srv://eshitasharma0804:IzUT9IWmZeBNJbem@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 var mongoose = require("mongoose");
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose
-  .connect(CONNECTION_STRING, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -25,6 +26,17 @@ app.get("/products", async (req, res, next) => {
     res.status(200).send(itemData);
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.get("/products/:category", async (req, res, next) => {
+  const requestedCategory = req.params.category;
+  try {
+    const itemData = await Items.find({ category: requestedCategory });
+    res.status(200).send(itemData);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
   }
 });
 
