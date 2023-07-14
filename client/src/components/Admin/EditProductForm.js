@@ -5,35 +5,25 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../Custom/CustomButton";
 import CustomFormInput from "../Custom/CustomFormInput";
 import CustomFormTextArea from "../Custom/CustomFormTextArea";
-import { v4 as uuidv4 } from "uuid";
 import CustomSelect from "../Custom/CustomSelect";
-import CustomImageUploader from "../Custom/CustomImageUploader";
-import "./AddProductForm.css";
-import { addNewItemAsync } from "../../redux/item/itemSlice";
+import "./EditProductForm.css";
+import { updateItemAsync } from "../../redux/item/itemSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddProductForm() {
+function EditProductForm({ item }) {
   const navigate = useNavigate();
   const { handleSubmit, reset, register } = useForm({});
   const dispatch = useDispatch();
   const formSubmit = (event) => {
-    event = {
-      ...event,
-    };
-    dispatch(addNewItemAsync(event));
-    reset();
-     toast.success("Added Product!", {
-       position: "bottom-right",
-       theme: "colored",
-       autoClose: 2000,
-     });
+    dispatch(updateItemAsync({ id: item._id, data: event }));
+    toast.success("Updated Product!", {
+      position: "bottom-right",
+      theme: "colored",
+      autoClose: 2000,
+    });
   };
 
-
-  const clearForm = () => {
-    reset();
-  };
 
   const categories = [
     { id: 1, text: "Choose a Category----" },
@@ -50,6 +40,7 @@ function AddProductForm() {
             id="name"
             type="text"
             placeholder="Item Name"
+            defaultValue={item?.name}
             label="Item Name:"
             register={{ ...register("name", { required: true }) }}
           />
@@ -58,6 +49,7 @@ function AddProductForm() {
             id="price"
             type="number"
             placeholder="Item Price"
+            defaultValue={item?.price}
             label="Item Price:"
             register={{ ...register("price", { required: true }) }}
           />
@@ -66,6 +58,7 @@ function AddProductForm() {
             id="description"
             placeholder="Item Description"
             label="Item Description:"
+            defaultValue={item?.description}
             rows="5"
             cols="65"
             register={{ ...register("description", { required: true }) }}
@@ -75,6 +68,7 @@ function AddProductForm() {
             id="quantity"
             type="number"
             placeholder="Item Quantity"
+            defaultValue={item?.quantity}
             label="Item Quantity:"
             register={{ ...register("quantity", { required: true }) }}
           />
@@ -83,6 +77,7 @@ function AddProductForm() {
             id="rating"
             type="number"
             placeholder="Item Rating"
+            defaultValue={item?.rating}
             label="Item Rating:"
             register={{ ...register("rating", { required: true }) }}
           />
@@ -90,6 +85,7 @@ function AddProductForm() {
             id="category"
             name="category"
             label="Item Category:"
+            defaultValue={item?.category}
             register={{ ...register("category", { required: true }) }}
             categories={categories}
           />
@@ -99,12 +95,13 @@ function AddProductForm() {
             type="text"
             placeholder="Item Image"
             label="Item Image:"
+            defaultValue={item?.images[0]}
             register={{ ...register("images", { required: true }) }}
           />
 
           <CustomButton
             type="submit"
-            label="Create"
+            label="Update"
             event={handleSubmit(formSubmit)}
           />
         </div>
@@ -114,4 +111,4 @@ function AddProductForm() {
   );
 }
 
-export default AddProductForm;
+export default EditProductForm;

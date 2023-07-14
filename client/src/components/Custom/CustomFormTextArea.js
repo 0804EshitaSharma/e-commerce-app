@@ -7,6 +7,7 @@ function CustomFormTextArea({
   placeholder,
   label,
   rows,
+  defaultValue,
   cols,
   register,
 }) {
@@ -19,6 +20,7 @@ function CustomFormTextArea({
         className="input_field"
         name={name}
         id={id}
+        defaultValue={defaultValue}
         placeholder={placeholder}
         autoComplete="off"
         rows={rows}
