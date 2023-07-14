@@ -42,12 +42,16 @@ export default function ContentContainer() {
             const categoryParams = checkedCategories.map(i => `category=${i}`).join('&')
 
             const pricesStateList = prices
-            console.log(pricesStateList)
             const checkedPrices = pricesStateList.filter(item => item.checked).map(item => {return item.label})
-            console.log(checkedPrices)
-
             const priceParams = checkedPrices.map(i => `price=${i}`.replace(/\s/g, '')).join('&')
-            console.log(priceParams)
+
+            const ratingsStateList = ratings
+            console.log(ratingsStateList)
+            const checkedRatings = ratingsStateList.filter(item => item.checked).map(item => {return item.label})
+            console.log(checkedRatings)
+
+            const ratingParams = checkedRatings.map(i => `rating=${i}`.replace(/\s/g, '')).join('&')
+            console.log(ratingParams)
 
             let modifiedURL = `${baseURL}/products`
             if (checkedCategories.length > 0) {
@@ -60,6 +64,15 @@ export default function ContentContainer() {
                     console.log(modifiedURL)
                 } else {
                     modifiedURL = `${baseURL}/products?${priceParams}`
+                    console.log(modifiedURL)
+                }
+            }
+            if (checkedRatings.length > 0) {
+                if (modifiedURL.includes('?')) {
+                    modifiedURL = `${modifiedURL}&${ratingParams}`
+                    console.log(modifiedURL)
+                } else {
+                    modifiedURL = `${baseURL}/products?${ratingParams}`
                     console.log(modifiedURL)
                 }
             }

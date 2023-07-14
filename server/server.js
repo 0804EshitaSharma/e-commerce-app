@@ -50,6 +50,24 @@ app.get("/products", async (req, res, next) => {
         return false
       })
     }
+
+    if (ratingParams !== undefined) {
+      console.log('req.query.rating ' + ratingParams)
+      var itemData = itemData.filter(item => {
+          if (item.rating < 1) {
+            return ratingParams.includes('Below1')
+        } else if (item.rating >= 1 && item.rating < 2) {
+            return ratingParams.includes('1~2')
+        } else if (item.rating >= 2 && item.rating < 3) {
+            return ratingParams.includes('2~3')
+        } else if (item.rating >= 3 && item.rating < 4) {
+            return ratingParams.includes('3~4')
+        } else if (item.rating > 4) {
+            return ratingParams.includes('Above4')
+        }
+        return false
+      })
+    }
     
     
     res.status(200).send(itemData)
