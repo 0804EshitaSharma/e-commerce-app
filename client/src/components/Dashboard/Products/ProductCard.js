@@ -17,12 +17,13 @@ export default function ProductCard(props) {
   };
   const productDetails = {
     id: props.item._id,
-    Name: props.item.name,
-    Description: props.item.description,
-    Price: props.item.price,
-    Rating: props.item.rating,
-    Category: props.item.category,
-    Images: props.item.images,
+    name: props.item.name,
+    description: props.item.description,
+    price: props.item.price,
+    rating: props.item.rating,
+    category: props.item.category,
+    images: props.item.images,
+    quantity: props.item.quantity,
   };
   const quantity = 1;
   return (
