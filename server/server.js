@@ -3,7 +3,7 @@ var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
 const CONNECTION_STRING =
-  "mongodb+srv://Danielle:8L4oyHRhSAiUaBXe@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Arshdeep:ULfYwo1pgX1Kyzxn@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 var mongoose = require("mongoose");
@@ -25,6 +25,17 @@ app.get("/products", async (req, res, next) => {
     res.status(200).send(itemData);
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.get("/products/:category", async (req, res, next) => {
+  const requestedCategory = req.params.category;
+  try {
+    const itemData = await Items.find({ category: requestedCategory });
+    res.status(200).send(itemData);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
   }
 });
 

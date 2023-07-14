@@ -9,7 +9,7 @@ export default function WishlistEntry({ item }) {
   const navigate = useNavigate();
 
   const remove = () => {
-    dispatch(removeItem(item.Name));
+    dispatch(removeItem(item.name));
   };
 
   return (
@@ -17,15 +17,15 @@ export default function WishlistEntry({ item }) {
       <div className="entry">
         <div
           className="img-wrapper"
-          onClick={() => navigate(`/product/${item.Name}`, { state: { item } })}
+          onClick={() => navigate(`/product/${item.name}`, { state: { item } })}
         >
-          <img src={item.Images[0]} alt={item.Name} />
-          <p>{item.Name}</p>
+          <img src={item.images[0]} alt={item.name} />
+          <p>{item.name}</p>
         </div>
 
         <div className="wishlist-button-price-wrapper">
           <div className="price">
-            <h4>{item.Price}</h4>
+            <h4>{item.price}</h4>
           </div>
           <div className="wishlist-entry-buttons-wrapper">
             <button className="wishlist-button">Add to Cart</button>
