@@ -3,6 +3,7 @@ import { cartSlice } from "./cart/cartSlice";
 import { userSlice } from "./user/userSlice";
 import { wishlistSlice } from "./wishlistSlice";
 import { itemSlice } from "./item/itemSlice";
+import { orderSlice } from "./orderSlice";
 /*Learned from https://redux-toolkit.js.org/tutorials/quick-start */
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     cart: cartSlice.reducer,
     wishlist: wishlistSlice.reducer,
     item: itemSlice.reducer,
+    order: orderSlice.reducer,
   },
   devTools: true,
 });
