@@ -4,7 +4,7 @@ import Checkout from "./components/Checkout/Checkout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
 import Signup from "./components/User/Signup";
-import Cart from "./pages/Cart";
+import Cart from "./components/Cart/Cart";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase/firebaseConfig";
 import ProductPage from "./components/ProductPage/ProductPage";
@@ -24,6 +24,7 @@ import AddProduct from "./components/Admin/AddProduct";
 import AdminRoutes from "./utils/AdminRoutes";
 import EditProduct from "./components/Admin/EditProduct";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
+import OrderHistory from "./components/OrderHistory/OrderHistory";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -34,10 +35,14 @@ function App() {
         <Navbar name={userFromStore?.firstname} />
         <Routes>
           <Route element={<PrivateRoutes />}>
+            <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/user" element={<UserProfile />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
             <Route path="/wishlist" element={<WishlistPage />}></Route>
             <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
+            <Route path="/orderHistory" element={<OrderHistory />}></Route>
+            <Route path="/addProduct" element={<AddProduct />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
@@ -47,7 +52,6 @@ function App() {
           <Route path="/books" element={<Books />}></Route>
           <Route path="/fashion" element={<Fashion />}></Route>
           <Route path="/" element={<Dashboard />}></Route>
-          <Route path="/user" element={<UserProfile />}></Route>
           <Route path="/reset-password" element={<PasswordReset />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/product/:name" element={<ProductPage />}></Route>{" "}

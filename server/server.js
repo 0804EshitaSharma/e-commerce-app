@@ -2,8 +2,12 @@ var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
+const ordersRouter = require("./routes/ordersRouter");
+const Orders = require("./models/ordersSchema");
 const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
+const connectionString =
+  "mongodb+srv://Elsie:uyIo6FPrdKKjA9Hz@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 dotenv.config();
 
@@ -14,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -23,50 +27,51 @@ mongoose
 
 app.get("/products", async (req, res, next) => {
   try {
-    const categoryParams = req.query.category
-    const priceParams = req.query.price
-    const ratingParams = req.query.rating
+    const categoryParams = req.query.category;
+    const priceParams = req.query.price;
+    const ratingParams = req.query.rating;
 
     var itemData = await Items.find({});
 
     if (categoryParams !== undefined) {
-      var itemData = itemData.filter(item => categoryParams.includes(item.category))
+      var itemData = itemData.filter((item) =>
+        categoryParams.includes(item.category)
+      );
     }
 
     if (priceParams !== undefined) {
-      var itemData = itemData.filter(item => {
-          if (item.price < 25) {
-            return priceParams.includes('Under$25')
+      var itemData = itemData.filter((item) => {
+        if (item.price < 25) {
+          return priceParams.includes("Under$25");
         } else if (item.price >= 25 && item.price < 50) {
-            return priceParams.includes('$25~$50')
+          return priceParams.includes("$25~$50");
         } else if (item.price >= 50 && item.price < 100) {
-            return priceParams.includes('$50~$100')
+          return priceParams.includes("$50~$100");
         } else if (item.price >= 100 && item.price < 200) {
-            return priceParams.includes('$100~$200')
+          return priceParams.includes("$100~$200");
         } else if (item.price > 200) {
-            return priceParams.includes('Above$200')
+          return priceParams.includes("Above$200");
         }
-        return false
-      })
+        return false;
+      });
     }
 
     if (ratingParams !== undefined) {
-      var itemData = itemData.filter(item => {
-          if (item.rating < 1) {
-            return ratingParams.includes('Below1')
+      var itemData = itemData.filter((item) => {
+        if (item.rating < 1) {
+          return ratingParams.includes("Below1");
         } else if (item.rating >= 1 && item.rating < 2) {
-            return ratingParams.includes('1~2')
+          return ratingParams.includes("1~2");
         } else if (item.rating >= 2 && item.rating < 3) {
-            return ratingParams.includes('2~3')
+          return ratingParams.includes("2~3");
         } else if (item.rating >= 3 && item.rating < 4) {
-            return ratingParams.includes('3~4')
+          return ratingParams.includes("3~4");
         } else if (item.rating > 4) {
-            return ratingParams.includes('Above4')
+          return ratingParams.includes("Above4");
         }
-        return false
-      })
+        return false;
+      });
     }
-
 
     res.status(200).send(itemData);
   } catch (err) {
@@ -235,6 +240,39 @@ app.patch("/user/:userId", async function (req, res, next) {
     res.status(500).json({ error: e.message });
   }
 });
+
+app.get("/orders/:userID", async function (req, res) {
+  try {
+    var userID = req.params.userID;
+    const orders = await Orders.find({ user: userID });
+    let modifiedOrders = [];
+    for (const order of orders) {
+      let itemIDs = order.items;
+      let itemIDsInSearchFormat = [];
+      itemIDs.forEach((itemID) => {
+        let searchFormatItemID = {
+          _id: itemID,
+        };
+        itemIDsInSearchFormat.push(searchFormatItemID);
+      });
+      const itemsOrdered = await Items.find({
+        $or: itemIDsInSearchFormat,
+      });
+      let modOrder = {
+        _id: order._id,
+        date: order.date,
+        user: order.user,
+        items: itemsOrdered,
+      };
+      modifiedOrders.push(modOrder);
+    }
+    return res.send(modifiedOrders).status(200);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//app.use("/orders", ordersRouter);
 
 app.post("/orders", async (req, res, next) => {
   const order = req.body;

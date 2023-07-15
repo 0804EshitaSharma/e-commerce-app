@@ -1,8 +1,8 @@
-import Item from "../components/Cart/Item.js";
-import "../components/Cart/Cart.css";
+import Item from "./Item.js";
+import "./Cart.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeAllInCart } from "../redux/cart/cartSlice.js";
+import { removeAllInCart } from "../../redux/cart/cartSlice.js";
 
 function Cart() {
   const itemList = useSelector((state) => state.cart.itemsList);

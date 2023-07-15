@@ -9,13 +9,17 @@ function Item({ item }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const itemInfo = item.productDetails;
+
+  //console.log(itemInfo);
+
   return (
     <div id="item-container">
       <div
         className="image-container"
-        onClick={() => {
-          navigate("/product");
-        }}
+        /*         onClick={() => {
+          navigate(`/product/${itemInfo.name}`, { state: { itemInfo } });
+        }} */
       >
         <img
           className="item-image"
@@ -25,9 +29,9 @@ function Item({ item }) {
       </div>
       <div className="name-quantity-container">
         <h3
-          onClick={() => {
+        /*           onClick={() => {
             navigate("/product");
-          }}
+          }} */
         >
           {item.productDetails.name}
         </h3>
