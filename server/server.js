@@ -2,6 +2,7 @@ var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
+const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -107,6 +108,16 @@ app.patch("/user/:userId", async function (req, res, next) {
     res.status(200).json(updatedUser);
   } catch (e) {
     res.status(500).json({ error: e.message });
+  }
+});
+
+app.post("/orders", async (req, res, next) => {
+  const order = req.body;
+  try {
+    const newOrder = await Order.create(order);
+    res.status(201).json(newOrder);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
