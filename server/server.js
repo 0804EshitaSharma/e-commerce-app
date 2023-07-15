@@ -40,9 +40,55 @@ app.get("/products/:category", async (req, res, next) => {
   }
 });
 
-app.get("/:productId", async function (req, res, next) {});
+app.get("/:userId/wishlist", async (req, res, next) => {
+  const id = req.params.userId;
+  try {
+    const wishlist = await Users.find({ _id: id }, { wishlist: 1 });
+    res.status(200).send(wishlist);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
+  }
+});
 
-app.get("/:userId", async (req, res, next) => {});
+app.patch("/:userId/wishlist", async (req, res, next) => {
+  const id = req.params.userId;
+  const item = req.body;
+  try {
+    const newItem = await Users.findOneAndUpdate(
+      { _id: id },
+      {
+        $push: {
+          wishlist: item
+        }
+      });
+    res.status(200).send(newItem);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
+  }
+});
+
+app.delete("/:userId/wishlist", async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    await Users.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          wishlist: []
+        }
+      });
+    res.status(200).send();
+  } catch (err) {
+    console.log(err);
+    res.status(400).send();
+  }
+})
+
+app.get("/:productId", async function (req, res, next) { });
+
+app.get("/:userId", async (req, res, next) => { });
 
 app.get("/user/:userId", async (req, res, next) => {
   try {
