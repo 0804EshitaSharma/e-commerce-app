@@ -1,4 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const addToWishList = createAsyncThunk(
+  "wishlist/addToWishList",
+  async (newItem) => {
+    const response = await axios.post("")
+  }
+)
 
 export const wishlistSlice = createSlice({
   name: "wishlist",
