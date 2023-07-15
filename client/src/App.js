@@ -35,14 +35,12 @@ function App() {
         <Navbar name={userFromStore?.firstname} />
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route path="/admin" element={<Admin />}></Route>
             <Route path="/user" element={<UserProfile />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/shoppingCart" element={<Cart />}></Route>
             <Route path="/wishlist" element={<WishlistPage />}></Route>
             <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
             <Route path="/orderHistory" element={<OrderHistory />}></Route>
-            <Route path="/addProduct" element={<AddProduct />}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
