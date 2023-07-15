@@ -4,8 +4,9 @@ import DeliveryContainer from "./DeliveryContainer";
 import PaymentContainer from "./PaymentContainer";
 import { useSelector, useDispatch } from "react-redux";
 import Item from "../Cart/Item";
-import { createOrderAsync } from "../../redux/misc/orderSlice";
 import { sendMailAsync } from "../../redux/user/userSlice.js";
+import { createOrderAsync } from "../../redux/orderSlice";
+
 function Checkout() {
   const itemList = useSelector((state) => state.cart.itemsList);
   const dispatch = useDispatch();
