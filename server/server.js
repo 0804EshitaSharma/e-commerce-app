@@ -84,17 +84,6 @@ app.get("/products/:category", async (req, res, next) => {
   }
 });
 
-app.get("/products/:category", async (req, res, next) => {
-  const requestedCategory = req.params.category;
-  try {
-    const itemData = await Items.find({ category: requestedCategory });
-    res.status(200).send(itemData);
-  } catch (err) {
-    console.log(err);
-    res.status(400).send();
-  }
-});
-
 app.get("/:itemId", async function (req, res, next) {
   try {
     const item = await Items.find({
