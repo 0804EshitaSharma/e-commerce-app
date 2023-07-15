@@ -8,6 +8,7 @@ const UserSchema = new Schema({
   userpassword: { type: String },
   mobile: { type: String },
   address: { type: String },
+  wishlist: { type: Array }
 });
 
 module.exports = mongoose.model("users", UserSchema);
