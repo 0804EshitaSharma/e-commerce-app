@@ -7,7 +7,7 @@ const Orders = require("./models/ordersSchema");
 const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
 const connectionString =
-  "mongodb+srv://Elsie:uyIo6FPrdKKjA9Hz@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://eshitasharma0804:IzUT9IWmZeBNJbem@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 
 dotenv.config();
 
@@ -143,10 +143,11 @@ app.patch("/:userId/wishlist", async (req, res, next) => {
       { _id: id },
       {
         $push: {
-          wishlist: item
-        }
+          wishlist: item,
+        },
       },
-      { new: true });
+      { new: true }
+    );
     res.status(200).send(newItem);
   } catch (err) {
     console.log(err);
@@ -161,19 +162,20 @@ app.delete("/:userId/wishlist", async (req, res, next) => {
       { _id: id },
       {
         $set: {
-          wishlist: []
-        }
-      });
+          wishlist: [],
+        },
+      }
+    );
     res.status(200).send();
   } catch (err) {
     console.log(err);
     res.status(400).send();
   }
-})
+});
 
-app.get("/:productId", async function (req, res, next) { });
+app.get("/:productId", async function (req, res, next) {});
 
-app.get("/:userId", async (req, res, next) => { });
+app.get("/:userId", async (req, res, next) => {});
 
 app.get("/user/:userId", async (req, res, next) => {
   try {
