@@ -22,9 +22,9 @@ import { useSelector } from "react-redux";
 import Admin from "./components/Admin/Admin";
 import AddProduct from "./components/Admin/AddProduct";
 import AdminRoutes from "./utils/AdminRoutes";
+import EditProduct from "./components/Admin/EditProduct";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
 
-import EditProduct from "./components/Admin/EditProduct";
 function App() {
   const [userName, setUsername] = useState("");
   const userFromStore = useSelector((state) => state.user.user);
