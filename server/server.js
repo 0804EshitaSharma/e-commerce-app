@@ -150,7 +150,8 @@ app.patch("/:userId/wishlist", async (req, res, next) => {
         $push: {
           wishlist: item
         }
-      });
+      },
+      { new: true });
     res.status(200).send(newItem);
   } catch (err) {
     console.log(err);
