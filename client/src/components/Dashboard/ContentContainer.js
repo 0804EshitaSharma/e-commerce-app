@@ -35,13 +35,49 @@ export default function ContentContainer() {
     { id: 5, checked: false, label: "Below 1" },
   ]);
 
-  const handleCategoryChecked = (id) => {
-    const categoriesStateList = categories;
-    const changeCheckedCategories = categoriesStateList.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
-    setCategories(changeCheckedCategories);
-  };
+    const getFilterURL = () => {
+            const categoriesStateList = categories
+            const checkedCategories = categoriesStateList.filter(item => item.checked).map(item => {return item.label})
+            const categoryParams = checkedCategories.map(i => `category=${i}`).join('&')
+
+            const pricesStateList = prices
+            const checkedPrices = pricesStateList.filter(item => item.checked).map(item => {return item.label})
+            const priceParams = checkedPrices.map(i => `price=${i}`.replace(/\s/g, '')).join('&')
+
+            const ratingsStateList = ratings
+            const checkedRatings = ratingsStateList.filter(item => item.checked).map(item => {return item.label})
+
+            const ratingParams = checkedRatings.map(i => `rating=${i}`.replace(/\s/g, '')).join('&')
+
+            let modifiedURL = `/products`
+            if (checkedCategories.length > 0) {
+                modifiedURL = `/products?${categoryParams}`
+            }
+            if (checkedPrices.length > 0) {
+                if (modifiedURL.includes('?')) {
+                    modifiedURL = `${modifiedURL}&${priceParams}`
+                } else {
+                    modifiedURL = `/products?${priceParams}`
+                }
+            }
+            if (checkedRatings.length > 0) {
+                if (modifiedURL.includes('?')) {
+                    modifiedURL = `${modifiedURL}&${ratingParams}`
+                } else {
+                    modifiedURL = `/products?${ratingParams}`
+                }
+            }
+
+            return modifiedURL
+    };
+
+    const handleCategoryChecked = (id) => {
+        const categoriesStateList = categories;
+        const changeCheckedCategories = categoriesStateList.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+        );
+        setCategories(changeCheckedCategories);
+    };
 
   const handlePriceChecked = (id) => {
     const pricesStateList = prices;
@@ -59,91 +95,24 @@ export default function ContentContainer() {
     setRatings(changeCheckedRatings);
   };
 
-  const applyFilters = () => {
-    //getProdList();
+    useEffect(() => {
+        const filterURL = getFilterURL()
+        dispatch(getProdListAsync(filterURL));
+    }, [categories, prices, ratings]);
 
-    let updatedList = list;
- 
-
-    // Category Filter
-    const categoriesChecked = categories
-      .filter((item) => item.checked)
-      .map((item) => item.label);
-
-    if (categoriesChecked.length) {
-      updatedList = updatedList.filter((item) =>
-        categoriesChecked.includes(item.category)
-      );
-    }
-
-    // Price Filter
-    const pricesChecked = prices
-      .filter((item) => item.checked)
-      .map((item) => item.label);
-
-    if (pricesChecked.length) {
-      updatedList = updatedList.filter((item) => {
-        if (Number(item.price) < 25) {
-          return prices[0].checked;
-        } else if (Number(item.price) >= 25 && Number(item.price) < 50) {
-          return prices[1].checked;
-        } else if (Number(item.price) >= 50 && Number(item.price) < 100) {
-          return prices[2].checked;
-        } else if (Number(item.price) >= 100 && Number(item.price) < 200) {
-          return prices[3].checked;
-        } else if (Number(item.price) > 200) {
-          return prices[4].checked;
-        }
-        return false;
-      });
-    }
-
-    // Price Filter
-    const ratingsChecked = ratings
-      .filter((item) => item.checked)
-      .map((item) => item.label);
-
-    if (ratingsChecked.length) {
-      updatedList = updatedList.filter((item) => {
-        if (Number(item.rating) >= 4) {
-          return ratings[0].checked;
-        } else if (Number(item.rating) >= 3 && Number(item.rating) < 4) {
-          return ratings[1].checked;
-        } else if (Number(item.rating) >= 2 && Number(item.rating) < 3) {
-          return ratings[2].checked;
-        } else if (Number(item.rating) >= 1 && Number(item.rating) < 2) {
-          return ratings[3].checked;
-        } else if (Number(item.rating) < 1) {
-          return ratings[4].checked;
-        }
-        return false;
-      });
-    }
-
-   // setList(updatedList);
-  };
-
-//   useEffect(() => {
-//     applyFilters();
-//   }, [categories, prices, ratings]);
-
-  useEffect(() => {
-    dispatch(getProdListAsync());
-  }, [dispatch]);
-
-  return (
-    <div className="horizontal-container">
-      <div className="filter-container">
-        <Filters
-          categories={categories}
-          changeCategory={handleCategoryChecked}
-          prices={prices}
-          changePrice={handlePriceChecked}
-          ratings={ratings}
-          changeRating={handleRatingChecked}
-        />
-      </div>
-      <ProductContainer list={list} />
-    </div>
-  );
+    return (
+        <div className="horizontal-container">
+            <div className="filter-container">
+                <Filters 
+                    categories={categories}
+                    changeCategory={handleCategoryChecked}
+                    prices={prices}
+                    changePrice={handlePriceChecked}
+                    ratings={ratings}
+                    changeRating={handleRatingChecked}
+                />
+            </div>
+            <ProductContainer list={list}/>
+        </div>   
+    )
 }
