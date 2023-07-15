@@ -9,7 +9,6 @@ function CustomSelect({
   categories,
   event,
 }) {
-  console.error(defaultValue)
   const options = categories.map((option) => (
     <option key={option.id} value={option.text}>
       {option.text}

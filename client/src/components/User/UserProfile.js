@@ -87,6 +87,18 @@ function UserProfile() {
         />
       )}
       <div className="profile_container">
+        <CustomButton
+          label="View Order History"
+          style={{
+            margin: "0.5rem",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            paddingleft: "1px",
+            paddingright: "1px",
+          }}
+          event={() => navigate("/orderHistory")}
+        />
         <form>
           <div className="profile_input">
             <div className="image_uploader">
