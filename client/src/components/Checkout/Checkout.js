@@ -2,13 +2,17 @@ import React from "react";
 import "./Checkout.css";
 import DeliveryContainer from "./DeliveryContainer";
 import PaymentContainer from "./PaymentContainer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Item from "../Cart/Item";
-
+import { createOrderAsync } from "../../redux/orderSlice";
 
 function Checkout() {
-    // pass in props from the shopping cart page, such as item, price, etc.
     const itemList = useSelector((state) => state.cart.itemsList);
+    const dispatch = useDispatch();
+
+    const handleOrderSubmit = (orderData) => {
+        dispatch(createOrderAsync(orderData));
+    };
 
     return (
         <div>
@@ -22,10 +26,10 @@ function Checkout() {
                         ))}
                     </div>
                     {/* left */}
-                    <DeliveryContainer />
+                    <DeliveryContainer handleOrderSubmit={handleOrderSubmit} />
 
                     {/* right */}
-                    <PaymentContainer />
+                    <PaymentContainer handleOrderSubmit={handleOrderSubmit} />
                 </div>
             </div>
         </div>

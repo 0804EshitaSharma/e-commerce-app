@@ -1,6 +1,6 @@
 import React from "react";
 import "./Checkout.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import LabeledInput from "../Custom/LabeledInput";
 import DropdownSelection from "../Custom/DropdownSelection";
 import usePlacesAutocomplete from "use-places-autocomplete";
@@ -14,26 +14,26 @@ import {
 import "@reach/combobox/styles.css";
 
 
-function DeliveryContainer() {
-
-    //TODO: add check for login
-
+function DeliveryContainer({ handleOrderSubmit }) {
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
         city: "",
         zipcode: "",
         province: "",
-        country: ""
+        country: "",
     });
     const [selectedDeliveryOption, setSelectedDeliveryOption] = useState("");
-
     const {
         ready,
         value,
         suggestions: { status, data },
-        setValue
+        setValue,
     } = usePlacesAutocomplete({ callbackName: "initMap" });
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     const handleInput = (e) => {
         setValue(e.target.value);
@@ -83,24 +83,16 @@ function DeliveryContainer() {
         const suggestions = data.map(({ place_id, description }) => (
             <ComboboxOption key={place_id} value={description} />
         ));
-        return (
-            <>
-                {suggestions}
-            </>
-        );
-    }
+        return <>{suggestions}</>;
+    };
 
     const handleNextStepShipping = (e) => {
         e.preventDefault();
 
-        const firstNameInput = document.querySelector('input[name="firstname"]');
-        const lastNameInput = document.querySelector('input[name="lastname"]');
-        const phoneNumberInput = document.querySelector('input[name="phonenumber"]');
-
         if (
-            firstNameInput.value.trim() === "" ||
-            lastNameInput.value.trim() === "" ||
-            phoneNumberInput.value.trim() === ""
+            firstName.trim() === "" ||
+            lastName.trim() === "" ||
+            phoneNumber.trim() === ""
         ) {
             return;
         }
@@ -113,102 +105,131 @@ function DeliveryContainer() {
         setSelectedDeliveryOption(e.target.value);
     };
 
+
     const handleNextStepDelivery = (e) => {
         e.preventDefault();
+        console.log("selectedDeliveryOption:", selectedDeliveryOption);
+        console.log("firstName:", firstName);
+        console.log("lastName:", lastName);
+        console.log("phoneNumber:", phoneNumber);
+      
         if (selectedDeliveryOption) {
-            setdeliverySelected(false);
+          const orderData = {
+            firstname: firstName,
+            lastname: lastName,
+            phoneNumber: phoneNumber,
+            address: addressComponents,
+            deliveryOption: selectedDeliveryOption,
+          };
+          console.log("delivery button orderdata:", orderData);
+      
+          handleOrderSubmit(orderData);
+        } else {
+          console.log("No delivery option selected.");
         }
-    };
+      };
+      
+
 
     return (
         <div className="col-md-8">
             <div className="card">
-                <DropdownSelection label="Shipping Information" selected={shippingSelected} setSelected={setshippingSelected} />
+                <DropdownSelection
+                    label="Shipping Information"
+                    selected={shippingSelected}
+                    setSelected={setshippingSelected}
+                />
                 {shippingSelected && (
                     <div className="wrapper">
-                        <form onSubmit={handleNextStepShipping}>
-                            <div className="row">
-                                <LabeledInput
-                                    className="col-md-6"
-                                    name="firstname"
+                        <div className="row">
+                            <LabeledInput
+                                className="col-md-6"
+                                name="firstname"
+                                type="text"
+                                label="First name"
+                                placeholder="Enter first name"
+                                required={true}
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
+                            <LabeledInput
+                                className="col-md-6"
+                                name="lastname"
+                                type="text"
+                                label="Last name"
+                                placeholder="Enter last name"
+                                required={true}
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                            <LabeledInput
+                                className="col-md-6"
+                                name="phonenumber"
+                                type="text"
+                                label="Phone number"
+                                placeholder="Enter phone number"
+                                required={true}
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                            />
+                            <Combobox className="col-md-12" onSelect={handleSelect}>
+                                <label>Address</label>
+                                <ComboboxInput
+                                    name="address"
                                     type="text"
-                                    label="First name"
-                                    placeholder="Enter first name"
-                                    required={true}
+                                    value={value}
+                                    onChange={handleInput}
+                                    disabled={!ready}
+                                    placeholder="Enter address"
+                                    required
                                 />
-                                <LabeledInput
-                                    className="col-md-6"
-                                    name="lastname"
-                                    type="text"
-                                    label="Last name"
-                                    placeholder="Enter last name"
-                                    required={true}
-                                />
-                                <LabeledInput
-                                    className="col-md-6"
-                                    name="phonenumber"
-                                    type="text"
-                                    label="Phone number"
-                                    placeholder="Enter phone number"
-                                    required={true}
-                                />
-                                <Combobox className="col-md-12" onSelect={handleSelect}>
-                                    <label>Address</label>
-                                    <ComboboxInput
-                                        name="address"
-                                        type="text"
-                                        value={value}
-                                        onChange={handleInput}
-                                        disabled={!ready}
-                                        placeholder="Enter address"
-                                        required
-                                    />
-                                    <ComboboxPopover>
-                                        <ComboboxList>{status === "OK" && renderSuggestions()}</ComboboxList>
-                                    </ComboboxPopover>
-                                </Combobox>
-                                <LabeledInput
-                                    className="col-md-4"
-                                    name="city"
-                                    type="text"
-                                    label="City"
-                                    value={addressComponents.city}
-                                    placeholder="Enter city"
-                                />
-                                <LabeledInput
-                                    className="col-md-4"
-                                    name="province"
-                                    type="text"
-                                    value={addressComponents.province}
-                                    label="Province"
-                                    placeholder="Enter province"
-                                />
-                                <LabeledInput
-                                    className="col-md-4"
-                                    name="postal code"
-                                    type="text"
-                                    value={addressComponents.zipcode}
-                                    label="Postal code"
-                                    placeholder="Enter postal code"
-                                />
-                                <LabeledInput
-                                    className="col-md-4"
-                                    name="country"
-                                    type="text"
-                                    value={addressComponents.country}
-                                    label="Country"
-                                    placeholder="Enter country"
-                                />
-                                <p className="col-md-12" />
-                                <div className="col-md-3" id="nextStep">
-                                    <div className="info-group mb-3">
-                                        <button className="btn" type="submit">
-                                            Next step
-                                        </button>
-                                    </div>
+                                <ComboboxPopover>
+                                    <ComboboxList>
+                                        {status === "OK" && renderSuggestions()}
+                                    </ComboboxList>
+                                </ComboboxPopover>
+                            </Combobox>
+                            <LabeledInput
+                                className="col-md-4"
+                                name="city"
+                                type="text"
+                                label="City"
+                                value={addressComponents.city}
+                                placeholder="Enter city"
+                            />
+                            <LabeledInput
+                                className="col-md-4"
+                                name="province"
+                                type="text"
+                                value={addressComponents.province}
+                                label="Province"
+                                placeholder="Enter province"
+                            />
+                            <LabeledInput
+                                className="col-md-4"
+                                name="postal code"
+                                type="text"
+                                value={addressComponents.zipcode}
+                                label="Postal code"
+                                placeholder="Enter postal code"
+                            />
+                            <LabeledInput
+                                className="col-md-4"
+                                name="country"
+                                type="text"
+                                value={addressComponents.country}
+                                label="Country"
+                                placeholder="Enter country"
+                            />
+                            <p className="col-md-12" />
+                            <div className="col-md-3" id="nextStep">
+                                <div className="info-group mb-3">
+                                    <button className="btn" type="submit" onClick={handleNextStepShipping}>
+                                        Next step
+                                    </button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 )}
             </div>
@@ -251,14 +272,13 @@ function DeliveryContainer() {
                                     </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 )}
             </div>
         </div>
-
-    )
+    );
 }
+
 
 export default DeliveryContainer;
