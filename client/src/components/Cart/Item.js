@@ -17,7 +17,8 @@ function Item({ item }) {
     <div id="item-container">
       <div
         className="image-container"
-        /*         onClick={() => {
+        /*  // TODO: fix this route & ensure it is consistent with new RoutePaths         
+        onClick={() => {
           navigate(`/product/${itemInfo.name}`, { state: { itemInfo } });
         }} */
       >
@@ -29,7 +30,8 @@ function Item({ item }) {
       </div>
       <div className="name-quantity-container">
         <h3
-        /*           onClick={() => {
+        /*  // TODO: see comment above          
+        onClick={() => {
             navigate("/product");
           }} */
         >

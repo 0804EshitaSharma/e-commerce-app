@@ -3,6 +3,7 @@ import "./Cart.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { removeAllInCart } from "../../redux/cart/cartSlice.js";
+import { RoutePaths } from "../../utils/RoutePaths.js";
 
 function Cart() {
   const itemList = useSelector((state) => state.cart.itemsList);
@@ -45,7 +46,7 @@ function Cart() {
             <br />${totalPrice}
           </h4>
           <button className="checkout-button">
-            <Link id="checkout-link" to="/checkout">
+            <Link id="checkout-link" to={RoutePaths.Checkout}>
               Proceed to Checkout
             </Link>
           </button>

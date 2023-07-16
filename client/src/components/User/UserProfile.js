@@ -16,6 +16,7 @@ import {
 } from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../utils/RoutePaths";
 
 function UserProfile() {
   const user = useSelector((state) => state.user.user);
@@ -26,7 +27,7 @@ function UserProfile() {
   const { handleSubmit, reset, register } = useForm();
   const currentUser = auth.currentUser;
   const changePassword = () => {
-    navigate("/forgot-password");
+    navigate(RoutePaths.ForgotPassword);
   };
   const updateUserName = () => {
     setIsEditable(!isEditable);
@@ -97,7 +98,7 @@ function UserProfile() {
             paddingleft: "1px",
             paddingright: "1px",
           }}
-          event={() => navigate("/orderHistory")}
+          event={() => navigate(RoutePaths.OrderHistory)}
         />
         <form>
           <div className="profile_input">

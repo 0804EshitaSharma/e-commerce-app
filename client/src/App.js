@@ -9,10 +9,6 @@ import { useEffect, useState } from "react";
 import { auth } from "./firebase/firebaseConfig";
 import ProductPage from "./components/ProductPage/ProductPage";
 import Dashboard from "./pages/dashboard";
-import Home from "./pages/HomeProducts";
-import Electronics from "./pages/Electronics";
-import Books from "./pages/Books";
-import Fashion from "./pages/Fashion";
 import UserProfile from "./components/User/UserProfile";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import WishlistPage from "./components/Wishlist/WishlistPage";
@@ -25,6 +21,7 @@ import AdminRoutes from "./utils/AdminRoutes";
 import EditProduct from "./components/Admin/EditProduct";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
 import OrderHistory from "./components/OrderHistory/OrderHistory";
+import { RoutePaths } from "./utils/RoutePaths";
 
 function App() {
   const [userName, setUsername] = useState("");
@@ -35,27 +32,41 @@ function App() {
         <Navbar name={userFromStore?.firstname} />
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route path="/user" element={<UserProfile />}></Route>
-            <Route path="/checkout" element={<Checkout />}></Route>
-            <Route path="/shoppingCart" element={<Cart />}></Route>
-            <Route path="/wishlist" element={<WishlistPage />}></Route>
-            <Route path="/orderPlaced" element={<OrderPlaced />}></Route>
-            <Route path="/orderHistory" element={<OrderHistory />}></Route>
+            <Route path={RoutePaths.Profile} element={<UserProfile />}></Route>
+            <Route path={RoutePaths.Checkout} element={<Checkout />}></Route>
+            <Route path={RoutePaths.Cart} element={<Cart />}></Route>
+            <Route
+              path={RoutePaths.Wishlist}
+              element={<WishlistPage />}
+            ></Route>
+            <Route
+              path={RoutePaths.OrderPlaced}
+              element={<OrderPlaced />}
+            ></Route>
+            <Route
+              path={RoutePaths.OrderHistory}
+              element={<OrderHistory />}
+            ></Route>
           </Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/home" element={<Home />} />
-          <Route path="/electronics" element={<Electronics />}></Route>
-          <Route path="/books" element={<Books />}></Route>
-          <Route path="/fashion" element={<Fashion />}></Route>
-          <Route path="/" element={<Dashboard />}></Route>
-          <Route path="/reset-password" element={<PasswordReset />}></Route>
-          <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-          <Route path="/product/:name" element={<ProductPage />}></Route>{" "}
-          <Route path="/admin" element={<Admin />}></Route>
-          <Route path="/addProduct" element={<AddProduct />}></Route>
-          <Route path="/editProduct/:id" element={<EditProduct />}></Route>
+          <Route path={RoutePaths.Login} element={<Login />}></Route>
+          <Route path={RoutePaths.Signup} element={<Signup />}></Route>
+          <Route path={RoutePaths.Dashboard} element={<Dashboard />}></Route>
+          <Route path={RoutePaths.Home} element={<Dashboard />}></Route>
+          <Route
+            path={RoutePaths.ResetPassword}
+            element={<PasswordReset />}
+          ></Route>
+          <Route
+            path={RoutePaths.ForgotPassword}
+            element={<ForgotPassword />}
+          ></Route>
+          <Route path={RoutePaths.Product} element={<ProductPage />}></Route>{" "}
+          <Route path={RoutePaths.Admin} element={<Admin />}></Route>
+          <Route path={RoutePaths.AddProduct} element={<AddProduct />}></Route>
+          <Route
+            path={RoutePaths.EditProduct}
+            element={<EditProduct />}
+          ></Route>
         </Routes>
       </Router>
     </div>
