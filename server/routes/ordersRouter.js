@@ -7,19 +7,20 @@ router.get("/:userID", async function (req, res) {
   try {
     var userID = req.params.userID;
     const orders = await Orders.find({ user: userID });
-    orders.forEach(async (order) => {
-      let itemIDs = order.items;
-      let itemIDsInSearchFormat = [];
-      itemIDs.forEach((itemID) => {
-        let searchFormatItemID = {
-          _id: itemID,
-        };
-        itemIDsInSearchFormat.push(searchFormatItemID);
+    let modifiedOrders = [];
+    for (const order of orders) {
+      const itemsOrdered = await Item.find({
+        _id: { $in: order.items },
       });
-      const itemsOrdered = await Item.find({ $or: itemIDsInSearchFormat });
-      order.products = itemsOrdered;
-    });
-    return res.send(orders).status(200);
+      let modOrder = {
+        _id: order._id,
+        date: order.date,
+        user: order.user,
+        items: itemsOrdered,
+      };
+      modifiedOrders.push(modOrder);
+    }
+    return res.send(modifiedOrders).status(200);
   } catch (err) {
     console.log(err);
   }

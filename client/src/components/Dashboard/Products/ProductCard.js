@@ -8,6 +8,7 @@ import { deleteItemAsync } from "../../../redux/item/itemSlice";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../../utils/RoutePaths";
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
@@ -15,7 +16,8 @@ export default function ProductCard(props) {
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.user.isAdmin);
   const goToProduct = (item) => {
-    navigate(`/product/${item.name}`, { state: { item } });
+    const productURL = RoutePaths.Product.replace(":name", item.name);
+    navigate(productURL, { state: { item } });
   };
   const productDetails = {
     id: props.item._id,
@@ -109,7 +111,9 @@ export default function ProductCard(props) {
                   strokeWidth="1.5"
                   stroke="currentColor"
                   onClick={() => {
-                    navigate(`/editProduct/${props.item._id}`);
+                    navigate(
+                      RoutePaths.EditProduct.replace(":id", props.item._id)
+                    );
                   }}
                 >
                   <path
