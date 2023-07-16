@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { removeItem } from "../../redux/wishlistSlice";
 import "./Wishlist.css";
 import { useNavigate } from "react-router-dom";
+import { RoutePaths } from "../../utils/RoutePaths";
 
 export default function WishlistEntry({ item }) {
   const dispatch = useDispatch();
@@ -12,12 +13,14 @@ export default function WishlistEntry({ item }) {
     dispatch(removeItem(item.name));
   };
 
+  const productURL = RoutePaths.Product.replace(":name", item.name);
+
   return (
     <div className="wishlist-entry-wrapper">
       <div className="entry">
         <div
           className="img-wrapper"
-          onClick={() => navigate(`/product/${item.name}`, { state: { item } })}
+          onClick={() => navigate(productURL, { state: { item } })}
         >
           <img src={item.images[0]} alt={item.name} />
           <p>{item.name}</p>

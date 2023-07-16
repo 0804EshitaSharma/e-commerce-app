@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomDropdown from "../Custom/CustomDropdown";
+import { RoutePaths } from "../../utils/RoutePaths";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
   const [showDropdown, setshowDropdown] = useState(false);
@@ -12,7 +13,7 @@ function Navbar({ name }) {
   const numItemsInCart = useSelector((state) => state.cart.itemsList).length;
   return (
     <div className="navbar">
-      <Link to="/">
+      <Link to={RoutePaths.Home}>
         <span className="navbar_title">E-Commerce</span>
       </Link>
       <div className="navbar_search">
@@ -38,7 +39,7 @@ function Navbar({ name }) {
       </div>
       <div className="navbar_links">
         <div></div>
-        <Link to="/login">
+        <Link to={RoutePaths.Login}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -76,7 +77,7 @@ function Navbar({ name }) {
         <div>{showDropdown && <CustomDropdown />}</div>
 
         <div>
-          <Link to="/wishlist">
+          <Link to={RoutePaths.Wishlist}>
             <svg
               className="navbar_wishlist_icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +96,7 @@ function Navbar({ name }) {
         </div>
 
         <div className="navbar_link_3">
-          <Link to="/shoppingCart">
+          <Link to={RoutePaths.Cart}>
             <svg
               className="navbar_shopping-icon"
               xmlns="http://www.w3.org/2000/svg"
