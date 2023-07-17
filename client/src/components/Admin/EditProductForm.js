@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import CustomButton from "../Custom/CustomButton";
 import CustomFormInput from "../Custom/CustomFormInput";
 import CustomFormTextArea from "../Custom/CustomFormTextArea";
@@ -12,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function EditProductForm({ item }) {
-  const navigate = useNavigate();
   const { handleSubmit, reset, register } = useForm({});
   const dispatch = useDispatch();
   const formSubmit = (event) => {
