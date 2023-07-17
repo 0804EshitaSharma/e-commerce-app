@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import EditProductForm from "./EditProductForm";
 import { getItemInfoAsync } from "../../redux/item/itemSlice";
 import { useParams } from "react-router-dom";

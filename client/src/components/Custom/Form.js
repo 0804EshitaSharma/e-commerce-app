@@ -6,8 +6,7 @@ import { useForm } from "react-hook-form";
 import {
   confirmPasswordReset,
   sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  updateProfile,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
