@@ -16,7 +16,6 @@ import "./CustomAddress.css";
 
 function CustomAddress({ register }) {
   const [shippingSelected, setshippingSelected] = useState(false);
-  const [deliverySelected, setdeliverySelected] = useState(false);
   const [addressComponents, setAddressComponents] = useState({
     city: "",
     zipcode: "",
