@@ -8,6 +8,8 @@ import { loggedOut } from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths";
+import {removeAllInCart} from "../../redux/cart/cartSlice";
+import {clearWishlist}from"../../redux/wishlistSlice";
 
 function CustomDropdown() {
   const user = useSelector((state) => state.user.user);
@@ -17,6 +19,8 @@ function CustomDropdown() {
     signOut(auth)
       .then(() => {
         dispatch(loggedOut());
+        dispatch(removeAllInCart());
+        dispatch(clearWishlist());
         navigate(RoutePaths.Home);
       })
       .catch((error) => {
