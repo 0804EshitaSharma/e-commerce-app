@@ -32,8 +32,8 @@ export default function WishlistPage() {
       ) : (
         <>
           <div className="wishlist-products">
-            {wishlistItems.map((item) => {
-              return <WishlistEntry key={item.Name} item={item} />;
+            {wishlistItems.map((item,index) => {
+              return <WishlistEntry key={index} item={item} />;
             })}
           </div>
 
