@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import QuantityButton from "../ProductPage/QuantityButton";
 import { removeProductFromCart } from "../../redux/cart/cartSlice";
-import { useEffect } from "react";
 
 function Item({ item }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const itemInfo = item.productDetails;
+  //const itemInfo = item.productDetails;
 
   //console.log(itemInfo);
 

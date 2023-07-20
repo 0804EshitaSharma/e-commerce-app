@@ -24,7 +24,7 @@ function UserProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { handleSubmit, reset, register } = useForm();
+  const { handleSubmit, register } = useForm();
   const currentUser = auth.currentUser;
   const changePassword = () => {
     navigate(RoutePaths.ForgotPassword);
@@ -43,7 +43,7 @@ function UserProfile() {
     if (currentUser != null) {
       dispatch(getUserInfoAsync(currentUser.uid));
     }
-  }, [dispatch]);
+  }, [dispatch, currentUser]);
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
     setIsLoading(true);
@@ -103,7 +103,10 @@ function UserProfile() {
         <form>
           <div className="profile_input">
             <div className="image_uploader">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU" />
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU"
+                alt="Broken Link"
+              />
             </div>
             <div className="input_row">
               <div className="profile_input_field">

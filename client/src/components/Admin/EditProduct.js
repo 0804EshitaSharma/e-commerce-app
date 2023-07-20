@@ -10,7 +10,7 @@ function EditProduct() {
   const item = useSelector((state) => state.item.selectedItem);
   useEffect(() => {
     dispatch(getItemInfoAsync(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   return <EditProductForm item={item} />;
 }
 
