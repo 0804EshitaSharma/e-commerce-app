@@ -1,7 +1,7 @@
 import { ProdCard } from "../../Styles/ProdCard.styled";
 import { ProdTextContainer } from "../../Styles/ProdTextContainer.styled";
 import Rating from "../../Product/Rating";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../../redux/cart/cartSlice";
 import { deleteItemAsync } from "../../../redux/item/itemSlice";
@@ -30,6 +30,7 @@ export default function ProductCard(props) {
     quantity: props.item.quantity,
   };
   const quantity = 1;
+  const item = props.item;
   return (
     <>
       <ProdCard key={props.item.name}>
@@ -112,7 +113,8 @@ export default function ProductCard(props) {
                   stroke="currentColor"
                   onClick={() => {
                     navigate(
-                      RoutePaths.EditProduct.replace(":id", props.item._id)
+                      RoutePaths.EditProduct.replace(":id", props.item._id),
+                      { state: { item } }
                     );
                   }}
                 >
