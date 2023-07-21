@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import CustomButton from "../Custom/CustomButton";
 import CustomFormInput from "../Custom/CustomFormInput";
 import CustomFormTextArea from "../Custom/CustomFormTextArea";
@@ -11,17 +12,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function EditProductForm({ item }) {
-  const { handleSubmit, reset, register } = useForm({});
+  const location = useLocation();
+  const { handleSubmit, register } = useForm({});
+  let itemFromPropsOrState = item;
+  if (item === null || item === undefined || item.length === 0) {
+    itemFromPropsOrState = location.state.item;
+  }
   const dispatch = useDispatch();
   const formSubmit = (event) => {
-    dispatch(updateItemAsync({ id: item._id, data: event }));
+    dispatch(updateItemAsync({ id: itemFromPropsOrState._id, data: event }));
     toast.success("Updated Product!", {
       position: "bottom-right",
       theme: "colored",
       autoClose: 2000,
     });
   };
-
 
   const categories = [
     { id: 1, text: "Choose a Category----" },
@@ -38,7 +43,7 @@ function EditProductForm({ item }) {
             id="name"
             type="text"
             placeholder="Item Name"
-            defaultValue={item?.name}
+            defaultValue={itemFromPropsOrState?.name}
             label="Item Name:"
             register={{ ...register("name", { required: true }) }}
           />
@@ -47,7 +52,7 @@ function EditProductForm({ item }) {
             id="price"
             type="number"
             placeholder="Item Price"
-            defaultValue={item?.price}
+            defaultValue={itemFromPropsOrState?.price}
             label="Item Price:"
             register={{ ...register("price", { required: true }) }}
           />
@@ -56,7 +61,7 @@ function EditProductForm({ item }) {
             id="description"
             placeholder="Item Description"
             label="Item Description:"
-            defaultValue={item?.description}
+            defaultValue={itemFromPropsOrState?.description}
             rows="5"
             cols="65"
             register={{ ...register("description", { required: true }) }}
@@ -66,7 +71,7 @@ function EditProductForm({ item }) {
             id="quantity"
             type="number"
             placeholder="Item Quantity"
-            defaultValue={item?.quantity}
+            defaultValue={itemFromPropsOrState?.quantity}
             label="Item Quantity:"
             register={{ ...register("quantity", { required: true }) }}
           />
@@ -75,7 +80,7 @@ function EditProductForm({ item }) {
             id="rating"
             type="number"
             placeholder="Item Rating"
-            defaultValue={item?.rating}
+            defaultValue={itemFromPropsOrState?.rating}
             label="Item Rating:"
             register={{ ...register("rating", { required: true }) }}
           />
@@ -83,7 +88,7 @@ function EditProductForm({ item }) {
             id="category"
             name="category"
             label="Item Category:"
-            defaultValue={item?.category}
+            defaultValue={itemFromPropsOrState?.category}
             register={{ ...register("category", { required: true }) }}
             categories={categories}
           />
@@ -93,7 +98,7 @@ function EditProductForm({ item }) {
             type="text"
             placeholder="Item Image"
             label="Item Image:"
-            defaultValue={item?.images[0]}
+            defaultValue={itemFromPropsOrState?.images[0]}
             register={{ ...register("images", { required: true }) }}
           />
 

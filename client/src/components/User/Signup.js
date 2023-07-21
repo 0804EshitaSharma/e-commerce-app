@@ -9,7 +9,6 @@ import Modal from "../Custom/Modal.js";
 import "./Signup.css";
 import { useDispatch } from "react-redux";
 import { addUserAsync } from "../../redux/user/userSlice.js";
-import { v4 as uuidv4 } from "uuid";
 import { RoutePaths } from "../../utils/RoutePaths.js";
 
 function Signup() {
