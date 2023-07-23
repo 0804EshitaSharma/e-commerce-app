@@ -27,7 +27,10 @@ function Checkout() {
             ))}
           </div>
           {/* left */}
-          <DeliveryContainer handleOrderSubmit={handleOrderSubmit} />
+          <DeliveryContainer
+            handleOrderSubmit={handleOrderSubmit}
+            user={user}
+          />
 
           {/* right */}
           <PaymentContainer handleOrderSubmit={handleOrderSubmit} />
