@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import {
   confirmPasswordReset,
   sendPasswordResetEmail,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
@@ -186,6 +186,8 @@ function Form({
           <Modal
             heading="Notification"
             content={errorMessage}
+            primaryLabel="Close"
+            showSecondary={false}
             closeModal={closeModal}
           />
         )}

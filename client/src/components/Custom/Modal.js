@@ -1,7 +1,15 @@
 import React from "react";
 import "./Modal.css";
 /* Reference from Assignment 2 */
-function Modal({ heading, content, closeModal }) {
+function Modal({
+  heading,
+  content,
+  closeModal,
+  primaryLabel,
+  secondaryLabel,
+  showSecondary,
+  secondaryOperation
+}) {
   return (
     <div>
       <div className="modal_wrapper"></div>
@@ -12,8 +20,13 @@ function Modal({ heading, content, closeModal }) {
         <p className="modal_paragraph">{content}</p>
         <div className="button_container">
           <button className="close_button" onClick={closeModal}>
-            Close
+            {primaryLabel}
           </button>
+          {showSecondary && (
+            <button className="close_button" onClick={secondaryOperation}>
+              {secondaryLabel}
+            </button>
+          )}
         </div>
       </div>
     </div>
