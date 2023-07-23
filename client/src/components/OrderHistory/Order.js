@@ -18,8 +18,10 @@ function Order({ order }) {
   }
   const returnOrder = () => {
     setShowModal(true);
-    console.log(order);
   };
+    const onCancel = () => {
+      setShowModal(false);
+    };
   const closeModal = () => {
     setShowModal(false);
     dispatch(returnOrderAsync(order._id));
@@ -60,7 +62,9 @@ function Order({ order }) {
             content={"Are you sure you want to return this order?"}
             primaryLabel="Yes"
             secondaryLabel="Cancel"
+            showSecondary={true}
             closeModal={closeModal}
+            secondaryOperation={onCancel}
           />
         )}
       </div>
