@@ -3,7 +3,7 @@ var router = express.Router();
 const Users = require("../models/userSchema");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(
-  "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"
+ ""
 );
 
 router.get("/:userId", async (req, res, next) => {
