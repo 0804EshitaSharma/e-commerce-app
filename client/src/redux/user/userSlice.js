@@ -32,6 +32,15 @@ export const getUserInfoAsync = createAsyncThunk(
     }
   }
 );
+export const sendMailAsync = createAsyncThunk(
+  "users/sendMailAsync",
+  async (user) => {
+    const response = await axios.post(`${APIPaths.User}/mail`, user);
+    if (response.ok) {
+      return response.data;
+    }
+  }
+);
 export const userSlice = createSlice({
   name: "user",
   initialState: {

@@ -1,6 +1,10 @@
 var express = require("express");
 var router = express.Router();
 const Users = require("../models/userSchema");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(
+  "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"
+);
 
 router.get("/:userId", async (req, res, next) => {
   try {
@@ -44,6 +48,22 @@ router.patch("/:userId", async function (req, res, next) {
     );
 
     res.status(200).json(updatedUser);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+router.post("/mail", async function (req, res, next) {
+  try {
+    const user = req.body;
+    const message = {
+      to: user.useremail,
+      from: "eshitasharma0804@gmail.com",
+      subject: "Order Confirmation",
+      text: `Thank You ${user.firstname}for Shopping with us! `,
+      html: `<p>Hello</p>`,
+    };
+    await sgMail.send(message);
+    res.status(200).json({ message: "Send Email" });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
