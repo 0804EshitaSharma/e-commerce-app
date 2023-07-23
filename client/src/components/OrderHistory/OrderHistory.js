@@ -4,7 +4,6 @@ import { getOrdersAsync } from "../../redux/orders/orderThunks";
 import { auth } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
 import Order from "./Order";
-
 function OrderHistory() {
   const list = useSelector((state) => state.orders.list);
   const dispatch = useDispatch();

@@ -26,4 +26,15 @@ router.get("/:userID", async function (req, res) {
   }
 });
 
+router.delete("/:orderID", async function (req, res) {
+  try {
+    await Orders.findOneAndDelete({
+      _id: req.params.orderID,
+    });
+    res.status(200).json({ message: "order returned Successfully" });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 module.exports = router;

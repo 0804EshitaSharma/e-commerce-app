@@ -8,7 +8,6 @@ const dotenv = require("dotenv");
 const connectionString =
   "mongodb+srv://Elsie:uyIo6FPrdKKjA9Hz@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
 //"mongodb+srv://<username>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
-
 dotenv.config();
 
 const app = express();
