@@ -27,7 +27,7 @@ export default function ProductSlideShow() {
     return (
         <ImageGallery 
         items={images} 
-        showPlayButton={false}
+        // showPlayButton={false}
         showFullscreenButton={false}
         slideInterval={3000}
         />
