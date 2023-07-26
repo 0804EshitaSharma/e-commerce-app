@@ -114,6 +114,8 @@ function Signup() {
             heading="Notification"
             content={errorMessage}
             closeModal={closeModal}
+            primaryLabel="Close"
+            showSecondary={false}
           />
         )}
       </div>

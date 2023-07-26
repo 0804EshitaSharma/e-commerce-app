@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getOrdersAsync } from "./orderThunks";
-
+import { returnOrderAsync } from "./orderThunks";
 const initial_State = {
   list: [],
 };
@@ -18,6 +18,13 @@ export const ordersSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getOrdersAsync.fulfilled, (state, action) => {
       state.list = action.payload;
+    });
+    builder.addCase(returnOrderAsync.fulfilled, (state, action) => {
+      const id = action.payload;
+      const index = state.list.findIndex((item) => item._id == id);
+      if (index > -1) {
+        state.list.splice(index, 1);
+      }
     });
   },
 });
