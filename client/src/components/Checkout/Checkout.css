@@ -7,7 +7,11 @@
     background-color: white;
     padding: 4rem;
 }
-
+.item-list-container{
+    display: grid;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 .card {
     margin-bottom: 10px;
 }
