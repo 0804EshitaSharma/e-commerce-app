@@ -12,7 +12,7 @@ function Checkout() {
   const user = useSelector((state) => state.user.user);
   const handleOrderSubmit = (orderData) => {
     dispatch(createOrderAsync(orderData));
-    dispatch(sendMailAsync(user));
+    dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
   };
 
   return (

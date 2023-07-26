@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 const Users = require("../models/userSchema");
-
-sgMail.setApiKey(
- ""
-);
+const sgMail = require("@sendgrid/mail");
+const dotenv = require("dotenv");
+dotenv.config();
+sgMail.setApiKey(process.env.API_KEY);
 
 router.get("/:userId", async (req, res, next) => {
   try {
@@ -54,10 +54,29 @@ router.patch("/:userId", async function (req, res, next) {
 });
 router.post("/mail", async function (req, res, next) {
   try {
-    const user = req.body;
-   
-  
-    res.status(200).json({ message: "Send Email" });
+    const userObject = req.body.user;
+    const orderInfo = req.body.orderInfo;
+    const listItems = orderInfo.map(
+      (order) =>
+        `<li>${order.productDetails.name} : ${order.productDetails.price*order.productDetails.quantity}</li>`
+    );
+    const message = {
+      from: "eshitasharma0804@gmail.com",
+      to: `${userObject.useremail}`,
+      subject: "Order Confirmation",
+      text: `Hello ${userObject.firstname} from E-Commerce Team`,
+      html: `
+      <div>
+      <h4>Hello ${userObject.firstname} </h4>
+      <h3>Please confirm Your order!</h3>
+      <ol>${listItems}</ol>
+      <h4>Deliever to :${userObject.address} <h4>
+      <h4>Thank you for shopping with us! </h4>
+      <h4> E-Commerce Team </h4>
+      </div>`,
+    };
+    sgMail.send(message).catch((e) => console.log(e.message));
+    res.status(200).send("Email Sent");
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
