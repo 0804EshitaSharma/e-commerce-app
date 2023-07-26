@@ -3,39 +3,44 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import QuantityButton from "../ProductPage/QuantityButton";
 import { removeProductFromCart } from "../../redux/cart/cartSlice";
-import { useEffect } from "react";
 
 function Item({ item }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  //const itemInfo = item.productDetails;
+
+  //console.log(itemInfo);
+
   return (
     <div id="item-container">
       <div
         className="image-container"
+        /*  // TODO: fix this route & ensure it is consistent with new RoutePaths         
         onClick={() => {
-          navigate("/product");
-        }}
+          navigate(`/product/${itemInfo.name}`, { state: { itemInfo } });
+        }} */
       >
         <img
           className="item-image"
-          src={item.productDetails.Images[0]}
+          src={item.productDetails.images[0]}
           alt="Broken link"
         />
       </div>
       <div className="name-quantity-container">
         <h3
-          onClick={() => {
+        /*  // TODO: see comment above          
+        onClick={() => {
             navigate("/product");
-          }}
+          }} */
         >
-          {item.productDetails.Name}
+          {item.productDetails.name}
         </h3>
         <h3>Quantity: {item.quantity}</h3>
       </div>
       <div className="price-container">
         <h1 className="price-value">
-          ${item.productDetails.Price * item.quantity}
+          ${item.productDetails.price * item.quantity}
         </h1>
         <button
           className="remove-button"

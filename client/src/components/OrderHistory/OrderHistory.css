@@ -1,0 +1,87 @@
+.orderhistory-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 90%;
+}
+
+.orderhistory-header-search-content {
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+.orderhistory-header {
+  display: inline;
+  text-align: left;
+  font-weight: bold;
+  color: black;
+  font-size: xx-large;
+}
+
+.orderhistory-searchbar {
+  display: flex;
+  align-items: flex-end;
+}
+
+.orderhistory-hr {
+  width: 100% !important;
+  border-top-width: 0.35rem;
+}
+
+.orderhistory-card {
+  border: 0.25rem;
+  border-radius: 0.8rem;
+  border-style: solid;
+  border-color: gainsboro;
+  background-color: snow;
+  margin-bottom: 2%;
+}
+
+.order-info-header {
+  justify-content: space-evenly;
+  display: inline;
+  width: 100%;
+}
+.order-info-container {
+  padding: 1rem;
+  margin-top: 0%;
+  background-color: gainsboro;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.ordered-item-container {
+  display: block;
+}
+
+.orderhistory-card-hr {
+  width: 100% !important;
+  border-top-width: 0.35rem;
+  color: gainsboro;
+}
+
+/* .order-date {
+  display: inline;
+  margin-right: 25%;
+}
+
+.ship-to-info {
+  display: inline;
+  overflow: scroll;
+} */
+
+.user-info-popup {
+  display: none;
+}
+
+.ship-to-info:hover + .user-info-popup {
+  display: block;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-color: gainsboro;
+  background-color: snow;
+}
+
+.track-package-button {
+  float: right;
+}

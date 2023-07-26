@@ -10,7 +10,7 @@ function CustomFormInput({
   register,
   placeholder,
   defaultValue,
-  readOnly
+  readOnly,
 }) {
   return (
     <div className="form_container">

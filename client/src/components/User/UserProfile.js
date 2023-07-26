@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./UserProfile.css";
 import CustomButton from "../Custom/CustomButton";
@@ -9,6 +9,14 @@ import { auth } from "../../firebase/firebaseConfig";
 import { updateProfile } from "firebase/auth";
 import { updateUserInfo } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
+import CustomAddress from "../Custom/CustomAddress";
+import {
+  updateUserAsync,
+  getUserInfoAsync,
+} from "../../redux/user/userSlice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../utils/RoutePaths";
 
 function UserProfile() {
   const user = useSelector((state) => state.user.user);
@@ -16,9 +24,10 @@ function UserProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { handleSubmit, reset, register } = useForm();
+  const { handleSubmit, register } = useForm();
+  const currentUser = auth.currentUser;
   const changePassword = () => {
-    navigate("/forgot-password");
+    navigate(RoutePaths.ForgotPassword);
   };
   const updateUserName = () => {
     setIsEditable(!isEditable);
@@ -30,9 +39,13 @@ function UserProfile() {
     display: "block",
     margin: "0 auto",
   };
+  useEffect(() => {
+    if (currentUser != null) {
+      dispatch(getUserInfoAsync(currentUser.uid));
+    }
+  }, [dispatch, currentUser]);
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
-    const currentUser = auth.currentUser;
     setIsLoading(true);
     updateProfile(currentUser, {
       displayName: event.accountholder,
@@ -45,8 +58,21 @@ function UserProfile() {
             email: event.email,
           })
         );
+        dispatch(
+          updateUserAsync({
+            _id: currentUser.uid,
+            useremail: event.email,
+            mobile: event.mobile,
+            address: event.address,
+            firstname: event.accountholder,
+          })
+        );
         setIsLoading(false);
-        // navigate("/")
+        toast.success("User Profile updated !", {
+          position: "bottom-right",
+          theme: "colored",
+          autoClose: 2000,
+        });
       })
       .catch((error) => {});
   };
@@ -62,10 +88,25 @@ function UserProfile() {
         />
       )}
       <div className="profile_container">
+        <CustomButton
+          label="View Order History"
+          style={{
+            margin: "0.5rem",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            paddingleft: "1px",
+            paddingright: "1px",
+          }}
+          event={() => navigate(RoutePaths.OrderHistory)}
+        />
         <form>
           <div className="profile_input">
             <div className="image_uploader">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU" />
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU"
+                alt="Broken Link"
+              />
             </div>
             <div className="input_row">
               <div className="profile_input_field">
@@ -73,7 +114,7 @@ function UserProfile() {
                   name="Account Holder"
                   id="accountholder"
                   type="text"
-                  defaultValue={user?.name}
+                  defaultValue={user?.firstname}
                   label=" Account Holder"
                   readOnly={!isEditable}
                   register={{ ...register("accountholder") }}
@@ -98,7 +139,7 @@ function UserProfile() {
                   id="email"
                   type="email"
                   label="Email Address"
-                  defaultValue={user?.email}
+                  defaultValue={user?.useremail}
                   readOnly={!isEditable}
                   register={{ ...register("email") }}
                 />
@@ -118,10 +159,11 @@ function UserProfile() {
               <div className="profile_input_field">
                 <CustomFormInput
                   name="Mobile Number"
-                  id="phone"
+                  id="mobilw"
                   type="phone"
                   label="Mobile Number"
-                  register={{ ...register("phone") }}
+                  defaultValue={user?.mobile}
+                  register={{ ...register("mobile") }}
                 />
               </div>
               <svg
@@ -135,24 +177,13 @@ function UserProfile() {
             </div>
             <div className="input_row">
               <div className="profile_input_field">
-                <CustomFormInput
+                <CustomAddress
                   name="Address"
                   id="address"
-                  type="text"
-                  label="Address"
                   register={{ ...register("address") }}
                 />
               </div>
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="edit_icon"
-                >
-                  <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-                </svg>
-              </div>
+              <div></div>
             </div>
           </div>
           <CustomButton
@@ -162,6 +193,7 @@ function UserProfile() {
           <CustomButton label="Change Password" event={changePassword} />
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }

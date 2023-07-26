@@ -4,6 +4,7 @@ import WishlistEntry from "./WishlistEntry";
 import { clearWishlist } from "../../redux/wishlistSlice";
 import "./Wishlist.css";
 import { Link } from "react-router-dom";
+import { RoutePaths } from "../../utils/RoutePaths";
 
 export default function WishlistPage() {
   const wishlistItems = useSelector((state) => state.wishlist.wishlistProducts);
@@ -22,7 +23,7 @@ export default function WishlistPage() {
       {wishlistItems.length === 0 ? (
         <div className="no-items-wrapper">
           <h3>Add items to your Wishlist to see them here!</h3>
-          <Link to="/">
+          <Link to={RoutePaths.Home}>
             <button className="wishlist-button" id="browse">
               Browse Products
             </button>
@@ -31,8 +32,8 @@ export default function WishlistPage() {
       ) : (
         <>
           <div className="wishlist-products">
-            {wishlistItems.map((item) => {
-              return <WishlistEntry key={item.Name} item={item} />;
+            {wishlistItems.map((item,index) => {
+              return <WishlistEntry key={index} item={item} />;
             })}
           </div>
 

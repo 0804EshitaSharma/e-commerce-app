@@ -7,15 +7,17 @@ import {
   confirmPasswordReset,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-import { loggedInUser } from "../../redux/user/userSlice.js";
+import { getUserInfoAsync, isAdmin } from "../../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../utils/RoutePaths.js";
 
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form({
@@ -47,15 +49,20 @@ function Form({
 
         const user = userCredential.user;
         if (user) {
-          const userObject = {
-            name: user.displayName,
-            email: user.email,
-            id: user.uid,
-          };
-          dispatch(loggedInUser(userObject));
+          dispatch(getUserInfoAsync(user.uid));
           setIsLoading(false);
           reset();
-          navigate("/");
+          if (user.displayName === "Admin") {
+            dispatch(isAdmin());
+            navigate(RoutePaths.Admin);
+          } else {
+            navigate(RoutePaths.Home);
+            toast.success("User Logged In!", {
+              position: "bottom-right",
+              theme: "colored",
+              autoClose: 5000,
+            });
+          }
         }
       })
       .catch((error) => {
@@ -81,6 +88,11 @@ function Form({
         }
 
         setShowModal(true);
+        toast.error(error.message, {
+          position: "bottom-right",
+          theme: "colored",
+          autoClose: 2000,
+        });
       });
   };
   /* Learned from https://www.youtube.com/watch?v=MsDjbWUn3IE */
@@ -114,7 +126,7 @@ function Form({
       auth,
       query.get("oobCode"),
       event.userpassword
-    ).then(navigate("/login"));
+    ).then(navigate(RoutePaths.Login));
   };
   /* Referred from https://www.npmjs.com/package/react-spinners */
   return (
@@ -164,7 +176,7 @@ function Form({
               }
             />
             {showSignUpLink && (
-              <Link to="/signup">
+              <Link to={RoutePaths.Signup}>
                 <span>Create your account</span>
               </Link>
             )}
@@ -174,10 +186,13 @@ function Form({
           <Modal
             heading="Notification"
             content={errorMessage}
+            primaryLabel="Close"
+            showSecondary={false}
             closeModal={closeModal}
           />
         )}
       </div>
+      <ToastContainer />
     </>
   );
 }
