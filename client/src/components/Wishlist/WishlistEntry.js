@@ -28,7 +28,7 @@ export default function WishlistEntry({ item }) {
 
         <div className="wishlist-button-price-wrapper">
           <div className="price">
-            <h4>{item.price}</h4>
+            <h4>Price : ${item.price}</h4>
           </div>
           <div className="wishlist-entry-buttons-wrapper">
             <button className="wishlist-button">Add to Cart</button>

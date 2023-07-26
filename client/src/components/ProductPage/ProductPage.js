@@ -109,7 +109,7 @@ function ProductPage() {
             </div>
             <div className="buy-options">
               <div className="price-quantity">
-                <h4>{item.price}</h4>
+                <h4>${item.price}</h4>
                 <div className="quantity-picker-wrapper">
                   <h4>Quantity:</h4>
                   <div className="quantity-picker">
