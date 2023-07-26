@@ -31,7 +31,6 @@ function Order({ order }) {
        autoClose: 2000,
      });
   };
-  //console.log(user);
   return (
     <>
       <div className="orderhistory-card">
