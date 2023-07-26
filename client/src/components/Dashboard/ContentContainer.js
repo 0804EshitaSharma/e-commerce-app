@@ -1,6 +1,5 @@
 // referenced from: https://www.youtube.com/watch?v=VVhnuOKVHRs&t=6210s
 
-import axios from "axios";
 import "./Dashboard.css";
 import Filters from "./Filters";
 import ProductContainer from "./Products/ProductContainer";
@@ -112,7 +111,9 @@ export default function ContentContainer() {
                     changeRating={handleRatingChecked}
                 />
             </div>
-            <ProductContainer list={list}/>
+            <div style={{width: '85%', left: '15%', position: 'relative'}}>
+              <ProductContainer list={list}/>
+            </div>
         </div>   
     )
 }
