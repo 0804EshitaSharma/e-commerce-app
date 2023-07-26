@@ -9,6 +9,7 @@ export const RoutePaths = {
   OrderPlaced: "/orderPlaced",
   OrderHistory: "/orderHistory",
   Dashboard: "/dashboard",
+  Front: "/Front",
   ResetPassword: "/reset-password",
   ForgotPassword: "/forgot-password",
   Product: "/product/:name",
