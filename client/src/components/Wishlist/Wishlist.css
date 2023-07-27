@@ -136,3 +136,9 @@ hr {
   padding: 2rem;
   font-size: larger;
 }
+
+@media (max-width: 521px) {
+  .wishlist-header>h2 {
+      font-size: 20px;
+    }
+}
