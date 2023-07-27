@@ -109,12 +109,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .purchase-button {
+    width: 100%;
     font-size: 20px;
     font-weight: bold;
-    width: 45%;
     padding: 10px 5px;
     background-color: black;
     box-shadow: 0 0 5px black;

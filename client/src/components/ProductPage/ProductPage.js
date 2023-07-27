@@ -138,9 +138,6 @@ function ProductPage() {
               </div>
               <div className="purchase-buttons">
                 <AddToCartButton productDetails={item} quantity={1} />
-                <button className="purchase-button" id="buy-now">
-                  Buy Now
-                </button>
               </div>
             </div>
           </div>
