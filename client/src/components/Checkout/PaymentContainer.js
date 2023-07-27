@@ -3,14 +3,22 @@ import "./Checkout.css";
 import LabeledInput from "../Custom/LabeledInput";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../utils/RoutePaths";
+import { useDispatch } from "react-redux";
+import { removeAllInCart } from "../../redux/cart/cartSlice";
 
-function PaymentContainer({ handleOrderSubmit }) {
+function PaymentContainer({
+  handleOrderSubmit,
+  itemList,
+  orderData,
+  setOrderData,
+}) {
   const [cardHolder, setCardHolder] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [formValid, setFormValid] = useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -25,13 +33,11 @@ function PaymentContainer({ handleOrderSubmit }) {
       return;
     }
 
-    const orderData = {
-      cardHolder,
-      cardNumber,
-      expiryDate,
-      cvv,
-    };
+    console.log("Submitting order data:", orderData);
+
     handleOrderSubmit(orderData);
+
+    dispatch(removeAllInCart());
 
     navigate(RoutePaths.OrderPlaced);
   };
