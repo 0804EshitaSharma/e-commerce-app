@@ -13,7 +13,8 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
+
+function DeliveryContainer({ handleOrderSubmit }) {
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
@@ -36,18 +37,6 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
 
     const handleInput = (e) => {
         setValue(e.target.value);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-
-        if (name === "firstname") {
-            setFirstName(value);
-        } else if (name === "lastname") {
-            setLastName(value);
-        } else if (name === "phonenumber") {
-            setPhoneNumber(value);
-        }
     };
 
     const handleSelect = (address) => {
@@ -116,28 +105,27 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
         setSelectedDeliveryOption(e.target.value);
     };
 
+
     const handleNextStepDelivery = (e) => {
         e.preventDefault();
         console.log("selectedDeliveryOption:", selectedDeliveryOption);
         console.log("firstName:", firstName);
         console.log("lastName:", lastName);
         console.log("phoneNumber:", phoneNumber);
-
+      
         if (selectedDeliveryOption) {
-            const orderData = {
-                firstname: firstName,
-                lastname: lastName,
-                phoneNumber: phoneNumber,
-                address: addressComponents,
+            setOrderData({
+                ...orderData,
                 deliveryOption: selectedDeliveryOption,
-            };
+            });
             console.log("delivery button orderdata:", orderData);
 
-            handleOrderSubmit(orderData);
         } else {
-            console.log("No delivery option selected.");
+          console.log("No delivery option selected.");
         }
-    };
+      };
+      
+
 
     return (
         <div className="col-md-8">
@@ -303,5 +291,6 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
         </div>
     );
 }
+
 
 export default DeliveryContainer;

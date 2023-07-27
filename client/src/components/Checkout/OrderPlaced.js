@@ -13,8 +13,8 @@ function OrderPlaced() {
                     <BsBagCheckFill />
                 </p>
                 <h2>Thank you for your order!</h2>
-                {/* <p className="email-msg">Your order number is </p>
-                <p className="email-msg">A copy of the order information has been sent to your email.</p> */}
+                <p className="email-msg">Your order number is </p>
+                <p className="email-msg">A copy of the order information has been sent to your email.</p>
             </div>
         </div>
     )

@@ -2,10 +2,9 @@ var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
-const ordersRouter = require("./routes/ordersRouter");
+const Orders = require("./models/orderSchema");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
-const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
 const connectionString =
   "mongodb+srv://Elsie:uyIo6FPrdKKjA9Hz@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
@@ -39,22 +38,63 @@ app.post("/orders", async (req, res, next) => {
     res.status(500).json({ error: error.message });
   }
 });
+app.post("/new", async function (req, res, next) {
+  const item = req.body;
+  try {
+    const newItem = await Items.create(item);
+    res.status(201).send(newItem);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.delete("/item/:itemId", async function (req, res, next) {
+  try {
+    const item = await Items.findOneAndDelete({
+      _id: req.params.itemId,
+    });
+    res.status(200).json({ message: "Product deleted Successfully" });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+app.post("/user", async function (req, res, next) {
+  const user = req.body;
+  try {
+    const newUser = await Users.create(user);
+    res.status(201).send(newUser);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.patch("/user/:userId", async function (req, res, next) {
+  try {
+    const updatedUser = await Users.findOneAndUpdate(
+      { _id: req.params.userId },
+      {
+        $set: {
+          useremail: req.body.useremail,
+          mobile: req.body.mobile,
+          address: req.body.address,
+          firstname: req.body.firstname,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 app.post("/order", async (req, res, next) => {
   const order = req.body;
-  console.log("Received order data on the server:", order);
   try {
     const newOrder = await Orders.create(order);
-    // const userId = req.body.user; 
-    // const validUserId = mongoose.Types.ObjectId(userId);
-    // const user = await Users.findById(validUserId);
-    // user.orders.push(newOrder._id); 
-    // await user.save();
-    console.log("New order created:", newOrder);
-    // console.log("user's orders:", user.orders);
     res.status(201).json(newOrder);
   } catch (error) {
-    console.error("Error creating order:", error);
     res.status(500).json({ error: error.message });
   }
 });
