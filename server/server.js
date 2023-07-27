@@ -30,6 +30,7 @@ app.use("/orders", ordersRouter);
 
 app.post("/order", async (req, res, next) => {
   const order = req.body;
+  console.log("Received order data on the server:", order);
   try {
     const newOrder = await Orders.create(order);
     // const userId = req.body.user;
@@ -44,10 +45,7 @@ app.post("/order", async (req, res, next) => {
     res.status(500).json({ error: error.message });
   }
 });
-<<<<<<< HEAD
-=======
 
 app.listen(5001, () => {
   console.log("Express Server Successfully Started");
 });
->>>>>>> 903a300 (Revert "orders successful in mongodb, cannot make orders array list in users")
