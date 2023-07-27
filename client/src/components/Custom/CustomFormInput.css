@@ -1,4 +1,4 @@
-.form_container {
+.form_input_container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -6,15 +6,15 @@
   width: 97%;
 }
 
-.input_field_label {
+.custom_input_field_label {
   font-size: 1.4rem;
- color: rgba(25, 130, 180, 0.8);
+  color: rgba(25, 130, 180, 0.8);
   outline: none;
   font-weight: 500;
   padding-bottom: 0.6rem;
 }
 
-input {
+.custom_form_input {
   color: rgba(25, 130, 180, 0.8);
   width: 100%;
   outline: none;
@@ -27,4 +27,20 @@ input {
 .error_message {
   color: red;
   font-size: 0.9r;
+}
+
+@media (max-width: 931px) {
+  .custom_form_input {
+    min-width: 50% ;
+    font-weight: 100;
+    padding-bottom: 0.1rem;
+  }
+  .custom_input_field_label {
+    font-size: 10px ;
+    padding: 0.1rem;
+  }
+  .form_input_container {
+    min-width: 70% ;
+    margin: 0;
+  }
 }

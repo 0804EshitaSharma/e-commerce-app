@@ -13,12 +13,12 @@ function CustomFormInput({
   readOnly,
 }) {
   return (
-    <div className="form_container">
-      <label className="input_field_label" htmlFor={id}>
+    <div className="form_input_container">
+      <label className="custom_input_field_label" htmlFor={id}>
         {label}
       </label>
       <input
-        className="form_input"
+        className="custom_form_input"
         name={name}
         autoComplete="off"
         id={id}
