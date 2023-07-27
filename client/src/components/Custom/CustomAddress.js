@@ -15,8 +15,7 @@ import "@reach/combobox/styles.css";
 import "./CustomAddress.css";
 
 function CustomAddress({ register }) {
-  const [shippingSelected, setshippingSelected] = useState(true);
-  const [deliverySelected, setdeliverySelected] = useState(false);
+  const [shippingSelected, setshippingSelected] = useState(false);
   const [addressComponents, setAddressComponents] = useState({
     city: "",
     zipcode: "",
@@ -82,9 +81,7 @@ function CustomAddress({ register }) {
     return <>{suggestions}</>;
   };
 
-  const handleNextStep = () => {
-    setshippingSelected(false);
-  };
+
 
   return (
     <div className="custom_address_container">

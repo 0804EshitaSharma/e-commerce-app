@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { APIPaths } from "../../utils/APIPaths";
 
 export const addUserAsync = createAsyncThunk(
   "user/addUserAsync",
   async (newUser) => {
-    const response = await axios.post("/user", newUser);
+    const response = await axios.post(APIPaths.User, newUser);
     return response.data;
   }
 );
@@ -12,7 +13,10 @@ export const addUserAsync = createAsyncThunk(
 export const updateUserAsync = createAsyncThunk(
   "items/updateUserAsync",
   async (updatedUser) => {
-    const response = await axios.patch(`/user/${updatedUser._id}`, updatedUser);
+    const response = await axios.patch(
+      `${APIPaths.User}/${updatedUser._id}`,
+      updatedUser
+    );
     return response.data;
   }
 );
@@ -20,11 +24,20 @@ export const updateUserAsync = createAsyncThunk(
 export const getUserInfoAsync = createAsyncThunk(
   "items/getUserInfoAsync",
   async (id) => {
-    const response = await fetch(`/user/${id}`);
+    const response = await fetch(`${APIPaths.User}/${id}`);
 
     if (response.ok) {
       const detail = await response.json();
       return detail;
+    }
+  }
+);
+export const sendMailAsync = createAsyncThunk(
+  "users/sendMailAsync",
+  async (user) => {
+    const response = await axios.post(`${APIPaths.User}/mail`, user);
+    if (response.ok) {
+      return response.data;
     }
   }
 );

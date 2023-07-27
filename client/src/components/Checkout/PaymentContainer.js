@@ -4,6 +4,7 @@ import LabeledInput from "../Custom/LabeledInput";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { removeAllInCart } from "../../redux/cart/cartSlice";
+import { RoutePaths } from "../../utils/RoutePaths";
 
 function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData }) {
     const [cardHolder, setCardHolder] = useState("");

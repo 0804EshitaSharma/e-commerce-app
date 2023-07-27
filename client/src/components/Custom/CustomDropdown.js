@@ -7,8 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { loggedOut } from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../utils/RoutePaths";
+import {removeAllInCart} from "../../redux/cart/cartSlice";
+import {clearWishlist}from"../../redux/wishlistSlice";
 
-function CustomDropdown({ name }) {
+function CustomDropdown() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,7 +19,9 @@ function CustomDropdown({ name }) {
     signOut(auth)
       .then(() => {
         dispatch(loggedOut());
-        navigate("/");
+        dispatch(removeAllInCart());
+        dispatch(clearWishlist());
+        navigate(RoutePaths.Home);
       })
       .catch((error) => {
         toast.error("error", {
@@ -34,11 +39,11 @@ function CustomDropdown({ name }) {
   const menu = [
     {
       name: "Profile",
-      to: "/user",
+      to: RoutePaths.Profile,
     },
     {
       name: "Admin",
-      to: user?.firstname !== "Admin" ? "/login" : "/admin",
+      to: user?.firstname !== "Admin" ? RoutePaths.Login : RoutePaths.Admin,
     },
   ];
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */

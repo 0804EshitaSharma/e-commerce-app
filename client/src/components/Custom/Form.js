@@ -7,7 +7,6 @@ import {
   confirmPasswordReset,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +17,7 @@ import { getUserInfoAsync, isAdmin } from "../../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../utils/RoutePaths.js";
 
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form({
@@ -54,9 +54,9 @@ function Form({
           reset();
           if (user.displayName === "Admin") {
             dispatch(isAdmin());
-            navigate("/admin");
+            navigate(RoutePaths.Admin);
           } else {
-            navigate("/");
+            navigate(RoutePaths.Home);
             toast.success("User Logged In!", {
               position: "bottom-right",
               theme: "colored",
@@ -126,7 +126,7 @@ function Form({
       auth,
       query.get("oobCode"),
       event.userpassword
-    ).then(navigate("/login"));
+    ).then(navigate(RoutePaths.Login));
   };
   /* Referred from https://www.npmjs.com/package/react-spinners */
   return (
@@ -176,7 +176,7 @@ function Form({
               }
             />
             {showSignUpLink && (
-              <Link to="/signup">
+              <Link to={RoutePaths.Signup}>
                 <span>Create your account</span>
               </Link>
             )}
@@ -186,6 +186,8 @@ function Form({
           <Modal
             heading="Notification"
             content={errorMessage}
+            primaryLabel="Close"
+            showSecondary={false}
             closeModal={closeModal}
           />
         )}

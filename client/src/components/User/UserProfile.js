@@ -16,6 +16,7 @@ import {
 } from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RoutePaths } from "../../utils/RoutePaths";
 
 function UserProfile() {
   const user = useSelector((state) => state.user.user);
@@ -23,10 +24,10 @@ function UserProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { handleSubmit, reset, register } = useForm();
+  const { handleSubmit, register } = useForm();
   const currentUser = auth.currentUser;
   const changePassword = () => {
-    navigate("/forgot-password");
+    navigate(RoutePaths.ForgotPassword);
   };
   const updateUserName = () => {
     setIsEditable(!isEditable);
@@ -42,7 +43,7 @@ function UserProfile() {
     if (currentUser != null) {
       dispatch(getUserInfoAsync(currentUser.uid));
     }
-  }, [dispatch]);
+  }, [dispatch, currentUser]);
   /* Reference from https://firebase.google.com/docs/auth */
   const updateUser = (event) => {
     setIsLoading(true);
@@ -87,10 +88,25 @@ function UserProfile() {
         />
       )}
       <div className="profile_container">
+        <CustomButton
+          label="View Order History"
+          style={{
+            margin: "0.5rem",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            paddingleft: "1px",
+            paddingright: "1px",
+          }}
+          event={() => navigate(RoutePaths.OrderHistory)}
+        />
         <form>
           <div className="profile_input">
             <div className="image_uploader">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU" />
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU"
+                alt="Broken Link"
+              />
             </div>
             <div className="input_row">
               <div className="profile_input_field">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function CustomImageUploader({ register, id ,event,name}) {
 
@@ -13,20 +13,9 @@ function CustomImageUploader({ register, id ,event,name}) {
         name={name}
         type="file"
         multiple
-        onChange={event}
+        onChange={event()}
         {...register}
       />
-
-     {/* <div>
-        {selectedImages.map((image, index) => (
-          <img
-            className="image_uploader"
-            src={image}
-            key={index}
-            alt={`Selected Image ${index}`}
-          />
-        ))}
-      </div> */}
     </div> 
   );
 }

@@ -119,7 +119,7 @@
 }
 
 .icon {
-  margin-bottom: -1.0rem;
+  margin-bottom: -1rem;
 }
 
 .user-menu {
@@ -129,4 +129,18 @@
 
 .user_name {
   color: white;
+}
+/*Mobile Phones */
+@media (max-width:470px) {
+
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    width: 100%;
+  }
+    .navbar_title {
+      font-size: 15px;
+      margin-left: 0px;  
+    }
+
 }

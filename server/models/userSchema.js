@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   userpassword: { type: String },
   mobile: { type: String },
   address: { type: String },
-  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+  // orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
 });
 
 module.exports = mongoose.model("users", UserSchema);
