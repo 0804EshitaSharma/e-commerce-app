@@ -4,7 +4,9 @@ import axios from "axios";
 export const createOrderAsync = createAsyncThunk(
   "order/createOrderAsync",
   async (orderData) => {
+    console.log("Sending order data to server:", orderData);
     const response = await axios.post("/order", orderData);
+    console.log("Server response:", response.data);
     return response.data;
   }
 );

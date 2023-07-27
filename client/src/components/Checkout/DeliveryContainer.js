@@ -14,7 +14,7 @@ import {
 import "@reach/combobox/styles.css";
 
 
-function DeliveryContainer({ handleOrderSubmit }) {
+function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
@@ -37,6 +37,18 @@ function DeliveryContainer({ handleOrderSubmit }) {
 
     const handleInput = (e) => {
         setValue(e.target.value);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === "firstname") {
+            setFirstName(value);
+        } else if (name === "lastname") {
+            setLastName(value);
+        } else if (name === "phonenumber") {
+            setPhoneNumber(value);
+        }
     };
 
     const handleSelect = (address) => {
@@ -105,14 +117,13 @@ function DeliveryContainer({ handleOrderSubmit }) {
         setSelectedDeliveryOption(e.target.value);
     };
 
-
     const handleNextStepDelivery = (e) => {
         e.preventDefault();
         console.log("selectedDeliveryOption:", selectedDeliveryOption);
         console.log("firstName:", firstName);
         console.log("lastName:", lastName);
         console.log("phoneNumber:", phoneNumber);
-      
+
         if (selectedDeliveryOption) {
             setOrderData({
                 ...orderData,
@@ -121,11 +132,9 @@ function DeliveryContainer({ handleOrderSubmit }) {
             console.log("delivery button orderdata:", orderData);
 
         } else {
-          console.log("No delivery option selected.");
+            console.log("No delivery option selected.");
         }
-      };
-      
-
+    };
 
     return (
         <div className="col-md-8">
