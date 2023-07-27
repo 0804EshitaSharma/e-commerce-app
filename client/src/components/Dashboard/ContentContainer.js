@@ -6,10 +6,16 @@ import ProductContainer from "./Products/ProductContainer";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { products, getProdListAsync } from "../../redux/item/itemSlice";
+import { useLocation } from "react-router-dom";
 
 export default function ContentContainer() {
   const list = useSelector(products);
   const dispatch = useDispatch();
+  const searchText = window.location.pathname.split('/')[2]
+
+  // listen to url change
+  let location = useLocation();
+  useEffect(() => {}, [location]);
 
   const [categories, setCategories] = useState([
     { id: 1, checked: false, label: "Home" },
@@ -66,6 +72,14 @@ export default function ContentContainer() {
                     modifiedURL = `/products?${ratingParams}`
                 }
             }
+            if (searchText !== '') {
+              const searchParam = `search=${searchText}`
+              if (modifiedURL.includes('?')) {
+                modifiedURL = `${modifiedURL}&${searchParam}`
+              } else {
+                  modifiedURL = `/products?${searchParam}`
+              }
+            }
 
             return modifiedURL
     };
@@ -97,7 +111,7 @@ export default function ContentContainer() {
     useEffect(() => {
         const filterURL = getFilterURL()
         dispatch(getProdListAsync(filterURL));
-    }, [categories, prices, ratings]);
+    }, [categories, prices, ratings, location]);
 
     return (
         <div className="horizontal-container">

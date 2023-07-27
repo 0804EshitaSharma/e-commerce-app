@@ -7,6 +7,7 @@ import { RoutePaths } from "../../utils/RoutePaths";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
   const [showDropdown, setshowDropdown] = useState(false);
+  const [query, setQuery] = useState("");
   const showMenu = () => {
     setshowDropdown(!showDropdown);
   };
@@ -20,9 +21,13 @@ function Navbar({ name }) {
         <input
           className="navbar_search_input"
           type="text"
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value)
+          }}
           placeholder="Search here...."
         ></input>
-        <Link to={RoutePaths.Dashboard}>
+        <Link to={`/dashboard/${query}`}>
           <svg
             className="navbar_search_icon"
             xmlns="http://www.w3.org/2000/svg"

@@ -8,7 +8,7 @@ export const RoutePaths = {
   Wishlist: "/wishlist",
   OrderPlaced: "/orderPlaced",
   OrderHistory: "/orderHistory",
-  Dashboard: "/dashboard",
+  Dashboard: "/dashboard/:search?",
   Front: "/Front",
   ResetPassword: "/reset-password",
   ForgotPassword: "/forgot-password",

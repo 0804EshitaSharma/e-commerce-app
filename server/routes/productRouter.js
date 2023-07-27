@@ -7,6 +7,7 @@ router.get("/", async (req, res, next) => {
     const categoryParams = req.query.category;
     const priceParams = req.query.price;
     const ratingParams = req.query.rating;
+    const searchParams = req.query.search;
 
     var itemData = await Items.find({});
 
@@ -48,6 +49,12 @@ router.get("/", async (req, res, next) => {
         }
         return false;
       });
+    }
+
+    if (searchParams !== undefined) {
+      var itemData = itemData.filter((item) => {
+        return item.name.includes(searchParams)
+      })
     }
 
     res.status(200).send(itemData);
