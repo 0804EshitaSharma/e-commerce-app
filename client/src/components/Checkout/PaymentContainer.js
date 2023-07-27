@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import "./Checkout.css";
 import LabeledInput from "../Custom/LabeledInput";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeAllInCart } from "../../redux/cart/cartSlice";
 
-function PaymentContainer({ handleOrderSubmit }) {
+function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData }) {
     const [cardHolder, setCardHolder] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
     const [cvv, setCvv] = useState("");
     const [formValid, setFormValid] = useState(false);
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -24,14 +27,13 @@ function PaymentContainer({ handleOrderSubmit }) {
             return;
         }
 
-        const orderData = {
-            cardHolder,
-            cardNumber,
-            expiryDate,
-            cvv,
-        };
-        handleOrderSubmit(orderData);
+        console.log("Submitting order data:", orderData);
 
+        handleOrderSubmit(orderData);
+        
+        dispatch(removeAllInCart());
+
+        console.log("Order submitted!");
         navigate("/orderPlaced");
     };
 
@@ -107,7 +109,11 @@ function PaymentContainer({ handleOrderSubmit }) {
                             />
                             <div className="col-md-12">
                                 <div className="info-group mb-3">
-                                    <button className="btn" type="submit" disabled={!formValid}>
+                                    <button
+                                        className="btn"
+                                        type="submit"
+                                        disabled={!formValid}
+                                    >
                                         Submit Order
                                     </button>
                                 </div>

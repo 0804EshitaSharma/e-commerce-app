@@ -2,7 +2,7 @@ var express = require("express");
 var cors = require("cors");
 const Items = require("./models/itemSchema");
 const Users = require("./models/userSchema");
-const Order = require("./models/orderSchema");
+const Orders = require("./models/orderSchema");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -111,12 +111,21 @@ app.patch("/user/:userId", async function (req, res, next) {
   }
 });
 
-app.post("/orders", async (req, res, next) => {
+app.post("/order", async (req, res, next) => {
   const order = req.body;
+  console.log("Received order data on the server:", order);
   try {
-    const newOrder = await Order.create(order);
+    const newOrder = await Orders.create(order);
+    // const userId = req.body.user; 
+    // const validUserId = mongoose.Types.ObjectId(userId);
+    // const user = await Users.findById(validUserId);
+    // user.orders.push(newOrder._id); 
+    // await user.save();
+    console.log("New order created:", newOrder);
+    // console.log("user's orders:", user.orders);
     res.status(201).json(newOrder);
   } catch (error) {
+    console.error("Error creating order:", error);
     res.status(500).json({ error: error.message });
   }
 });

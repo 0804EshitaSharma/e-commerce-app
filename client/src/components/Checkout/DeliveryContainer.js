@@ -13,8 +13,7 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-
-function DeliveryContainer({ handleOrderSubmit }) {
+function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
@@ -37,6 +36,18 @@ function DeliveryContainer({ handleOrderSubmit }) {
 
     const handleInput = (e) => {
         setValue(e.target.value);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === "firstname") {
+            setFirstName(value);
+        } else if (name === "lastname") {
+            setLastName(value);
+        } else if (name === "phonenumber") {
+            setPhoneNumber(value);
+        }
     };
 
     const handleSelect = (address) => {
@@ -105,31 +116,24 @@ function DeliveryContainer({ handleOrderSubmit }) {
         setSelectedDeliveryOption(e.target.value);
     };
 
-
     const handleNextStepDelivery = (e) => {
         e.preventDefault();
         console.log("selectedDeliveryOption:", selectedDeliveryOption);
         console.log("firstName:", firstName);
         console.log("lastName:", lastName);
         console.log("phoneNumber:", phoneNumber);
-      
-        if (selectedDeliveryOption) {
-          const orderData = {
-            firstname: firstName,
-            lastname: lastName,
-            phoneNumber: phoneNumber,
-            address: addressComponents,
-            deliveryOption: selectedDeliveryOption,
-          };
-          console.log("delivery button orderdata:", orderData);
-      
-          handleOrderSubmit(orderData);
-        } else {
-          console.log("No delivery option selected.");
-        }
-      };
-      
 
+        if (selectedDeliveryOption) {
+            setOrderData({
+                ...orderData,
+                deliveryOption: selectedDeliveryOption,
+            });
+            console.log("delivery button orderdata:", orderData);
+
+        } else {
+            console.log("No delivery option selected.");
+        }
+    };
 
     return (
         <div className="col-md-8">
@@ -150,7 +154,7 @@ function DeliveryContainer({ handleOrderSubmit }) {
                                 placeholder="Enter first name"
                                 required={true}
                                 value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
+                                onChange={handleInputChange}
                             />
                             <LabeledInput
                                 className="col-md-6"
@@ -160,7 +164,7 @@ function DeliveryContainer({ handleOrderSubmit }) {
                                 placeholder="Enter last name"
                                 required={true}
                                 value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={handleInputChange}
                             />
                             <LabeledInput
                                 className="col-md-6"
@@ -170,7 +174,7 @@ function DeliveryContainer({ handleOrderSubmit }) {
                                 placeholder="Enter phone number"
                                 required={true}
                                 value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                onChange={handleInputChange}
                             />
                             <Combobox className="col-md-12" onSelect={handleSelect}>
                                 <label>Address</label>
@@ -279,6 +283,5 @@ function DeliveryContainer({ handleOrderSubmit }) {
         </div>
     );
 }
-
 
 export default DeliveryContainer;
