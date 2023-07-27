@@ -4,14 +4,12 @@ import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import AddToCartButton from "./AddToCartButton";
-import QuantityButton from "./QuantityButton";
 import { useState } from "react";
-import ProductList from "../Dashboard/Products/ProdList";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../redux/wishlistSlice";
-import { initialState } from "../Dashboard/Products/ProdDataList";
 import { useLocation } from "react-router-dom";
 import RelatedItems from "./RelatedItems";
+import Reviews from "./Reviews";
 
 function ProductPage() {
   // TODO: Add prop for product details
@@ -140,6 +138,13 @@ function ProductPage() {
                 <AddToCartButton productDetails={item} quantity={1} />
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="reviews-container">
+          <h3>Reviews</h3>
+          <div className="reviews">
+            <Reviews item={item}/>
           </div>
         </div>
 

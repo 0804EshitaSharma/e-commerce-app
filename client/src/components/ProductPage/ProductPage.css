@@ -180,6 +180,76 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.related-items {
+.related-items, .reviews-container {
     margin-top: 75px;
 }
+
+.no-review-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0, 25px);
+}
+
+.review-cards {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.review-card-wrapper {
+    width: 25%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 0.2px solid black;
+    box-shadow: 0 0 2px black;
+    transition: 0.4s;
+    margin: 20px 0px;
+}
+
+.review-card-wrapper:hover {
+    box-shadow: 0 0 5px black;
+}
+
+.review-card-wrapper > h4 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.review-card-wrapper > hr {
+    height: 1px;
+}
+
+.review-text {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    overflow-wrap: break-all;
+}
+
+.review-text > p {
+    margin: auto;
+    height: 100%;
+    padding: 10px;
+    overflow-wrap: break-word;
+    white-space: initial;
+    overflow: scroll;
+    hyphens: auto;
+    text-align: center;
+}
+
+.review-text > p::-webkit-scrollbar {
+    display: none;
+}
+
+

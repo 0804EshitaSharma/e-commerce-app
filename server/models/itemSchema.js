@@ -16,6 +16,7 @@ const ItemSchema = new Schema({
   },
   reviews: [
     {
+      userId: { type: String },
       name: { type: String },
       stars: { type: Number },
       text: { type: String }
