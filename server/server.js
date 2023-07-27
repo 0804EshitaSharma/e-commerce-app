@@ -3,7 +3,6 @@ var cors = require("cors");
 const ordersRouter = require("./routes/ordersRouter");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
-const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
 var mongoose = require("mongoose");
 dotenv.config();
@@ -31,7 +30,6 @@ app.use("/orders", ordersRouter);
 
 app.post("/order", async (req, res, next) => {
   const order = req.body;
-  console.log("Received order data on the server:", order);
   try {
     const newOrder = await Orders.create(order);
     // const userId = req.body.user;
@@ -43,7 +41,13 @@ app.post("/order", async (req, res, next) => {
     // console.log("user's orders:", user.orders);
     res.status(201).json(newOrder);
   } catch (error) {
-    console.error("Error creating order:", error);
     res.status(500).json({ error: error.message });
   }
 });
+<<<<<<< HEAD
+=======
+
+app.listen(5001, () => {
+  console.log("Express Server Successfully Started");
+});
+>>>>>>> 903a300 (Revert "orders successful in mongodb, cannot make orders array list in users")

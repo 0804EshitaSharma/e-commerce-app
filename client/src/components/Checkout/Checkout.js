@@ -3,7 +3,6 @@ import "./Checkout.css";
 import DeliveryContainer from "./DeliveryContainer";
 import PaymentContainer from "./PaymentContainer";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
 import Item from "../Cart/Item";
 import { sendMailAsync } from "../../redux/user/userSlice.js";
 import { createOrderAsync } from "../../redux/orderSlice";
