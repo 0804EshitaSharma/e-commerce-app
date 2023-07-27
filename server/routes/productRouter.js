@@ -4,38 +4,33 @@ const Items = require("../models/itemSchema");
 
 router.get("/", async (req, res, next) => {
   try {
-    const categoryParams = req.query.category;
-    const priceParams = req.query.price;
-    const ratingParams = req.query.rating;
+
+    let itemData = await Items.find({});
+
+    itemData = filterByCategory(itemData);
+    itemData = filterByPrice(itemData);
+    itemData = filterByRating(itemData);
+    itemData = filterBySearchText(itemData);
+
+    res.status(200).send(itemData);
+  } catch (err) {
+    console.log(err);
+  }
+
+  function filterBySearchText(itemData) {
     const searchParams = req.query.search;
-
-    var itemData = await Items.find({});
-
-    if (categoryParams !== undefined) {
-      var itemData = itemData.filter((item) =>
-        categoryParams.includes(item.category)
-      );
-    }
-
-    if (priceParams !== undefined) {
-      var itemData = itemData.filter((item) => {
-        if (item.price < 25) {
-          return priceParams.includes("Under$25");
-        } else if (item.price >= 25 && item.price < 50) {
-          return priceParams.includes("$25~$50");
-        } else if (item.price >= 50 && item.price < 100) {
-          return priceParams.includes("$50~$100");
-        } else if (item.price >= 100 && item.price < 200) {
-          return priceParams.includes("$100~$200");
-        } else if (item.price > 200) {
-          return priceParams.includes("Above$200");
-        }
-        return false;
+    if (searchParams !== undefined) {
+      itemData = itemData.filter((item) => {
+        return item.name.includes(searchParams);
       });
     }
+    return itemData;
+  }
 
+  function filterByRating(itemData) {
+    const ratingParams = req.query.rating;
     if (ratingParams !== undefined) {
-      var itemData = itemData.filter((item) => {
+      itemData = itemData.filter((item) => {
         if (item.rating < 1) {
           return ratingParams.includes("Below1");
         } else if (item.rating >= 1 && item.rating < 2) {
@@ -50,16 +45,37 @@ router.get("/", async (req, res, next) => {
         return false;
       });
     }
+    return itemData;
+  }
 
-    if (searchParams !== undefined) {
-      var itemData = itemData.filter((item) => {
-        return item.name.includes(searchParams)
-      })
+  function filterByPrice(itemData) {
+    const priceParams = req.query.price;
+    if (priceParams !== undefined) {
+      itemData = itemData.filter((item) => {
+        if (item.price < 25) {
+          return priceParams.includes("Under$25");
+        } else if (item.price >= 25 && item.price < 50) {
+          return priceParams.includes("$25~$50");
+        } else if (item.price >= 50 && item.price < 100) {
+          return priceParams.includes("$50~$100");
+        } else if (item.price >= 100 && item.price < 200) {
+          return priceParams.includes("$100~$200");
+        } else if (item.price > 200) {
+          return priceParams.includes("Above$200");
+        }
+        return false;
+      });
     }
+    return itemData;
+  }
 
-    res.status(200).send(itemData);
-  } catch (err) {
-    console.log(err);
+  function filterByCategory(itemData) {
+    const categoryParams = req.query.category;
+    if (categoryParams !== undefined) {
+      itemData = itemData.filter((item) => categoryParams.includes(item.category)
+      );
+    }
+    return itemData;
   }
 });
 
