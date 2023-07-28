@@ -20,7 +20,12 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB Database Successfully connected"))
+ .then(() => {
+    const PORT = process.env.PORT || 8000;
+    app.listen(PORT, () => {
+      console.log(`App is listening on Port ${PORT}`);
+    });
+  })
   .catch((error) => console.log(error));
 
 app.use("/products", productRouter);
@@ -92,10 +97,10 @@ app.patch("/user/:userId", async function (req, res, next) {
 //   console.log("Received order data on the server:", order);
 //   try {
 //     const newOrder = await Orders.create(order);
-//     const userId = req.body.user; 
+//     const userId = req.body.user;
 //     const validUserId = mongoose.Types.ObjectId(userId);
 //     const user = await Users.findById(validUserId);
-//     user.orders.push(newOrder._id); 
+//     user.orders.push(newOrder._id);
 //     await user.save();
 //     console.log("New order created:", newOrder);
 //     console.log("user's orders:", user.orders);
@@ -104,7 +109,3 @@ app.patch("/user/:userId", async function (req, res, next) {
 //     res.status(500).json({ error: error.message });
 //   }
 // });
-
-app.listen(5001, () => {
-  console.log("Express Server Successfully Started");
-});
