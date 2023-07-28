@@ -35,10 +35,10 @@
 
 .navbar_search_input {
   height: 3rem;
-
   border: none;
   width: 100%;
   outline: none;
+  margin-bottom: 5px;
   border-radius: 0 !important;
 }
 
