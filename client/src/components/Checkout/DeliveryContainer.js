@@ -38,6 +38,18 @@ function DeliveryContainer({ handleOrderSubmit, user }) {
     setValue(e.target.value);
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "firstname") {
+      setFirstName(value);
+    } else if (name === "lastname") {
+      setLastName(value);
+    } else if (name === "phonenumber") {
+      setPhoneNumber(value);
+    }
+  };
+
   const handleSelect = (address) => {
     setValue(address, false);
   };

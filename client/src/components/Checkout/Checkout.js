@@ -12,7 +12,6 @@ import { sendMailAsync } from "../../redux/user/userSlice.js";
 
 import { auth } from "../../firebase/firebaseConfig";
 import { getUserInfoAsync } from "../../redux/user/userSlice.js";
-// import { ObjectId } from "mongoose";
 
 function Checkout() {
   const itemList = useSelector((state) => state.cart.itemsList);
