@@ -1,176 +1,174 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 .image-gallery-thumbnail-image {
-    height: 75px;
+  height: 75px;
 }
 
 .image-gallery-image {
-    height: 500px;
+  height: 500px;
 }
 
 .product-images-wrapper {
-    width: 45%;
+  width: 45%;
 }
 
 .product-page-content {
-    margin: 0 5%;
+  margin: 0 5%;
 }
 
 .product-header {
-    display: flex;
-    justify-content: space-between;
-    margin: 30px 0px 50px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0px 50px;
 }
 
 .product-header-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .product-header-wrapper > svg {
-    margin-left: 30px;
-    color: red;
+  margin-left: 30px;
+  color: red;
 }
 
 .product-header-wrapper > svg:hover {
-    cursor: pointer;
-    fill: red;
+  cursor: pointer;
+  fill: red;
 }
 
 .product-name-seller {
-    display: flex;
-    align-items: center;
-    
+  display: flex;
+  align-items: center;
 }
 
 .product-name-seller > h2 {
-    font-size: 45px;
-    font-weight: bold;
-    margin: 0px;
+  font-size: 45px;
+  font-weight: bold;
+  margin: 0px;
 }
 
 .product-name-seller > h5 {
-    font-size: 20px;
-    display: flex;
-    margin: 0px;
-    align-items: center;
+  font-size: 20px;
+  display: flex;
+  margin: 0px;
+  align-items: center;
 }
 
 .product-details {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .rating-wrapper {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .purchase-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
 }
 
 .desc-text {
-    font-size: 20px;
-    text-align: justify;
+  font-size: 20px;
+  text-align: justify;
 }
 
 .buy-options {
-    margin-bottom: 75px;
+  margin-bottom: 75px;
 }
 
 .buy-options {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    padding: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding: 5%;
 }
 
 .price-quantity {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .price-quantity > h4 {
-    font-size: 40px;
-    font-weight: bold;
-    margin: 20px 0;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 20px 0;
 }
 
 .purchase-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .purchase-button {
-    font-size: 20px;
-    font-weight: bold;
-    width: 45%;
-    padding: 10px 5px;
-    background-color: black;
-    box-shadow: 0 0 5px black;
-    border: 3px solid black;
-    color: white;
-    transition: 0.4s;
-    margin-top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 45%;
+  padding: 10px 5px;
+  background-color: black;
+  box-shadow: 0 0 5px black;
+  border: 3px solid black;
+  color: white;
+  transition: 0.4s;
+  margin-top: 25px;
 }
 
 .purchase-button:hover {
-    background-color: #f3f3f3;
-    border: 3px solid black;
-    color: black;
-    box-shadow: 0 0 15px black;
+  background-color: #f3f3f3;
+  border: 3px solid black;
+  color: black;
+  box-shadow: 0 0 15px black;
 }
 
 .quantity-picker-wrapper {
-    display: flex;
-    width: 45%;
-    justify-content: space-evenly;
-    margin: 20px 0;
+  display: flex;
+  width: 45%;
+  justify-content: space-evenly;
+  margin: 20px 0;
 }
 
 .quantity-picker {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
 }
 
 .quantity-picker-wrapper > h4 {
-    margin: auto;
-    font-size: 20px;
-    font-weight: bold;
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .quantity-picker > * {
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    max-height: 50px;
-    margin: 5px 0;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  max-height: 50px;
+  margin: 5px 0;
 }
 
 .quantity-picker > input {
-    background-color: #f3f3f3;
-    color: black;
-    border-right: none;
-    border-left: none;
-    text-align: center;
-    border-radius: 0px;
+  background-color: #f3f3f3;
+  color: black;
+  border-right: none;
+  border-left: none;
+  text-align: center;
+  border-radius: 0px;
 }
-
 
 /* Code on removing arrows on number input taken from: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
 input::-webkit-outer-spin-button,
@@ -180,5 +178,52 @@ input::-webkit-inner-spin-button {
 }
 
 .related-items {
-    margin-top: 75px;
+  margin-top: 75px;
+}
+
+@media (max-width: 841px) {
+  .purchase-buttons {
+    font-size: 10px !important;
+    min-width: 100%;
+
+    flex-direction: column;
+  }
+  .desc-text {
+    font-size: 14px;
+  }
+  .price-quantity {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .price-quantity > h4 {
+    font-size: 20px;
+  }
+  .product-name-seller {
+    display: flex;
+    align-items: flex-start;
+    justify-items: flex-start;
+  }
+
+  .product-name-seller > h2 {
+    font-size: 20px;
+  }
+
+  .product-details {
+    display: flex;
+    justify-content: space-between;
+  }
+  .image-gallery-thumbnail-image {
+    height: 25%;
+  }
+
+  .image-gallery-image {
+    height: 20%;
+  }
+
+  .purchase-wrapper {
+    height: 10%;
+  }
+  .related-items {
+    margin-top: 5px;
+  }
 }
