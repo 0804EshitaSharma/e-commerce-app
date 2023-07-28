@@ -42,13 +42,13 @@ export default function ContentContainer() {
 
     const getFilterURL = () => {
 
-            let modifiedURL = `/products`
+            let modifiedURL = ``
 
             modifiedURL = getUrlByCategory(modifiedURL);
             modifiedURL = getUrlByPrice(modifiedURL);
             modifiedURL = getUrlByRating(modifiedURL);
             modifiedURL = getUrlBySearch(modifiedURL);
-
+            
             return modifiedURL
     };
 
@@ -105,7 +105,7 @@ export default function ContentContainer() {
       if (modifiedURL.includes('?')) {
         modifiedURL = `${modifiedURL}&${searchParam}`;
       } else {
-        modifiedURL = `/products?${searchParam}`;
+        modifiedURL = `?${searchParam}`;
       }
     }
     return modifiedURL;
@@ -119,7 +119,7 @@ export default function ContentContainer() {
       if (modifiedURL.includes('?')) {
         modifiedURL = `${modifiedURL}&${ratingParams}`;
       } else {
-        modifiedURL = `/products?${ratingParams}`;
+        modifiedURL = `?${ratingParams}`;
       }
     }
     return modifiedURL;
@@ -133,7 +133,7 @@ export default function ContentContainer() {
       if (modifiedURL.includes('?')) {
         modifiedURL = `${modifiedURL}&${priceParams}`;
       } else {
-        modifiedURL = `/products?${priceParams}`;
+        modifiedURL = `?${priceParams}`;
       }
     }
     return modifiedURL;
@@ -144,7 +144,7 @@ export default function ContentContainer() {
     const checkedCategories = categoriesStateList.filter(item => item.checked).map(item => { return item.label; });
     const categoryParams = checkedCategories.map(i => `category=${i}`).join('&');
     if (checkedCategories.length > 0) {
-      modifiedURL = `/products?${categoryParams}`;
+      modifiedURL = `?${categoryParams}`;
     }
     return modifiedURL;
   }

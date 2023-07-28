@@ -8,7 +8,9 @@ export default function RelatedItems({ item }) {
     const [relatedItems, setRelatedItems] = useState([]);
 
     const getRelatedItems = async () => {
-        const relItems = await axios.get(`http://localhost:5001/products/${item.category}`);
+        const relItems = await axios.get(
+          `http://localhost:6001/products/${item.category}`
+        );
         setRelatedItems(relItems.data);
     }
 

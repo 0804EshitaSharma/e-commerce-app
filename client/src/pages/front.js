@@ -11,7 +11,7 @@ const Front = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProdListAsync(`/products`));
+        dispatch(getProdListAsync(``));
     }, []);
 
     return (
