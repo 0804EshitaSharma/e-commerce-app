@@ -7,6 +7,7 @@ import { RoutePaths } from "../../utils/RoutePaths";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
   const [showDropdown, setshowDropdown] = useState(false);
+  const [query, setQuery] = useState("");
   const showMenu = () => {
     setshowDropdown(!showDropdown);
   };
@@ -20,22 +21,28 @@ function Navbar({ name }) {
         <input
           className="navbar_search_input"
           type="text"
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value)
+          }}
           placeholder="Search here...."
         ></input>
-        <svg
-          className="navbar_search_icon"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-          />
-        </svg>
+        <Link to={`/dashboard/${query}`}>
+          <svg
+            className="navbar_search_icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </Link>
       </div>
       <div className="navbar_links">
         <div></div>
