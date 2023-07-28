@@ -2,7 +2,7 @@
   "name": "e-commerce-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5001",
+  "proxy": "http://localhost:6001",
   "dependencies": {
     "@reach/combobox": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.5",
