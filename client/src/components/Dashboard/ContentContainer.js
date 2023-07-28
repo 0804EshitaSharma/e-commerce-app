@@ -1,16 +1,21 @@
 // referenced from: https://www.youtube.com/watch?v=VVhnuOKVHRs&t=6210s
 
-import axios from "axios";
 import "./Dashboard.css";
 import Filters from "./Filters";
 import ProductContainer from "./Products/ProductContainer";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { products, getProdListAsync } from "../../redux/item/itemSlice";
+import { useLocation } from "react-router-dom";
 
 export default function ContentContainer() {
   const list = useSelector(products);
   const dispatch = useDispatch();
+  const searchText = window.location.pathname.split('/')[2]
+
+  // listen to url change
+  let location = useLocation();
+  useEffect(() => {}, [location]);
 
   const [categories, setCategories] = useState([
     { id: 1, checked: false, label: "Home" },
@@ -36,37 +41,13 @@ export default function ContentContainer() {
   ]);
 
     const getFilterURL = () => {
-            const categoriesStateList = categories
-            const checkedCategories = categoriesStateList.filter(item => item.checked).map(item => {return item.label})
-            const categoryParams = checkedCategories.map(i => `category=${i}`).join('&')
-
-            const pricesStateList = prices
-            const checkedPrices = pricesStateList.filter(item => item.checked).map(item => {return item.label})
-            const priceParams = checkedPrices.map(i => `price=${i}`.replace(/\s/g, '')).join('&')
-
-            const ratingsStateList = ratings
-            const checkedRatings = ratingsStateList.filter(item => item.checked).map(item => {return item.label})
-
-            const ratingParams = checkedRatings.map(i => `rating=${i}`.replace(/\s/g, '')).join('&')
 
             let modifiedURL = `/products`
-            if (checkedCategories.length > 0) {
-                modifiedURL = `/products?${categoryParams}`
-            }
-            if (checkedPrices.length > 0) {
-                if (modifiedURL.includes('?')) {
-                    modifiedURL = `${modifiedURL}&${priceParams}`
-                } else {
-                    modifiedURL = `/products?${priceParams}`
-                }
-            }
-            if (checkedRatings.length > 0) {
-                if (modifiedURL.includes('?')) {
-                    modifiedURL = `${modifiedURL}&${ratingParams}`
-                } else {
-                    modifiedURL = `/products?${ratingParams}`
-                }
-            }
+
+            modifiedURL = getUrlByCategory(modifiedURL);
+            modifiedURL = getUrlByPrice(modifiedURL);
+            modifiedURL = getUrlByRating(modifiedURL);
+            modifiedURL = getUrlBySearch(modifiedURL);
 
             return modifiedURL
     };
@@ -98,7 +79,7 @@ export default function ContentContainer() {
     useEffect(() => {
         const filterURL = getFilterURL()
         dispatch(getProdListAsync(filterURL));
-    }, [categories, prices, ratings]);
+    }, [categories, prices, ratings, location]);
 
     return (
         <div className="horizontal-container">
@@ -112,7 +93,59 @@ export default function ContentContainer() {
                     changeRating={handleRatingChecked}
                 />
             </div>
-            <ProductContainer list={list}/>
+            <div style={{width: '85%', left: '15%', position: 'relative'}}>
+              <ProductContainer list={list}/>
+            </div>
         </div>   
     )
+
+  function getUrlBySearch(modifiedURL) {
+    if (searchText !== '') {
+      const searchParam = `search=${searchText}`;
+      if (modifiedURL.includes('?')) {
+        modifiedURL = `${modifiedURL}&${searchParam}`;
+      } else {
+        modifiedURL = `/products?${searchParam}`;
+      }
+    }
+    return modifiedURL;
+  }
+
+  function getUrlByRating(modifiedURL) {
+    const ratingsStateList = ratings;
+    const checkedRatings = ratingsStateList.filter(item => item.checked).map(item => { return item.label; });
+    const ratingParams = checkedRatings.map(i => `rating=${i}`.replace(/\s/g, '')).join('&');
+    if (checkedRatings.length > 0) {
+      if (modifiedURL.includes('?')) {
+        modifiedURL = `${modifiedURL}&${ratingParams}`;
+      } else {
+        modifiedURL = `/products?${ratingParams}`;
+      }
+    }
+    return modifiedURL;
+  }
+
+  function getUrlByPrice(modifiedURL) {
+    const pricesStateList = prices;
+    const checkedPrices = pricesStateList.filter(item => item.checked).map(item => { return item.label; });
+    const priceParams = checkedPrices.map(i => `price=${i}`.replace(/\s/g, '')).join('&');
+    if (checkedPrices.length > 0) {
+      if (modifiedURL.includes('?')) {
+        modifiedURL = `${modifiedURL}&${priceParams}`;
+      } else {
+        modifiedURL = `/products?${priceParams}`;
+      }
+    }
+    return modifiedURL;
+  }
+
+  function getUrlByCategory(modifiedURL) {
+    const categoriesStateList = categories;
+    const checkedCategories = categoriesStateList.filter(item => item.checked).map(item => { return item.label; });
+    const categoryParams = checkedCategories.map(i => `category=${i}`).join('&');
+    if (checkedCategories.length > 0) {
+      modifiedURL = `/products?${categoryParams}`;
+    }
+    return modifiedURL;
+  }
 }
