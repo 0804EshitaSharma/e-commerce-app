@@ -1,4 +1,4 @@
-const baseURL = "https://e-commerce-backend-g4kl.onrender.com";
+const baseURL = "http://localhost:5001";
 export const APIPaths = {
   // TODO: combine the two orders into one
   Order: `${baseURL}/order`,
