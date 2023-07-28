@@ -13,7 +13,7 @@ import { auth } from "../../firebase/firebaseConfig";
 import {
     getUserInfoAsync,
 } from "../../redux/user/userSlice.js";
-// import { ObjectId } from "mongoose"; 
+
 
 function Checkout() {
     const itemList = useSelector((state) => state.cart.itemsList);
@@ -36,28 +36,37 @@ function Checkout() {
 
     const handleOrderSubmit = (orderData) => {
         dispatch(createOrderAsync(orderData));
-        // dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
+        dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
     };
 
     return (
-        <div>
-            <h2> Checkout </h2>
-            <div className="container-lg">
-                <div className="row">
-                    {/* Display items */}
-                    <div className="item-list-container">
-                        {itemList.map((item, index) => (
-                            <Item key={index} item={item} />
-                        ))}
-                    </div>
-                    {/* left */}
-                    <DeliveryContainer handleOrderSubmit={handleOrderSubmit} orderData={orderData} setOrderData={setOrderData} />
-
-                    {/* right */}
-                    <PaymentContainer handleOrderSubmit={handleOrderSubmit} orderData={orderData} setOrderData={setOrderData}  />
-                </div>
+      <div>
+        <h2> Checkout </h2>
+        <div className="container-lg">
+          <div className="row">
+            {/* Display items */}
+            <div className="item-list-container">
+              {itemList.map((item, index) => (
+                <Item key={index} item={item} />
+              ))}
             </div>
+            {/* left */}
+            <DeliveryContainer
+              handleOrderSubmit={handleOrderSubmit}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              user={user}
+            />
+
+            {/* right */}
+            <PaymentContainer
+              handleOrderSubmit={handleOrderSubmit}
+              orderData={orderData}
+              setOrderData={setOrderData}
+            />
+          </div>
         </div>
+      </div>
     );
 }
 
