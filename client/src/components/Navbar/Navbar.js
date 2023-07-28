@@ -27,7 +27,7 @@ function Navbar({ name }) {
           }}
           placeholder="Search here...."
         ></input>
-        <Link to={`/dashboard/${query}`}>
+        <Link to={`/dashboard/${query}`} style={{ lineHeight: 0 }}>
           <svg
             className="navbar_search_icon"
             xmlns="http://www.w3.org/2000/svg"
