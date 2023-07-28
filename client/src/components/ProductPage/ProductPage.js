@@ -16,7 +16,7 @@ import RelatedItems from "./RelatedItems";
 function ProductPage() {
   // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
-  const shareUrl = "https://www.google.co.in/";
+  const shareUrl = window.location.pathname;
   // https://stackoverflow.com/a/71247418
   const { state } = useLocation();
   const item = state.item || {};
