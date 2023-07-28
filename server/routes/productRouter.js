@@ -19,11 +19,8 @@ router.get("/", async (req, res, next) => {
   function filterBySearchText(itemData) {
     let searchParams = req.query.search;
     if (searchParams !== undefined) {
-      if (!Array.isArray(searchParams)) {
-        searchParams = [searchParams];
-      }
       itemData = itemData.filter((item) => {
-        return item.name.includes(searchParams);
+        return item.name.toUpperCase().includes(searchParams.toUpperCase());
       });
     }
     return itemData;
