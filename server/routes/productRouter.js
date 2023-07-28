@@ -4,52 +4,19 @@ const Items = require("../models/itemSchema");
 
 router.get("/", async (req, res, next) => {
   try {
+    const categoryParams = req.query.category;
+    const priceParams = req.query.price;
+    const ratingParams = req.query.rating;
+    const searchParams = req.query.search;
 
     let itemData = await Items.find({});
 
-    itemData = filterByCategory(itemData);
-    itemData = filterByPrice(itemData);
-    itemData = filterByRating(itemData);
-    itemData = filterBySearchText(itemData);
-
-    res.status(200).send(itemData);
-  } catch (err) {
-    console.log(err);
-  }
-
-  function filterBySearchText(itemData) {
-    const searchParams = req.query.search;
-    if (searchParams !== undefined) {
-      itemData = itemData.filter((item) => {
-        return item.name.includes(searchParams);
-      });
+    if (categoryParams !== undefined) {
+      itemData = itemData.filter((item) =>
+        categoryParams.includes(item.category)
+      );
     }
-    return itemData;
-  }
 
-  function filterByRating(itemData) {
-    const ratingParams = req.query.rating;
-    if (ratingParams !== undefined) {
-      itemData = itemData.filter((item) => {
-        if (item.rating < 1) {
-          return ratingParams.includes("Below1");
-        } else if (item.rating >= 1 && item.rating < 2) {
-          return ratingParams.includes("1~2");
-        } else if (item.rating >= 2 && item.rating < 3) {
-          return ratingParams.includes("2~3");
-        } else if (item.rating >= 3 && item.rating < 4) {
-          return ratingParams.includes("3~4");
-        } else if (item.rating > 4) {
-          return ratingParams.includes("Above4");
-        }
-        return false;
-      });
-    }
-    return itemData;
-  }
-
-  function filterByPrice(itemData) {
-    const priceParams = req.query.price;
     if (priceParams !== undefined) {
       itemData = itemData.filter((item) => {
         if (item.price < 25) {
@@ -66,16 +33,33 @@ router.get("/", async (req, res, next) => {
         return false;
       });
     }
-    return itemData;
-  }
 
-  function filterByCategory(itemData) {
-    const categoryParams = req.query.category;
-    if (categoryParams !== undefined) {
-      itemData = itemData.filter((item) => categoryParams.includes(item.category)
-      );
+    if (ratingParams !== undefined) {
+      itemData = itemData.filter((item) => {
+        if (item.rating < 1) {
+          return ratingParams.includes("Below1");
+        } else if (item.rating >= 1 && item.rating < 2) {
+          return ratingParams.includes("1~2");
+        } else if (item.rating >= 2 && item.rating < 3) {
+          return ratingParams.includes("2~3");
+        } else if (item.rating >= 3 && item.rating < 4) {
+          return ratingParams.includes("3~4");
+        } else if (item.rating > 4) {
+          return ratingParams.includes("Above4");
+        }
+        return false;
+      });
     }
-    return itemData;
+
+    if (searchParams !== undefined) {
+      itemData = itemData.filter((item) => {
+        return item.name.includes(searchParams)
+      })
+    }
+
+    res.status(200).send(itemData);
+  } catch (err) {
+    console.log(err);
   }
 });
 
