@@ -46,7 +46,3 @@ app.post("/order", async (req, res, next) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-app.listen(5001, () => {
-  console.log("Express Server Successfully Started");
-});
