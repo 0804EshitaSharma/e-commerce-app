@@ -3,6 +3,7 @@ var cors = require("cors");
 const ordersRouter = require("./routes/ordersRouter");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
+const ordersRouter = require("./routes/ordersRouter");
 const dotenv = require("dotenv");
 var mongoose = require("mongoose");
 dotenv.config();
@@ -26,7 +27,7 @@ mongoose
 
 app.use("/products", productRouter);
 app.use("/user", userRouter);
-app.use("/orders", ordersRouter);
+app.use("/order", ordersRouter);
 
 app.post("/order", async (req, res, next) => {
   const order = req.body;

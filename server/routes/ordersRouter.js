@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Orders = require("../models/ordersSchema");
 const Item = require("../models/itemSchema");
+const Users = require("../models/userSchema");
 
 router.get("/:userID", async function (req, res) {
   try {
@@ -24,6 +25,29 @@ router.get("/:userID", async function (req, res) {
     return res.send(modifiedOrders).status(200);
   } catch (err) {
     console.log(err);
+  }
+});
+
+router.post("/", async (req, res, next) => {
+  const order = req.body;
+  console.log("Received order data on the server:", order);
+  try {
+    const newOrder = await Orders.create(order);
+    console.log("New order created:", newOrder);
+
+    const userId = req.body.user;
+    console.log("user id", userId);
+
+    // const validUserId = mongoose.Types.ObjectId(userId);
+    const user = await Users.findById(userId);
+    user.orders.push(newOrder._id);
+    await user.save();
+
+    console.log("user's orders:", user.orders);
+
+    res.status(201).json(newOrder);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 

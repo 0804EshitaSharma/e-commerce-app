@@ -7,24 +7,23 @@ import { useState, useEffect } from "react";
 import Item from "../Cart/Item";
 import { sendMailAsync } from "../../redux/user/userSlice.js";
 import { createOrderAsync } from "../../redux/orderSlice";
+// import { createOrderAsync } from "../../redux/misc/orderSlice";
+import { sendMailAsync } from "../../redux/user/userSlice.js";
 
 import { auth } from "../../firebase/firebaseConfig";
-import {
-    getUserInfoAsync,
-} from "../../redux/user/userSlice.js";
-// import { ObjectId } from "mongoose"; 
-
+import { getUserInfoAsync } from "../../redux/user/userSlice.js";
+// import { ObjectId } from "mongoose";
 
 function Checkout() {
   const itemList = useSelector((state) => state.cart.itemsList);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
-      const [orderData, setOrderData] = useState({
-        items: itemList,
-        deliveryOption: "",
-        // user: new ObjectId(currentUser.uid),
-    });
+  const [orderData, setOrderData] = useState({
+    items: itemList,
+    deliveryOption: "",
+    user: user._id,
+  });
   const handleOrderSubmit = (orderData) => {
     dispatch(createOrderAsync(orderData));
     dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
@@ -47,10 +46,12 @@ function Checkout() {
             user={user}
           />
 
-                    {/* right */}
-                    <PaymentContainer handleOrderSubmit={handleOrderSubmit} />
-                    </div>
-            </div>
+          {/* right */}
+          <PaymentContainer
+            handleOrderSubmit={handleOrderSubmit}
+            orderData={orderData}
+            setOrderData={setOrderData}
+          />
         </div>
       </div>
     </div>
