@@ -17,7 +17,12 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB Database Successfully connected"))
+  .then(() => {
+    const PORT = process.env.PORT || 8000;
+    app.listen(PORT, () => {
+      console.log(`App is listening on Port ${PORT}`);
+    });
+  })
   .catch((error) => console.log(error));
 
 app.use("/products", productRouter);
