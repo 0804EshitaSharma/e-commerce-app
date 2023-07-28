@@ -12,7 +12,7 @@ export const addNewItemAsync = createAsyncThunk(
 export const getProdListAsync = createAsyncThunk(
   "items/getProdListAsync",
   async (filterURL) => {
-    const response = await axios.get(filterURL);
+    const response = await axios.get(`${APIPaths.Product}${filterURL}`);
     return response.data;
   }
 );

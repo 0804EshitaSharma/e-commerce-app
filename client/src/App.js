@@ -19,6 +19,7 @@ import EditProduct from "./components/Admin/EditProduct";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
 import OrderHistory from "./components/OrderHistory/OrderHistory";
 import { RoutePaths } from "./utils/RoutePaths";
+import Front from "./pages/front";
 
 function App() {
   const userFromStore = useSelector((state) => state.user.user);
@@ -47,7 +48,8 @@ function App() {
           <Route path={RoutePaths.Login} element={<Login />}></Route>
           <Route path={RoutePaths.Signup} element={<Signup />}></Route>
           <Route path={RoutePaths.Dashboard} element={<Dashboard />}></Route>
-          <Route path={RoutePaths.Home} element={<Dashboard />}></Route>
+          <Route path={RoutePaths.Front} element={<Front />}></Route>
+          <Route path={RoutePaths.Home} element={<Front />}></Route>
           <Route
             path={RoutePaths.ResetPassword}
             element={<PasswordReset />}
