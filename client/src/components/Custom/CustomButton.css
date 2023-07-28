@@ -10,3 +10,12 @@
     font-weight: 600;
     border-radius: 0.5rem;
 }
+@media (max-width: 931px) {
+    .custom_button {
+        padding: 0.4rem;
+        font-size: 10px;
+        width: 25%;
+        border-radius: 1px;
+        min-width: 100%;
+    }
+}
