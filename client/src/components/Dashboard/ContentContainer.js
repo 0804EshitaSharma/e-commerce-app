@@ -15,7 +15,6 @@ export default function ContentContainer() {
 
   // listen to url change
   let location = useLocation();
-  useEffect(() => {}, [location]);
 
   const [categories, setCategories] = useState([
     { id: 1, checked: false, label: "Home" },
@@ -48,7 +47,7 @@ export default function ContentContainer() {
             modifiedURL = getUrlByPrice(modifiedURL);
             modifiedURL = getUrlByRating(modifiedURL);
             modifiedURL = getUrlBySearch(modifiedURL);
-            
+
             return modifiedURL
     };
 

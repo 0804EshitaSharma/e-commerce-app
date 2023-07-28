@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomDropdown from "../Custom/CustomDropdown";
 import { RoutePaths } from "../../utils/RoutePaths";
@@ -18,6 +18,13 @@ function Navbar({ name }) {
       navigate(`/dashboard/${query}`);
     }
   };
+  let location = useLocation().pathname.split('/')[2];
+  useEffect(() => {
+    if (location === undefined) {
+      location = ''
+    }
+    setQuery(location)
+  }, [location]);
   return (
     <div className="navbar">
       <Link to={RoutePaths.Home}>
