@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { APIPaths } from "../utils/APIPaths";
 
 export const createOrderAsync = createAsyncThunk(
   "order/createOrderAsync",
   async (orderData) => {
     console.log("Sending order data to server:", orderData);
-    const response = await axios.post("/order", orderData);
+    const response = await axios.post(APIPaths.Order, orderData);
     console.log("Server response:", response.data);
     return response.data;
   }
