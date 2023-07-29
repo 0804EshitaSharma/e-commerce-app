@@ -5,19 +5,15 @@ const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
 const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
-const connectionString =
-  "mongodb+srv://Elsie:uyIo6FPrdKKjA9Hz@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
-//"mongodb+srv://<username>:<password>@cluster3.o7ort2o.mongodb.net/?retryWrites=true&w=majority";
+var mongoose = require("mongoose");
 dotenv.config();
 
 const app = express();
-var mongoose = require("mongoose");
+app.use(cors());
 app.use(express.json());
 
-app.use(cors());
-
 mongoose
-  .connect(connectionString, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

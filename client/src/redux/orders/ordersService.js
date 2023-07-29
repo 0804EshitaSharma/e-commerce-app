@@ -3,7 +3,8 @@ import axios from "axios";
 
 const getOrders = async (userID) => {
   const response = await axios.get(`${APIPaths.Orders}/${userID}`);
-  return await response.data;
+  const fulfilledResponse = await response.data;
+  return fulfilledResponse;
 };
 const returnOrder = async (orderID) => {
   const response = await axios.delete(`${APIPaths.Orders}/${orderID}`);

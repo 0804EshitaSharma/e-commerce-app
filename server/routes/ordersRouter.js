@@ -9,12 +9,13 @@ router.get("/:userID", async function (req, res) {
     const orders = await Orders.find({ user: userID });
     let modifiedOrders = [];
     for (const order of orders) {
-      const itemsOrdered = await Item.find({
-        _id: { $in: order.items },
-      });
+      let itemsOrdered = [];
+      for (const item of order.items) {
+        itemsOrdered.push(item.productDetails);
+      }
       let modOrder = {
         _id: order._id,
-        date: order.date,
+        createdAt: order.createdAt,
         user: order.user,
         items: itemsOrdered,
       };
