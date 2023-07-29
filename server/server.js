@@ -3,22 +3,23 @@ var cors = require("cors");
 const ordersRouter = require("./routes/ordersRouter");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
-const ordersRouter = require("./routes/ordersRouter");
 const dotenv = require("dotenv");
 var mongoose = require("mongoose");
 dotenv.config();
+const connectionString =
+  "mongodb+srv://Elsie:IE3BaeHwNzWeZP7u@e-commerce-app.qqpcp4c.mongodb.net/e-commerce-app?retryWrites=true&w=majority";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    const PORT = process.env.PORT || 8000;
+    const PORT = 6001;
     app.listen(PORT, () => {
       console.log(`App is listening on Port ${PORT}`);
     });
@@ -27,14 +28,4 @@ mongoose
 
 app.use("/products", productRouter);
 app.use("/user", userRouter);
-app.use("/order", ordersRouter);
-
-app.post("/orders", async (req, res, next) => {
-  const order = req.body;
-  try {
-    const newOrder = await Order.create(order);
-    res.status(201).json(newOrder);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+app.use("/orders", ordersRouter);

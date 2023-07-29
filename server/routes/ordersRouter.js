@@ -7,7 +7,11 @@ const Users = require("../models/userSchema");
 router.get("/:userID", async function (req, res) {
   try {
     var userID = req.params.userID;
-    const orders = await Orders.find({ user: userID });
+    const ordersList = await Users.findOne(
+      { _id: userID },
+      { orders: 1, _id: 0 }
+    );
+    const orders = await Orders.find({ _id: { $in: ordersList.orders } });
     let modifiedOrders = [];
     for (const order of orders) {
       let itemsOrdered = [];
@@ -30,15 +34,11 @@ router.get("/:userID", async function (req, res) {
 
 router.post("/", async (req, res, next) => {
   const order = req.body;
-  console.log("Received order data on the server:", order);
   try {
     const newOrder = await Orders.create(order);
-    console.log("New order created:", newOrder);
 
     const userId = req.body.user;
-    console.log("user id", userId);
 
-    // const validUserId = mongoose.Types.ObjectId(userId);
     const user = await Users.findById(userId);
     user.orders.push(newOrder._id);
     await user.save();

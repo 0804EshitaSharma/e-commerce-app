@@ -6,21 +6,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Item from "../Cart/Item";
 import { sendMailAsync } from "../../redux/user/userSlice.js";
-import { createOrderAsync } from "../../redux/orderSlice";
-// import { createOrderAsync } from "../../redux/misc/orderSlice";
-import { sendMailAsync } from "../../redux/user/userSlice.js";
-
+import { createOrder } from "../../redux/orders/ordersSlice";
 import { auth } from "../../firebase/firebaseConfig";
 import { getUserInfoAsync } from "../../redux/user/userSlice.js";
+import { createOrderAsync } from "../../redux/orders/orderThunks";
 
 function Checkout() {
   const itemList = useSelector((state) => state.cart.itemsList);
   const dispatch = useDispatch();
+  // const currentUser = auth.currentUser;
+
+  // useEffect(() => {
+  //     if (currentUser != null) {
+  //         dispatch(getUserInfoAsync(currentUser.uid));
+  //     }
+  // }, [dispatch]);
+
   const user = useSelector((state) => state.user.user);
 
   const [orderData, setOrderData] = useState({
     items: itemList,
-    deliveryOption: "",
+    deliveryOption: "placeholder",
     user: user._id,
   });
   const handleOrderSubmit = (orderData) => {
@@ -42,6 +48,8 @@ function Checkout() {
           {/* left */}
           <DeliveryContainer
             handleOrderSubmit={handleOrderSubmit}
+            orderData={orderData}
+            setOrderData={setOrderData}
             user={user}
           />
 

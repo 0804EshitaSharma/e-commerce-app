@@ -13,7 +13,12 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-function DeliveryContainer({ handleOrderSubmit, user }) {
+function DeliveryContainer({
+  handleOrderSubmit,
+  orderData,
+  setOrderData,
+  user,
+}) {
   const [shippingSelected, setshippingSelected] = useState(true);
   const [deliverySelected, setdeliverySelected] = useState(false);
   const [addressComponents, setAddressComponents] = useState({
@@ -124,16 +129,11 @@ function DeliveryContainer({ handleOrderSubmit, user }) {
     console.log("phoneNumber:", phoneNumber);
 
     if (selectedDeliveryOption) {
-      const orderData = {
-        firstname: firstName,
-        lastname: lastName,
-        phoneNumber: phoneNumber,
-        address: addressComponents,
+      setOrderData({
+        ...orderData,
         deliveryOption: selectedDeliveryOption,
-      };
+      });
       console.log("delivery button orderdata:", orderData);
-
-      handleOrderSubmit(orderData);
     } else {
       console.log("No delivery option selected.");
     }

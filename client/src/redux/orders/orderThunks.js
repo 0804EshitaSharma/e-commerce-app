@@ -9,6 +9,15 @@ export const getOrdersAsync = createAsyncThunk(
     return results;
   }
 );
+
+export const createOrderAsync = createAsyncThunk(
+  actions.CREATE_ORDERS,
+  async (orderData) => {
+    let results = await OrderService.createOrder(orderData);
+    return results;
+  }
+);
+
 export const returnOrderAsync = createAsyncThunk(
   actions.RETURN_ORDER,
   async (orderID) => {

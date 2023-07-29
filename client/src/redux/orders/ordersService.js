@@ -6,10 +6,16 @@ const getOrders = async (userID) => {
   const fulfilledResponse = await response.data;
   return fulfilledResponse;
 };
+const createOrder = async (orderData) => {
+  console.log("Sending order data to server:", orderData);
+  const response = await axios.post(APIPaths.Orders, orderData);
+  console.log("Server response:", response.data);
+  return response.data;
+};
 const returnOrder = async (orderID) => {
   const response = await axios.delete(`${APIPaths.Orders}/${orderID}`);
   return await response.data;
 };
 
 // eslint-disable-next-line
-export default { getOrders, returnOrder };
+export default { getOrders, createOrder, returnOrder };
