@@ -5,6 +5,7 @@ const Users = require("./models/userSchema");
 // const Orders = require("./models/orderSchema");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
+const Order = require("./models/orderSchema");
 const ordersRouter = require("./routes/ordersRouter");
 const dotenv = require("dotenv");
 dotenv.config();

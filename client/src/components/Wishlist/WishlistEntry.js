@@ -4,6 +4,8 @@ import { removeItem } from "../../redux/wishlistSlice";
 import "./Wishlist.css";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../utils/RoutePaths";
+import { addProductToCart } from "../../redux/cart/cartSlice";
+import AddToCartButton from "../ProductPage/AddToCartButton";
 
 export default function WishlistEntry({ item }) {
   const dispatch = useDispatch();
@@ -31,8 +33,7 @@ export default function WishlistEntry({ item }) {
             <h4>Price : ${item.price}</h4>
           </div>
           <div className="wishlist-entry-buttons-wrapper">
-            <button className="wishlist-button">Add to Cart</button>
-            <button className="wishlist-button">Buy Now</button>
+            <AddToCartButton id="add-cart" productDetails={item} quantity={1} />
             <button className="wishlist-button" onClick={remove}>
               Remove
             </button>
