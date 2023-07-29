@@ -1,5 +1,5 @@
 # About Our E-Commerce App
-The following project will be made with the MERN stack and features are subject to change depending on time constraints.
+Our E-Commerce app aims to provide smooth online shopping experience for all kinds of users. Our design enables users to explore products, and to add items to their wishlist or shopping cart for checkout. Admins are also able to manage their products by efficiently adding, deleting, or updating items.
 
 ## Project Group Information
 

@@ -99,7 +99,7 @@ function Form({
   const sendResetPasswordEmail = (event) => {
     setIsLoading(true);
     sendPasswordResetEmail(auth, event.username, {
-      url: "http://localhost:3000/login",
+      url: "https://e-commerce-frontend-1ddb.onrender.com/login",
     })
       .then(() => {
         setIsLoading(false);
