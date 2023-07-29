@@ -153,4 +153,37 @@ router.delete("/:itemId", async function (req, res, next) {
   }
 });
 
+// mongodb aggregate: https://www.mongodb.com/docs/manual/reference/operator/aggregation/set/#std-label-set-add-element-to-array
+// average rating: https://www.mongodb.com/docs/manual/reference/operator/aggregation/avg/
+router.patch("/review/:itemId", async (req, res, next) => {
+  try {
+    const itemId = req.params.itemId;
+    const reviewObject = req.body;
+    const updatedItem = await Items.findOneAndUpdate(
+      { _id: itemId },
+      [
+        {
+          $set: {
+            reviews: { $concatArrays: ["$reviews", [reviewObject]] }
+          }
+        },
+        {
+          $set: {
+            rating: { $avg: "$reviews.stars" },
+          }
+        },
+        {
+          $set: {
+            rating: { $round: ["$rating", 1] }
+          }
+        }
+      ],
+      { new: true }
+    );
+    res.status(200).send(updatedItem);
+  } catch (e) {
+    res.status(400).send({ err : e.message });
+  }
+});
+
 module.exports = router;

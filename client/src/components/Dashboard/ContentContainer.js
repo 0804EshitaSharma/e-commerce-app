@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 export default function ContentContainer() {
   const list = useSelector(products);
   const dispatch = useDispatch();
-  const searchText = window.location.pathname.split('/')[2]
+  const searchText = window.location.hash.split('/')[2]
 
   // listen to url change
   let location = useLocation();
@@ -40,15 +40,14 @@ export default function ContentContainer() {
   ]);
 
     const getFilterURL = () => {
+      let modifiedURL = ``
 
-            let modifiedURL = ``
+      modifiedURL = getUrlByCategory(modifiedURL);
+      modifiedURL = getUrlByPrice(modifiedURL);
+      modifiedURL = getUrlByRating(modifiedURL);
+      modifiedURL = getUrlBySearch(modifiedURL);
 
-            modifiedURL = getUrlByCategory(modifiedURL);
-            modifiedURL = getUrlByPrice(modifiedURL);
-            modifiedURL = getUrlByRating(modifiedURL);
-            modifiedURL = getUrlBySearch(modifiedURL);
-
-            return modifiedURL
+      return modifiedURL
     };
 
     const handleCategoryChecked = (id) => {

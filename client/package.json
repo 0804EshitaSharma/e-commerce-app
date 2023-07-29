@@ -2,7 +2,7 @@
   "name": "e-commerce-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:6001",
+  "proxy": "https://e-commerce-backend-g4kl.onrender.com",
   "dependencies": {
     "@reach/combobox": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.5",
@@ -19,6 +19,7 @@
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
     "react-image-gallery": "^1.2.11",
+    "react-multi-carousel": "^2.8.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",

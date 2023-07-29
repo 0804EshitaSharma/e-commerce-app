@@ -3,23 +3,23 @@ var cors = require("cors");
 const ordersRouter = require("./routes/ordersRouter");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
+const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
-var mongoose = require("mongoose");
 dotenv.config();
-const connectionString =
-  "mongodb+srv://Elsie:IE3BaeHwNzWeZP7u@e-commerce-app.qqpcp4c.mongodb.net/e-commerce-app?retryWrites=true&w=majority";
 
 const app = express();
-app.use(cors());
+var mongoose = require("mongoose");
 app.use(express.json());
 
+app.use(cors());
+
 mongoose
-  .connect(connectionString, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    const PORT = 6001;
+    const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
       console.log(`App is listening on Port ${PORT}`);
     });

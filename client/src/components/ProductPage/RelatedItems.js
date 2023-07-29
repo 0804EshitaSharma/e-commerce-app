@@ -9,7 +9,7 @@ export default function RelatedItems({ item }) {
 
   const getRelatedItems = async () => {
     const relItems = await axios.get(
-      `http://localhost:6001/products/${item.category}`
+      `https://e-commerce-backend-g4kl.onrender.com/products/${item.category}`
     );
     setRelatedItems(relItems.data);
   };

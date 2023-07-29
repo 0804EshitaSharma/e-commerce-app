@@ -14,21 +14,12 @@ import { createOrderAsync } from "../../redux/orders/orderThunks";
 function Checkout() {
   const itemList = useSelector((state) => state.cart.itemsList);
   const dispatch = useDispatch();
-  // const currentUser = auth.currentUser;
-
-  // useEffect(() => {
-  //     if (currentUser != null) {
-  //         dispatch(getUserInfoAsync(currentUser.uid));
-  //     }
-  // }, [dispatch]);
-
   const user = useSelector((state) => state.user.user);
-
-  const [orderData, setOrderData] = useState({
-    items: itemList,
-    deliveryOption: "placeholder",
-    user: user._id,
-  });
+   const [orderData, setOrderData] = useState({
+      items: itemList,
+      deliveryOption: "placeholder",
+      user: user._id,
+    });
   const handleOrderSubmit = (orderData) => {
     dispatch(createOrderAsync(orderData));
     dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
@@ -48,21 +39,21 @@ function Checkout() {
           {/* left */}
           <DeliveryContainer
             handleOrderSubmit={handleOrderSubmit}
-            orderData={orderData}
-            setOrderData={setOrderData}
+             orderData={orderData}
+             setOrderData={setOrderData}
             user={user}
           />
 
-          {/* right */}
-          <PaymentContainer
-            handleOrderSubmit={handleOrderSubmit}
-            orderData={orderData}
-            setOrderData={setOrderData}
-          />
+            {/* right */}
+            <PaymentContainer
+              handleOrderSubmit={handleOrderSubmit}
+              orderData={orderData}
+              setOrderData={setOrderData}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default Checkout;
