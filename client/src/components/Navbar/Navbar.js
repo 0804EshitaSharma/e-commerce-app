@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomDropdown from "../Custom/CustomDropdown";
 import { RoutePaths } from "../../utils/RoutePaths";
@@ -12,6 +12,19 @@ function Navbar({ name }) {
     setshowDropdown(!showDropdown);
   };
   const numItemsInCart = useSelector((state) => state.cart.itemsList).length;
+  const navigate = useNavigate();
+  const keyPressHandler = (e) => {
+    if (e.which === 13) {
+      navigate(`/dashboard/${query}`);
+    }
+  };
+  let location = useLocation().pathname.split('/')[2];
+  useEffect(() => {
+    if (location === undefined) {
+      location = ''
+    }
+    setQuery(location)
+  }, [location]);
   return (
     <div className="navbar">
       <Link to={RoutePaths.Home}>
@@ -25,9 +38,10 @@ function Navbar({ name }) {
           onChange={(event) => {
             setQuery(event.target.value)
           }}
+          onKeyDown={keyPressHandler}
           placeholder="Search here...."
         ></input>
-        <Link to={`/dashboard/${query}`}>
+        <Link to={`/dashboard/${query}`} style={{ lineHeight: 0 }}>
           <svg
             className="navbar_search_icon"
             xmlns="http://www.w3.org/2000/svg"
