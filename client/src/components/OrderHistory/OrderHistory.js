@@ -4,6 +4,9 @@ import { getOrdersAsync } from "../../redux/orders/orderThunks";
 import { auth } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
 import Order from "./Order";
+import { Link } from "react-router-dom";
+import { RoutePaths } from "../../utils/RoutePaths.js";
+
 function OrderHistory() {
   const list = useSelector((state) => state.orders.list);
   const dispatch = useDispatch();
@@ -40,9 +43,20 @@ function OrderHistory() {
         </div> */}
       </div>
       <hr className="orderhistory-hr" />
-      {list.map((order, index) => {
-        return <Order key={index} order={order} />;
-      })}
+      {list.length !== 0 ? (
+        list.map((order) => {
+          return <Order key={order._id} order={order} />;
+        })
+      ) : (
+        <div>
+          <h3>No orders made yet</h3>
+          <Link to={RoutePaths.Home}>
+            <button className="wishlist-button" id="browse">
+              Browse Products
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

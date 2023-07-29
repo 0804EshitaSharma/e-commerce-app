@@ -5,11 +5,11 @@ import LabeledInput from "../Custom/LabeledInput";
 import DropdownSelection from "../Custom/DropdownSelection";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
