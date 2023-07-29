@@ -204,14 +204,13 @@ input::-webkit-inner-spin-button {
 }
 
 .review-card-wrapper {
-    width: 25%;
-    min-width: 200px;
+    width: 90%;
+    min-width: 220px;
     display: flex;
     flex-direction: column;
     border: 0.2px solid black;
     box-shadow: 0 0 2px black;
     transition: 0.4s;
-    margin: 20px 0px;
 }
 
 .review-card-wrapper:hover {
@@ -250,6 +249,97 @@ input::-webkit-inner-spin-button {
 
 .review-text > p::-webkit-scrollbar {
     display: none;
+}
+
+
+.react-multi-carousel-item {
+    display: flex;
+    justify-content: center;
+}
+
+.add-review-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px;
+}
+
+.add-review-header > h5 {
+    text-align: left;
+}
+
+.add-review-form {
+    display: flex;
+    width: 100%;
+    gap: 2.5%;
+    margin: 20px 0;
+    justify-content: space-between;
+}
+
+.review-inputs {
+    display: flex;
+    width: 85%;
+    align-items: center;
+}
+
+#rating-selector {
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 5px;
+    background-color: black;
+    box-shadow: 0 0 5px black;
+    border: 3px solid black;
+    color: white;
+    transition: 0.4s;
+    vertical-align: bottom;
+}
+
+#rating-selector:hover {
+    background-color: #f3f3f3;
+    border: 3px solid black;
+    color: black;
+    box-shadow: 0 0 15px black;
+    cursor: pointer;
+}
+
+#review-text {
+    vertical-align: bottom;
+    height: 100%;
+    font-size: 20px;
+    box-shadow: 0 0 5px black;
+    border: 3px solid black;
+    color: black;
+    transition: 0.4s;
+}
+
+#review-text:hover {
+    box-shadow: 0 0 15px black;
+}
+
+.add-review-button {
+    display: flex;
+    align-items: center;
+}
+
+.add-review-button > button {
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: black;
+    box-shadow: 0 0 5px black;
+    border: 3px solid black;
+    color: white;
+    transition: 0.4s;
+}
+
+.add-review-button > button:hover {
+    background-color: #f3f3f3;
+    border: 3px solid black;
+    color: black;
+    box-shadow: 0 0 15px black;
+    cursor: pointer;
 }
 
 

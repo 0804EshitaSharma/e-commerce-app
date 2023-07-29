@@ -4,6 +4,28 @@ import ReviewCard from "./ReviewCard";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { APIPaths } from "../../utils/APIPaths";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+    superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5,
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+    },
+    mobile: {
+        breakpoint: { max: 500, min: 0 },
+        items: 1,
+    },
+};
 
 export default function Reviews({ item }) {
     const currentUser = useSelector((state) => state.user.user);
@@ -13,42 +35,67 @@ export default function Reviews({ item }) {
     const [reviewText, setReviewText] = useState("");
 
     const addReview = async () => {
-        const reviewObject = {
-           userId: currentUser._id,
-           name: `${currentUser.firstname} ${currentUser.lastname}`,
-           stars: rating,
-           text: reviewText
+        const userInReviews = item.reviews.find((reviews) => {
+            return reviews.userId === currentUser._id;
+        })
+        if (userInReviews !== undefined) {
+            setRating(1);
+            setReviewText("");
+            return;
         }
-        console.log(reviewObject)
 
-        const updatedItem = await axios.patch(`${APIPaths.Product}/review/${itemReviewed._id}`, reviewObject);
+        const reviewObject = {
+            userId: currentUser._id,
+            name: `${currentUser.firstname} ${currentUser.lastname}`,
+            stars: rating,
+            text: reviewText,
+        };
+
+        const updatedItem = await axios.patch(
+            `${APIPaths.Product}/review/${itemReviewed._id}`,
+            reviewObject
+        );
         setItemReviewed(updatedItem.data);
-    }
+        setRating(1);
+        setReviewText("");
+    };
 
     return (
         <>
             {currentUser._id !== null && (
-                <div>
-                    <select
-                        name="Rating"
-                        onChange={(e) => setRating(parseInt(e.target.value))}
-                    >
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                    </select>
+                <div className="add-review-container">
+                    <div className="add-review-header">
+                        <h5>Add Your Review</h5>
+                    </div>
+                    <div className="add-review-form">
+                        <div className="review-inputs">
+                            <select
+                                id="rating-selector"
+                                name="Rating"
+                                value={rating}
+                                onChange={(e) =>
+                                    setRating(parseInt(e.target.value))
+                                }
+                            >
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                            </select>
 
-                    <input
-                        type="text"
-                        value={reviewText}
-                        className="add-review-button"
-                        onChange={(e) => setReviewText(e.target.value)}
-                    />
-                    <button onClick={addReview}>
-                        Add Review
-                    </button>
+                            <input
+                                type="text"
+                                value={reviewText}
+                                id="review-text"
+                                placeholder="Add Review Here"
+                                onChange={(e) => setReviewText(e.target.value)}
+                            />
+                        </div>
+                        <div className="add-review-button">
+                            <button onClick={addReview}>Add Review</button>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -58,11 +105,23 @@ export default function Reviews({ item }) {
                         <h5>No Reviews Yet</h5>
                     </div>
                 ) : (
-                    <div className="review-cards">
+                    <Carousel // https://www.npmjs.com/package/react-multi-carousel
+                        swipeable={false}
+                        draggable={false}
+                        arrows={true}
+                        responsive={responsive}
+                        infinite={true}
+                        customTransition="transform 300ms ease-in-out"
+                        transitionDuration={500}
+                        containerClass="carousel-container"
+                        slidesToSlide={2}
+                        autoPlay={true}
+                        autoPlaySpeed={5000}
+                    >
                         {itemReviewed.reviews.map((review, index) => {
                             return <ReviewCard key={index} review={review} />;
                         })}
-                    </div>
+                    </Carousel>
                 )}
             </div>
         </>
