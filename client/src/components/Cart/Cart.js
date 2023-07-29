@@ -55,7 +55,7 @@ function Cart() {
         </div>
       ) : (
         <div className="no-items-wrapper">
-          <h3>Add items to your Shopping Cart to see them here!</h3>
+          <h3 className="cart-message">Add items to your Shopping Cart to see them here!</h3>
           <Link to={RoutePaths.Home}>
             <button className="wishlist-button" id="browse">
               Browse Products
