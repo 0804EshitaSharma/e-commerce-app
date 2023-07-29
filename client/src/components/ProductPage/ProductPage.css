@@ -269,6 +269,7 @@ input::-webkit-inner-spin-button {
 
 .review-card-wrapper > hr {
     height: 1px;
+    margin: 0px;
 }
 
 .review-text {
@@ -277,11 +278,13 @@ input::-webkit-inner-spin-button {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 100px;
     overflow-wrap: break-all;
 }
 
 .review-text > p {
+    display: flex;
+    align-items: center;
     margin: auto;
     height: 100%;
     padding: 10px;
