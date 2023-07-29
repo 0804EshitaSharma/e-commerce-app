@@ -7,12 +7,11 @@ import "./Rating.css";
  */
 function Rating({ ratings }) {
   const showStars = Array.from({ length: 5 }, (star, key) => {
-    let value = key + 0.5;
     return (
       <span key={key}>
-        {ratings >= key + 1 ? (
+        {ratings - key >= 1 ? (
           <FaStar className="star" />
-        ) : ratings >= value ? (
+        ) : ratings - key > 0 && ratings - key < 1 ? (
           <FaStarHalfAlt className="star" />
         ) : (
           <AiOutlineStar className="star" />

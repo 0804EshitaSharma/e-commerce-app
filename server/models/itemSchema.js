@@ -8,7 +8,20 @@ const ItemSchema = new Schema({
   quantity: { type: Number },
   seller: { type: String },
   category: { type: String },
-  rating: { type: Number },
+  rating: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 5
+  },
+  reviews: [
+    {
+      userId: { type: String },
+      name: { type: String },
+      stars: { type: Number },
+      text: { type: String }
+    }
+  ]
 });
 
 module.exports = mongoose.model("items", ItemSchema);

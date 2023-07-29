@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomButton from "../Custom/CustomButton.js";
 import CustomFormInput from "../Custom/CustomFormInput.js";
 import "./Form.css";
@@ -8,17 +8,17 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { updateUserAsync } from "../../redux/user/userSlice.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
 import { getUserInfoAsync, isAdmin } from "../../redux/user/userSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths.js";
-
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form({
   heading,
@@ -126,7 +126,16 @@ function Form({
       auth,
       query.get("oobCode"),
       event.userpassword
-    ).then(navigate(RoutePaths.Login));
+    ).then(() => {
+      dispatch(
+        updateUserAsync({
+          _id: auth.currentUser.uid,
+          userpassword: event.userpassword,
+        })
+      );
+
+      navigate(RoutePaths.Login);
+    });
   };
   /* Referred from https://www.npmjs.com/package/react-spinners */
   return (
