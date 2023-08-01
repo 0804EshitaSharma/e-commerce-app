@@ -18,12 +18,12 @@ function Navbar({ name }) {
       navigate(`/dashboard/${query}`);
     }
   };
-  let location = useLocation().pathname.split('/')[2];
+  let location = useLocation().pathname.split("/")[2];
   useEffect(() => {
     if (location === undefined) {
-      location = ''
+      location = "";
     }
-    setQuery(location)
+    setQuery(location);
   }, [location]);
   return (
     <div className="navbar">
@@ -36,7 +36,7 @@ function Navbar({ name }) {
           type="text"
           value={query}
           onChange={(event) => {
-            setQuery(event.target.value)
+            setQuery(event.target.value);
           }}
           onKeyDown={keyPressHandler}
           placeholder="Search here...."
@@ -59,23 +59,41 @@ function Navbar({ name }) {
         </Link>
       </div>
       <div className="navbar_links">
-        <div></div>
-        <Link to={RoutePaths.Login}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.9"
-            stroke="currentColor"
-            className="navbar_account_icon"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-        </Link>
+        <>
+          {name ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.9"
+              stroke="currentColor"
+              className="navbar_account_icon"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          ) : (
+            <Link to={RoutePaths.Login}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.9"
+                stroke="currentColor"
+                className="navbar_account_icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </Link>
+          )}
+        </>
         <div onClick={showMenu} className="user_menu">
           <div className="user_name">
             {!name ? "Guest" : name}
