@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-import { getUserInfoAsync, isAdmin } from "../../redux/user/userSlice.js";
+import { getUserInfoAsync} from "../../redux/user/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,17 +52,12 @@ function Form({
           dispatch(getUserInfoAsync(user.uid));
           setIsLoading(false);
           reset();
-          if (user.displayName === "Admin") {
-            dispatch(isAdmin());
-            navigate(RoutePaths.Admin);
-          } else {
-            navigate(RoutePaths.Home);
-            toast.success("User Logged In!", {
-              position: "bottom-right",
-              theme: "colored",
-              autoClose: 5000,
-            });
-          }
+          navigate(RoutePaths.Home);
+          toast.success("User Logged In!", {
+            position: "bottom-right",
+            theme: "colored",
+            autoClose: 5000,
+          });
         }
       })
       .catch((error) => {

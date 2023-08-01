@@ -14,7 +14,7 @@ export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isAdmin = useSelector((state) => state.user.isAdmin);
+  const user = useSelector((state) => state.user.user);
   const goToProduct = (item) => {
     const productURL = RoutePaths.Product.replace(":name", item.name);
     navigate(productURL, { state: { item } });
@@ -36,7 +36,12 @@ export default function ProductCard(props) {
       <ProdCard key={props.item.name}>
         <div style={{ backgroundColor: "white" }}>
           <img
-            style={{ width: "100%", height: "200px", objectFit: "contain" ,  padding:"1.5rem"}}
+            style={{
+              width: "100%",
+              height: "200px",
+              objectFit: "contain",
+              padding: "1.5rem",
+            }}
             src={props.item.images[0]}
             alt="Product"
             onClick={() => goToProduct(props.item)}
@@ -65,7 +70,13 @@ export default function ProductCard(props) {
             <div>
               <span style={{ fontWeight: "bold" }}> {props.item.name} </span>
             </div>
-            <div style={{ fontSize: "13px", margin: "10px 0px",justifyContent:"center" }}>
+            <div
+              style={{
+                fontSize: "13px",
+                margin: "10px 0px",
+                justifyContent: "center",
+              }}
+            >
               {props.item.description}
             </div>
             <div>
@@ -79,7 +90,7 @@ export default function ProductCard(props) {
             <div>
               <Rating ratings={props.item.rating} />
             </div>
-            {isAdmin && (
+            {user?.firstname === "Admin" && (
               <>
                 <svg
                   className="delete_icon"
