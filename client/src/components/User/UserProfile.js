@@ -88,18 +88,6 @@ function UserProfile() {
         />
       )}
       <div className="profile_container">
-        <CustomButton
-          label="View Order History"
-          style={{
-            margin: "0.5rem",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            paddingleft: "1px",
-            paddingright: "1px",
-          }}
-          event={() => navigate(RoutePaths.OrderHistory)}
-        />
         <form>
           <div className="profile_input">
             <div className="image_uploader">
@@ -187,10 +175,26 @@ function UserProfile() {
             </div>
           </div>
           <CustomButton
+            style={{
+              width: "90%",
+            }}
             label="Update Profile"
             event={handleSubmit(updateUser)}
           />
-          <CustomButton label="Change Password" event={changePassword} />
+          <CustomButton
+            style={{
+              width: "90%",
+            }}
+            label="Change Password"
+            event={changePassword}
+          />
+          <CustomButton
+            label="View Order History"
+            style={{
+              width: "90%",
+            }}
+            event={() => navigate(RoutePaths.OrderHistory)}
+          />
         </form>
       </div>
       <ToastContainer />
