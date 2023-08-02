@@ -33,7 +33,7 @@ export default function ProductCard(props) {
   const item = props.item;
   return (
     <>
-      <ProdCard key={props.item.name} onClick={() => goToProduct(props.item)}>
+      <ProdCard key={props.item.name}>
         <div style={{ backgroundColor: "white" }}>
           <img
             style={{
@@ -44,6 +44,7 @@ export default function ProductCard(props) {
             }}
             src={props.item.images[0]}
             alt="Product"
+            onClick={() => goToProduct(props.item)}
           />
         </div>
         <div style={{ margin: "10px" }}>
