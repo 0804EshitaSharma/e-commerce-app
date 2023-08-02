@@ -74,14 +74,6 @@ function AddProductForm() {
             label="Item Quantity:"
             register={{ ...register("quantity", { required: true }) }}
           />
-          <CustomFormInput
-            name="rating"
-            id="rating"
-            type="number"
-            placeholder="Item Rating"
-            label="Item Rating:"
-            register={{ ...register("rating", { required: true }) }}
-          />
           <CustomSelect
             id="category"
             name="category"

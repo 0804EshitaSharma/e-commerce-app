@@ -53,7 +53,6 @@ export const userSlice = createSlice({
       mobile: null,
       address: null,
     },
-    isAdmin: false,
     users: [],
   },
   reducers: {
@@ -68,9 +67,6 @@ export const userSlice = createSlice({
     },
     addUser: (state, action) => {
       state.users.push(action.payload);
-    },
-    isAdmin: (state) => {
-      state.isAdmin = true;
     },
   },
   extraReducers: (builder) => {
@@ -120,7 +116,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loggedInUser, loggedOut, updateUserInfo, isAdmin } =
-  userSlice.actions;
+export const { loggedInUser, loggedOut, updateUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

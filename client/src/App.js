@@ -13,7 +13,6 @@ import WishlistPage from "./components/Wishlist/WishlistPage";
 import PasswordReset from "./components/User/PasswordReset";
 import ForgotPassword from "./components/User/ForgotPassword";
 import { useSelector } from "react-redux";
-import Admin from "./components/Admin/Admin";
 import AddProduct from "./components/Admin/AddProduct";
 import EditProduct from "./components/Admin/EditProduct";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
@@ -59,7 +58,6 @@ function App() {
             element={<ForgotPassword />}
           ></Route>
           <Route path={RoutePaths.Product} element={<ProductPage />}></Route>{" "}
-          <Route path={RoutePaths.Admin} element={<Admin />}></Route>
           <Route path={RoutePaths.AddProduct} element={<AddProduct />}></Route>
           <Route
             path={RoutePaths.EditProduct}
