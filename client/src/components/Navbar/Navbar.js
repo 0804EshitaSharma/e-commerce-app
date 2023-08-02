@@ -18,13 +18,14 @@ function Navbar({ name }) {
       navigate(`/dashboard/${query}`);
     }
   };
-  let location = useLocation().pathname.split("/")[2];
+  let item = useLocation().pathname.split("/")[2];
+  let page = useLocation().pathname.split("/")[1];
   useEffect(() => {
-    if (location === undefined) {
-      location = "";
+    if (item === undefined || page !== 'dashboard') {
+      item = "";
     }
-    setQuery(location);
-  }, [location]);
+    setQuery(item);
+  }, [item, page]);
   return (
     <div className="navbar">
       <Link to={RoutePaths.Home}>
