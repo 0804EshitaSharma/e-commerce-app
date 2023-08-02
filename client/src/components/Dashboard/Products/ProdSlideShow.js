@@ -2,27 +2,35 @@
 // referenced from: https://www.youtube.com/watch?v=AnG7LMcX_z8
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
+import { RoutePaths } from '../../../utils/RoutePaths';
+import { useNavigate } from "react-router-dom";
+import Home from "./SlidePics/Home.png"
+import Electronics from "./SlidePics/Electronics.png"
+import Outdoor from "./SlidePics/Outdoor.png"
+import Toys from "./SlidePics/Toys.png"
 
-const images = [
-    {
-      original: 'https://cdn.roveconcepts.com/sites/default/files/styles/picture_768_2x/public/menu_assets/YVR-Showroom-Photoshoot_0021_0.jpg',
-      thumbnail: 'https://cdn.roveconcepts.com/sites/default/files/styles/picture_768_2x/public/menu_assets/YVR-Showroom-Photoshoot_0021_0.jpg',
-    },
-    {
-      original: 'https://theoneandonlyboutique.com/cdn/shop/files/minimalist-retail-clothing-display_1500x.jpg?v=1684160182',
-      thumbnail: 'https://theoneandonlyboutique.com/cdn/shop/files/minimalist-retail-clothing-display_1500x.jpg?v=1684160182',
-    },
-    {
-      original: 'https://media.istockphoto.com/id/501630964/photo/art-process.jpg?s=612x612&w=0&k=20&c=y2_i3_dB9ElUlLsM0vp9MDWX_f8a7VEX8OB_OX7ChFU=',
-      thumbnail: 'https://media.istockphoto.com/id/501630964/photo/art-process.jpg?s=612x612&w=0&k=20&c=y2_i3_dB9ElUlLsM0vp9MDWX_f8a7VEX8OB_OX7ChFU=',
-    },
-    {
-      original: 'https://www.abtasty.com/wp-content/uploads/Product-roadmap.jpg',
-      thumbnail: 'https://www.abtasty.com/wp-content/uploads/Product-roadmap.jpg',
-    },
-  ];
 
 export default function ProductSlideShow() {
+  const navigate = useNavigate();
+
+  const images = [
+      {
+        original: Home,
+        thumbnail: Home,
+      },
+      {
+        original: Electronics,
+        thumbnail: Electronics,
+      },
+      {
+        original: Outdoor,
+        thumbnail: Outdoor,
+      },
+      {
+        original: Toys,
+        thumbnail: Toys,
+      },
+    ];
     
     return (
         <ImageGallery 
@@ -31,6 +39,11 @@ export default function ProductSlideShow() {
         showFullscreenButton={false}
         autoPlay={true}
         slideInterval={4000}
+        showThumbnails={false}
+        onClick={() => {
+          const dashboardURL = RoutePaths.Dashboard.replace(":search?", "");
+          navigate(dashboardURL)
+        }}
         />
     )
 }
