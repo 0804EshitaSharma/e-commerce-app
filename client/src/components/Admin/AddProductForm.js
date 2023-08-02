@@ -26,16 +26,16 @@ function AddProductForm() {
      });
   };
 
-
-  const clearForm = () => {
-    reset();
-  };
-
   const categories = [
     { id: 1, text: "Choose a Category----" },
     { id: 2, text: "Electronics" },
     { id: 3, text: "Home" },
     { id: 4, text: "Books" },
+    { id: 5, text: "Toys" },
+    { id: 6, text: "Pets" },
+    { id: 7, text: "Outdoor" },
+    { id: 8, text: "Fashion" },
+    { id: 9, text: "Food" },
   ];
   return (
     <>

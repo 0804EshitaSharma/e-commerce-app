@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import "../Cart/Item.css";
 
 function OrderItem({ item }) {
-  const navigate = useNavigate();
 
   return (
     <div id="item-container">

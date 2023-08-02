@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CustomButton from "../Custom/CustomButton.js";
 import CustomFormInput from "../Custom/CustomFormInput.js";
 import "./Form.css";
@@ -46,7 +46,6 @@ function Form({
     signInWithEmailAndPassword(auth, event.username, event.userpassword)
       .then((userCredential) => {
         // Signed in
-
         const user = userCredential.user;
         if (user) {
           dispatch(getUserInfoAsync(user.uid));

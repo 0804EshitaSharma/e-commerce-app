@@ -14,7 +14,7 @@ import {
 import "@reach/combobox/styles.css";
 
 
-function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) {
+function DeliveryContainer({orderData, setOrderData,user }) {
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({

@@ -6,7 +6,7 @@ import { RoutePaths } from "../../utils/RoutePaths";
 import { useDispatch } from "react-redux";
 import { removeAllInCart } from "../../redux/cart/cartSlice";
 
-function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData }) {
+function PaymentContainer({ handleOrderSubmit, orderData}) {
     const [cardHolder, setCardHolder] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
