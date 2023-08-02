@@ -10,4 +10,12 @@ export const FilterCardContainer = styled.div`
   margin: 10px 0px;
   background-color: snow;
   border-radius: 6px;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
