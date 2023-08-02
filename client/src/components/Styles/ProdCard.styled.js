@@ -14,7 +14,7 @@ export const ProdCard = styled.div`
     width: 48%;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 502px) {
     width: 100%;
     height: auto;
   }

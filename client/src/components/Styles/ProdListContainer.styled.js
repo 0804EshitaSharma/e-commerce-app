@@ -11,7 +11,7 @@ export const ProdListContainer = styled.div`
     justify-content: flex-start;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 502px) {
     flex-direction: column;
   }
 `;
