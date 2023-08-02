@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
-import Rating from "../Product/Rating";
+import Rating from "../ProductPage/Rating";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem } from "../../redux/wishlistSlice";
+import { addItem, removeItem } from "../../redux/wishlist/wishlistSlice";
 import { useLocation } from "react-router-dom";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";

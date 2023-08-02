@@ -1,5 +1,5 @@
 import React from "react";
-import Rating from "../Product/Rating";
+import Rating from "../ProductPage/Rating";
 
 export default function ReviewCard({ review }) {
     return (

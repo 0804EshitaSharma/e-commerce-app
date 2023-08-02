@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths";
 import { removeAllInCart } from "../../redux/cart/cartSlice";
-import { clearWishlist } from "../../redux/wishlistSlice";
+import { clearWishlist } from "../../redux/wishlist/wishlistSlice";
 
 function CustomDropdown() {
   const user = useSelector((state) => state.user.user);

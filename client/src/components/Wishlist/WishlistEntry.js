@@ -1,10 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../../redux/wishlistSlice";
+import { removeItem } from "../../redux/wishlist/wishlistSlice";
 import "./Wishlist.css";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../utils/RoutePaths";
-import { addProductToCart } from "../../redux/cart/cartSlice";
 import AddToCartButton from "../ProductPage/AddToCartButton";
 
 export default function WishlistEntry({ item }) {

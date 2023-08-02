@@ -1,6 +1,6 @@
 import { ProdCard } from "../../Styles/ProdCard.styled";
 import { ProdTextContainer } from "../../Styles/ProdTextContainer.styled";
-import Rating from "../../Product/Rating";
+import Rating from "../../ProductPage/Rating";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../../redux/cart/cartSlice";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../../utils/RoutePaths";
+import ProductPage from '../../ProductPage/ProductPage';
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
