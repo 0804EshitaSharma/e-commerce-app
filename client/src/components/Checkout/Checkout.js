@@ -18,13 +18,6 @@ import {
 function Checkout() {
     const itemList = useSelector((state) => state.cart.itemsList);
     const dispatch = useDispatch();
-    // const currentUser = auth.currentUser;
-
-    // useEffect(() => {
-    //     if (currentUser != null) {
-    //         dispatch(getUserInfoAsync(currentUser.uid));
-    //     }
-    // }, [dispatch]);
 
     const user = useSelector((state) => state.user.user);
 
