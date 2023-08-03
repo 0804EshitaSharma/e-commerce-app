@@ -53,7 +53,6 @@ export const userSlice = createSlice({
       mobile: null,
       address: null,
     },
-    isAdmin: false,
     users: [],
   },
   reducers: {
@@ -68,9 +67,6 @@ export const userSlice = createSlice({
     },
     addUser: (state, action) => {
       state.users.push(action.payload);
-    },
-    isAdmin: (state) => {
-      state.isAdmin = true;
     },
   },
   extraReducers: (builder) => {
@@ -89,12 +85,37 @@ export const userSlice = createSlice({
       };
     });
     builder.addCase(updateUserAsync.fulfilled, (state, action) => {
-      state.user = action.payload;
+      state.user = {
+        _id: action.payload._id != null ? action.payload._id : state.user._id,
+        firstname:
+          action.payload.firstname != null
+            ? action.payload.firstname
+            : state.user.firstname,
+        lastname:
+          action.payload.lastname != null
+            ? action.payload.lastname
+            : state.user.lastname,
+        useremail:
+          action.payload.useremail != null
+            ? action.payload.useremail
+            : state.user.useremail,
+        userpassword:
+          action.payload.userpassword != null
+            ? action.payload.userpassword
+            : state.user.userpassword,
+        mobile:
+          action.payload.mobile != null
+            ? action.payload.mobile
+            : state.user.mobile,
+        address:
+          action.payload.address != null
+            ? action.payload.address
+            : state.user.address,
+      };
     });
   },
 });
 
-export const { loggedInUser, loggedOut, updateUserInfo, isAdmin } =
-  userSlice.actions;
+export const { loggedInUser, loggedOut, updateUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

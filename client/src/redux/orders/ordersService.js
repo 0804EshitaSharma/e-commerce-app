@@ -3,7 +3,14 @@ import axios from "axios";
 
 const getOrders = async (userID) => {
   const response = await axios.get(`${APIPaths.Orders}/${userID}`);
-  return await response.data;
+  const fulfilledResponse = await response.data;
+  return fulfilledResponse;
+};
+const createOrder = async (orderData) => {
+  console.log("Sending order data to server:", orderData);
+  const response = await axios.post(APIPaths.Orders, orderData);
+  console.log("Server response:", response.data);
+  return response.data;
 };
 const returnOrder = async (orderID) => {
   const response = await axios.delete(`${APIPaths.Orders}/${orderID}`);
@@ -11,4 +18,4 @@ const returnOrder = async (orderID) => {
 };
 
 // eslint-disable-next-line
-export default { getOrders, returnOrder };
+export default { getOrders, createOrder, returnOrder };

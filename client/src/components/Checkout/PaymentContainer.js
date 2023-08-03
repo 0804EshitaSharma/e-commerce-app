@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Checkout.css";
 import LabeledInput from "../Custom/LabeledInput";
 import { useNavigate } from "react-router-dom";
+import { RoutePaths } from "../../utils/RoutePaths";
 import { useDispatch } from "react-redux";
 import { removeAllInCart } from "../../redux/cart/cartSlice";
 
@@ -27,14 +28,14 @@ function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData
             return;
         }
 
-        console.log("Submitting order data:", orderData);
-        handleOrderSubmit(orderData);
+    console.log("Submitting order data:", orderData);
 
-        dispatch(removeAllInCart());
+    handleOrderSubmit(orderData);
 
-        console.log("Order submitted!");
-        navigate("/orderPlaced");
-    };
+    dispatch(removeAllInCart());
+
+    navigate(RoutePaths.OrderPlaced);
+  };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

@@ -4,17 +4,41 @@ const Orders = require("../models/orderSchema");
 const Item = require("../models/itemSchema");
 const Users = require("../models/userSchema");
 
+router.get("/:userID", async function (req, res) {
+  try {
+    var userID = req.params.userID;
+    const ordersList = await Users.findOne(
+      { _id: userID },
+      { orders: 1, _id: 0 }
+    );
+    const orders = await Orders.find({ _id: { $in: ordersList.orders } });
+    let modifiedOrders = [];
+    for (const order of orders) {
+      let itemsOrdered = [];
+      for (const item of order.items) {
+        itemsOrdered.push(item.productDetails);
+      }
+      let modOrder = {
+        _id: order._id,
+        createdAt: order.createdAt,
+        user: order.user,
+        items: itemsOrdered,
+      };
+      modifiedOrders.push(modOrder);
+    }
+    return res.send(modifiedOrders).status(200);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.post("/", async (req, res, next) => {
   const order = req.body;
-  console.log("Received order data on the server:", order);
   try {
     const newOrder = await Orders.create(order);
-    console.log("New order created:", newOrder);
 
     const userId = req.body.user;
-    console.log("user id", userId);
 
-    // const validUserId = mongoose.Types.ObjectId(userId);
     const user = await Users.findById(userId);
     user.orders.push(newOrder._id);
     await user.save();
@@ -22,7 +46,6 @@ router.post("/", async (req, res, next) => {
     console.log("user's orders:", user.orders);
 
     res.status(201).json(newOrder);
-
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

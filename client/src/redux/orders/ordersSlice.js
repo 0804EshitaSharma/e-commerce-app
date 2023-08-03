@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getOrdersAsync } from "./orderThunks";
-import { returnOrderAsync } from "./orderThunks";
+import {
+  getOrdersAsync,
+  returnOrderAsync,
+  createOrderAsync,
+} from "./orderThunks";
 const initial_State = {
   list: [],
+  order: {},
+  loading: false,
+  error: null,
 };
 
 export const ordersSlice = createSlice({
@@ -13,6 +19,14 @@ export const ordersSlice = createSlice({
       let ordersList = action.payload;
       //console.log(ordersList);
       state.list = ordersList;
+    },
+    createOrder: (state, action) => {
+      state.order = action.payload;
+    },
+    resetOrder: (state) => {
+      state.order = null;
+      state.loading = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -26,8 +40,21 @@ export const ordersSlice = createSlice({
         state.list.splice(index, 1);
       }
     });
+    builder
+      .addCase(createOrderAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createOrderAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        state.order = action.payload;
+      })
+      .addCase(createOrderAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { getOrders } = ordersSlice.actions;
+export const { getOrders, createOrder, resetOrder } = ordersSlice.actions;
 export default ordersSlice.reducer;

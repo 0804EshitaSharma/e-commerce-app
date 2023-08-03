@@ -21,7 +21,7 @@ export const wishlistSlice = createSlice({
         state.wishlistProducts.push(action.payload);
     },
     removeItem: (state, action) => {
-      const foundIndex = state.wishlistProducts.findIndex((item) => item.Name === action.payload);
+      const foundIndex = state.wishlistProducts.findIndex((item) => item.name === action.payload);
       if (foundIndex !== -1) {
         state.wishlistProducts.splice(foundIndex, 1);
       }

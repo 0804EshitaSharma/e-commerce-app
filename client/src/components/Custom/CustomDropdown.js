@@ -8,8 +8,8 @@ import { loggedOut } from "../../redux/user/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths";
-import {removeAllInCart} from "../../redux/cart/cartSlice";
-import {clearWishlist}from"../../redux/wishlistSlice";
+import { removeAllInCart } from "../../redux/cart/cartSlice";
+import { clearWishlist } from "../../redux/wishlistSlice";
 
 function CustomDropdown() {
   const user = useSelector((state) => state.user.user);
@@ -36,16 +36,19 @@ function CustomDropdown() {
       autoClose: 2000,
     });
   };
-  const menu = [
+  let menu = [
     {
       name: "Profile",
       to: RoutePaths.Profile,
     },
-    {
-      name: "Admin",
-      to: user?.firstname !== "Admin" ? RoutePaths.Login : RoutePaths.Admin,
-    },
   ];
+  if (user?.firstname === "Admin") {
+    menu.push({
+      name: "Add Product",
+      to: RoutePaths.AddProduct,
+    });
+  }
+
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */
   return (
     <>

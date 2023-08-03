@@ -34,14 +34,27 @@ router.post("/", async function (req, res, next) {
 
 router.patch("/:userId", async function (req, res, next) {
   try {
+    const userDetails = await Users.findById(req.params.userId);
     const updatedUser = await Users.findOneAndUpdate(
       { _id: req.params.userId },
       {
         $set: {
-          useremail: req.body.useremail,
-          mobile: req.body.mobile,
-          address: req.body.address,
-          firstname: req.body.firstname,
+          useremail:
+            req.body.useremail != null
+              ? req.body.useremail
+              : userDetails.useremail,
+          mobile:
+            req.body.mobile != null ? req.body.mobile : userDetails.mobile,
+          address:
+            req.body.address != null ? req.body.address : userDetails.address,
+          firstname:
+            req.body.firstname != null
+              ? req.body.firstname
+              : userDetails.firstname,
+          userpassword:
+            req.body.userpassword != null
+              ? req.body.userpassword
+              : userDetails.userpassword,
         },
       },
       { new: true }
@@ -54,11 +67,15 @@ router.patch("/:userId", async function (req, res, next) {
 });
 router.post("/mail", async function (req, res, next) {
   try {
+    console.log(req.body.user);
+    console.log("order info", req.body.orderInfo);
     const userObject = req.body.user;
     const orderInfo = req.body.orderInfo;
     const listItems = orderInfo.map(
       (order) =>
-        `<li>${order.productDetails.name} : ${order.productDetails.price*order.productDetails.quantity}</li>`
+        `<li>${order.productDetails.name} : ${
+          order.productDetails.price * order.productDetails.quantity
+        }</li>`
     );
     const message = {
       from: "eshitasharma0804@gmail.com",

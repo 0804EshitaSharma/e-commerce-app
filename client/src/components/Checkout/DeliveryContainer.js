@@ -5,16 +5,16 @@ import LabeledInput from "../Custom/LabeledInput";
 import DropdownSelection from "../Custom/DropdownSelection";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
 
-function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
+function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) {
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
@@ -31,9 +31,9 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData }) {
         setValue,
     } = usePlacesAutocomplete({ callbackName: "initMap" });
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [firstName, setFirstName] = useState(user.firstname);
+    const [lastName, setLastName] = useState(user.lastname);
+    const [phoneNumber, setPhoneNumber] = useState(user.mobile);
 
     const handleInput = (e) => {
         setValue(e.target.value);

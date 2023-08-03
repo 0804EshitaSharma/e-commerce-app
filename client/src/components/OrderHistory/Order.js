@@ -19,23 +19,23 @@ function Order({ order }) {
   const returnOrder = () => {
     setShowModal(true);
   };
-    const onCancel = () => {
-      setShowModal(false);
-    };
+  const onCancel = () => {
+    setShowModal(false);
+  };
   const closeModal = () => {
     setShowModal(false);
     dispatch(returnOrderAsync(order._id));
-     toast.success("Order Return Successfull !", {
-       position: "bottom-right",
-       theme: "colored",
-       autoClose: 2000,
-     });
+    toast.success("Order Return Successfull !", {
+      position: "bottom-right",
+      theme: "colored",
+      autoClose: 2000,
+    });
   };
   return (
     <>
       <div className="orderhistory-card">
         <div className="order-info-container">
-          <h4 className="order-date">Date Order Placed: {order.date}</h4>
+          <h4 className="order-date">Date Order Placed: {order.createdAt}</h4>
           <button className="track-package-button">Track your package</button>
           <button onClick={returnOrder} className="track-package-button">
             Return Order
@@ -46,10 +46,13 @@ function Order({ order }) {
           <dialog className="user-info-popup">Address: {address}</dialog>
         </div>
         <div className="ordered-item-container">
-          {order.items.map((currItem, index) => {
+          {order.items.map((currItem) => {
             return (
               <>
-                <OrderItem key={index} item={currItem} />
+                <OrderItem
+                  key={order._id.concat(`:${currItem._id}`)}
+                  item={currItem}
+                />
                 <hr className="orderhistory-card-hr" />
               </>
             );

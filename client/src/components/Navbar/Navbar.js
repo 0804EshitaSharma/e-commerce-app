@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomDropdown from "../Custom/CustomDropdown";
 import { RoutePaths } from "../../utils/RoutePaths";
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 function Navbar({ name }) {
   const [showDropdown, setshowDropdown] = useState(false);
+  const [query, setQuery] = useState("");
   const showMenu = () => {
     setshowDropdown(!showDropdown);
   };
   const numItemsInCart = useSelector((state) => state.cart.itemsList).length;
+  const navigate = useNavigate();
+  const keyPressHandler = (e) => {
+    if (e.which === 13) {
+      navigate(`/dashboard/${query}`);
+    }
+  };
+  let item = useLocation().pathname.split("/")[2];
+  let page = useLocation().pathname.split("/")[1];
+  useEffect(() => {
+    if (item === undefined || page !== 'dashboard') {
+      item = "";
+    }
+    setQuery(item);
+  }, [item, page]);
   return (
     <div className="navbar">
       <Link to={RoutePaths.Home}>
@@ -20,41 +35,66 @@ function Navbar({ name }) {
         <input
           className="navbar_search_input"
           type="text"
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value);
+          }}
+          onKeyDown={keyPressHandler}
           placeholder="Search here...."
         ></input>
-        <svg
-          className="navbar_search_icon"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-          />
-        </svg>
-      </div>
-      <div className="navbar_links">
-        <div></div>
-        <Link to={RoutePaths.Login}>
+        <Link to={`/dashboard/${query}`} style={{ lineHeight: 0 }}>
           <svg
+            className="navbar_search_icon"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth="1.9"
+            strokeWidth={1.5}
             stroke="currentColor"
-            className="navbar_account_icon"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
             />
           </svg>
         </Link>
+      </div>
+      <div className="navbar_links">
+        <>
+          {name ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.9"
+              stroke="currentColor"
+              className="navbar_account_icon"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          ) : (
+            <Link to={RoutePaths.Login}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.9"
+                stroke="currentColor"
+                className="navbar_account_icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </Link>
+          )}
+        </>
         <div onClick={showMenu} className="user_menu">
           <div className="user_name">
             {!name ? "Guest" : name}

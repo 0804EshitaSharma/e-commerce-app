@@ -8,4 +8,6 @@
     width: 15%;
     position: fixed;
     top: 80px;
+    bottom: 10px;
+    overflow: scroll;
 }

@@ -18,3 +18,16 @@ h1 {
     font-size: 2rem;
     color: rgba(25, 130, 180, 0.8);
 }
+@media (max-width:931px) {
+
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .container {
+
+        min-width: 50% !important;
+        height: auto;
+
+    }
+}

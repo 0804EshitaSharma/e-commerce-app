@@ -4,19 +4,18 @@ import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import AddToCartButton from "./AddToCartButton";
-import QuantityButton from "./QuantityButton";
 import { useState } from "react";
-import ProductList from "../Dashboard/Products/ProdList";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../redux/wishlistSlice";
-import { initialState } from "../Dashboard/Products/ProdDataList";
 import { useLocation } from "react-router-dom";
 import RelatedItems from "./RelatedItems";
+import Reviews from "./Reviews";
 
 function ProductPage() {
   // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
-  const shareUrl = "https://www.google.co.in/";
+  const shareUrl = window.location.origin + window.location.pathname;
+  const quote = "See this Awesome product";
   // https://stackoverflow.com/a/71247418
   const { state } = useLocation();
   const item = state.item || {};
@@ -83,7 +82,7 @@ function ProductPage() {
                 d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
               />
             </svg>
-            <FacebookShareButton url={shareUrl}>
+            <FacebookShareButton url={shareUrl} quote={quote}>
               <FacebookIcon size={30} round={true}></FacebookIcon>
             </FacebookShareButton>
           </div>
@@ -138,11 +137,15 @@ function ProductPage() {
               </div>
               <div className="purchase-buttons">
                 <AddToCartButton productDetails={item} quantity={1} />
-                <button className="purchase-button" id="buy-now">
-                  Buy Now
-                </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="reviews-container">
+          <h3>Reviews</h3>
+          <div className="reviews">
+            <Reviews item={item}/>
           </div>
         </div>
 

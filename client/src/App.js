@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar.js";
 import Checkout from "./components/Checkout/Checkout";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/User/Login";
 import Signup from "./components/User/Signup";
 import Cart from "./components/Cart/Cart";
@@ -13,12 +13,12 @@ import WishlistPage from "./components/Wishlist/WishlistPage";
 import PasswordReset from "./components/User/PasswordReset";
 import ForgotPassword from "./components/User/ForgotPassword";
 import { useSelector } from "react-redux";
-import Admin from "./components/Admin/Admin";
 import AddProduct from "./components/Admin/AddProduct";
 import EditProduct from "./components/Admin/EditProduct";
 import OrderPlaced from "./components/Checkout/OrderPlaced";
 import OrderHistory from "./components/OrderHistory/OrderHistory";
 import { RoutePaths } from "./utils/RoutePaths";
+import Front from "./pages/front";
 
 function App() {
   const userFromStore = useSelector((state) => state.user.user);
@@ -47,7 +47,8 @@ function App() {
           <Route path={RoutePaths.Login} element={<Login />}></Route>
           <Route path={RoutePaths.Signup} element={<Signup />}></Route>
           <Route path={RoutePaths.Dashboard} element={<Dashboard />}></Route>
-          <Route path={RoutePaths.Home} element={<Dashboard />}></Route>
+          <Route path={RoutePaths.Front} element={<Front />}></Route>
+          <Route path={RoutePaths.Home} element={<Front />}></Route>
           <Route
             path={RoutePaths.ResetPassword}
             element={<PasswordReset />}
@@ -57,7 +58,6 @@ function App() {
             element={<ForgotPassword />}
           ></Route>
           <Route path={RoutePaths.Product} element={<ProductPage />}></Route>{" "}
-          <Route path={RoutePaths.Admin} element={<Admin />}></Route>
           <Route path={RoutePaths.AddProduct} element={<AddProduct />}></Route>
           <Route
             path={RoutePaths.EditProduct}
