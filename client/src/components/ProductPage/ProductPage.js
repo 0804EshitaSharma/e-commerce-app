@@ -58,7 +58,7 @@ function ProductPage() {
     // https://stackoverflow.com/a/8217584
     return wishlist.some((item) => item.name === name) ? "red" : "none";
   };
-  
+
   return (
     <div className="full-page-wrapper">
       <div className="product-page-content">
@@ -67,7 +67,9 @@ function ProductPage() {
             <div className="product-name-seller">
               <h2>{item.name}</h2>
             </div>
-            <svg
+          </div>
+          <div className="rating-wrapper">
+          <svg
               className="navbar_wishlist_icon"
               xmlns="http://www.w3.org/2000/svg"
               fill={isAddedToWishlist(item.name)}
@@ -85,8 +87,6 @@ function ProductPage() {
             <FacebookShareButton url={shareUrl} quote={quote}>
               <FacebookIcon size={30} round={true}></FacebookIcon>
             </FacebookShareButton>
-          </div>
-          <div className="rating-wrapper">
             <Rating ratings={parseFloat(item.rating)} />
           </div>
         </div>
@@ -100,6 +100,7 @@ function ProductPage() {
               showFullscreenButton={false}
               showNav={false}
               slideInterval={5000}
+              id="product-image-gallery"
             />
           </div>
           <div className="purchase-wrapper">

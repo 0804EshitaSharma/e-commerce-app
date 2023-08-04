@@ -6,26 +6,7 @@ import axios from "axios";
 import { APIPaths } from "../../utils/APIPaths";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-const responsive = {
-    superLargeDesktop: {
-        // the naming can be any, depends on you.
-        breakpoint: { max: 4000, min: 3000 },
-        items: 5,
-    },
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-    },
-    mobile: {
-        breakpoint: { max: 500, min: 0 },
-        items: 1,
-    },
-};
+import responsiveConfigs from "./CarouselConfigs";
 
 export default function Reviews({ item }) {
     const currentUser = useSelector((state) => state.user.user);
@@ -112,7 +93,7 @@ export default function Reviews({ item }) {
                         swipeable={false}
                         draggable={false}
                         arrows={true}
-                        responsive={responsive}
+                        responsive={responsiveConfigs}
                         infinite={true}
                         customTransition="transform 300ms ease-in-out"
                         transitionDuration={500}

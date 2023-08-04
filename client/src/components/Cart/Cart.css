@@ -71,7 +71,7 @@
     font-size: 10px;
   }
 
-  h3 {
+  .no-items-wrapper > h3 {
     font-size: 14px;
   }
 
