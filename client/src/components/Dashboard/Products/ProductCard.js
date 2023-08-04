@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../../utils/RoutePaths";
+import { useState } from "react";
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
@@ -19,6 +20,7 @@ export default function ProductCard(props) {
     const productURL = RoutePaths.Product.replace(":name", item.name);
     navigate(productURL, { state: { item } });
   };
+  var [quantity, setQuantity] = useState(0);
   const productDetails = {
     id: props.item._id,
     name: props.item.name,
@@ -29,7 +31,7 @@ export default function ProductCard(props) {
     images: props.item.images,
     quantity: props.item.quantity,
   };
-  const quantity = 1;
+
   const item = props.item;
   return (
     <>
@@ -58,6 +60,7 @@ export default function ProductCard(props) {
               stroke="black"
               style={{ float: "right" }}
               onClick={() => {
+                setQuantity(quantity++);
                 dispatch(addProductToCart({ productDetails, quantity }));
               }}
             >

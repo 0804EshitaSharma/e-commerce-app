@@ -13,7 +13,6 @@ function OrderHistory() {
   const userID = auth.currentUser.uid;
   useEffect(() => {
     dispatch(getOrdersAsync(userID));
-    //console.log(list);
   }, []);
 
   return (

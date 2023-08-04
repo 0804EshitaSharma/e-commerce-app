@@ -136,7 +136,7 @@ function ProductPage() {
                 </div>
               </div>
               <div className="purchase-buttons">
-                <AddToCartButton productDetails={item} quantity={1} />
+                <AddToCartButton productDetails={item} quantity={quantity} />
               </div>
             </div>
           </div>
