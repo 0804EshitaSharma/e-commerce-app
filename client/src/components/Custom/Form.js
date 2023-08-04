@@ -181,7 +181,7 @@ function Form({
             />
             {showSignUpLink && (
               <Link to={RoutePaths.Signup}>
-                <span>Create your account</span>
+                <span className="span_content">Create your account</span>
               </Link>
             )}
           </div>
