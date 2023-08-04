@@ -88,7 +88,9 @@
   align-items: center;
   color: white;
 }
-
+.navbar_title_link{
+  text-decoration: none !important;
+}
 .navbar_shopping-icon_count {
   color: white;
   margin-left: 0.1rem;

@@ -28,7 +28,7 @@ function Navbar({ name }) {
   }, [item, page]);
   return (
     <div className="navbar">
-      <Link to={RoutePaths.Home}>
+      <Link className="navbar_title_link" to={RoutePaths.Home}>
         <span className="navbar_title">E-Commerce</span>
       </Link>
       <div className="navbar_search">
