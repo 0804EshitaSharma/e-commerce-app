@@ -30,9 +30,12 @@ const responsive = {
 export default function Reviews({ item }) {
     const currentUser = useSelector((state) => state.user.user);
     const [itemReviewed, setItemReviewed] = useState(item);
-
     const [rating, setRating] = useState(5);
     const [reviewText, setReviewText] = useState("");
+
+    useEffect(() => {
+        setItemReviewed(item);
+    }, [item])
 
     const addReview = async () => {
         const userInReviews = item.reviews.find((reviews) => {

@@ -3,13 +3,14 @@ import axios from "axios";
 import { ProdListContainer } from "../Styles/ProdListContainer.styled";
 import { useState, useEffect } from "react";
 import ProductCard from "../Dashboard/Products/ProductCard";
+import { APIPaths } from "../../utils/APIPaths";
 
 export default function RelatedItems({ item }) {
   const [relatedItems, setRelatedItems] = useState([]);
 
   const getRelatedItems = async () => {
     const relItems = await axios.get(
-      `https://e-commerce-backend-g4kl.onrender.com/products/${item.category}`
+      `${APIPaths.Product}/${item.category}`
     );
     setRelatedItems(relItems.data);
   };

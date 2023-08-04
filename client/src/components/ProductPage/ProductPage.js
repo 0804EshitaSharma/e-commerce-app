@@ -12,7 +12,6 @@ import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
 
 function ProductPage() {
-  // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
   const shareUrl = window.location.origin + window.location.pathname;
   const quote = "See this Awesome product";
@@ -59,6 +58,7 @@ function ProductPage() {
     // https://stackoverflow.com/a/8217584
     return wishlist.some((item) => item.name === name) ? "red" : "none";
   };
+  
   return (
     <div className="full-page-wrapper">
       <div className="product-page-content">
