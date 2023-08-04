@@ -46,7 +46,7 @@ export default function Reviews({ item }) {
 
     return (
         <>
-            {currentUser._id !== null && (
+            {(currentUser !== null && currentUser._id !== null) && (
                 <div className="add-review-container">
                     <div className="add-review-header">
                         <h5>Add Your Review</h5>
