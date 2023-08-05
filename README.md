@@ -81,7 +81,7 @@ During our discussions, we also explored additional potential features to enrich
 - **Project Name**: E-Commerce-App
 - **GitHub
 Link:** [https://github.com/0804EshitaSharma/e-commerce-app](https://github.com/0804EshitaSharma/e-commerce-app)
-- **Hosted Website Link 
+- **Hosted Website
 Link:** [https://e-commerce-frontend-1ddb.onrender.com](https://e-commerce-frontend-1ddb.onrender.com)
 
 ## **Project Description:**
