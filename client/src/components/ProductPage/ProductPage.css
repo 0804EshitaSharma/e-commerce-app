@@ -318,12 +318,6 @@ input::-webkit-inner-spin-button {
     display: none;
 }
 
-
-.react-multi-carousel-item {
-    display: flex;
-    justify-content: center;
-}
-
 .add-review-container {
     display: flex;
     flex-direction: column;
@@ -408,5 +402,23 @@ input::-webkit-inner-spin-button {
     box-shadow: 0 0 15px black;
     cursor: pointer;
 }
+
+.related-items .react-multi-carousel-item > div {
+  width: 100%;
+}
+
+.react-multi-carousel-item {
+  display: flex;
+  justify-content: center;
+}
+
+.react-multi-carousel-track > li > .sc-gEvEer {
+  width: 100%;
+}
+
+.related-items .Toastify {
+  display: none;
+}
+
 
 
