@@ -49,8 +49,14 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 
 ## Next Steps
-- We have successfully fulfilled nearly all project requirements, with the exception of the 'Show Recently Viewed Products' feature, which remains pending, and the partially completed 'Share Products with Friends' functionality. Completing these two goals would further enhance the app's overall functionality.
-- During our discussions, we explored additional potential features to enrich the shopping site's capabilities. These exciting prospects include multi-language support for broader accessibility, implementing an advanced product recommendation algorithm personalized to each user, as well as introducing user roles to create separate pages exclusively accessible to sellers and buyers, adding depth and sophistication to our platform.
+We have successfully fulfilled nearly all project requirements, with the exception of the 'Show Recently Viewed Products' feature, which remains pending, and the partially completed 'Share Products with Friends' functionality. Completing these two goals would further enhance the app's overall functionality.
+
+During our discussions, we also explored additional potential features to enrich the shopping site's capabilities. These exciting prospects can add depth and sophistication to our platform, including
+- multi-language support for broader accessibility
+- implementing an advanced product recommendation algorithm personalized to each user
+- supporting different colors and sizes for each product
+- allowing actual payments and tracking for orders
+- introducing user roles to create separate pages exclusively accessible to sellers and buyers
 
 
 ## List of Contributions
