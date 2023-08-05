@@ -46,6 +46,9 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 
 ## Above and Beyond Functionality
+- Support to view the website in different languages
+- Allowing real payments and order tracking
+  
 
 
 ## Next Steps
