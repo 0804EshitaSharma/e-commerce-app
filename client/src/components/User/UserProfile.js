@@ -35,6 +35,9 @@ function UserProfile() {
   const updateUserEmail = () => {
     setIsEditable(!isEditable);
   };
+  const updateUserMobile = () => {
+    setIsEditable(!isEditable);
+  };
   const loaderStyle = {
     display: "block",
     margin: "0 auto",
@@ -147,14 +150,16 @@ function UserProfile() {
               <div className="profile_input_field">
                 <CustomFormInput
                   name="Mobile Number"
-                  id="mobilw"
+                  id="mobile"
                   type="phone"
+                  readOnly={!isEditable}
                   label="Mobile Number"
                   defaultValue={user?.mobile}
                   register={{ ...register("mobile") }}
                 />
               </div>
               <svg
+                onClick={updateUserMobile}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
