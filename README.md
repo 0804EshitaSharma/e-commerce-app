@@ -46,6 +46,9 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 
 ## Above and Beyond Functionality
+- Used the Firebase API to develop a seamless user authentication system that enabled secure login and password reset functionality.
+- Enhanced the overall user experience by integrating the Sendgrid API to handle order confirmation emails.
+- React libraries such as react-share, react-toastify, and react-image-gallery were used for creating user-friendly interface.
 
 
 ## Next Steps
