@@ -10,6 +10,7 @@ import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { useLocation } from "react-router-dom";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
+import QuantityButton from "./QuantityButton";
 
 function ProductPage() {
   // TODO: Add prop for product details
@@ -30,18 +31,6 @@ function ProductPage() {
 
   const translateImages = (imgArray) => {
     return imgArray.map((imgURL) => ({ original: imgURL, thumbnail: imgURL }));
-  };
-
-  const updateQuantity = (value) => {
-    const valueAsInt = parseInt(value);
-    if (quantity > 1 || valueAsInt >= 0) {
-      setQuantity(quantity + valueAsInt);
-    }
-  };
-
-  const handleQuantityTypingInput = (e) => {
-    const valueAsInt = parseInt(e.target.value);
-    isNaN(valueAsInt) ? setQuantity(1) : setQuantity(valueAsInt);
   };
 
   const toggleWishlist = () => {
@@ -109,34 +98,10 @@ function ProductPage() {
             <div className="buy-options">
               <div className="price-quantity">
                 <h4>${item.price}</h4>
-                <div className="quantity-picker-wrapper">
-                  <h4>Quantity:</h4>
-                  <div className="quantity-picker">
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(-1)}
-                    >
-                      -
-                    </button>
-                    <input
-                      type="number"
-                      value={quantity}
-                      min="1"
-                      minLength={1}
-                      className="purchase-button"
-                      onChange={handleQuantityTypingInput}
-                    />
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
+                <QuantityButton quantity={quantity} setQuantity={setQuantity} />
               </div>
               <div className="purchase-buttons">
-                <AddToCartButton productDetails={item} quantity={1} />
+                <AddToCartButton productDetails={item} quantity={quantity} />
               </div>
             </div>
           </div>
@@ -145,7 +110,7 @@ function ProductPage() {
         <div className="reviews-container">
           <h3>Reviews</h3>
           <div className="reviews">
-            <Reviews item={item}/>
+            <Reviews item={item} />
           </div>
         </div>
 

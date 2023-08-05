@@ -12,24 +12,25 @@ function Checkout() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user);
-
   const [orderData, setOrderData] = useState({
     items: itemList,
     deliveryOption: "",
+    deliveryAddress: "",
+    fullName: `${user.firstname} ${user.lastname}`,
     user: user._id,
   });
 
   const calcTotalPrice = () => {
     let totalPrice = 0;
     for (const item of itemList) {
-        let priceForQuantity = parseFloat(
-            (Number(item.productDetails.price) * Number(item.quantity)).toFixed(2)
-        );
-        totalPrice += priceForQuantity;
+      let priceForQuantity = parseFloat(
+        item.productDetails.price * item.quantity
+      );
+      totalPrice += priceForQuantity;
     }
-    return totalPrice;
-};
-let totalPrice = calcTotalPrice();
+    return totalPrice.toFixed(2);
+  };
+  let totalPrice = calcTotalPrice();
 
   const handleOrderSubmit = (orderData) => {
     dispatch(createOrderAsync(orderData));
@@ -59,7 +60,7 @@ let totalPrice = calcTotalPrice();
           />
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

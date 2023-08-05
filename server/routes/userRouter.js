@@ -87,7 +87,7 @@ router.post("/mail", async function (req, res, next) {
       <h4>Hello ${userObject.firstname} </h4>
       <h3>Please confirm Your order!</h3>
       <ol>${listItems}</ol>
-      <h4>Deliever to :${userObject.address} <h4>
+      <h4>Deliver to :${userObject.address} <h4>
       <h4>Thank you for shopping with us! </h4>
       <h4> E-Commerce Team </h4>
       </div>`,
