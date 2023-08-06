@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,8 +21,8 @@ function ProductPage() {
   // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
   const shareUrl = window.location.origin + window.location.pathname;
-  const quote = "See this Awesome product";
-  // https://stackoverflow.com/a/71247418
+  const quote = "Check this Awesome product";
+  const title = "Check this Awesome product";
   const { state } = useLocation();
   const item = state.item || {};
 
@@ -74,6 +79,9 @@ function ProductPage() {
             <FacebookShareButton url={shareUrl} quote={quote}>
               <FacebookIcon size={30} round={true}></FacebookIcon>
             </FacebookShareButton>
+            <EmailShareButton url={shareUrl} subject={title}>
+              <EmailIcon size={32} round />
+            </EmailShareButton>
           </div>
           <div className="rating-wrapper">
             <Rating ratings={parseFloat(item.rating)} />
