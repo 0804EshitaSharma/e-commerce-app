@@ -28,7 +28,7 @@ function Navbar({ name }) {
   }, [item, page]);
   return (
     <div className="navbar">
-      <Link to={RoutePaths.Home}>
+      <Link className="navbar_title_link" to={RoutePaths.Home}>
         <span className="navbar_title">E-Commerce</span>
       </Link>
       <div className="navbar_search">
@@ -95,26 +95,8 @@ function Navbar({ name }) {
             </Link>
           )}
         </>
-        <div onClick={showMenu} className="user_menu">
-          <div className="user_name">
-            {!name ? "Guest" : name}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="icon"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
-        </div>
-        <div>{showDropdown && <CustomDropdown />}</div>
+
+            <CustomDropdown name={name} />
 
         <div>
           <Link to={RoutePaths.Wishlist}>
