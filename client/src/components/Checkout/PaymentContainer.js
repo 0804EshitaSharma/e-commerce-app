@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import "./Checkout.css";
-import LabeledInput from "../Custom/LabeledInput";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../utils/RoutePaths";
 import { useDispatch } from "react-redux";
 import { removeAllInCart } from "../../redux/cart/cartSlice";
+import Cards from 'react-credit-cards';
+import 'react-credit-cards/es/styles-compiled.css';
+import "./PaymentContainer.css";
 
-function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData }) {
+function PaymentContainer({ handleOrderSubmit, orderData, totalPrice }) {
     const [cardHolder, setCardHolder] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
     const [cvv, setCvv] = useState("");
     const [formValid, setFormValid] = useState(false);
+    const [focus, setFocus] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,14 +31,14 @@ function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData
             return;
         }
 
-    console.log("Submitting order data:", orderData);
+        console.log("Submitting order data:", orderData);
 
-    handleOrderSubmit(orderData);
+        handleOrderSubmit(orderData);
 
-    dispatch(removeAllInCart());
+        dispatch(removeAllInCart());
 
-    navigate(RoutePaths.OrderPlaced);
-  };
+        navigate(RoutePaths.OrderPlaced);
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -43,11 +46,23 @@ function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData
         if (name === "cardHolder") {
             setCardHolder(value);
         } else if (name === "cardNumber") {
-            setCardNumber(value);
+            if (!e.target.value) return e.target.value;
+            const cardnumber = e.target.value.replace(/[^\d]/g, "");
+            var formattedCardNumber = "";
+            const length = cardnumber.length;
+            if (length < 4) formattedCardNumber = cardnumber;
+            formattedCardNumber = `${cardnumber.slice(0, 4)} ${cardnumber.slice(4, 8,)} ${cardnumber.slice(8, 12)} ${cardnumber.slice(12, 16)}`;
+            setCardNumber(formattedCardNumber);
         } else if (name === "expiryDate") {
-            setExpiryDate(value);
+            if (!e.target.value) return e.target.value;
+            const expiry = e.target.value.replace(/[^\d]/g, "");
+            var formattedExpiry = "";
+            const length = expiry.length;
+            if (length < 3) formattedExpiry = expiry;
+            formattedExpiry = `${expiry.slice(0, 2)}/${expiry.slice(2, 4)}`;
+            setExpiryDate(formattedExpiry);
         } else if (name === "cvv") {
-            setCvv(value);
+            setCvv(value.slice(0,3));
         }
 
         setFormValid(
@@ -58,17 +73,34 @@ function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData
         );
     };
 
+    const handleInputFocus = (e) => {
+        setFocus(e.target.name);
+      }
+
     return (
         <div className="col-md-4">
             <div className="card">
                 <div className="card-header">
-                    <h4>Payment method</h4>
+                <h4 className="price-header">
+                            Total Price
+                            <br />
+                            <br />${totalPrice}
+                        </h4>
+                    <h4 className="header">Payment</h4>
                 </div>
                 <div className="card-body">
+                    <Cards
+                        cvc={cvv}
+                        expiry={expiryDate}
+                        focused={focus}
+                        name={cardHolder}
+                        number={cardNumber}
+                    />
                     <form onSubmit={handleSubmit}>
                         <div className="row">
-                            <LabeledInput
+                            <input
                                 className="col-md-12"
+                                id="box"
                                 name="cardHolder"
                                 type="text"
                                 label="Card holder"
@@ -76,36 +108,43 @@ function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData
                                 value={cardHolder}
                                 onChange={handleInputChange}
                                 required={true}
+                                onFocus={handleInputFocus}
                             />
-                            <LabeledInput
+                            <input
                                 className="col-md-12"
+                                id="box"
                                 name="cardNumber"
-                                type="text"
+                                type="tel"
                                 label="Card number"
                                 placeholder="Enter card number"
                                 value={cardNumber}
                                 onChange={handleInputChange}
                                 required={true}
+                                onFocus={handleInputFocus}
                             />
-                            <LabeledInput
+                            <input
                                 className="col-md-6"
+                                id="box"
                                 name="expiryDate"
                                 type="text"
                                 label="Expiry date"
-                                placeholder="Enter expiry date"
+                                placeholder="Expiry date MM/YY"
                                 value={expiryDate}
                                 onChange={handleInputChange}
                                 required={true}
+                                onFocus={handleInputFocus}
                             />
-                            <LabeledInput
+                            <input
                                 className="col-md-6"
+                                id="box"
                                 name="cvv"
-                                type="text"
+                                type="tel"
                                 label="CVV"
                                 placeholder="Enter CVV"
                                 value={cvv}
                                 onChange={handleInputChange}
                                 required={true}
+                                onFocus={handleInputFocus}
                             />
                             <div className="col-md-12">
                                 <div className="info-group mb-3">

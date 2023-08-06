@@ -1,20 +1,21 @@
 import React from "react";
 import "./Checkout.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import LabeledInput from "../Custom/LabeledInput";
+import Item from "../Cart/Item";
 import DropdownSelection from "../Custom/DropdownSelection";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-
-function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) {
+function DeliveryContainer({ orderData, setOrderData, user, itemList }) {
+    const [ordersSelected, setordersSelected] = useState(true);
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
@@ -39,16 +40,16 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) 
         setValue(e.target.value);
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
+    const handlePhoneNumberChange = (e) => {
+        if (!e.target.value) return e.target.value;
+        const phoneNumber = e.target.value.replace(/[^\d]/g, "");
+        var formattedPhoneNumber = "";
+        const length = phoneNumber.length;
+        if (length < 4) formattedPhoneNumber = phoneNumber;
+        if (length < 7) formattedPhoneNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+        formattedPhoneNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6,)}-${phoneNumber.slice(6, 10)}`;
 
-        if (name === "firstname") {
-            setFirstName(value);
-        } else if (name === "lastname") {
-            setLastName(value);
-        } else if (name === "phonenumber") {
-            setPhoneNumber(value);
-        }
+        setPhoneNumber(formattedPhoneNumber);
     };
 
     const handleSelect = (address) => {
@@ -134,11 +135,26 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) 
         } else {
             console.log("No delivery option selected.");
         }
+        setdeliverySelected(false);
     };
 
     return (
         <div className="col-md-8">
             <div className="card">
+                <DropdownSelection
+                    label="Order Details"
+                    selected={ordersSelected}
+                    setSelected={setordersSelected}
+                />
+                {ordersSelected && (
+                    <div className="item-list-container">
+                        {itemList.map((item, index) => (
+                            <Item key={index} item={item} />
+                        ))}
+                    </div>
+
+                )}
+
                 <DropdownSelection
                     label="Shipping Information"
                     selected={shippingSelected}
@@ -175,7 +191,7 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) 
                                 placeholder="Enter phone number"
                                 required={true}
                                 value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                onChange={handlePhoneNumberChange}
                             />
                             <Combobox className="col-md-12" onSelect={handleSelect}>
                                 <label>Address</label>
@@ -300,6 +316,5 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData,user }) 
         </div>
     );
 }
-
 
 export default DeliveryContainer;
