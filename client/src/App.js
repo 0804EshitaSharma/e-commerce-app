@@ -47,7 +47,6 @@ function App() {
           <Route path={RoutePaths.Login} element={<Login />}></Route>
           <Route path={RoutePaths.Signup} element={<Signup />}></Route>
           <Route path={RoutePaths.Dashboard} element={<Dashboard />}></Route>
-          <Route path={RoutePaths.Front} element={<Front />}></Route>
           <Route path={RoutePaths.Home} element={<Front />}></Route>
           <Route
             path={RoutePaths.ResetPassword}

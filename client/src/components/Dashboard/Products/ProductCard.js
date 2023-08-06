@@ -58,7 +58,7 @@ export default function ProductCard(props) {
               style={{ float: "right" }}
               onClick={(e) => {
                 dispatch(addProductToCart({ productDetails, quantity }));
-                e.stopPropagation()
+                e.stopPropagation();
               }}
             >
               <path
@@ -106,7 +106,7 @@ export default function ProductCard(props) {
                       theme: "colored",
                       autoClose: 2000,
                     });
-                    e.stopPropagation()
+                    e.stopPropagation();
                   }}
                 >
                   <path
@@ -128,7 +128,7 @@ export default function ProductCard(props) {
                       RoutePaths.EditProduct.replace(":id", props.item._id),
                       { state: { item } }
                     );
-                    e.stopPropagation()
+                    e.stopPropagation();
                   }}
                 >
                   <path

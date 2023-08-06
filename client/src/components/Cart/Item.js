@@ -1,51 +1,84 @@
 import "../Cart/Item.css";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate, useLocation, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import QuantityButton from "../ProductPage/QuantityButton";
-import { removeProductFromCart } from "../../redux/cart/cartSlice";
+import {
+  removeProductFromCart,
+  updateItemQuantityFromCart,
+} from "../../redux/cart/cartSlice";
+import { useEffect, useState } from "react";
+import { RoutePaths } from "../../utils/RoutePaths";
 
-function Item({ item }) {
+function Item({ itemInfo, setTotalPrice, calcTotalPrice }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
-  //const itemInfo = item.productDetails;
+  const [quantity, setQuantity] = useState(itemInfo.quantity);
+  useEffect(() => {
+    let updatedItem = {
+      productDetails: {
+        id: itemInfo.productDetails.id,
+        name: itemInfo.productDetails.name,
+        description: itemInfo.productDetails.description,
+        price: itemInfo.productDetails.price,
+        rating: itemInfo.productDetails.rating,
+        category: itemInfo.productDetails.category,
+        images: itemInfo.productDetails.images,
+        quantity: itemInfo.productDetails.quantity,
+      },
+      quantity: quantity,
+    };
 
-  //console.log(itemInfo);
+    dispatch(updateItemQuantityFromCart(updatedItem));
+
+    if (setTotalPrice !== undefined || calcTotalPrice !== undefined) {
+      setTotalPrice(calcTotalPrice());
+    }
+  }, [quantity]);
+
+  const item = itemInfo.productDetails;
+
+  const productURL = RoutePaths.Product.replace(":name", item.name);
 
   return (
     <div id="item-container">
       <div
         className="image-container"
-        /*  // TODO: fix this route & ensure it is consistent with new RoutePaths         
         onClick={() => {
-          navigate(`/product/${itemInfo.name}`, { state: { itemInfo } });
-        }} */
+          navigate(productURL, { state: { item } });
+        }}
       >
         <img
           className="item-image"
-          src={item.productDetails.images[0]}
+          src={itemInfo.productDetails.images[0]}
           alt="Broken link"
         />
       </div>
       <div className="name-quantity-container">
         <h3
-        /*  // TODO: see comment above          
-        onClick={() => {
-            navigate("/product");
-          }} */
+          onClick={() => {
+            navigate(productURL, { state: { item } });
+          }}
         >
-          {item.productDetails.name}
+          {itemInfo.productDetails.name}
         </h3>
-        <h3>Quantity: {item.quantity}</h3>
+        {!location.pathname.includes(RoutePaths.Checkout) ? (
+          <QuantityButton quantity={quantity} setQuantity={setQuantity} />
+        ) : (
+          <>
+            <h3>Quantity: {itemInfo.quantity}</h3>
+          </>
+        )}
       </div>
       <div className="price-container">
         <h1 className="price-value">
-          ${item.productDetails.price * item.quantity}
+          ${(itemInfo.productDetails.price * quantity).toFixed(2)}
         </h1>
         <button
           className="remove-button"
           onClick={() => {
-            dispatch(removeProductFromCart(item));
+            dispatch(removeProductFromCart(itemInfo));
           }}
         >
           Remove
