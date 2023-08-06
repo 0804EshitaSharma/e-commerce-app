@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BsBagCheckFill } from "react-icons/bs";
 import "./OrderPlaced.css";
 import { useSelector } from "react-redux";

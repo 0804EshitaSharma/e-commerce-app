@@ -19,6 +19,18 @@ function Checkout() {
     user: user._id,
   });
 
+  const calcTotalPrice = () => {
+    let totalPrice = 0;
+    for (const item of itemList) {
+        let priceForQuantity = parseFloat(
+            (Number(item.productDetails.price) * Number(item.quantity)).toFixed(2)
+        );
+        totalPrice += priceForQuantity;
+    }
+    return totalPrice;
+};
+let totalPrice = calcTotalPrice();
+
   const handleOrderSubmit = (orderData) => {
     dispatch(createOrderAsync(orderData));
     dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
@@ -43,6 +55,7 @@ function Checkout() {
             handleOrderSubmit={handleOrderSubmit}
             orderData={orderData}
             setOrderData={setOrderData}
+            totalPrice={totalPrice}
           />
         </div>
       </div>

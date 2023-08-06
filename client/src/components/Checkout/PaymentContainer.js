@@ -8,7 +8,7 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import "./PaymentContainer.css";
 
-function PaymentContainer({ handleOrderSubmit, orderData }) {
+function PaymentContainer({ handleOrderSubmit, orderData, totalPrice }) {
     const [cardHolder, setCardHolder] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
@@ -69,6 +69,11 @@ function PaymentContainer({ handleOrderSubmit, orderData }) {
         <div className="col-md-4">
             <div className="card">
                 <div className="card-header">
+                <h4 className="price-header">
+                            Total Price
+                            <br />
+                            <br />${totalPrice}
+                        </h4>
                     <h4 className="header">Payment</h4>
                 </div>
                 <div className="card-body">
