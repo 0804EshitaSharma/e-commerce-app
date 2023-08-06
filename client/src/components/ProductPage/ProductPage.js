@@ -20,7 +20,7 @@ import QuantityButton from "./QuantityButton";
 function ProductPage() {
   // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
-  const shareUrl = window.location.origin + window.location.pathname;
+  const shareUrl = window.location.origin + window.location.hash;
   const quote = "Check this Awesome product";
   const title = "Check this Awesome product";
   const { state } = useLocation();
