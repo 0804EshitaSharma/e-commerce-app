@@ -46,11 +46,23 @@ function PaymentContainer({ handleOrderSubmit, orderData, totalPrice }) {
         if (name === "cardHolder") {
             setCardHolder(value);
         } else if (name === "cardNumber") {
-            setCardNumber(value);
+            if (!e.target.value) return e.target.value;
+            const cardnumber = e.target.value.replace(/[^\d]/g, "");
+            var formattedCardNumber = "";
+            const length = cardnumber.length;
+            if (length < 4) formattedCardNumber = cardnumber;
+            formattedCardNumber = `${cardnumber.slice(0, 4)} ${cardnumber.slice(4, 8,)} ${cardnumber.slice(8, 12)} ${cardnumber.slice(12, 16)}`;
+            setCardNumber(formattedCardNumber);
         } else if (name === "expiryDate") {
-            setExpiryDate(value);
+            if (!e.target.value) return e.target.value;
+            const expiry = e.target.value.replace(/[^\d]/g, "");
+            var formattedExpiry = "";
+            const length = expiry.length;
+            if (length < 3) formattedExpiry = expiry;
+            formattedExpiry = `${expiry.slice(0, 2)}/${expiry.slice(2, 4)}`;
+            setExpiryDate(formattedExpiry);
         } else if (name === "cvv") {
-            setCvv(value);
+            setCvv(value.slice(0,3));
         }
 
         setFormValid(
