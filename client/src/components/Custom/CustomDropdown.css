@@ -1,5 +1,4 @@
 .option_link {
-
   padding: 0.5rem;
 }
 
@@ -17,10 +16,12 @@
   background-color: rgba(108, 129, 139, 0.8);
   padding: 0.5rem;
 }
-
+p.option_name {
+  font-size: 10px;
+  font-weight: 500;
+}
 
 a.dropdown-toggle.nav-link {
-   text-decoration: none;
-    color:white !important;
-  
+  text-decoration: none;
+  color: white !important;
 }
