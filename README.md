@@ -46,17 +46,21 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 
 ## Above and Beyond Functionality
+- Used the Firebase API to develop a seamless user authentication system that enabled secure login and password reset functionality.
+- Enhanced the overall user experience by integrating the Sendgrid API to handle order confirmation emails.
+- React libraries such as react-share, react-toastify, and react-image-gallery were used for creating user-friendly interface.
+- The entire website is totally responsive, enabling seamless user interaction and viewing. 
 
 
 ## Next Steps
 We have successfully fulfilled nearly all project requirements, with the exception of the 'Show Recently Viewed Products' feature, which remains pending, and the partially completed 'Share Products with Friends' functionality. Completing these two goals would further enhance the app's overall functionality.
 
 During our discussions, we also explored additional potential features to enrich the shopping site's capabilities. These exciting prospects can add depth and sophistication to our platform, including
-- multi-language support for broader accessibility
-- implementing an advanced product recommendation algorithm personalized to each user
-- supporting different colors and sizes for each product
-- allowing actual payments and tracking for orders
-- introducing user roles to create separate pages exclusively accessible to sellers and buyers
+- Multi-language support for broader accessibility
+- Implementing an advanced product recommendation algorithm personalized to each user
+- Supporting different colors and sizes for each product
+- Allowing actual payments and tracking for orders
+- Introducing user roles to create separate pages exclusively accessible to sellers and buyers
 
 
 ## List of Contributions
@@ -81,6 +85,8 @@ During our discussions, we also explored additional potential features to enrich
 - **Project Name**: E-Commerce-App
 - **GitHub
 Link:** [https://github.com/0804EshitaSharma/e-commerce-app](https://github.com/0804EshitaSharma/e-commerce-app)
+- **Hosted Website
+Link:** [https://e-commerce-frontend-1ddb.onrender.com](https://e-commerce-frontend-1ddb.onrender.com)
 
 ## **Project Description:**
 Our project is an online store called E-Commerce-App, which is designed for customers to make online purchases, especially for those who are looking for convenience and favor 
