@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../../utils/RoutePaths";
-import { useState } from "react";
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
@@ -20,7 +19,6 @@ export default function ProductCard(props) {
     const productURL = RoutePaths.Product.replace(":name", item.name);
     navigate(productURL, { state: { item } });
   };
-  var [quantity, setQuantity] = useState(0);
   const productDetails = {
     id: props.item._id,
     name: props.item.name,
@@ -31,11 +29,11 @@ export default function ProductCard(props) {
     images: props.item.images,
     quantity: props.item.quantity,
   };
-
+  const quantity = 1;
   const item = props.item;
   return (
     <>
-      <ProdCard key={props.item.name}>
+      <ProdCard key={props.item.name} onClick={() => goToProduct(props.item)}>
         <div style={{ backgroundColor: "white" }}>
           <img
             style={{
@@ -46,7 +44,6 @@ export default function ProductCard(props) {
             }}
             src={props.item.images[0]}
             alt="Product"
-            onClick={() => goToProduct(props.item)}
           />
         </div>
         <div style={{ margin: "10px" }}>
@@ -59,9 +56,9 @@ export default function ProductCard(props) {
               strokeWidth={1.5}
               stroke="black"
               style={{ float: "right" }}
-              onClick={() => {
-                setQuantity(quantity++);
+              onClick={(e) => {
                 dispatch(addProductToCart({ productDetails, quantity }));
+                e.stopPropagation();
               }}
             >
               <path
@@ -102,13 +99,14 @@ export default function ProductCard(props) {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  onClick={() => {
+                  onClick={(e) => {
                     dispatch(deleteItemAsync(props.item._id));
                     toast.success("Deleted Product!", {
                       position: "bottom-right",
                       theme: "colored",
                       autoClose: 2000,
                     });
+                    e.stopPropagation();
                   }}
                 >
                   <path
@@ -125,11 +123,12 @@ export default function ProductCard(props) {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  onClick={() => {
+                  onClick={(e) => {
                     navigate(
                       RoutePaths.EditProduct.replace(":id", props.item._id),
                       { state: { item } }
                     );
+                    e.stopPropagation();
                   }}
                 >
                   <path

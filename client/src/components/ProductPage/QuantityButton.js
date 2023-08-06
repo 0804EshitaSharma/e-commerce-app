@@ -1,9 +1,7 @@
 import "./ProductPage.css";
 import { useState } from "react";
 
-function QuantityButton({ initialQuantity }) {
-  const [quantity, setQuantity] = useState(initialQuantity);
-
+function QuantityButton({ quantity, setQuantity }) {
   const updateQuantity = (value) => {
     const valueAsInt = parseInt(value);
     if (quantity > 1 || valueAsInt >= 0) {
