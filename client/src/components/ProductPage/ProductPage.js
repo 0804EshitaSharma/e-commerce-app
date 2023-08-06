@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
@@ -19,7 +19,7 @@ function ProductPage() {
   const quote = "See this Awesome product";
   // https://stackoverflow.com/a/71247418
   const { state } = useLocation();
-  const item = state.item || {};
+  const item = useMemo(() => state.item || {}, [state]);
 
   useEffect(() => {
     setQuantity(1);
@@ -169,6 +169,7 @@ function ProductPage() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

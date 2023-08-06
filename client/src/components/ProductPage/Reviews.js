@@ -15,26 +15,9 @@ export default function Reviews({ item }) {
     const [itemReviewed, setItemReviewed] = useState(item);
     const [rating, setRating] = useState(5);
     const [reviewText, setReviewText] = useState("");
+    const [hasOrderedBefore, setHasOrderedBefore] = useState(false);
 
-    useEffect(() => {
-        setItemReviewed(item);
-    }, [item])
-
-    const addReview = async () => {
-        const userInReviews = item.reviews.find((reviews) => {
-            return reviews.userId === currentUser._id;
-        })
-        if (userInReviews !== undefined) {
-            setRating(1);
-            setReviewText("");
-            toast.error("Already Added Your Review!", {
-                position: "bottom-right",
-                theme: "colored",
-                autoClose: 2000,
-            });
-            return;
-        }
-
+    const updateItemAfterReview = async () => {
         const reviewObject = {
             userId: currentUser._id,
             name: `${currentUser.firstname} ${currentUser.lastname}`,
@@ -47,6 +30,47 @@ export default function Reviews({ item }) {
             reviewObject
         );
         setItemReviewed(updatedItem.data);
+        console.log(itemReviewed);
+    }
+
+    useEffect(() => {
+        const ordersWithThisItem = async () => {
+            if (currentUser === null || currentUser._id === null) return;
+            const prevOrdersOfThisItem = await axios.get(
+                `${APIPaths.Orders}/${currentUser._id}/${item.name}`
+            );
+            setHasOrderedBefore(prevOrdersOfThisItem.data.length !== 0);
+        };
+        setItemReviewed(item);
+        ordersWithThisItem();
+    }, [item, currentUser]);
+
+    const resetReviewWithError = (text) => {
+        setRating(1);
+        setReviewText("");
+        toast.error(text, {
+            position: "bottom-right",
+            theme: "colored",
+            autoClose: 2000,
+        });
+    }
+
+    const addReview = () => {
+        const userInReviews = itemReviewed.reviews.find((reviews) => {
+            return reviews.userId === currentUser._id;
+        });
+        if (userInReviews !== undefined) {
+            resetReviewWithError("Already Added Your Review!");
+            return;
+        } else if (!hasOrderedBefore) {
+            resetReviewWithError("Please Purchase Item to Add Your Review");
+            return;
+        } else if (reviewText === "") {
+            resetReviewWithError("Review Must Contain Text");
+            return;
+        }
+
+        updateItemAfterReview();
         setRating(1);
         setReviewText("");
         toast.success("Added Review!", {
@@ -120,6 +144,7 @@ export default function Reviews({ item }) {
                     </Carousel>
                 )}
             </div>
+            <ToastContainer />
         </>
     );
 }
