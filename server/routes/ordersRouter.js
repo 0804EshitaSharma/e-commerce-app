@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Orders = require("../models/orderSchema");
+const Orders = require("../models/ordersSchema");
 const Item = require("../models/itemSchema");
 const Users = require("../models/userSchema");
 
