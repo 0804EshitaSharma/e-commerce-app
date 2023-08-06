@@ -9,9 +9,18 @@ import "./AddProductForm.css";
 import { addNewItemAsync } from "../../redux/item/itemSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { object, string,number } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 function AddProductForm() {
-  const { handleSubmit, reset, register } = useForm({});
+  const schema = object({
+    name: string().required("Name is required"),
+    price: number().required("Price is required"),
+    description: string().required("Description is required"),
+    quantity: number().required("Quantity is required"),
+    images: string().required("Image url is required").url("Invalid Image url"),
+  });
+  const { handleSubmit, reset, register, formState: { errors }
+  } = useForm({ resolver: yupResolver(schema) });
   const dispatch = useDispatch();
   const formSubmit = (event) => {
     event = {
@@ -48,6 +57,7 @@ function AddProductForm() {
             placeholder="Item Name"
             label="Item Name:"
             register={{ ...register("name", { required: true }) }}
+            errorMessage={errors.name?.message}
           />
           <CustomFormInput
             name="price"
@@ -56,6 +66,7 @@ function AddProductForm() {
             placeholder="Item Price"
             label="Item Price:"
             register={{ ...register("price", { required: true }) }}
+            errorMessage={errors.price?.message}
           />
           <CustomFormTextArea
             name="description"
@@ -65,6 +76,7 @@ function AddProductForm() {
             rows="5"
             cols="65"
             register={{ ...register("description", { required: true }) }}
+            errorMessage={errors.description?.message}
           />
           <CustomFormInput
             name="quantity"
@@ -73,6 +85,7 @@ function AddProductForm() {
             placeholder="Item Quantity"
             label="Item Quantity:"
             register={{ ...register("quantity", { required: true }) }}
+            errorMessage={errors.quantity?.message}
           />
           <CustomSelect
             id="category"
@@ -88,6 +101,7 @@ function AddProductForm() {
             placeholder="Item Image"
             label="Item Image:"
             register={{ ...register("images", { required: true }) }}
+            errorMessage={errors.images?.message}
           />
 
           <CustomButton
