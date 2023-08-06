@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Checkout.css";
-import LabeledInput from "../Custom/LabeledInput";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../utils/RoutePaths";
 import { useDispatch } from "react-redux";
@@ -9,7 +8,7 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import "./PaymentContainer.css";
 
-function PaymentContainer({ handleOrderSubmit, itemList, orderData, setOrderData }) {
+function PaymentContainer({ handleOrderSubmit, orderData }) {
     const [cardHolder, setCardHolder] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");

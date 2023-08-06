@@ -4,7 +4,6 @@ import "./OrderPlaced.css";
 import { useSelector } from "react-redux";
 
 function OrderPlaced() {
-  // const user = useSelector((state) => state.user.user);
   const order = useSelector((state) => state.orders.order);
   const orderId = order?._id;
 

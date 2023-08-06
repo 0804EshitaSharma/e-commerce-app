@@ -2,6 +2,7 @@ import React from "react";
 import "./Checkout.css";
 import { useState, useEffect } from "react";
 import LabeledInput from "../Custom/LabeledInput";
+import Item from "../Cart/Item";
 import DropdownSelection from "../Custom/DropdownSelection";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
@@ -13,7 +14,8 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData, user }) {
+function DeliveryContainer({ orderData, setOrderData, user, itemList }) {
+    const [ordersSelected, setordersSelected] = useState(true);
     const [shippingSelected, setshippingSelected] = useState(true);
     const [deliverySelected, setdeliverySelected] = useState(false);
     const [addressComponents, setAddressComponents] = useState({
@@ -139,6 +141,19 @@ function DeliveryContainer({ handleOrderSubmit, orderData, setOrderData, user })
     return (
         <div className="col-md-8">
             <div className="card">
+                <DropdownSelection
+                    label="Order Details"
+                    selected={ordersSelected}
+                    setSelected={setordersSelected}
+                />
+                {ordersSelected && (
+                    <div className="item-list-container">
+                        {itemList.map((item, index) => (
+                            <Item key={index} item={item} />
+                        ))}
+                    </div>
+                )}
+
                 <DropdownSelection
                     label="Shipping Information"
                     selected={shippingSelected}
