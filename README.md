@@ -1,5 +1,70 @@
 # About Our E-Commerce App
-Our E-Commerce app aims to provide smooth online shopping experience for all kinds of users. Our design enables users to explore products, and to add items to their wishlist or shopping cart for checkout. Admins are also able to manage their products by efficiently adding, deleting, or updating items.
+Discover the joy of online shopping with our user-friendly E-Commerce app. Browse products, add to wishlist or cart, breeze through checkout, and let admins effortlessly manage the store. Welcome to our app where shopping is a delightful enchantment for all.
+
+## **Project Task Requirements**:
+
+1.  **Minimal Requirements**
+
+    a.  A dashboard with a search bar with product filters ✅
+
+    b.  View selected product details ✅
+
+    c.  Add product to shopping cart ✅
+
+    d.  Products checkout page ✅
+
+    e.  User Authentication with password assistance ✅
+
+2.  **Standard Requirements**
+
+    a.  User Account page ✅
+
+    b.  View past orders ✅
+
+    c.  Add products to wishlists ✅
+
+    d.  An option to share products with friends ⚠️
+
+    e.  Add product ratings ✅
+
+    f.  Email notifications on product purchase ✅
+
+4.  **Stretch Requirements**
+
+    a.  Show user's recently viewed products ❌
+
+    b.  Add reviews to a product/see past reviews ✅
+
+    c.  An option to return an order ✅
+
+    d.  Functionality to create seller/admin accounts ✅
+
+    f.  Allow seller/admin to post, delete, and update products ✅
+
+    
+## Tech Stack
+
+
+## Above and Beyond Functionality
+- Used the Firebase API to develop a seamless user authentication system that enabled secure login and password reset functionality.
+- Enhanced the overall user experience by integrating the Sendgrid API to handle order confirmation emails.
+- React libraries such as react-share, react-toastify, and react-image-gallery were used for creating user-friendly interface.
+- The entire website is totally responsive, enabling seamless user interaction and viewing. 
+
+
+## Next Steps
+We have successfully fulfilled nearly all project requirements, with the exception of the 'Show Recently Viewed Products' feature, which remains pending, and the partially completed 'Share Products with Friends' functionality. Completing these two goals would further enhance the app's overall functionality.
+
+During our discussions, we also explored additional potential features to enrich the shopping site's capabilities. These exciting prospects can add depth and sophistication to our platform, including
+- Multi-language support for broader accessibility
+- Implementing an advanced product recommendation algorithm personalized to each user
+- Supporting different colors and sizes for each product
+- Allowing actual payments and tracking for orders
+- Introducing user roles to create separate pages exclusively accessible to sellers and buyers
+
+
+## List of Contributions
+
 
 ## Project Group Information
 
@@ -20,48 +85,13 @@ Our E-Commerce app aims to provide smooth online shopping experience for all kin
 - **Project Name**: E-Commerce-App
 - **GitHub
 Link:** [https://github.com/0804EshitaSharma/e-commerce-app](https://github.com/0804EshitaSharma/e-commerce-app)
+- **Hosted Website
+Link:** [https://e-commerce-frontend-1ddb.onrender.com](https://e-commerce-frontend-1ddb.onrender.com)
 
 ## **Project Description:**
 Our project is an online store called E-Commerce-App, which is designed for customers to make online purchases, especially for those who are looking for convenience and favor 
 online shops over traditional brick-and-mortar stores because of their comfort. It will store data such as product details and user information, so that the consumers can log in to their own accounts and have access to a variety of online purchasing features and services. It also supports the users to read descriptions, view photographs of the products, and check user reviews as they explore through comprehensive product lists. It includes products from a variety of categories, including electronics, apparel, household items, and more, which can be searched for by users. We are also considering functionalities such as creating the seller side of accounts and pages depending on the time constraints.
 
-## **Project Task Requirements**:
-
-1.  **Minimal Requirements**
-
-    a.  A dashboard with a search bar with product filters
-
-    b.  View selected product details.
-
-    c.  Add product to shopping cart.
-
-    d.  Products checkout page.
-
-    e.  User Authentication with password assistance.
-
-2.  **Standard Requirements**
-
-    a.  User Account page.
-
-    b.  View past orders
-
-    c.  Add products to wish Lists.
-
-    d.  An option to share products with friends.
-
-    e.  Add product ratings
-
-    f.  Email or text notifications on product purchase
-
-3.  **Stretch Requirements**
-
-    a.  Show user's recently viewed products.
-
-    b.  Add reviews to a product/see past reviews
-
-    c.  An option to return an order.
-
-    d.  Functionality to create seller accounts and post products
 
 ## Task Breakdown
 The following are the two minimal requirements we have chosen to do task breakdowns for and their associated smaller tasks:
