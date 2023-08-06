@@ -61,6 +61,24 @@ During our discussions, we also explored additional potential features to enrich
 
 ## List of Contributions
 
+ **Arshdeep Jassi**
+
+ **Danielle Chen**
+
+ - Front page
+    - Designed Product Card
+    - Fetch and display products
+ - Dashboard page
+   - Implemented Search bar
+   - Implemented product filters
+ - Collected all product data to database
+
+ **Elsie Lee**
+
+ **Eshita Sharma**
+
+ **Florence Situ**
+  
 
 ## Project Group Information
 
