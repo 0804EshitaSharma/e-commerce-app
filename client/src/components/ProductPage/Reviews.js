@@ -7,6 +7,8 @@ import { APIPaths } from "../../utils/APIPaths";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import responsiveConfigs from "./CarouselConfigs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Reviews({ item }) {
     const currentUser = useSelector((state) => state.user.user);
@@ -25,6 +27,11 @@ export default function Reviews({ item }) {
         if (userInReviews !== undefined) {
             setRating(1);
             setReviewText("");
+            toast.error("Already Added Your Review!", {
+                position: "bottom-right",
+                theme: "colored",
+                autoClose: 2000,
+            });
             return;
         }
 
@@ -42,6 +49,11 @@ export default function Reviews({ item }) {
         setItemReviewed(updatedItem.data);
         setRating(1);
         setReviewText("");
+        toast.success("Added Review!", {
+            position: "bottom-right",
+            theme: "colored",
+            autoClose: 2000,
+        });
     };
 
     return (

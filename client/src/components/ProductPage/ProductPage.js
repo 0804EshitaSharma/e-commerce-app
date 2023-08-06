@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
 
@@ -49,8 +51,18 @@ function ProductPage() {
     );
     if (isInWishlist) {
       dispatch(removeItem(item.name));
+      toast.success("Removed from Wishlist!", {
+        position: "bottom-right",
+        theme: "colored",
+        autoClose: 2000,
+      });
     } else {
       dispatch(addItem(item));
+      toast.success("Added to Wishlist!", {
+        position: "bottom-right",
+        theme: "colored",
+        autoClose: 2000,
+      });
     }
   };
 
