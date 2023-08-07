@@ -67,7 +67,7 @@ This project utilized Node.js and Express.js to enhance the backend architecture
 - Enhanced the overall user experience by integrating the Sendgrid API to handle order confirmation emails.
 3. **Use of various React Libraries**
 - Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and The entire website is totally responsive, enabling seamless user interaction and viewing.
-4.**Share products on social Media**
+4. **Share products on social Media**
 - React share is used on the product page to give customers the opportunity to email and share the product on Facebook.
 
 
