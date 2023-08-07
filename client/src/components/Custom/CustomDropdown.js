@@ -1,8 +1,6 @@
 import React from "react";
 import "./CustomDropdown.css";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";

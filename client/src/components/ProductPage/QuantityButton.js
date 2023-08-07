@@ -1,5 +1,4 @@
 import "./ProductPage.css";
-import { useState } from "react";
 
 function QuantityButton({ quantity, setQuantity }) {
   const updateQuantity = (value) => {
