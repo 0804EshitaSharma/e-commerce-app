@@ -61,9 +61,13 @@ This project utilized Node.js and Express.js to enhance the backend architecture
 
 
 ## Above and Beyond Functionality
+**Seamless User Authentication using Firebase**
 - Used the Firebase API to develop a seamless user authentication system that enabled secure login and password reset functionality.
+**Order Confirmation Emails using Sendgrid API**
 - Enhanced the overall user experience by integrating the Sendgrid API to handle order confirmation emails.
+**Use of various React Libraries**
 - React libraries such as react-share, react-toastify, and react-image-gallery were used for creating user-friendly interface.
+**Share products on social Media**
 - The entire website is totally responsive, enabling seamless user interaction and viewing. 
 
 
