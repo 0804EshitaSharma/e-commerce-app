@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+/*Reference from https://mongoosejs.com/docs/guide.html */
 const ItemSchema = new Schema({
   name: { type: String },
   description: { type: String },

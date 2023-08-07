@@ -16,9 +16,8 @@ import { useLocation } from "react-router-dom";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
 import QuantityButton from "./QuantityButton";
-
+ /* Reference  Product Share feature from https://www.npmjs.com/package/react-share?activeTab=readme and  https://github.com/nygardk/react-share/blob/454860844d11d11d23112db1982feaf0ef4f1f09/demo/Demo.tsx */
 function ProductPage() {
-  // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
   const shareUrl = window.location.origin + window.location.hash;
   const quote = "Check this Awesome product";
