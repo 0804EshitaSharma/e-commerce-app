@@ -16,8 +16,8 @@ function Checkout() {
     items: itemList,
     deliveryOption: "",
     deliveryAddress: "",
-    fullName: `${user.firstname} ${user.lastname}`,
-    user: user._id,
+    fullName: `${user?.firstname} ${user?.lastname}`,
+    user: user?._id,
   });
 
   const calcTotalPrice = () => {
