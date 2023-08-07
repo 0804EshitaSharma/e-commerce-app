@@ -149,3 +149,6 @@ These are our prototypes for the two requirements with task breakdowns mentioned
 
 - the view of the selected product details
 ![image](prototypes/productDetails-prototype.jpeg)
+
+- User Profile Screen with various options to update profile
+![pdf](prototypes/UserProfile.pdf)
