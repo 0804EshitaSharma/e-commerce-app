@@ -34,8 +34,10 @@ function ProductPage() {
   });
 
   useEffect(() => {
-    setStater(state)
-    localStorage.setItem("stater", JSON.stringify(state));
+    if (state?.item) {
+      setStater(state)
+      localStorage.setItem("stater", JSON.stringify(state));
+    }
   }, [searchText]);
   
   useEffect(() => {
