@@ -13,18 +13,19 @@ import { RoutePaths } from "../../utils/RoutePaths.js";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 function Signup() {
-   const schema = object({
-     firstname: string().required("Firstname is required"),
-     lastname: string().required("Lastname is required"),
-     useremail: string().email().required("User Email is required"),
-     userpassword: string()
-       .min(8, "Password must be at least 8 characters long")
-       .matches(
-         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-       )
-       .required("Password is required"),
-   });
+  /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4 */
+  const schema = object({
+    firstname: string().required("Firstname is required"),
+    lastname: string().required("Lastname is required"),
+    useremail: string().email().required("User Email is required"),
+    userpassword: string()
+      .min(8, "Password must be at least 8 characters long")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      )
+      .required("Password is required"),
+  });
   const {
     handleSubmit,
     reset,

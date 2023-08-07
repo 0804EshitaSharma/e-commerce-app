@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { object, string,number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 function AddProductForm() {
+  /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4 */
   const schema = object({
     name: string().required("Name is required"),
     price: number().required("Price is required"),
@@ -19,7 +20,11 @@ function AddProductForm() {
     quantity: number().required("Quantity is required"),
     images: string().required("Image url is required").url("Invalid Image url"),
   });
-  const { handleSubmit, reset, register, formState: { errors }
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const dispatch = useDispatch();
   const formSubmit = (event) => {
@@ -34,7 +39,6 @@ function AddProductForm() {
       autoClose: 2000,
     });
   };
-
 
   const clearForm = () => {
     reset();
