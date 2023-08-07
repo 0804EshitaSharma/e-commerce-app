@@ -37,7 +37,7 @@ function Form({
   const dispatch = useDispatch();
   /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4  and ChatGPT */
   const schema = object({
-    username: string().email(),
+    username: string().email("Invalid email found"),
     userpassword: string()
       .min(8, "Password must be at least 8 characters long")
       .matches(
