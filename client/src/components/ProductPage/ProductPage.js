@@ -24,7 +24,19 @@ function ProductPage() {
   const quote = "Check this Awesome product";
   const title = "Check this Awesome product";
   const { state } = useLocation();
-  const item = state.item || {};
+
+  const [stater, setStater] = useState(() => {
+    if (state?.item) {
+      return state;
+    }
+    return JSON.parse(localStorage.getItem("stater")) || { item: "" };
+  });
+  
+  useEffect(() => {
+    localStorage.setItem("stater", JSON.stringify(stater));
+  }, [stater]);
+
+  const item = stater.item || {};
 
   useEffect(() => {
     setQuantity(1);
