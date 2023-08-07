@@ -28,11 +28,11 @@ function AddProductForm() {
     };
     dispatch(addNewItemAsync(event));
     reset();
-     toast.success("Added Product!", {
-       position: "bottom-right",
-       theme: "colored",
-       autoClose: 2000,
-     });
+    toast.success("Added Product!", {
+      position: "bottom-right",
+      theme: "colored",
+      autoClose: 2000,
+    });
   };
 
 
@@ -45,6 +45,12 @@ function AddProductForm() {
     { id: 2, text: "Electronics" },
     { id: 3, text: "Home" },
     { id: 4, text: "Books" },
+    { id: 5, text: "Food" },
+    { id: 6, text: "Fashion" },
+    { id: 7, text: "Toys" },
+    { id: 8, text: "Pets" },
+    { id: 9, text: "Health" },
+    { id: 10, text: "Outdoor" },
   ];
   return (
     <>

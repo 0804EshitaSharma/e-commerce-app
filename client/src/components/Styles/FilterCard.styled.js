@@ -10,4 +10,9 @@ export const FilterCardContainer = styled.div`
   margin: 10px 0px;
   background-color: snow;
   border-radius: 6px;
+
+  @media (max-width: 768px) {
+    padding: 1px;
+    margin: 0px;
+  }
 `;
