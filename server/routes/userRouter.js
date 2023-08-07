@@ -67,8 +67,6 @@ router.patch("/:userId", async function (req, res, next) {
 });
 router.post("/mail", async function (req, res, next) {
   try {
-    console.log(req.body.user);
-    console.log("order info", req.body.orderInfo);
     const userObject = req.body.user;
     const orderInfo = req.body.orderInfo;
     const listItems = orderInfo.map(
