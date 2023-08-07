@@ -10,7 +10,7 @@ import { RoutePaths } from "../../utils/RoutePaths.js";
 function OrderHistory() {
   const list = useSelector((state) => state.orders.list);
   const dispatch = useDispatch();
-  const userID = auth.currentUser.uid;
+  const userID = auth.currentUser?.uid;
   useEffect(() => {
     dispatch(getOrdersAsync(userID));
   }, []);
