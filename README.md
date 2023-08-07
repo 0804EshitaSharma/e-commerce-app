@@ -69,6 +69,7 @@ This project utilized Node.js and Express.js to enhance the backend architecture
 - Users receive order confirmation emails via Sendgrid API that include complete order details and delivery addresses.
 3. **Use of various React Libraries**
 - Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and The entire website is totally responsive, enabling seamless user interaction and viewing.
+- React-Toastify is used to display toast notifications for every user action, such as logging in or out, posting a review, returning an order, etc. Notifications for both errors and successes are displayed.
 4. **Share products on Social Media**
 - React share is used on the product page to give customers the opportunity to email and share their favorite products on Facebook.
 
