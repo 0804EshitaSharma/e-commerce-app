@@ -44,6 +44,18 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
     
 ## Tech Stack
 
+1. **HTML, CSS, JS**
+
+2. **React & Redux**
+React and Redux are used throughout this project to create a robust and maintainable frontend architecture. Compared to standard HTML, our project utilized React components, which efficiently manage the application's UI rendering, promoting code reusability and readability. Redux is integrated into our project to manage a global state, ensuring seamless data flow and facilitating efficient state management across components.
+
+3. **Node & Express**
+This project utilized Node.js and Express.js to enhance the backend architecture of our web application. Node.js ensures our server can handle multiple connections simultaneously, making our project scalable and high performance. Express.js serves as our application framework, it provided our server-side code a clear and organized structure for routing and request handling. 
+
+4. **MongoDB**
+
+5. **Builds and Deployment**
+
 
 ## Above and Beyond Functionality
 - Used the Firebase API to develop a seamless user authentication system that enabled secure login and password reset functionality.
