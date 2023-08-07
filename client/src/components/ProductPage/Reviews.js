@@ -30,7 +30,6 @@ export default function Reviews({ item }) {
             reviewObject
         );
         setItemReviewed(updatedItem.data);
-        console.log(itemReviewed);
     }
 
     useEffect(() => {

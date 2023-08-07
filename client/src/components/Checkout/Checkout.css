@@ -55,3 +55,11 @@
 #nextStep {
     float: right;
 }
+@media (max-width: 831px) {
+    .dropdown-text{
+       font-size: 12px;
+    }
+    .dropdown-header{
+        height: 30px;
+    }
+}

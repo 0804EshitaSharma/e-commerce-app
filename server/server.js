@@ -3,7 +3,6 @@ var cors = require("cors");
 const ordersRouter = require("./routes/ordersRouter");
 const productRouter = require("./routes/productRouter");
 const userRouter = require("./routes/userRouter");
-const Order = require("./models/orderSchema");
 const dotenv = require("dotenv");
 dotenv.config();
 

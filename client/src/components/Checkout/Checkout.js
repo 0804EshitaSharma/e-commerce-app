@@ -3,23 +3,35 @@ import "./Checkout.css";
 import DeliveryContainer from "./DeliveryContainer";
 import PaymentContainer from "./PaymentContainer";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import Item from "../Cart/Item";
+import { useState } from "react";
 import { sendMailAsync } from "../../redux/user/userSlice.js";
-import { createOrder } from "../../redux/orders/ordersSlice";
-import { auth } from "../../firebase/firebaseConfig";
-import { getUserInfoAsync } from "../../redux/user/userSlice.js";
 import { createOrderAsync } from "../../redux/orders/orderThunks";
 
 function Checkout() {
   const itemList = useSelector((state) => state.cart.itemsList);
   const dispatch = useDispatch();
+
   const user = useSelector((state) => state.user.user);
-   const [orderData, setOrderData] = useState({
-      items: itemList,
-      deliveryOption: "placeholder",
-      user: user._id,
-    });
+  const [orderData, setOrderData] = useState({
+    items: itemList,
+    deliveryOption: "",
+    deliveryAddress: "",
+    fullName: `${user.firstname} ${user.lastname}`,
+    user: user._id,
+  });
+
+  const calcTotalPrice = () => {
+    let totalPrice = 0;
+    for (const item of itemList) {
+      let priceForQuantity = parseFloat(
+        item.productDetails.price * item.quantity
+      );
+      totalPrice += priceForQuantity;
+    }
+    return totalPrice.toFixed(2);
+  };
+  let totalPrice = calcTotalPrice();
+
   const handleOrderSubmit = (orderData) => {
     dispatch(createOrderAsync(orderData));
     dispatch(sendMailAsync({ user: user, orderInfo: itemList }));
@@ -30,30 +42,26 @@ function Checkout() {
       <h2> Checkout </h2>
       <div className="container-lg">
         <div className="row">
-          {/* Display items */}
-          <div className="item-list-container">
-            {itemList.map((item, index) => (
-              <Item key={index} item={item} />
-            ))}
-          </div>
           {/* left */}
           <DeliveryContainer
             handleOrderSubmit={handleOrderSubmit}
-             orderData={orderData}
-             setOrderData={setOrderData}
+            orderData={orderData}
+            setOrderData={setOrderData}
             user={user}
+            itemList={itemList}
           />
 
-            {/* right */}
-            <PaymentContainer
-              handleOrderSubmit={handleOrderSubmit}
-              orderData={orderData}
-              setOrderData={setOrderData}
-            />
-          </div>
+          {/* right */}
+          <PaymentContainer
+            handleOrderSubmit={handleOrderSubmit}
+            orderData={orderData}
+            setOrderData={setOrderData}
+            totalPrice={totalPrice}
+          />
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default Checkout;

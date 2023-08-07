@@ -17,7 +17,7 @@ export default function WishlistPage() {
   return (
     <div className="wishlist-page-wrapper">
       <div className="wishlist-header">
-        <h2>Wish List</h2>
+        <h2>Wishlist</h2>
       </div>
 
       {wishlistItems.length === 0 ? (

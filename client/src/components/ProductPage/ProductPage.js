@@ -2,7 +2,12 @@ import React, { useEffect, useMemo } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,14 +17,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
+import QuantityButton from "./QuantityButton";
 
 function ProductPage() {
   const [quantity, setQuantity] = useState(1);
-  const shareUrl = window.location.origin + window.location.pathname;
-  const quote = "See this Awesome product";
-  // https://stackoverflow.com/a/71247418
+  const shareUrl = window.location.origin + window.location.hash;
+  const quote = "Check this Awesome product";
+  const title = "Check this Awesome product";
   const { state } = useLocation();
-  const item = useMemo(() => state.item || {}, [state]);
+
+  const [stater, setStater] = useState(() => {
+    if (state?.item) {
+      return state;
+    }
+    return JSON.parse(localStorage.getItem("stater")) || { item: "" };
+  });
+  
+  useEffect(() => {
+    localStorage.setItem("stater", JSON.stringify(stater));
+  }, [stater]);
+
+  const item = stater.item || {};
 
   useEffect(() => {
     setQuantity(1);
@@ -31,18 +49,6 @@ function ProductPage() {
 
   const translateImages = (imgArray) => {
     return imgArray.map((imgURL) => ({ original: imgURL, thumbnail: imgURL }));
-  };
-
-  const updateQuantity = (value) => {
-    const valueAsInt = parseInt(value);
-    if (quantity > 1 || valueAsInt >= 0) {
-      setQuantity(quantity + valueAsInt);
-    }
-  };
-
-  const handleQuantityTypingInput = (e) => {
-    const valueAsInt = parseInt(e.target.value);
-    isNaN(valueAsInt) ? setQuantity(1) : setQuantity(valueAsInt);
   };
 
   const toggleWishlist = () => {
@@ -99,6 +105,11 @@ function ProductPage() {
             <FacebookShareButton url={shareUrl} quote={quote}>
               <FacebookIcon size={30} round={true}></FacebookIcon>
             </FacebookShareButton>
+            <EmailShareButton url={shareUrl} subject={title}>
+              <EmailIcon size={32} round />
+            </EmailShareButton>
+          </div>
+          <div className="rating-wrapper">
             <Rating ratings={parseFloat(item.rating)} />
           </div>
         </div>
@@ -122,34 +133,10 @@ function ProductPage() {
             <div className="buy-options">
               <div className="price-quantity">
                 <h4>${item.price}</h4>
-                <div className="quantity-picker-wrapper">
-                  <h4>Quantity:</h4>
-                  <div className="quantity-picker">
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(-1)}
-                    >
-                      -
-                    </button>
-                    <input
-                      type="number"
-                      value={quantity}
-                      min="1"
-                      minLength={1}
-                      className="purchase-button"
-                      onChange={handleQuantityTypingInput}
-                    />
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
+                <QuantityButton quantity={quantity} setQuantity={setQuantity} />
               </div>
               <div className="purchase-buttons">
-                <AddToCartButton productDetails={item} quantity={1} />
+                <AddToCartButton productDetails={item} quantity={quantity} />
               </div>
             </div>
           </div>
@@ -158,7 +145,7 @@ function ProductPage() {
         <div className="reviews-container">
           <h3>Reviews</h3>
           <div className="reviews">
-            <Reviews item={item}/>
+            <Reviews item={item} />
           </div>
         </div>
 

@@ -13,7 +13,6 @@ export default function ContentContainer() {
   const dispatch = useDispatch();
   const searchText = window.location.hash.split('/')[2]
 
-  // listen to url change
   let location = useLocation();
 
   const [categories, setCategories] = useState([
@@ -21,6 +20,11 @@ export default function ContentContainer() {
     { id: 2, checked: false, label: "Electronics" },
     { id: 3, checked: false, label: "Books" },
     { id: 4, checked: false, label: "Outdoor" },
+    { id: 5, checked: false, label: "Food" },
+    { id: 6, checked: false, label: "Fashion" },
+    { id: 7, checked: false, label: "Toys" },
+    { id: 8, checked: false, label: "Pets" },
+    { id: 9, checked: false, label: "Health" },
   ]);
 
   const [prices, setPrices] = useState([

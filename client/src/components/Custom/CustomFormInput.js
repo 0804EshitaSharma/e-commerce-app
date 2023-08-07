@@ -11,6 +11,7 @@ function CustomFormInput({
   placeholder,
   defaultValue,
   readOnly,
+  errorMessage
 }) {
   return (
     <div className="custom_form_container">
@@ -28,6 +29,7 @@ function CustomFormInput({
         readOnly={readOnly}
         {...register}
       ></input>
+      <span className="error_message">{errorMessage}</span>
     </div>
   );
 }

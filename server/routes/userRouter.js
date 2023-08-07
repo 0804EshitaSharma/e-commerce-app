@@ -67,8 +67,6 @@ router.patch("/:userId", async function (req, res, next) {
 });
 router.post("/mail", async function (req, res, next) {
   try {
-    console.log(req.body.user);
-    console.log("order info", req.body.orderInfo);
     const userObject = req.body.user;
     const orderInfo = req.body.orderInfo;
     const listItems = orderInfo.map(
@@ -87,7 +85,7 @@ router.post("/mail", async function (req, res, next) {
       <h4>Hello ${userObject.firstname} </h4>
       <h3>Please confirm Your order!</h3>
       <ol>${listItems}</ol>
-      <h4>Deliever to :${userObject.address} <h4>
+      <h4>Deliver to :${userObject.address} <h4>
       <h4>Thank you for shopping with us! </h4>
       <h4> E-Commerce Team </h4>
       </div>`,

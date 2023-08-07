@@ -1,6 +1,6 @@
 import React from "react";
 import "./CustomDropdown.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths";
 import { removeAllInCart } from "../../redux/cart/cartSlice";
 import { clearWishlist } from "../../redux/wishlistSlice";
-
-function CustomDropdown() {
+import NavDropdown from "react-bootstrap/NavDropdown";
+function CustomDropdown({ name }) {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,19 +48,28 @@ function CustomDropdown() {
       to: RoutePaths.AddProduct,
     });
   }
+  const navigateTo = (to) => {
+    navigate(to); // Navigate to the desired route when the menu item is clicked
+  };
 
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */
   return (
     <>
-      <div className="menu_container">
-        <ul>
+      <div className="custom-dropdown">
+        <NavDropdown title={!name ? "Guest" : name}>
           {menu.map((i, index) => (
-            <li key={index}>
-              <Link to={i.to}>{i.name}</Link>
-            </li>
+            <NavDropdown.Item key={index}>
+              <p onClick={() => navigateTo(i.to)} className="option_name">
+                {i.name}
+              </p>
+            </NavDropdown.Item>
           ))}
-          <li onClick={logOut}>Log Out</li>
-        </ul>
+          <NavDropdown.Item>
+            <p className="option_name" onClick={logOut}>
+              Log Out
+            </p>
+          </NavDropdown.Item>
+        </NavDropdown>
       </div>
       <ToastContainer />
     </>
