@@ -39,9 +39,9 @@ function DeliveryContainer({
     setValue,
   } = usePlacesAutocomplete({ callbackName: "initMap" });
 
-  const [firstName, setFirstName] = useState(user.firstname);
-  const [lastName, setLastName] = useState(user.lastname);
-  const [phoneNumber, setPhoneNumber] = useState(user.mobile);
+  const [firstName, setFirstName] = useState(user?.firstname);
+  const [lastName, setLastName] = useState(user?.lastname);
+  const [phoneNumber, setPhoneNumber] = useState(user?.mobile);
 
   const handleInput = (e) => {
     setValue(e.target.value);

@@ -16,11 +16,11 @@ function Order({ order, deliveryAddress, fullName }) {
   if (deliveryAddress) {
     address = deliveryAddress;
   } else if (
-    user.address !== "" ||
-    user.address !== undefined ||
-    user.address !== null
+    user?.address !== "" ||
+    user?.address !== undefined ||
+    user?.address !== null
   ) {
-    address = user.address;
+    address = user?.address;
   }
   const returnOrder = () => {
     setShowModal(true);
