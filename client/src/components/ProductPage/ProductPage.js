@@ -24,6 +24,7 @@ function ProductPage() {
   const quote = "Check this Awesome product";
   const title = "Check this Awesome product";
   const { state } = useLocation();
+  const searchText = window.location.hash.split('/')[2]
 
   const [stater, setStater] = useState(() => {
     if (state?.item) {
@@ -31,6 +32,11 @@ function ProductPage() {
     }
     return JSON.parse(localStorage.getItem("stater")) || { item: "" };
   });
+
+  useEffect(() => {
+    setStater(state)
+    localStorage.setItem("stater", JSON.stringify(state));
+  }, [searchText]);
   
   useEffect(() => {
     localStorage.setItem("stater", JSON.stringify(stater));
