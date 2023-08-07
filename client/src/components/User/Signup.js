@@ -10,14 +10,28 @@ import "./Signup.css";
 import { useDispatch } from "react-redux";
 import { addUserAsync } from "../../redux/user/userSlice.js";
 import { RoutePaths } from "../../utils/RoutePaths.js";
-
+import { object, string } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 function Signup() {
+  /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4 */
+  const schema = object({
+    firstname: string().required("Firstname is required"),
+    lastname: string().required("Lastname is required"),
+    useremail: string().email().required("User Email is required"),
+    userpassword: string()
+      .min(8, "Password must be at least 8 characters long")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      )
+      .required("Password is required"),
+  });
   const {
     handleSubmit,
     reset,
     register,
     formState: { errors },
-  } = useForm({});
+  } = useForm({ resolver: yupResolver(schema) });
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -78,6 +92,7 @@ function Signup() {
             label="First Name"
             placeholder="Enter First Name"
             register={{ ...register("firstname", { required: true }) }}
+            errorMessage={errors.firstname?.message}
           />
           <CustomFormInput
             name="lastname"
@@ -86,6 +101,7 @@ function Signup() {
             label="Last Name"
             placeholder="Enter Last Name"
             register={{ ...register("lastname", { required: true }) }}
+            errorMessage={errors.lastname?.message}
           />
           <CustomFormInput
             name="useremail"
@@ -94,6 +110,7 @@ function Signup() {
             label="Email"
             placeholder="Enter Email"
             register={{ ...register("useremail", { required: true }) }}
+            errorMessage={errors.useremail?.message}
           />
           <CustomFormInput
             name="userpassword"
@@ -102,6 +119,7 @@ function Signup() {
             label="Password"
             placeholder="Enter Password"
             register={{ ...register("userpassword", { required: true }) }}
+            errorMessage={errors.userpassword?.message}
           />
           <CustomButton
             type="submit"

@@ -4,6 +4,7 @@ const Users = require("../models/userSchema");
 const sgMail = require("@sendgrid/mail");
 const dotenv = require("dotenv");
 dotenv.config();
+/* Reference from https://sendgrid.com/solutions/email-api/  and https://www.youtube.com/watch?v=qFDgH6dHRA4 */
 sgMail.setApiKey(process.env.API_KEY);
 
 router.get("/:userId", async (req, res, next) => {
@@ -65,10 +66,9 @@ router.patch("/:userId", async function (req, res, next) {
     res.status(500).json({ error: e.message });
   }
 });
+/* Reference from https://sendgrid.com/solutions/email-api/  and https://www.youtube.com/watch?v=qFDgH6dHRA4 */
 router.post("/mail", async function (req, res, next) {
   try {
-    console.log(req.body.user);
-    console.log("order info", req.body.orderInfo);
     const userObject = req.body.user;
     const orderInfo = req.body.orderInfo;
     const listItems = orderInfo.map(
@@ -87,7 +87,7 @@ router.post("/mail", async function (req, res, next) {
       <h4>Hello ${userObject.firstname} </h4>
       <h3>Please confirm Your order!</h3>
       <ol>${listItems}</ol>
-      <h4>Deliever to :${userObject.address} <h4>
+      <h4>Deliver to :${userObject.address} <h4>
       <h4>Thank you for shopping with us! </h4>
       <h4> E-Commerce Team </h4>
       </div>`,

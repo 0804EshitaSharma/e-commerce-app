@@ -1,24 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
-
+import QuantityButton from "./QuantityButton";
+ /* Reference  Product Share feature from https://www.npmjs.com/package/react-share?activeTab=readme and  https://github.com/nygardk/react-share/blob/454860844d11d11d23112db1982feaf0ef4f1f09/demo/Demo.tsx */
 function ProductPage() {
-  // TODO: Add prop for product details
   const [quantity, setQuantity] = useState(1);
-  const shareUrl = window.location.origin + window.location.pathname;
-  const quote = "See this Awesome product";
-  // https://stackoverflow.com/a/71247418
+  const shareUrl = window.location.origin + window.location.hash;
+  const quote = "Check this Awesome product";
+  const title = "Check this Awesome product";
   const { state } = useLocation();
-  const item = state.item || {};
+  const searchText = window.location.hash.split('/')[2]
+
+  const [stater, setStater] = useState(() => {
+    if (state?.item) {
+      return state;
+    }
+    return JSON.parse(localStorage.getItem("stater")) || { item: "" };
+  });
+
+  useEffect(() => {
+    if (state?.item) {
+      setStater(state)
+      localStorage.setItem("stater", JSON.stringify(state));
+    }
+  }, [searchText]);
+  
+  useEffect(() => {
+    localStorage.setItem("stater", JSON.stringify(stater));
+  }, [stater]);
+
+  const item = stater.item || {};
 
   useEffect(() => {
     setQuantity(1);
@@ -32,26 +59,24 @@ function ProductPage() {
     return imgArray.map((imgURL) => ({ original: imgURL, thumbnail: imgURL }));
   };
 
-  const updateQuantity = (value) => {
-    const valueAsInt = parseInt(value);
-    if (quantity > 1 || valueAsInt >= 0) {
-      setQuantity(quantity + valueAsInt);
-    }
-  };
-
-  const handleQuantityTypingInput = (e) => {
-    const valueAsInt = parseInt(e.target.value);
-    isNaN(valueAsInt) ? setQuantity(1) : setQuantity(valueAsInt);
-  };
-
   const toggleWishlist = () => {
     const isInWishlist = wishlist.some(
       (wishlistItem) => item.name === wishlistItem.name
     );
     if (isInWishlist) {
       dispatch(removeItem(item.name));
+      toast.success("Removed from Wishlist!", {
+        position: "bottom-right",
+        theme: "colored",
+        autoClose: 2000,
+      });
     } else {
       dispatch(addItem(item));
+      toast.success("Added to Wishlist!", {
+        position: "bottom-right",
+        theme: "colored",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -59,6 +84,7 @@ function ProductPage() {
     // https://stackoverflow.com/a/8217584
     return wishlist.some((item) => item.name === name) ? "red" : "none";
   };
+
   return (
     <div className="full-page-wrapper">
       <div className="product-page-content">
@@ -67,7 +93,9 @@ function ProductPage() {
             <div className="product-name-seller">
               <h2>{item.name}</h2>
             </div>
-            <svg
+          </div>
+          <div className="rating-wrapper">
+          <svg
               className="navbar_wishlist_icon"
               xmlns="http://www.w3.org/2000/svg"
               fill={isAddedToWishlist(item.name)}
@@ -85,6 +113,9 @@ function ProductPage() {
             <FacebookShareButton url={shareUrl} quote={quote}>
               <FacebookIcon size={30} round={true}></FacebookIcon>
             </FacebookShareButton>
+            <EmailShareButton url={shareUrl} subject={title}>
+              <EmailIcon size={32} round />
+            </EmailShareButton>
           </div>
           <div className="rating-wrapper">
             <Rating ratings={parseFloat(item.rating)} />
@@ -100,6 +131,7 @@ function ProductPage() {
               showFullscreenButton={false}
               showNav={false}
               slideInterval={5000}
+              id="product-image-gallery"
             />
           </div>
           <div className="purchase-wrapper">
@@ -109,34 +141,10 @@ function ProductPage() {
             <div className="buy-options">
               <div className="price-quantity">
                 <h4>${item.price}</h4>
-                <div className="quantity-picker-wrapper">
-                  <h4>Quantity:</h4>
-                  <div className="quantity-picker">
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(-1)}
-                    >
-                      -
-                    </button>
-                    <input
-                      type="number"
-                      value={quantity}
-                      min="1"
-                      minLength={1}
-                      className="purchase-button"
-                      onChange={handleQuantityTypingInput}
-                    />
-                    <button
-                      className="purchase-button"
-                      onClick={(e) => updateQuantity(1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
+                <QuantityButton quantity={quantity} setQuantity={setQuantity} />
               </div>
               <div className="purchase-buttons">
-                <AddToCartButton productDetails={item} quantity={1} />
+                <AddToCartButton productDetails={item} quantity={quantity} />
               </div>
             </div>
           </div>
@@ -145,7 +153,7 @@ function ProductPage() {
         <div className="reviews-container">
           <h3>Reviews</h3>
           <div className="reviews">
-            <Reviews item={item}/>
+            <Reviews item={item} />
           </div>
         </div>
 
@@ -156,6 +164,7 @@ function ProductPage() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

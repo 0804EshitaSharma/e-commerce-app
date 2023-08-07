@@ -17,7 +17,6 @@
 
 .price-value {
   text-align: right;
-  font-weight: bold;
   color: black;
 }
 
@@ -73,12 +72,12 @@
     height: 100px;
   }
 
-  h3 {
+  .name-quantity-container > h3 {
     font-size: 10px;
   }
 }
 
-@media (max-width: 483px) {
+@media (max-width: 500px) {
   #item-container {
     display: flex;
     flex-direction: column;
@@ -107,7 +106,14 @@
     height: 100px;
   }
 
-  h3 {
+  .name-quantity-container > h3 {
     font-size: 10px;
   }
+
+
+.name-quantity-container {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
 }

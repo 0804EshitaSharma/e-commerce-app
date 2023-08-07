@@ -76,6 +76,9 @@
 @media (max-width: 831px) {
   .edit_icon {
     height: 1.5rem;
+    margin-left: -0.5rem;
+    margin-right: -1.5rem;
+    padding-left: 0rem;
   }
 
   .image_uploader {
@@ -90,7 +93,7 @@
   .profile_container {
     min-width: 70%;
   }
-  .input_row{
+  .input_row {
     width: 100%;
   }
 }
