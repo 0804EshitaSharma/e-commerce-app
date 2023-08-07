@@ -83,7 +83,7 @@ During our discussions, we also explored additional potential features to enrich
 - Multi-language support for broader accessibility
 - Implementing an advanced product recommendation algorithm personalized to each user
 - Supporting different colors and sizes for each product
-- Allowing actual payments and tracking for orders
+- Allowing actual payments and order tracking system
 - Introducing user roles to create separate pages exclusively accessible to sellers and buyers
 
 
