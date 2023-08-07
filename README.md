@@ -92,24 +92,27 @@ During our discussions, we also explored additional potential features to enrich
    -
    -
    -
+   
    Danielle Chen
    -
    -
    -
+   
    Elsie Lee
    -
    -
    -
+   
    Eshita Sharma
    -
    -
    -
+   
    Florence Situ
    -
    -
    -
-
-
+   
 ## Project Group Information
 
 - **Team** Team_undefined
