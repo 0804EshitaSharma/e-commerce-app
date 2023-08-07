@@ -88,6 +88,26 @@ During our discussions, we also explored additional potential features to enrich
 
 
 ## List of Contributions
+   Arshdeep Jassi
+   -
+   -
+   -
+   Danielle Chen
+   -
+   -
+   -
+   Elsie Lee
+   -
+   -
+   -
+   Eshita Sharma
+   -
+   -
+   -
+   Florence Situ
+   -
+   -
+   -
 
 
 ## Project Group Information
