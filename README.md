@@ -45,9 +45,9 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 ## Tech Stack
 
 1. **HTML, CSS, JS**
-- HTML establishes a web page's structure by logically segmenting the information into individual elements which enhances Accessibility and Search Engine Optimization.
-- With the help of Media queries, CSS is in charge of styling HTML elements on a webpage and improving user experience by making it responsive.
-- JavaScript provides powerful tools for managing how the Document Object Model should respond to various user-driven events. 
+- HTML establishes a web page's structure by logically segmenting the information of our app into individual elements which enhances Accessibility and Search Engine Optimization.
+- With the help of Media queries, CSS is in charge of styling HTML elements on a webpage and improving the user experience of our app by making it responsive.
+- JavaScript provided powerful tools for managing how the Document Object Model should respond to various user-driven events. 
 
 2. **React & Redux**
 React and Redux are used throughout this project to create a robust and maintainable frontend architecture. Compared to standard HTML, our project utilized React components, which efficiently manage the application's UI rendering, promoting code reusability and readability. Redux is integrated into our project to manage a global state, ensuring seamless data flow and facilitating efficient state management across components.
