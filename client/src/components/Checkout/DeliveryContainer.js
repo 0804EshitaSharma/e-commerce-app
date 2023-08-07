@@ -210,37 +210,41 @@ function DeliveryContainer({ orderData, setOrderData, user, itemList }) {
                                     </ComboboxList>
                                 </ComboboxPopover>
                             </Combobox>
-                            <LabeledInput
+                            <input
                                 className="col-md-4"
                                 name="city"
                                 type="text"
                                 label="City"
                                 value={addressComponents.city}
                                 placeholder="Enter city"
+                                readOnly
                             />
-                            <LabeledInput
+                            <input
                                 className="col-md-4"
                                 name="province"
                                 type="text"
                                 value={addressComponents.province}
                                 label="Province"
                                 placeholder="Enter province"
+                                readOnly
                             />
-                            <LabeledInput
+                            <input
                                 className="col-md-4"
                                 name="postal code"
                                 type="text"
                                 value={addressComponents.zipcode}
                                 label="Postal code"
                                 placeholder="Enter postal code"
+                                readOnly
                             />
-                            <LabeledInput
+                            <input
                                 className="col-md-4"
                                 name="country"
                                 type="text"
                                 value={addressComponents.country}
                                 label="Country"
                                 placeholder="Enter country"
+                                readOnly
                             />
                             <p className="col-md-12" />
                             <div className="col-md-3" id="nextStep">
