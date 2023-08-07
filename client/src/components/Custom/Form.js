@@ -35,15 +35,17 @@ function Form({
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-   const schema = object({
-     username: string().email().required("Email is required"),
-     userpassword: string().min(8, "Password must be at least 8 characters long")
-    .matches(
+  /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4  and ChatGPT */
+  const schema = object({
+    username: string().email().required("Email is required"),
+    userpassword: string()
+      .min(8, "Password must be at least 8 characters long")
+      .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-    
-    ).required("Password is required")
-   });
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      )
+      .required("Password is required"),
+  });
   const {
     handleSubmit,
     register,
@@ -59,7 +61,7 @@ function Form({
   const closeModal = () => {
     setShowModal(false);
   };
- 
+
   const verifyUser = (event) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, event.username, event.userpassword)

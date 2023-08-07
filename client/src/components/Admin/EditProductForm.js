@@ -9,7 +9,7 @@ import CustomSelect from "../Custom/CustomSelect";
 import "./EditProductForm.css";
 import { updateItemAsync } from "../../redux/item/itemSlice";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; // Reference from https://www.npmjs.com/package/react-toastify
 
 function EditProductForm({ item }) {
   const location = useLocation();

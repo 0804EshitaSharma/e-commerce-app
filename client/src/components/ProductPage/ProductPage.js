@@ -18,13 +18,14 @@ import "react-toastify/dist/ReactToastify.css";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
 import QuantityButton from "./QuantityButton";
-
+ /* Reference  Product Share feature from https://www.npmjs.com/package/react-share?activeTab=readme and  https://github.com/nygardk/react-share/blob/454860844d11d11d23112db1982feaf0ef4f1f09/demo/Demo.tsx */
 function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const shareUrl = window.location.origin + window.location.hash;
   const quote = "Check this Awesome product";
   const title = "Check this Awesome product";
   const { state } = useLocation();
+  const searchText = window.location.hash.split('/')[2]
 
   const [stater, setStater] = useState(() => {
     if (state?.item) {
@@ -32,6 +33,13 @@ function ProductPage() {
     }
     return JSON.parse(localStorage.getItem("stater")) || { item: "" };
   });
+
+  useEffect(() => {
+    if (state?.item) {
+      setStater(state)
+      localStorage.setItem("stater", JSON.stringify(state));
+    }
+  }, [searchText]);
   
   useEffect(() => {
     localStorage.setItem("stater", JSON.stringify(stater));

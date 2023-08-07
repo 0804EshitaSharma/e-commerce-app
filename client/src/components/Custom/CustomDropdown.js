@@ -53,6 +53,7 @@ function CustomDropdown({ name }) {
   };
 
   /* Learned from https://www.youtube.com/watch?v=bOx2WmyZrno */
+  /* Referenced from https://www.tabnine.com/code/javascript/classes/react-bootstrap/NavDropdown.Item */
   return (
     <>
       <div className="custom-dropdown">
