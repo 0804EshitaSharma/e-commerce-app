@@ -85,3 +85,40 @@
 .track-package-button {
   float: right;
 }
+
+.order-item-container {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.order-image-container {
+  margin-left: 3rem;
+  margin-bottom: 3rem;
+}
+
+.order-price-container {
+  width: 10rem;
+  justify-content: flex-end;
+  margin-right: 3rem;
+  position: relative;
+}
+
+.order-name-quantity-container h3 {
+  margin: 20px;
+  color: black;
+}
+.order-name-quantity-container {
+  align-items: center;
+}
+
+.order-item-image {
+  float: left;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.order-price-value {
+  text-align: left;
+  color: black;
+}

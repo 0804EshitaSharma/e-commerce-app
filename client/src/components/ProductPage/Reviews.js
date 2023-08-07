@@ -6,44 +6,18 @@ import axios from "axios";
 import { APIPaths } from "../../utils/APIPaths";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-const responsive = {
-    superLargeDesktop: {
-        // the naming can be any, depends on you.
-        breakpoint: { max: 4000, min: 3000 },
-        items: 5,
-    },
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-    },
-    mobile: {
-        breakpoint: { max: 500, min: 0 },
-        items: 1,
-    },
-};
+import responsiveConfigs from "./CarouselConfigs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Reviews({ item }) {
     const currentUser = useSelector((state) => state.user.user);
     const [itemReviewed, setItemReviewed] = useState(item);
-
     const [rating, setRating] = useState(5);
     const [reviewText, setReviewText] = useState("");
+    const [hasOrderedBefore, setHasOrderedBefore] = useState(false);
 
-    const addReview = async () => {
-        const userInReviews = item.reviews.find((reviews) => {
-            return reviews.userId === currentUser._id;
-        })
-        if (userInReviews !== undefined) {
-            setRating(1);
-            setReviewText("");
-            return;
-        }
-
+    const updateItemAfterReview = async () => {
         const reviewObject = {
             userId: currentUser._id,
             name: `${currentUser.firstname} ${currentUser.lastname}`,
@@ -56,13 +30,58 @@ export default function Reviews({ item }) {
             reviewObject
         );
         setItemReviewed(updatedItem.data);
+    }
+
+    useEffect(() => {
+        const ordersWithThisItem = async () => {
+            if (currentUser === null || currentUser._id === null) return;
+            const prevOrdersOfThisItem = await axios.get(
+                `${APIPaths.Orders}/${currentUser._id}/${item.name}`
+            );
+            setHasOrderedBefore(prevOrdersOfThisItem.data.length !== 0);
+        };
+        setItemReviewed(item);
+        ordersWithThisItem();
+    }, [item, currentUser]);
+
+    const resetReviewWithError = (text) => {
         setRating(1);
         setReviewText("");
+        toast.error(text, {
+            position: "bottom-right",
+            theme: "colored",
+            autoClose: 2000,
+        });
+    }
+
+    const addReview = () => {
+        const userInReviews = itemReviewed.reviews.find((reviews) => {
+            return reviews.userId === currentUser._id;
+        });
+        if (userInReviews !== undefined) {
+            resetReviewWithError("Already Added Your Review!");
+            return;
+        } else if (!hasOrderedBefore) {
+            resetReviewWithError("Please Purchase Item to Add Your Review");
+            return;
+        } else if (reviewText === "") {
+            resetReviewWithError("Review Must Contain Text");
+            return;
+        }
+
+        updateItemAfterReview();
+        setRating(1);
+        setReviewText("");
+        toast.success("Added Review!", {
+            position: "bottom-right",
+            theme: "colored",
+            autoClose: 2000,
+        });
     };
 
     return (
         <>
-            {currentUser._id !== null && (
+            {(currentUser !== null && currentUser._id !== null) && (
                 <div className="add-review-container">
                     <div className="add-review-header">
                         <h5>Add Your Review</h5>
@@ -109,7 +128,7 @@ export default function Reviews({ item }) {
                         swipeable={false}
                         draggable={false}
                         arrows={true}
-                        responsive={responsive}
+                        responsive={responsiveConfigs}
                         infinite={true}
                         customTransition="transform 300ms ease-in-out"
                         transitionDuration={500}
@@ -124,6 +143,7 @@ export default function Reviews({ item }) {
                     </Carousel>
                 )}
             </div>
+            <ToastContainer />
         </>
     );
 }

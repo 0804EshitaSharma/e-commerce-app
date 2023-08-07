@@ -9,12 +9,14 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../../utils/RoutePaths";
+import { auth } from "../../../firebase/firebaseConfig";
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const isUserLoggedIn = user._id === null;
   const goToProduct = (item) => {
     const productURL = RoutePaths.Product.replace(":name", item.name);
     navigate(productURL, { state: { item } });
@@ -48,24 +50,27 @@ export default function ProductCard(props) {
         </div>
         <div style={{ margin: "10px" }}>
           <ProdTextContainer>
-            <svg
-              className="navbar_shopping-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="black"
-              style={{ float: "right" }}
-              onClick={() => {
-                dispatch(addProductToCart({ productDetails, quantity }));
-              }}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
+            {!isUserLoggedIn ? (
+              <svg
+                className="navbar_shopping-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="black"
+                style={{ float: "right" }}
+                onClick={(e) => {
+                  dispatch(addProductToCart({ productDetails, quantity }));
+                  e.stopPropagation();
+                }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                />
+              </svg>
+            ) : null}
             <div>
               <span style={{ fontWeight: "bold" }}> {props.item.name} </span>
             </div>
@@ -98,13 +103,14 @@ export default function ProductCard(props) {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  onClick={() => {
+                  onClick={(e) => {
                     dispatch(deleteItemAsync(props.item._id));
                     toast.success("Deleted Product!", {
                       position: "bottom-right",
                       theme: "colored",
                       autoClose: 2000,
                     });
+                    e.stopPropagation();
                   }}
                 >
                   <path
@@ -121,11 +127,12 @@ export default function ProductCard(props) {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  onClick={() => {
+                  onClick={(e) => {
                     navigate(
                       RoutePaths.EditProduct.replace(":id", props.item._id),
                       { state: { item } }
                     );
+                    e.stopPropagation();
                   }}
                 >
                   <path

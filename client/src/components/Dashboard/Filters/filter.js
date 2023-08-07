@@ -2,7 +2,6 @@ import { StyledFilter } from "../../Styles/Filter.styled"
  
 
 export default function Filter(props) {
-    /* props.category = { id, checked, label } */
     return (
         <div className="horizontal-container">
             <input 

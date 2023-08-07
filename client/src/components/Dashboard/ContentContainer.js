@@ -13,7 +13,6 @@ export default function ContentContainer() {
   const dispatch = useDispatch();
   const searchText = window.location.hash.split('/')[2]
 
-  // listen to url change
   let location = useLocation();
 
   const [categories, setCategories] = useState([

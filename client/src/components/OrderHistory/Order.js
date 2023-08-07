@@ -8,12 +8,18 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Order({ order }) {
+function Order({ order, deliveryAddress, fullName }) {
   const user = useSelector((state) => state.user.user);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   let address = "No address assigned yet";
-  if (user.address) {
+  if (deliveryAddress) {
+    address = deliveryAddress;
+  } else if (
+    user.address !== "" ||
+    user.address !== undefined ||
+    user.address !== null
+  ) {
     address = user.address;
   }
   const returnOrder = () => {
@@ -36,13 +42,10 @@ function Order({ order }) {
       <div className="orderhistory-card">
         <div className="order-info-container">
           <h4 className="order-date">Date Order Placed: {order.createdAt}</h4>
-          <button className="track-package-button">Track your package</button>
           <button onClick={returnOrder} className="track-package-button">
             Return Order
           </button>
-          <h4 className="ship-to-info">
-            Ship To: {`${user.firstname} ${user.lastname}`}
-          </h4>
+          <h4 className="ship-to-info">Ship To: {fullName}</h4>
           <dialog className="user-info-popup">Address: {address}</dialog>
         </div>
         <div className="ordered-item-container">

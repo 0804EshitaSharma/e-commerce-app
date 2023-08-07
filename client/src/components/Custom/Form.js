@@ -14,11 +14,13 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../Custom/Modal.js";
 import { auth } from "../../firebase/firebaseConfig";
-import { getUserInfoAsync} from "../../redux/user/userSlice.js";
+import { getUserInfoAsync } from "../../redux/user/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths.js";
+import { object, string } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 /* Reference from Assignment2 and https://firebase.google.com/docs/auth/web/password-auth */
 function Form({
   heading,
@@ -33,7 +35,25 @@ function Form({
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { handleSubmit, register, reset } = useForm({});
+  /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4  and ChatGPT */
+  const schema = object({
+    username: string().email().required("Email is required"),
+    userpassword: string()
+      .min(8, "Password must be at least 8 characters long")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      )
+      .required("Password is required"),
+  });
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const override = {
     display: "block",
     margin: "0 auto",
@@ -41,6 +61,7 @@ function Form({
   const closeModal = () => {
     setShowModal(false);
   };
+
   const verifyUser = (event) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, event.username, event.userpassword)
@@ -156,6 +177,7 @@ function Form({
                 label="Email"
                 placeholder="Enter Email"
                 register={{ ...register("username", { required: true }) }}
+                errorMessage={errors.username?.message}
               />
             )}
             {showPassword && (
@@ -166,6 +188,7 @@ function Form({
                 label="Password"
                 placeholder="Enter Password"
                 register={{ ...register("userpassword", { required: true }) }}
+                errorMessage={errors.userpassword?.message}
               />
             )}
             <CustomButton
@@ -181,7 +204,7 @@ function Form({
             />
             {showSignUpLink && (
               <Link to={RoutePaths.Signup}>
-                <span>Create your account</span>
+                <span className="span_content">Create your account</span>
               </Link>
             )}
           </div>
