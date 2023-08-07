@@ -63,6 +63,8 @@ This project utilized Node.js and Express.js to enhance the backend architecture
 ## Above and Beyond Functionality
 1. **Firebase's seamless user authentication and password reset feature**
   - Developed a seamless user authentication system using the Firebase API that provided secure login and allows users to reset their passwords if they forgot them.
+  - A new user can open an account, and an existing user can edit their profile.
+  - We also provide a logout option, and users can use the application with limited access as a guest.
 2. **Order Confirmation Emails using Sendgrid API**
 - Users receive order confirmation emails via Sendgrid API that include complete order details and delivery addresses.
 3. **Use of various React Libraries**
