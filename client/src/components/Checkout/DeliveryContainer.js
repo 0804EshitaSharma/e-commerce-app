@@ -246,107 +246,56 @@ function DeliveryContainer({
                   placeholder="Enter address"
                   required
                 />
-                {shippingSelected && (
-                    <div className="wrapper">
-                        <div className="row">
-                            <LabeledInput
-                                className="col-md-6"
-                                name="firstname"
-                                type="text"
-                                label="First name"
-                                placeholder="Enter first name"
-                                required={true}
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                            />
-                            <LabeledInput
-                                className="col-md-6"
-                                name="lastname"
-                                type="text"
-                                label="Last name"
-                                placeholder="Enter last name"
-                                required={true}
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
-                            <LabeledInput
-                                className="col-md-6"
-                                name="phonenumber"
-                                type="text"
-                                label="Phone number"
-                                placeholder="Enter phone number"
-                                required={true}
-                                value={phoneNumber}
-                                onChange={handlePhoneNumberChange}
-                            />
-                            <Combobox className="col-md-12" onSelect={handleSelect}>
-                                <label>Address</label>
-                                <ComboboxInput
-                                    name="address"
-                                    type="text"
-                                    value={value}
-                                    onChange={handleInput}
-                                    disabled={!ready}
-                                    placeholder="Enter address"
-                                    required
-                                />
-                                <ComboboxPopover>
-                                    <ComboboxList>
-                                        {status === "OK" && renderSuggestions()}
-                                    </ComboboxList>
-                                </ComboboxPopover>
-                            </Combobox>
-                            <input
-                                className="col-md-4"
-                                name="city"
-                                type="text"
-                                label="City"
-                                value={addressComponents.city}
-                                placeholder="Enter city"
-                                readOnly
-                            />
-                            <input
-                                className="col-md-4"
-                                name="province"
-                                type="text"
-                                value={addressComponents.province}
-                                label="Province"
-                                placeholder="Enter province"
-                                readOnly
-                            />
-                            <input
-                                className="col-md-4"
-                                name="postal code"
-                                type="text"
-                                value={addressComponents.zipcode}
-                                label="Postal code"
-                                placeholder="Enter postal code"
-                                readOnly
-                            />
-                            <input
-                                className="col-md-4"
-                                name="country"
-                                type="text"
-                                value={addressComponents.country}
-                                label="Country"
-                                placeholder="Enter country"
-                                readOnly
-                            />
-                            <p className="col-md-12" />
-                            <div className="col-md-3" id="nextStep">
-                                <div className="info-group mb-3">
-                                    <button
-                                        className="btn"
-                                        type="submit"
-                                        onClick={handleNextStepShipping}
-                                    >
-                                        Next step
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
+                <ComboboxPopover>
+                  <ComboboxList>
+                    {status === "OK" && renderSuggestions()}
+                  </ComboboxList>
+                </ComboboxPopover>
+              </Combobox>
+              <LabeledInput
+                className="col-md-4"
+                name="city"
+                type="text"
+                label="City"
+                value={addressComponents.city}
+                placeholder="Enter city"
+              />
+              <LabeledInput
+                className="col-md-4"
+                name="province"
+                type="text"
+                value={addressComponents.province}
+                label="Province"
+                placeholder="Enter province"
+              />
+              <LabeledInput
+                className="col-md-4"
+                name="postal code"
+                type="text"
+                value={addressComponents.zipcode}
+                label="Postal code"
+                placeholder="Enter postal code"
+              />
+              <LabeledInput
+                className="col-md-4"
+                name="country"
+                type="text"
+                value={addressComponents.country}
+                label="Country"
+                placeholder="Enter country"
+              />
+              <p className="col-md-12" />
+              <div className="col-md-3" id="nextStep">
+                <div className="info-group mb-3">
+                  <button
+                    className="btn"
+                    type="submit"
+                    onClick={handleNextStepShipping}
+                  >
+                    Next step
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
