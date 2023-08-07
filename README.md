@@ -23,7 +23,7 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
     c.  Add products to wishlists ✅
 
-    d.  An option to share products with friends ⚠️
+    d.  An option to share products with friends ✅
 
     e.  Add product ratings ✅
 
