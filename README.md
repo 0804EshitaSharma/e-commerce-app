@@ -1,5 +1,5 @@
 # About Our E-Commerce App
-Discover the joy of online shopping with our user-friendly E-Commerce app. Browse products, add to wishlist or cart, breeze through checkout, and let admins effortlessly manage the store. Welcome to our app where shopping is a delightful enchantment for all.
+Discover the joy of online shopping with our user-friendly E-Commerce app. Browse products, add them to your wishlist or shopping cart, share them with your friends, breeze through checkout, and let admins effortlessly manage the store. Welcome to our app where shopping is a delightful enchantment for all.
 
 ## **Project Task Requirements**:
 
