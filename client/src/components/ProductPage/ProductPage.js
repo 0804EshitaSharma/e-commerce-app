@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./ProductPage.css";
 import ImageGallery from "react-image-gallery";
 import Rating from "../Product/Rating";
@@ -13,6 +13,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../redux/wishlistSlice";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import RelatedItems from "./RelatedItems";
 import Reviews from "./Reviews";
 import QuantityButton from "./QuantityButton";
@@ -63,8 +65,18 @@ function ProductPage() {
     );
     if (isInWishlist) {
       dispatch(removeItem(item.name));
+      toast.success("Removed from Wishlist!", {
+        position: "bottom-right",
+        theme: "colored",
+        autoClose: 2000,
+      });
     } else {
       dispatch(addItem(item));
+      toast.success("Added to Wishlist!", {
+        position: "bottom-right",
+        theme: "colored",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -72,6 +84,7 @@ function ProductPage() {
     // https://stackoverflow.com/a/8217584
     return wishlist.some((item) => item.name === name) ? "red" : "none";
   };
+
   return (
     <div className="full-page-wrapper">
       <div className="product-page-content">
@@ -80,7 +93,9 @@ function ProductPage() {
             <div className="product-name-seller">
               <h2>{item.name}</h2>
             </div>
-            <svg
+          </div>
+          <div className="rating-wrapper">
+          <svg
               className="navbar_wishlist_icon"
               xmlns="http://www.w3.org/2000/svg"
               fill={isAddedToWishlist(item.name)}
@@ -116,6 +131,7 @@ function ProductPage() {
               showFullscreenButton={false}
               showNav={false}
               slideInterval={5000}
+              id="product-image-gallery"
             />
           </div>
           <div className="purchase-wrapper">
@@ -148,6 +164,7 @@ function ProductPage() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

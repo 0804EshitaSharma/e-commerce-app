@@ -62,4 +62,18 @@ router.delete("/:orderID", async function (req, res) {
   }
 });
 
+router.get("/:userID/:itemID", async (req, res, next) => {
+  const userID = req.params.userID;
+  const itemName = req.params.itemID;
+  try {
+    const foundOrders = await Orders.find(
+      { $and: [ { user: userID }, { "items.productDetails.name": itemName } ] }
+    );
+    res.status(200).json(foundOrders);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ err: e.message });
+  }
+});
+
 module.exports = router;

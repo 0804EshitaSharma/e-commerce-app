@@ -26,6 +26,7 @@ function Item({ itemInfo, setTotalPrice, calcTotalPrice }) {
         category: itemInfo.productDetails.category,
         images: itemInfo.productDetails.images,
         quantity: itemInfo.productDetails.quantity,
+        reviews: itemInfo.productDetails.reviews,
       },
       quantity: quantity,
     };

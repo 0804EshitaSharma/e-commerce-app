@@ -28,12 +28,17 @@
   align-items: center;
 }
 
-.product-header-wrapper>svg {
+.rating-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-wrapper > svg {
   margin-left: 30px;
   color: red;
 }
 
-.product-header-wrapper > svg:hover {
+.rating-wrapper > svg:hover {
   cursor: pointer;
   fill: red;
 }
@@ -72,6 +77,10 @@
   justify-content: space-between;
   align-items: center;
   width: 50%;
+}
+
+.description-wrapper {
+  width: 100%;
 }
 
 .desc-text {
@@ -345,8 +354,10 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 841px) {
-  .purchase-button {
-    padding: 5px 5px;
+  .purchase-buttons {
+    font-size: 14px !important;
+    min-width: 100%;
+    flex-direction: column;
   }
 
   .desc-text {
@@ -364,12 +375,17 @@ input::-webkit-inner-spin-button {
   }
 
   .price-quantity {
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .price-quantity>h4 {
-    font-size: 20px;
+    font-size: 25px;
+  }
+
+  .product-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 
   .product-name-seller {
@@ -402,12 +418,199 @@ input::-webkit-inner-spin-button {
   .related-items {
     margin-top: 5px;
   }
+  .product-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-images-wrapper {
+    width: 100%;
+    max-height: 60%;
+    margin-bottom: 15px;
+  }
+  .product-images-wrapper .image-gallery-image {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+  }
+  .product-images-wrapper .image-gallery-thumbnail-image {
+    object-fit: contain;
+  }
+  .purchase-wrapper {
+    width: 100%;
+  }
+  .buy-options {
+    margin-bottom: 10px;
+  }
+  .no-review-wrapper {
+    margin-bottom: 10px;
+  }
+}
 
   .quantity-picker-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 10px;
+}
 
-  }
+.review-cards {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 
+.review-card-wrapper {
+    width: 90%;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    border: 0.2px solid black;
+    box-shadow: 0 0 2px black;
+    transition: 0.4s;
+}
+
+.review-card-wrapper:hover {
+    box-shadow: 0 0 5px black;
+}
+
+.review-card-wrapper > h4 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.review-card-wrapper > hr {
+    height: 1px;
+    margin: 0px;
+}
+
+.review-text {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    overflow-wrap: break-all;
+}
+
+.review-text > p {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    height: 100%;
+    padding: 10px;
+    overflow-wrap: break-word;
+    white-space: initial;
+    overflow: scroll;
+    hyphens: auto;
+    text-align: center;
+}
+
+.review-text > p::-webkit-scrollbar {
+    display: none;
+}
+
+.add-review-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px;
+}
+
+.add-review-header > h5 {
+    text-align: left;
+}
+
+.add-review-form {
+    display: flex;
+    width: 100%;
+    gap: 2.5%;
+    margin: 20px 0;
+    justify-content: space-between;
+}
+
+.review-inputs {
+    display: flex;
+    width: 85%;
+    align-items: center;
+}
+
+#rating-selector {
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 5px;
+    background-color: black;
+    box-shadow: 0 0 5px black;
+    border: 3px solid black;
+    color: white;
+    transition: 0.4s;
+    vertical-align: bottom;
+}
+
+#rating-selector:hover {
+    background-color: #f3f3f3;
+    border: 3px solid black;
+    color: black;
+    box-shadow: 0 0 15px black;
+    cursor: pointer;
+}
+
+#review-text {
+    vertical-align: bottom;
+    height: 100%;
+    font-size: 20px;
+    box-shadow: 0 0 5px black;
+    border: 3px solid black;
+    color: black;
+    transition: 0.4s;
+}
+
+#review-text:hover {
+    box-shadow: 0 0 15px black;
+}
+
+.add-review-button {
+    display: flex;
+    align-items: center;
+}
+
+.add-review-button > button {
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: black;
+    box-shadow: 0 0 5px black;
+    border: 3px solid black;
+    color: white;
+    transition: 0.4s;
+}
+
+.add-review-button > button:hover {
+    background-color: #f3f3f3;
+    border: 3px solid black;
+    color: black;
+    box-shadow: 0 0 15px black;
+    cursor: pointer;
+}
+
+.related-items .react-multi-carousel-item > div {
+  width: 100%;
+}
+
+.react-multi-carousel-item {
+  display: flex;
+  justify-content: center;
+}
+
+.react-multi-carousel-track > li > .sc-gEvEer {
+  width: 100%;
+}
+
+.related-items .Toastify {
+  display: none;
 }
