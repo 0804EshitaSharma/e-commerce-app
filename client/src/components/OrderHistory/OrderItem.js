@@ -1,10 +1,7 @@
 import { useNavigate } from "react-router-dom";
-//import "../Cart/Item.css";
 import "../OrderHistory/OrderHistory.css";
 
 function OrderItem({ item }) {
-  const navigate = useNavigate();
-  console.log(item);
 
   return (
     <div className="order-item-container">

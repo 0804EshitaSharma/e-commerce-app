@@ -17,14 +17,24 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../utils/RoutePaths";
-
+import { object, string } from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
 function UserProfile() {
+  const userSchema = object({
+    accountholder: string().required("Account holder is required"),
+    email: string().email().required("Email is required"),
+    mobile: string()
+      .required()
+      .matches(/^\d{10}$/, "Invalid Mobile Number"),
+  });
   const user = useSelector((state) => state.user.user);
   const [isEditable, setIsEditable] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register ,formState:{errors}} = useForm({
+    resolver: yupResolver(userSchema),
+  });
   const currentUser = auth.currentUser;
   const changePassword = () => {
     navigate(RoutePaths.ForgotPassword);
@@ -102,13 +112,14 @@ function UserProfile() {
             <div className="input_row">
               <div className="profile_input_field">
                 <CustomFormInput
-                  name="Account Holder"
+                  name="accountholder"
                   id="accountholder"
                   type="text"
                   defaultValue={user?.firstname}
-                  label=" Account Holder"
+                  label="Account Holder"
                   readOnly={!isEditable}
                   register={{ ...register("accountholder") }}
+                  errorMessage={errors.accountholder?.message}
                 />
               </div>
 
@@ -126,13 +137,14 @@ function UserProfile() {
             <div className="input_row">
               <div className="profile_input_field">
                 <CustomFormInput
-                  name="Email Address"
+                  name="email"
                   id="email"
                   type="email"
                   label="Email Address"
                   defaultValue={user?.useremail}
                   readOnly={!isEditable}
                   register={{ ...register("email") }}
+                  errorMessage={errors.email?.message}
                 />
               </div>
               <div onClick={updateUserEmail}>
@@ -149,13 +161,14 @@ function UserProfile() {
             <div className="input_row">
               <div className="profile_input_field">
                 <CustomFormInput
-                  name="Mobile Number"
+                  name="mobile"
                   id="mobile"
                   type="phone"
                   readOnly={!isEditable}
                   label="Mobile Number"
                   defaultValue={user?.mobile}
                   register={{ ...register("mobile") }}
+                  errorMessage={errors.mobile?.message}
                 />
               </div>
               <svg
