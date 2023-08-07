@@ -16,7 +16,7 @@ export default function ProductCard(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const isUserLoggedIn = user._id === null;
+  const isUserLoggedIn = user?._id === null;
   const goToProduct = (item) => {
     const productURL = RoutePaths.Product.replace(":name", item.name);
     navigate(productURL, { state: { item } });
