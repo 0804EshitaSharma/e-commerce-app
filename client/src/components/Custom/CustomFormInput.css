@@ -30,9 +30,8 @@ input {
 }
 
 @media (max-width: 931px) {
-
   .custom_form_container {
-    min-width: 70%;
+    min-width: 100%;
     margin: 0;
   }
 
@@ -43,5 +42,9 @@ input {
 
   .form_input {
     min-width: 90%;
+  }
+
+  input {
+    font-size: 10px;
   }
 }

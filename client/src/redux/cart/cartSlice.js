@@ -23,10 +23,23 @@ export const cartSlice = createSlice({
       let newState = currentState.toSpliced(itemToBeRemoved, 1);
       state.itemsList = newState;
     },
+    updateItemQuantityFromCart: (state, action) => {
+      let currentState = current(state.itemsList);
+      let itemToUpdateIdx = currentState.findIndex((item) => {
+        return item.productDetails.id === action.payload.productDetails.id;
+      });
+      let updatedItem = state.itemsList[itemToUpdateIdx];
+      updatedItem.quantity = action.payload.quantity;
+      state.itemsList[itemToUpdateIdx] = updatedItem;
+    },
   },
 });
 
-export const { addProductToCart, removeAllInCart, removeProductFromCart } =
-  cartSlice.actions;
+export const {
+  addProductToCart,
+  removeAllInCart,
+  removeProductFromCart,
+  updateItemQuantityFromCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -11,3 +11,15 @@
     bottom: 10px;
     overflow: scroll;
 }
+
+@media (max-width: 768px) {
+    .horizontal-container {
+        flex-direction: column;
+    }
+
+    .filter-container {
+        padding: 0.4%;
+        min-width: 15%;
+        position: fixed;
+    }
+}

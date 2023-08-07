@@ -17,7 +17,6 @@ export const ordersSlice = createSlice({
   reducers: {
     getOrders: (state, action) => {
       let ordersList = action.payload;
-      //console.log(ordersList);
       state.list = ordersList;
     },
     createOrder: (state, action) => {
