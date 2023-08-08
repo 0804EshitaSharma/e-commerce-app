@@ -155,8 +155,10 @@ Eshita Sharma
    -  User profile page displaying user information and offering the ability to update profile information like updating mobile number,adding address 
      etc.
 
-4. Product Page:
+4. Sharing Product and Order Confirmation Email:
    - An option to Email or Post a message on Facebook to share products with friends.
+   - Email notifications on product purchase using SendGrid API.
+   - An option to return an order.
      
 5.  Admin View:
    - An admin view that permits the admin to add new products, update and delete existing ones from MongoDB database.
