@@ -71,11 +71,12 @@ router.post("/mail", async function (req, res, next) {
   try {
     const userObject = req.body.user;
     const orderInfo = req.body.orderInfo;
+    console.log("hi", orderInfo);
     const listItems = orderInfo.map(
       (order) =>
-        `<li>${order.productDetails.name} : ${
+        `<li>${order.productDetails.name} : ${parseFloat(
           order.productDetails.price * order.productDetails.quantity
-        }</li>`
+        ).toFixed(2)}</li>`
     );
     const message = {
       from: "eshitasharma0804@gmail.com",

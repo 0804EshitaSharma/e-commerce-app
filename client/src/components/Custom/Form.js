@@ -167,7 +167,7 @@ function Form({
       <div>
         <form className="container">
           <div>
-            <h1>{heading}</h1>
+            <h1 className="form-header">{heading}</h1>
             {showEmail && (
               <CustomFormInput
                 name="username"

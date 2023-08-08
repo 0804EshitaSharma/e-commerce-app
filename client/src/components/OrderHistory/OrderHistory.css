@@ -37,11 +37,6 @@
   margin-bottom: 2%;
 }
 
-.order-info-header {
-  justify-content: space-evenly;
-  display: inline;
-  width: 100%;
-}
 .order-info-container {
   padding: 1rem;
   margin-top: 0%;
@@ -51,7 +46,10 @@
 }
 
 .ordered-item-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  max-height: fit-content;
 }
 
 .orderhistory-card-hr {
@@ -59,16 +57,6 @@
   border-top-width: 0.35rem;
   color: gainsboro;
 }
-
-/* .order-date {
-  display: inline;
-  margin-right: 25%;
-}
-
-.ship-to-info {
-  display: inline;
-  overflow: scroll;
-} */
 
 .user-info-popup {
   display: none;
@@ -82,7 +70,7 @@
   background-color: snow;
 }
 
-.track-package-button {
+.return-order-button {
   float: right;
 }
 
@@ -106,7 +94,9 @@
 .order-name-quantity-container h3 {
   margin: 20px;
   color: black;
+  font-size: 15px;
 }
+
 .order-name-quantity-container {
   align-items: center;
 }
@@ -115,10 +105,53 @@
   float: left;
   width: 200px;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.order-price-container h1 {
+  text-align: right;
+  color: black;
+  font-size: 15px;
 }
 
 .order-price-value {
-  text-align: left;
-  color: black;
+  text-align: right;
+}
+
+@media (max-width: 873px) {
+  .order-name-quantity-container h3 {
+    margin: 20px;
+    color: black;
+    font-size: 15px;
+  }
+  .order-item-image {
+    float: left;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+  .order-price-container h1 {
+    text-align: right;
+    color: black;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 543px) {
+  .order-name-quantity-container h3 {
+    margin: 20px;
+    color: black;
+    font-size: 10px;
+  }
+  .order-item-image {
+    float: left;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+  .order-price-container h1 {
+    text-align: right;
+    color: black;
+    font-size: 10px;
+  }
 }
