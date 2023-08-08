@@ -56,6 +56,7 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 3. **Node & Express**
 - This project utilized Node.js and Express.js to enhance the backend architecture of our web application. Node.js ensures our server can handle multiple connections simultaneously, making our project scalable and high performance.
+
 - Express.js serves as our application framework, it provides our server-side code a clear and organized structure for routing and request handling.
 
 4. **MongoDB**
