@@ -90,9 +90,9 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 3. **Use of various React Libraries**
 
-- Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and The entire website is totally responsive, enabling seamless user interaction and viewing.
+- Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and the entire website is totally responsive, enabling seamless user interaction and viewing.
 - React-Toastify is used to display toast notifications for every user action, such as logging in or out, posting a review, returning an order, etc. Notifications for both errors and successes are displayed.
-- React-image-gallery is used to ----------
+- React-image-gallery is used to create sliders for better image displays across different places in our website, such as the main page and the product details page
 - React-credit-cards is used to create a credit card display that highlights the information when entered during the checkout process. 
 
 4. **Share products on Social Media**
@@ -121,9 +121,10 @@ During our discussions, we also explored additional potential features to enrich
 
 Arshdeep Jassi
 
--
--
--
+- Product Page
+    - Designed and implemented the product page, which includes fetching product information such as images and price, past reviews that other users have given, the ability to add your review once you've purchased the item, and a view of related items that the user could also be interested in. 
+- Wishlist Page
+    - Allowed users to add items to their wishlist from its product page and created a new page where users can view wishlisted products, remove products from their wishlist, or add items from their wishlist to their cart.
 
 Danielle Chen
 
@@ -164,14 +165,12 @@ Eshita Sharma
    - An admin view that permits the admin to add new products, update and delete existing ones from MongoDB database.
    - Added Toast notifications and responsiveness to our website.
 
-     
-
-
 Florence Situ
 
--
--
--
+- Checkout page 
+  - Checkout page contains 4 main components, they display order details, give users the option to enter their shipping information and delivery option, as well as a payment section that allows users to enter their credit card information. 
+  - Checkout page integrated Google places autocomplete API in the address section, it allows users to input minimal data and give suggestions accordingly. 
+  - Integrated order information with Redux and MongoDB. Checkout will fetch order details from redux temprorary store, and every successful order submission will create a order inside the MongoDB database, relevant order information will also update inside user's data in MongoDB. 
 
 ## Project Group Information
 
@@ -209,8 +208,6 @@ These are our prototypes for the two requirements with task breakdowns mentioned
 
 - the view of the selected product details
   ![image](prototypes/productDetails-prototype.jpeg)
-
-![image](prototypes/productDetails-prototype.jpeg)
 
 - User Profile Screen with various options to update profile
 ![pdf](prototypes/UserProfile.pdf)
