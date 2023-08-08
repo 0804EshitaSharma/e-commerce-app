@@ -8,7 +8,7 @@ function Modal({
   primaryLabel,
   secondaryLabel,
   showSecondary,
-  secondaryOperation
+  secondaryOperation,
 }) {
   return (
     <div>

@@ -81,8 +81,6 @@ function CustomAddress({ register }) {
     return <>{suggestions}</>;
   };
 
-
-
   return (
     <div className="custom_address_container">
       <div className="col-md-15">
