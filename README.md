@@ -121,9 +121,10 @@ During our discussions, we also explored additional potential features to enrich
 
 Arshdeep Jassi
 
--
--
--
+- Product Page
+    - Designed and implemented the product page, which includes fetching product information such as images and price, past reviews that other users have given, the ability to add your review once you've purchased the item, and a view of related items that the user could also be interested in. 
+- Wishlist Page
+    - Allowed users to add items to their wishlist from its product page and created a new page where users can view wishlisted products, remove products from their wishlist, or add items from their wishlist to their cart.
 
 Danielle Chen
 
@@ -207,8 +208,6 @@ These are our prototypes for the two requirements with task breakdowns mentioned
 
 - the view of the selected product details
   ![image](prototypes/productDetails-prototype.jpeg)
-
-![image](prototypes/productDetails-prototype.jpeg)
 
 - User Profile Screen with various options to update profile
 ![pdf](prototypes/UserProfile.pdf)
