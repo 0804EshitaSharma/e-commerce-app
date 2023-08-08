@@ -162,7 +162,7 @@ Eshita Sharma
      
 5.  Admin View:
    - An admin view that permits the admin to add new products, update and delete existing ones from MongoDB database.
-   - Added Responsiveness to our website.
+   - Added Toast notifications and responsiveness to our website.
 
      
 
