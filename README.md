@@ -145,17 +145,18 @@ Elsie Lee - Shopping Cart/Order History
 Eshita Sharma
 
 1. Top Navbar:
-   - Developed the Navbar component with search, user-account, shopping cart, and wishlist icons.
+   - Navbar component with search, user-account, shopping cart, and wishlist icons.
   
 2. User Authentication with password assistance:
-   - Created user login/sign-up forms and integrated with Firebase that supports user login/logout and password reset features.
+   - User login/sign-up forms with validations and integrated the Firebase API to support user login/logout and password reset features.
 
 3. User Account page:
-   - User information was integrated with a Redux user store and MongoDB, and a user profile page was made that 
-     displays user information and offers the ability to change profile information like updating mobile number,adding address etc.
+   - Integrated user information with Redux and MongoDB.
+   -  User profile page displaying user information and offering the ability to update profile information like updating mobile number,adding address 
+     etc.
 
 4. Product Page:
-   - Added the option to Email or Post a message on Facebook to share products with friends.
+   - An option to Email or Post a message on Facebook to share products with friends.
      
 
 
