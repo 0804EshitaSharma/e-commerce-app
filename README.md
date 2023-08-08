@@ -55,7 +55,8 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 - Redux is integrated into our project to manage a global state, ensuring seamless data flow and facilitating efficient state management across components.
 
 3. **Node & Express**
-- This project utilized Node.js and Express.js to enhance the backend architecture of our web application. Node.js ensures our server can handle multiple connections simultaneously, making our project scalable and high performance. - Express.js serves as our application framework, it provides our server-side code a clear and organized structure for routing and request handling.
+- This project utilized Node.js and Express.js to enhance the backend architecture of our web application. Node.js ensures our server can handle multiple connections simultaneously, making our project scalable and high performance.
+- Express.js serves as our application framework, it provides our server-side code a clear and organized structure for routing and request handling.
 
 4. **MongoDB**
 - Databases are designed for long term, permanent storage of data and we use the MongoDB database to store our user, 
@@ -69,7 +70,9 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 5. **Builds and Deployment**
 
-- Render is used as our deployment system as it provides an easy deployment process for any application by connecting the Github repository containing the application and automatically re-deploys the application with any subquent updates.
+- Render is used as our deployment system as it provides an easy deployment process for any application by 
+  connecting the Github repository containing the application and automatically re-deploys the application with any 
+  subsequent updates.
 - It also allows for secret files such as database login information so that this information does not need to be stored in another file in the repository and Render has advanced DDoS protection powered by Cloudflare.
 
 ## Above and Beyond Functionality
