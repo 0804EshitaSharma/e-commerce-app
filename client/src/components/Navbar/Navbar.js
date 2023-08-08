@@ -21,7 +21,7 @@ function Navbar({ name }) {
   let item = useLocation().pathname.split("/")[2];
   let page = useLocation().pathname.split("/")[1];
   useEffect(() => {
-    if (item === undefined || page !== 'dashboard') {
+    if (item === undefined || page !== "dashboard") {
       item = "";
     }
     setQuery(item);
@@ -96,7 +96,7 @@ function Navbar({ name }) {
           )}
         </>
 
-            <CustomDropdown name={name} />
+        <CustomDropdown name={name} />
 
         <div>
           <Link to={RoutePaths.Wishlist}>
