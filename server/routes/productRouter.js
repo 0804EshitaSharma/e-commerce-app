@@ -80,7 +80,8 @@ router.get("/", async (req, res, next) => {
       if (!Array.isArray(categoryParams)) {
         categoryParams = [categoryParams];
       }
-      itemData = itemData.filter((item) => categoryParams.includes(item.category)
+      itemData = itemData.filter((item) =>
+        categoryParams.includes(item.category)
       );
     }
     return itemData;
@@ -164,25 +165,25 @@ router.patch("/review/:itemId", async (req, res, next) => {
       [
         {
           $set: {
-            reviews: { $concatArrays: ["$reviews", [reviewObject]] }
-          }
+            reviews: { $concatArrays: ["$reviews", [reviewObject]] },
+          },
         },
         {
           $set: {
             rating: { $avg: "$reviews.stars" },
-          }
+          },
         },
         {
           $set: {
-            rating: { $round: ["$rating", 1] }
-          }
-        }
+            rating: { $round: ["$rating", 1] },
+          },
+        },
       ],
       { new: true }
     );
     res.status(200).send(updatedItem);
   } catch (e) {
-    res.status(400).send({ err : e.message });
+    res.status(400).send({ err: e.message });
   }
 });
 
