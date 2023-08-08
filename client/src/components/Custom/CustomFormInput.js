@@ -11,7 +11,7 @@ function CustomFormInput({
   placeholder,
   defaultValue,
   readOnly,
-  errorMessage
+  errorMessage,
 }) {
   return (
     <div className="custom_form_container">

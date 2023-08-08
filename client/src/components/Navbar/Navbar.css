@@ -137,8 +137,7 @@
 }
 
 /*Mobile Phones */
-@media (max-width:470px) {
-
+@media (max-width: 470px) {
   .navbar {
     height: auto;
     width: 100%;
@@ -153,11 +152,9 @@
   .navbar_search_input {
     min-width: 10rem;
   }
-
 }
 
-@media (max-width:405px) {
-
+@media (max-width: 405px) {
   .navbar {
     height: auto;
     width: 100%;
@@ -173,5 +170,4 @@
   .navbar_search_input {
     min-width: 10rem;
   }
-
 }

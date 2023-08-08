@@ -42,7 +42,7 @@ function Order({ order, deliveryAddress, fullName }) {
       <div className="orderhistory-card">
         <div className="order-info-container">
           <h4 className="order-date">Date Order Placed: {order.createdAt}</h4>
-          <button onClick={returnOrder} className="track-package-button">
+          <button onClick={returnOrder} className="return-order-button">
             Return Order
           </button>
           <h4 className="ship-to-info">Ship To: {fullName}</h4>

@@ -7,15 +7,10 @@ router.post("/", async (req, res, next) => {
   const order = req.body;
   try {
     const newOrder = await Orders.create(order);
-
     const userId = req.body.user;
-
     const user = await Users.findById(userId);
     user.orders.push(newOrder._id);
     await user.save();
-
-    console.log("user's orders:", user.orders);
-
     res.status(201).json(newOrder);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -66,12 +61,11 @@ router.get("/:userID/:itemID", async (req, res, next) => {
   const userID = req.params.userID;
   const itemName = req.params.itemID;
   try {
-    const foundOrders = await Orders.find(
-      { $and: [ { user: userID }, { "items.productDetails.name": itemName } ] }
-    );
+    const foundOrders = await Orders.find({
+      $and: [{ user: userID }, { "items.productDetails.name": itemName }],
+    });
     res.status(200).json(foundOrders);
   } catch (e) {
-    console.log(e);
     res.status(500).json({ err: e.message });
   }
 });

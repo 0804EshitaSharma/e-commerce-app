@@ -7,9 +7,7 @@ const getOrders = async (userID) => {
   return fulfilledResponse;
 };
 const createOrder = async (orderData) => {
-  console.log("Sending order data to server:", orderData);
   const response = await axios.post(APIPaths.Orders, orderData);
-  console.log("Server response:", response.data);
   return response.data;
 };
 const returnOrder = async (orderID) => {

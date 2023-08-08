@@ -1,8 +1,6 @@
 import React from "react";
 
-function CustomImageUploader({ register, id ,event,name}) {
-
-
+function CustomImageUploader({ register, id, event, name }) {
   return (
     <div className="form_container">
       <label className="input_field_label" htmlFor="images">
@@ -16,7 +14,7 @@ function CustomImageUploader({ register, id ,event,name}) {
         onChange={event()}
         {...register}
       />
-    </div> 
+    </div>
   );
 }
 

@@ -225,12 +225,12 @@ input::-webkit-inner-spin-button {
   box-shadow: 0 0 5px black;
 }
 
-.review-card-wrapper>h4 {
+.review-card-wrapper > h4 {
   font-weight: bold;
   font-size: 20px;
 }
 
-.review-card-wrapper>hr {
+.review-card-wrapper > hr {
   height: 1px;
   margin: 0px;
 }
@@ -245,7 +245,7 @@ input::-webkit-inner-spin-button {
   overflow-wrap: break-all;
 }
 
-.review-text>p {
+.review-text > p {
   display: flex;
   align-items: center;
   margin: auto;
@@ -258,10 +258,9 @@ input::-webkit-inner-spin-button {
   text-align: center;
 }
 
-.review-text>p::-webkit-scrollbar {
+.review-text > p::-webkit-scrollbar {
   display: none;
 }
-
 
 .react-multi-carousel-item {
   display: flex;
@@ -275,7 +274,7 @@ input::-webkit-inner-spin-button {
   margin: 20px;
 }
 
-.add-review-header>h5 {
+.add-review-header > h5 {
   text-align: left;
 }
 
@@ -333,7 +332,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
 }
 
-.add-review-button>button {
+.add-review-button > button {
   width: 100%;
   font-size: 20px;
   font-weight: bold;
@@ -345,7 +344,7 @@ input::-webkit-inner-spin-button {
   transition: 0.4s;
 }
 
-.add-review-button>button:hover {
+.add-review-button > button:hover {
   background-color: #f3f3f3;
   border: 3px solid black;
   color: black;
@@ -364,21 +363,21 @@ input::-webkit-inner-spin-button {
     font-size: 14px;
   }
 
-  .quantity-picker>input {
+  .quantity-picker > input {
     background-color: #f3f3f3;
     color: black;
     border-right: none;
     border-left: none;
     text-align: center;
     border-radius: 0px;
-    min-width: 25px
+    min-width: 25px;
   }
 
   .price-quantity {
     align-items: center;
   }
 
-  .price-quantity>h4 {
+  .price-quantity > h4 {
     font-size: 25px;
   }
 
@@ -394,7 +393,7 @@ input::-webkit-inner-spin-button {
     justify-items: flex-start;
   }
 
-  .product-name-seller>h2 {
+  .product-name-seller > h2 {
     font-size: 20px;
   }
 
@@ -446,156 +445,156 @@ input::-webkit-inner-spin-button {
   }
 }
 
-  .quantity-picker-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
+.quantity-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
 }
 
 .review-cards {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .review-card-wrapper {
-    width: 90%;
-    min-width: 220px;
-    display: flex;
-    flex-direction: column;
-    border: 0.2px solid black;
-    box-shadow: 0 0 2px black;
-    transition: 0.4s;
+  width: 90%;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  border: 0.2px solid black;
+  box-shadow: 0 0 2px black;
+  transition: 0.4s;
 }
 
 .review-card-wrapper:hover {
-    box-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px black;
 }
 
 .review-card-wrapper > h4 {
-    font-weight: bold;
-    font-size: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .review-card-wrapper > hr {
-    height: 1px;
-    margin: 0px;
+  height: 1px;
+  margin: 0px;
 }
 
 .review-text {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    overflow-wrap: break-all;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  overflow-wrap: break-all;
 }
 
 .review-text > p {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    height: 100%;
-    padding: 10px;
-    overflow-wrap: break-word;
-    white-space: initial;
-    overflow: scroll;
-    hyphens: auto;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+  padding: 10px;
+  overflow-wrap: break-word;
+  white-space: initial;
+  overflow: scroll;
+  hyphens: auto;
+  text-align: center;
 }
 
 .review-text > p::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .add-review-container {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 20px;
 }
 
 .add-review-header > h5 {
-    text-align: left;
+  text-align: left;
 }
 
 .add-review-form {
-    display: flex;
-    width: 100%;
-    gap: 2.5%;
-    margin: 20px 0;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  gap: 2.5%;
+  margin: 20px 0;
+  justify-content: space-between;
 }
 
 .review-inputs {
-    display: flex;
-    width: 85%;
-    align-items: center;
+  display: flex;
+  width: 85%;
+  align-items: center;
 }
 
 #rating-selector {
-    height: 100%;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px 5px;
-    background-color: black;
-    box-shadow: 0 0 5px black;
-    border: 3px solid black;
-    color: white;
-    transition: 0.4s;
-    vertical-align: bottom;
+  height: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 5px;
+  background-color: black;
+  box-shadow: 0 0 5px black;
+  border: 3px solid black;
+  color: white;
+  transition: 0.4s;
+  vertical-align: bottom;
 }
 
 #rating-selector:hover {
-    background-color: #f3f3f3;
-    border: 3px solid black;
-    color: black;
-    box-shadow: 0 0 15px black;
-    cursor: pointer;
+  background-color: #f3f3f3;
+  border: 3px solid black;
+  color: black;
+  box-shadow: 0 0 15px black;
+  cursor: pointer;
 }
 
 #review-text {
-    vertical-align: bottom;
-    height: 100%;
-    font-size: 20px;
-    box-shadow: 0 0 5px black;
-    border: 3px solid black;
-    color: black;
-    transition: 0.4s;
+  vertical-align: bottom;
+  height: 100%;
+  font-size: 20px;
+  box-shadow: 0 0 5px black;
+  border: 3px solid black;
+  color: black;
+  transition: 0.4s;
 }
 
 #review-text:hover {
-    box-shadow: 0 0 15px black;
+  box-shadow: 0 0 15px black;
 }
 
 .add-review-button {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .add-review-button > button {
-    width: 100%;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px;
-    background-color: black;
-    box-shadow: 0 0 5px black;
-    border: 3px solid black;
-    color: white;
-    transition: 0.4s;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  background-color: black;
+  box-shadow: 0 0 5px black;
+  border: 3px solid black;
+  color: white;
+  transition: 0.4s;
 }
 
 .add-review-button > button:hover {
-    background-color: #f3f3f3;
-    border: 3px solid black;
-    color: black;
-    box-shadow: 0 0 15px black;
-    cursor: pointer;
+  background-color: #f3f3f3;
+  border: 3px solid black;
+  color: black;
+  box-shadow: 0 0 15px black;
+  cursor: pointer;
 }
 
 .related-items .react-multi-carousel-item > div {
