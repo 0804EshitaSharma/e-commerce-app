@@ -90,9 +90,9 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 3. **Use of various React Libraries**
 
-- Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and The entire website is totally responsive, enabling seamless user interaction and viewing.
+- Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and the entire website is totally responsive, enabling seamless user interaction and viewing.
 - React-Toastify is used to display toast notifications for every user action, such as logging in or out, posting a review, returning an order, etc. Notifications for both errors and successes are displayed.
-- React-image-gallery is used to ----------
+- React-image-gallery is used to create sliders for better image displays across different places in our website, such as the main page and the product details page
 - React-credit-cards is used to create a credit card display that highlights the information when entered during the checkout process. 
 
 4. **Share products on Social Media**
