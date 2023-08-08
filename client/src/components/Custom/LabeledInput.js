@@ -1,6 +1,6 @@
 import React from "react";
 
-function LabeledInput({ className, name, label, type, placeholder, value, required, onChange }) {
+function LabeledInput({ className, name, label, type, placeholder, value, required, onChange, readOnly }) {
 
     return (
         <div className={className}>
@@ -14,6 +14,7 @@ function LabeledInput({ className, name, label, type, placeholder, value, requir
                     value={value}
                     required={required}
                     onChange={onChange}
+                    readOnly={readOnly}
                 />
             </div>
         </div>
