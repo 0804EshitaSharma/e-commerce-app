@@ -123,9 +123,15 @@ Arshdeep Jassi
 
 Danielle Chen
 
--
--
--
+- Front page
+    - Designed Product Card
+    - Made up images for sliders
+    - Fetch and display products
+- Dashboard page
+    - Implemented Search bar
+    - Implemented product filters
+- Collected all product data to database
+- Modified router links
 
 Elsie Lee - Shopping Cart/Order History
 
