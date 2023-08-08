@@ -9,7 +9,7 @@ import "./AddProductForm.css";
 import { addNewItemAsync } from "../../redux/item/itemSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { object, string,number } from "yup";
+import { object, string, number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 function AddProductForm() {
   /* Reference from https://www.npmjs.com/package/yup and https://www.youtube.com/watch?v=K4r6nw6aeg4 */

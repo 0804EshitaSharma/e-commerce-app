@@ -7,7 +7,7 @@ export const ProdListContainer = styled.div`
   justify-content: center;
   margin: 2px;
   overflow: auto;
-   @media (max-width: 768px) {
+  @media (max-width: 768px) {
     justify-content: flex-start;
   }
 

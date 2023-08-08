@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import "../OrderHistory/OrderHistory.css";
 
 function OrderItem({ item }) {
-
   return (
     <div className="order-item-container">
       <div className="order-image-container">

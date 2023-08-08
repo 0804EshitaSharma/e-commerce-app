@@ -1,8 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 /* Reference from https://firebase.google.com/docs/auth/web/password-auth */
 const firebaseConfig = {
   apiKey: "AIzaSyBp30JUbr9eWALQVM5WdWScUb3WR8P_dnk",
@@ -12,9 +9,6 @@ const firebaseConfig = {
   messagingSenderId: "607205974459",
   appId: "1:607205974459:web:23bb30924cf0a61a19249e",
 };
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth();
-export {app,auth};
+export { app, auth };
