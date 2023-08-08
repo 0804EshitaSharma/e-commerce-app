@@ -57,6 +57,7 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
    This project utilized Node.js and Express.js to enhance the backend architecture of our web application. Node.js ensures our server can handle multiple connections simultaneously, making our project scalable and high performance. Express.js serves as our application framework, it provided our server-side code a clear and organized structure for routing and request handling.
 
 4. **MongoDB**
+MongoDB is utilized as our backend database to store user data as well as product information. The NoSQL nature of MongoDB enhance data storage and retrival. With its scalable schema design, this project is able to maintain a well-defined data structure while optimizing query performance. 
 
 - Databases are designed for long term, permanent storage of data and we use the MongoDB database to store our user, product and orders information.
 - With MongoDB, it allows for more flexible information storage as some fields are not always necessary in a document and makes for easy changes in schema if needed.
@@ -77,15 +78,26 @@ Discover the joy of online shopping with our user-friendly E-Commerce app. Brows
 
 2. **Order Confirmation Emails using Sendgrid API**
 
+
 - Users receive order confirmation emails via Sendgrid API that include complete order details and delivery addresses.
 
 3. **Use of various React Libraries**
 
-- Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and The entire website is totally responsive, enabling seamless user interaction and viewing.
-- React-Toastify is used to display toast notifications for every user action, such as logging in or out, posting a review, returning an order, etc. Notifications for both errors and successes are displayed.
-- React-image-gallery is used to ----------
+  - Our app's user-friendly interface was made possible by the use of react libraries like react-share, react-toastify, and react-image-gallery across multiple places and The entire website is totally responsive, enabling seamless user interaction and viewing.
+  - React-Toastify is used to display toast notifications for every user action, such as logging in or out, posting a review, returning an order, etc. Notifications for both errors and successes are displayed.
+  - React-image-gallery is used to ----------
+  - React-credit-cards is used to create a credit card display that highlights the information when entered during the checkout process. 
 
 4. **Share products on Social Media**
+
+- React share is used on the product page to give customers the opportunity to email and share their favorite products on Facebook.
+
+5. **Google Places Autocomplete API**
+  - This application uses the google places autocomplete API in pages like checkout and user profile. With the use of places autocomplete, this app can detect user input and generate address recommendations accordingly.
+
+6. **Combobox Library**
+  - Combobox library is used along with google places autocomplete to display the address search bar along with the recommendations dropdown.
+
 
 - React share is used on the product page to give customers the opportunity to email and share their favorite products on Facebook.
 
@@ -168,3 +180,8 @@ These are our prototypes for the two requirements with task breakdowns mentioned
 
 - the view of the selected product details
   ![image](prototypes/productDetails-prototype.jpeg)
+
+![image](prototypes/productDetails-prototype.jpeg)
+
+- User Profile Screen with various options to update profile
+![pdf](prototypes/UserProfile.pdf)
