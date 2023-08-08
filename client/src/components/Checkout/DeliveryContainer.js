@@ -259,6 +259,7 @@ function DeliveryContainer({
                 label="City"
                 value={addressComponents.city}
                 placeholder="Enter city"
+                readOnly={true}
               />
               <LabeledInput
                 className="col-md-4"
@@ -267,6 +268,7 @@ function DeliveryContainer({
                 value={addressComponents.province}
                 label="Province"
                 placeholder="Enter province"
+                readOnly={true}
               />
               <LabeledInput
                 className="col-md-4"
@@ -275,6 +277,7 @@ function DeliveryContainer({
                 value={addressComponents.zipcode}
                 label="Postal code"
                 placeholder="Enter postal code"
+                readOnly={true}
               />
               <LabeledInput
                 className="col-md-4"
@@ -283,6 +286,7 @@ function DeliveryContainer({
                 value={addressComponents.country}
                 label="Country"
                 placeholder="Enter country"
+                readOnly={true}
               />
               <p className="col-md-12" />
               <div className="col-md-3" id="nextStep">
