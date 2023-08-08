@@ -164,14 +164,12 @@ Eshita Sharma
    - An admin view that permits the admin to add new products, update and delete existing ones from MongoDB database.
    - Added Toast notifications and responsiveness to our website.
 
-     
-
-
 Florence Situ
 
--
--
--
+- Checkout page 
+  - Checkout page contains 4 main components, they display order details, give users the option to enter their shipping information and delivery option, as well as a payment section that allows users to enter their credit card information. 
+  - Checkout page integrated Google places autocomplete API in the address section, it allows users to input minimal data and give suggestions accordingly. 
+  - Integrated order information with Redux and MongoDB. Checkout will fetch order details from redux temprorary store, and every successful order submission will create a order inside the MongoDB database, relevant order information will also update inside user's data in MongoDB. 
 
 ## Project Group Information
 
