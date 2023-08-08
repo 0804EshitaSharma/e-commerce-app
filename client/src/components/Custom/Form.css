@@ -11,13 +11,13 @@
   background-color: #fff;
 }
 
-h1 {
+.form-header {
   font-weight: 900;
   font-size: 2rem;
   color: rgba(25, 130, 180, 0.8);
 }
 @media (max-width: 931px) {
-  h1 {
+  .form-header {
     font-size: 1.5rem !important;
   }
 

@@ -10,7 +10,18 @@ export const cartSlice = createSlice({
   reducers: {
     addProductToCart: (state, action) => {
       let newItem = action.payload;
-      state.itemsList.push(newItem);
+      if (state.itemsList.length === 0) {
+        state.itemsList.push(newItem);
+      } else {
+        let matchedItem = state.itemsList.filter(
+          (item) => item.productDetails.name === newItem.productDetails.name
+        );
+        if (matchedItem.length > 0) {
+          matchedItem[0].quantity++;
+        } else {
+          state.itemsList.push(newItem);
+        }
+      }
     },
     removeAllInCart: (state, action) => {
       state.itemsList = [];

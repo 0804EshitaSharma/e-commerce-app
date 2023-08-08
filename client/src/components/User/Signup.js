@@ -83,8 +83,8 @@ function Signup() {
   return (
     <div>
       <div>
-        <form className="container">
-          <h1>Sign Up</h1>
+        <form className="signup-container">
+          <h1 className="signup-header">Sign Up</h1>
           <CustomFormInput
             name="firstname"
             id="firstname"

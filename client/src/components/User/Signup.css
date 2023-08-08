@@ -1,4 +1,4 @@
-.container {
+.signup-container {
   border: 1px solid gray;
   margin: auto auto;
   margin-top: 4rem;
@@ -11,7 +11,7 @@
   background-color: #fff;
 }
 
-h1 {
+.signup-header {
   font-weight: 600;
   font-size: 2rem;
 }
