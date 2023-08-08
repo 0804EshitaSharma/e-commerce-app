@@ -151,10 +151,8 @@ Eshita Sharma
    - Created user login/sign-up forms and integrated with Firebase that supports user login/logout and password reset features.
 
 3. User Account page
-   - Used private routes to block guest users from accessing the wishlist and add-to-cart pages.
    - User information was integrated with a Redux user store and MongoDB, and a user profile page was made that 
-     displays user information by reading from the database and offers the ability to change profile information 
-     like updating mobile number,adding address and updating passwords.
+     displays user information and offers the ability to change profile information like updating mobile number,adding address etc.
      
 
 
