@@ -144,9 +144,12 @@ Elsie Lee - Shopping Cart/Order History
 
 Eshita Sharma
 
--
--
--
+1. Top Navbar:
+- Developed the Navbar component with search, user-account, shopping cart, and wishlist icons.
+  
+2. User Authentication with password assistance:
+- Created user login/sign-up forms and integrated with Firebase that supports user login/logout and password reset features.
+
 
 Florence Situ
 
