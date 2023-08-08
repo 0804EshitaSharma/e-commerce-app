@@ -158,7 +158,7 @@ Eshita Sharma
 4. Sharing Product and Order Confirmation Email:
    - An option to Email or Post a message on Facebook to share products with friends.
    - Email notifications on product purchase using SendGrid API.
-   - An option to return an order.
+   - An option to return an existing order.
      
 5.  Admin View:
    - An admin view that permits the admin to add new products, update and delete existing ones from MongoDB database.
