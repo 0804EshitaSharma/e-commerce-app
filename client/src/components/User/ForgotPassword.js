@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Form from "../Custom/Form";
 
 function ForgotPassword() {
@@ -15,4 +15,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword
+export default ForgotPassword;

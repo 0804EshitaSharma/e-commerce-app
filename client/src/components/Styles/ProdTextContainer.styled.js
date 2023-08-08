@@ -5,5 +5,5 @@ export const ProdTextContainer = styled.div`
   position: relative;
   height: 200px;
   padding: 10px;
-  overflow: scroll
+  overflow: scroll;
 `;
