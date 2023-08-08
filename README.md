@@ -158,6 +158,10 @@ Eshita Sharma
 4. Product Page:
    - An option to Email or Post a message on Facebook to share products with friends.
      
+5.  Admin View:
+   - An admin view that permits the admin to add new products, update and delete existing ones from MongoDB database.
+
+     
 
 
 Florence Situ
