@@ -37,8 +37,6 @@ function PaymentContainer({
       return;
     }
 
-    console.log("Submitting order data:", orderData);
-
     handleOrderSubmit(orderData);
 
     dispatch(removeAllInCart());

@@ -161,12 +161,6 @@ function DeliveryContainer({
 
   const handleNextStepDelivery = (e) => {
     e.preventDefault();
-    console.log("selectedDeliveryOption:", selectedDeliveryOption);
-    console.log("firstName:", firstName);
-    console.log("lastName:", lastName);
-    console.log("phoneNumber:", phoneNumber);
-    console.log("address", deliveryAddress);
-
     if (selectedDeliveryOption) {
       setOrderData({
         ...orderData,
@@ -174,7 +168,6 @@ function DeliveryContainer({
         deliveryOption: selectedDeliveryOption,
         fullName: `${firstName} ${lastName}`,
       });
-      console.log("delivery button orderdata:", orderData);
     } else {
       console.log("No delivery option selected.");
     }
