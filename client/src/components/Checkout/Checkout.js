@@ -42,7 +42,6 @@ function Checkout() {
       <h2> Checkout </h2>
       <div className="container-lg">
         <div className="row">
-          {/* left */}
           <DeliveryContainer
             handleOrderSubmit={handleOrderSubmit}
             orderData={orderData}
@@ -50,8 +49,6 @@ function Checkout() {
             user={user}
             itemList={itemList}
           />
-
-          {/* right */}
           <PaymentContainer
             handleOrderSubmit={handleOrderSubmit}
             orderData={orderData}

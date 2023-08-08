@@ -110,10 +110,9 @@
     font-size: 10px;
   }
 
-
-.name-quantity-container {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-}
+  .name-quantity-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
