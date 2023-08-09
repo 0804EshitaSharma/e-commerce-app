@@ -358,19 +358,21 @@ input::-webkit-inner-spin-button {
     min-width: 100%;
     flex-direction: column;
   }
-
   .desc-text {
     font-size: 14px;
   }
-
+  .quantity-picker-wrapper {
+    margin-top: 0px;
+    width: fit-content;
+  }
+  .quantity-picker {
+    width: 33%;
+  }
+  .quantity-picker-wrapper > h4 {
+    font-size: 15px;
+  }
   .quantity-picker > input {
-    background-color: #f3f3f3;
-    color: black;
-    border-right: none;
-    border-left: none;
-    text-align: center;
-    border-radius: 0px;
-    min-width: 25px;
+    min-width: 20px;
   }
 
   .price-quantity {
@@ -445,11 +447,23 @@ input::-webkit-inner-spin-button {
   }
 }
 
+@media (max-width: 720px) {
+  .quantity-picker {
+    width: 25%;
+  }
+  .quantity-picker > input {
+    min-width: 15px;
+  }
+}
+
 .quantity-picker-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
 
 .review-cards {
