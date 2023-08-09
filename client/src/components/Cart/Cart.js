@@ -40,7 +40,7 @@ function Cart() {
               </button>
             </h1>
             <hr className="cart-hr" />
-            <h4 className="price-header">Price</h4>
+            <h4 id="item-price-header">Price</h4>
             {itemList.map((currItem, index) => {
               return (
                 <Item

@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RoutePaths } from "../../../utils/RoutePaths";
 import { auth } from "../../../firebase/firebaseConfig";
+import { AiFillPropertySafety } from "react-icons/ai";
 
 export default function ProductCard(props) {
   // https://stackoverflow.com/a/71247418
@@ -30,6 +31,7 @@ export default function ProductCard(props) {
     category: props.item.category,
     images: props.item.images,
     quantity: props.item.quantity,
+    reviews: props.item.reviews,
   };
   const quantity = 1;
   const item = props.item;
