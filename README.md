@@ -210,4 +210,4 @@ These are our prototypes for the two requirements with task breakdowns mentioned
   ![image](prototypes/productDetails-prototype.jpeg)
 
 - User Profile Screen with various options to update profile
-![pdf](prototypes/UserProfile.pdf)
+  ![image](prototypes/UserProfile.png)
