@@ -73,9 +73,7 @@ function Item({ itemInfo, setTotalPrice, calcTotalPrice }) {
         )}
       </div>
       <div className="price-container">
-        <h1 className="price-header">
-          ${(itemInfo.productDetails.price * quantity).toFixed(2)}
-        </h1>
+        <h1>${(itemInfo.productDetails.price * quantity).toFixed(2)}</h1>
         <button
           className="remove-button"
           onClick={() => {
